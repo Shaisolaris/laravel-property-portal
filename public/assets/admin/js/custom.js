@@ -6,7 +6,7 @@
  */
 (function ($) {
     "use strict";
-
+    console.log('test');
     var datefilter = $('.datefilter');
     datefilter.daterangepicker({
         singleDatePicker: true,
