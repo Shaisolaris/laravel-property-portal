@@ -15,13 +15,7 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-    <link rel="stylesheet" href="/assets/default/css/animate.min.css">
     <link rel="stylesheet" href="/assets/default/css/app.css">
-    <link rel="stylesheet" href="/assets/default/css/custom.css">
-
-
-
-
 
     <?php if($isRtl): ?>
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -77,7 +71,6 @@
 </div>
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>
-<script src="/assets/default/js/custom.js"></script>
 <script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
 <script src="/assets/default/vendors/moment.min.js"></script>
 <script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>

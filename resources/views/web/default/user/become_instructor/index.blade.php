@@ -1,8 +1,5 @@
 @extends(getTemplate().'.layouts.app')
 
-@push('styles_top')
-    <link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
-@endpush
 
 @section('content')
     <div class="container">
@@ -134,12 +131,6 @@
                             <textarea name="description" rows="6" class="form-control">{{ !empty($lastRequest) ? $lastRequest->description : old('description') }}</textarea>
                         </div>
 
-                        <div class="js-form-fields-card">
-                            @if(!empty($formFields))
-                                {!! $formFields !!}
-                            @endif
-                        </div>
-
                         <button type="submit" class="btn btn-primary btn-block mt-20">{{ (!empty(getRegistrationPackagesGeneralSettings('show_packages_during_registration')) and getRegistrationPackagesGeneralSettings('show_packages_during_registration')) ? trans('webinars.next') : trans('site.send_request') }}</button>
                     </form>
 
@@ -151,7 +142,6 @@
 
 @push('scripts_bottom')
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-    <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/assets/default/js/parts/forms.min.js"></script>
+
     <script src="/assets/default/js/parts/become_instructor.min.js"></script>
 @endpush

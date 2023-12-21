@@ -52,13 +52,6 @@ class Channel extends BasePaymentChannel implements IChannel
         if ($response->isRedirect()) {
             return $response->redirect();
         }
-
-        $toastData = [
-            'title' => trans('cart.fail_purchase'),
-            'msg' => '',
-            'status' => 'error'
-        ];
-        return redirect()->back()->with(['toast' => $toastData])->withInput();
     }
 
     private function createPaymentData($order)

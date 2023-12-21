@@ -18,7 +18,7 @@ class CreateFaqTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('faq_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('answer');
 

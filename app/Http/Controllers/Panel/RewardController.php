@@ -32,7 +32,7 @@ class RewardController extends Controller
         $rewards = $query->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $mostPointsUsers = RewardAccounting::selectRaw('*, SUM(CASE WHEN status = "addiction" THEN score ELSE 0 END) as total_points')
+        $mostPointsUsers = RewardAccounting::selectRaw('*,sum(score) as total_points')
             ->groupBy('user_id')
             ->whereHas('user')
             ->with([

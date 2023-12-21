@@ -26,7 +26,6 @@ class Channel extends BasePaymentChannel implements IChannel
 {
     private $_api_context;
     protected $currency;
-
     /**
      * Channel constructor.
      * @param PaymentChannel $paymentChannel
@@ -60,14 +59,11 @@ class Channel extends BasePaymentChannel implements IChannel
                 }
 
                 $price = $this->makeAmountByCurrency(($orderItem->total_amount - $orderItem->tax_price), $this->currency);
-                $taxPrice = $this->makeAmountByCurrency($orderItem->tax_price, $this->currency);
 
                 $items[] = $item->setName($name)
                     ->setCurrency($this->currency)
                     ->setQuantity(1)
                     ->setSku($orderItem->id) // Similar to `item_number` in Classic API
-                    ->setCurrency($this->currency)
-                    ->setTax($taxPrice)
                     ->setPrice($price);
 
             }
@@ -78,7 +74,6 @@ class Channel extends BasePaymentChannel implements IChannel
             $item->setName('charge')
                 ->setCurrency($this->currency)
                 ->setQuantity(1)
-                ->setCurrency($this->currency)
                 ->setPrice($price);
         }
 
@@ -87,7 +82,7 @@ class Channel extends BasePaymentChannel implements IChannel
 
         $details = new Details();
         $details->setShipping(0)
-            ->setTax($this->makeAmountByCurrency($order->tax, $this->currency))
+            ->setTax($order->tax)
             ->setSubtotal($this->makeAmountByCurrency(($order->total_amount - $order->tax), $this->currency));
 
         $amount = new Amount();

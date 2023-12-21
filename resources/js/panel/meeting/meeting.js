@@ -13,14 +13,8 @@
 
     // toTimepicker and fromTimepicker are defined globally in blade
 
-    function handleToTime(justPM = false) {
-        const $timeTwelveSwitch = $('#timeTwelveSwitch');
-
-        $timeTwelveSwitch.prop('checked', justPM);
-
-        if (justPM) {
-            $timeTwelveSwitch.prop('disabled', true);
-        }
+    function handleToTime() {
+        $('#timeTwelveSwitch').prop('checked', false);
 
         toTimepicker = $('.to-clockpicker').clockpicker({
             placement: 'bottom',
@@ -37,7 +31,7 @@
 
                 $('.to-time').removeClass('pulsate').html(substringText(to_time, am_pm) + ' <span class="js-am-pm font-20">' + am_pm + '</span>');
 
-                $timeTwelveSwitch.prop('disabled', true);
+                $('#timeTwelveSwitch').prop('disabled', true);
             },
         });
     }
@@ -56,10 +50,7 @@
             default: '09:00AM',
             twelvehour: true,
             afterDone: () => {
-                const isPM = $('#timeTwelveSwitch').is(":checked");
-
-                handleToTime(isPM);
-
+                handleToTime();
                 fromTimepicker.clockpicker('remove');
                 toTimepicker.clockpicker('show');
                 const from_time = $('.from-clockpicker input');
@@ -67,17 +58,22 @@
 
                 $('.from-time').removeClass('pulsate').html(substringText(from_time, am_pm) + ' <span class="js-am-pm font-20">' + am_pm + '</span>');
                 $('.to-time').addClass('pulsate');
-
-                if (isPM) {
-                    handlePMAM('PM', 'AM')
-                }
             },
         });
         fromTimepicker.clockpicker('show');
     }
 
 
-    function handlePMAM(type, replace) {
+    $('body').on('change', '#timeTwelveSwitch', function (e) {
+        e.preventDefault();
+        let type = 'AM';
+        let replace = 'PM';
+
+        if (this.checked) {
+            type = 'PM';
+            replace = 'AM';
+        }
+
         const $fromText = $('.from-time.pulsate').find('.js-am-pm');
         const $toText = $('.to-time.pulsate').find('.js-am-pm');
 
@@ -96,19 +92,6 @@
             to_time = to_time.replace(replace, type);
             $to.val(to_time);
         }
-    }
-
-    $('body').on('change', '#timeTwelveSwitch', function (e) {
-        e.preventDefault();
-        let type = 'AM';
-        let replace = 'PM';
-
-        if (this.checked) {
-            type = 'PM';
-            replace = 'AM';
-        }
-
-        handlePMAM(type, replace)
     });
 
     $('body').on('click', '.add-time', function (e) {

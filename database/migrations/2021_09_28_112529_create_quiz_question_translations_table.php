@@ -18,7 +18,7 @@ class CreateQuizQuestionTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('quizzes_question_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('correct')->nullable();
 

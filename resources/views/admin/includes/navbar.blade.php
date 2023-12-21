@@ -14,24 +14,7 @@
     </form>
     <ul class="navbar-nav navbar-right">
 
-
-        @include('admin.includes.navbar.language')
-
-        @include('admin.includes.navbar.currency')
-
-        @if(!empty(getAiContentsSettingsName("status")) and !empty(getAiContentsSettingsName("active_for_admin_panel")))
-            <div class="js-show-ai-content-drawer show-ai-content-drawer-btn d-flex-center mr-4">
-                <div class="d-flex-center size-32 rounded-circle bg-white">
-                    <img src="/assets/default/img/ai/ai-chip.svg" alt="ai" class="" width="16px" height="16px">
-                </div>
-                <span class="ml-1 font-weight-500 font-14">{{ trans('update.ai_content') }}</span>
-            </div>
-        @endif
-
-
-        @can('admin_notifications_list')
-
-        <li class="dropdown dropdown-list-toggle">
+    <li class="dropdown dropdown-list-toggle">
                 <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg">
                     <i class="fa fa-info-circle"></i>
                 </a>
@@ -42,7 +25,7 @@
                                     <i class="fa fa-info"></i>
                                 </div>
                                 <div class="dropdown-item-desc">
-                                   Rocket LMS Version 1.8
+                                   Rocket LMS Version 1.7.2
                                    <div class="time text-primary">All rights reserved for Rocket Soft</div>
                                 </div>
                             </a>
@@ -50,6 +33,7 @@
                 </div>
             </li>
 
+        @can('admin_notifications_list')
             <li class="dropdown dropdown-list-toggle">
                 <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg @if(!empty($unreadNotifications) and count($unreadNotifications)) beep @else disabled @endif">
                     <i class="far fa-bell"></i>

@@ -18,7 +18,7 @@ class CreateAdvertisingBannersTranslationsTable extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('advertising_banner_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('image');
 

@@ -28,7 +28,7 @@ class CreateNavbarButtonsTable extends Migration
 
             $table->increments('id');
             $table->integer('navbar_button_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('url');
 

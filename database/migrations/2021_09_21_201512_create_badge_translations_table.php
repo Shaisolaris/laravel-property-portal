@@ -18,7 +18,7 @@ class CreateBadgeTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('badge_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
 

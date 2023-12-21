@@ -18,7 +18,7 @@ class CreateBlogTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('blog_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
             $table->longText('content');

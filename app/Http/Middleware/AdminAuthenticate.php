@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Http\Controllers\Admin\SidebarController;
 use App\Mixins\Financial\MultiCurrency;
-use App\Models\AiContentTemplate;
 use App\User;
 use Closure;
 use Illuminate\Support\Facades\App;
@@ -23,10 +22,10 @@ class AdminAuthenticate
     {
         if (auth()->check() and auth()->user()->isAdmin()) {
 
-            \Session::forget('impersonated');
-
             if (auth()->user()->hasPermission('admin_notifications_list')) {
                 $adminUser = User::find(1);
+
+                \Session::forget('impersonated');
 
                 $unreadNotifications = $adminUser->getUnReadNotifications();
 
@@ -72,9 +71,6 @@ class AdminAuthenticate
             $sidebarBeeps['offlinePayments'] = $sidebarController->getOfflinePaymentsBeep();
 
             view()->share('sidebarBeeps', $sidebarBeeps);
-
-            $aiContentTemplates = AiContentTemplate::query()->where('enable', true)->get();
-            view()->share('aiContentTemplates', $aiContentTemplates);
 
 
             // locale config

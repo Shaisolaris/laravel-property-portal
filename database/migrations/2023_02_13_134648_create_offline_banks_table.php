@@ -22,7 +22,7 @@ class CreateOfflineBanksTable extends Migration
         Schema::create('offline_bank_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('offline_bank_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('offline_bank_id')->on('offline_banks')->references('id')->cascadeOnDelete();
@@ -39,7 +39,7 @@ class CreateOfflineBanksTable extends Migration
         Schema::create('offline_bank_specification_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('offline_bank_specification_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('name');
 
             $table->foreign('offline_bank_specification_id', 'offline_bank_specification_id')->on('offline_bank_specifications')->references('id')->cascadeOnDelete();

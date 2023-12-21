@@ -38,15 +38,9 @@
 <meta name='twitter:card' content='summary'>
 <meta name='twitter:title' content='{{ $pageTitle ?? '' }}'>
 
-@php
-    if (empty($pageMetaImage)) {
-        $pageMetaImage = !empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '/';
-    }
-@endphp
-
 <meta property='og:site_name' content='{{ url(!empty($generalSettings['site_name']) ? $generalSettings['site_name'] : '') }}'>
-<meta property='og:image' content='{{ url($pageMetaImage) }}'>
-<meta name='twitter:image' content='{{ url($pageMetaImage) }}'>
+<meta property='og:image' content='{{ url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '') }}'>
+<meta name='twitter:image' content='{{ url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '') }}'>
 <meta property='og:locale' content='{{ url(!empty($generalSettings['locale']) ? $generalSettings['locale'] : 'en_US') }}'>
 <meta property='og:type' content='website'>
 

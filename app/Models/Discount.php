@@ -11,7 +11,7 @@ class Discount extends Model
     protected $guarded = ['id'];
     static $discountUserTypes = ['all_users', 'special_users'];
 
-    static $discountSource = ['course', 'bundle', 'category', 'meeting', 'product'];
+    static $discountSource = ['all', 'course', 'bundle', 'category', 'meeting', 'product'];
     static $discountSourceAll = 'all';
     static $discountSourceCourse = 'course';
     static $discountSourceCategory = 'category';

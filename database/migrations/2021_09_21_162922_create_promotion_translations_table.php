@@ -18,7 +18,7 @@ class CreatePromotionTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('promotion_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
 

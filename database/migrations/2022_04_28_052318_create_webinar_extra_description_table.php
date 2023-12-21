@@ -32,7 +32,7 @@ class CreateWebinarExtraDescriptionTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('webinar_extra_description_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->text('value');
 
             $table->foreign('webinar_extra_description_id', 'webinar_extra_description_id_foreign')->on('webinar_extra_descriptions')->references('id')->onDelete('cascade');

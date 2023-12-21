@@ -18,7 +18,7 @@ class CreateFilterTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('filter_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('filter_id')->on('filters')->references('id')->onDelete('cascade');

@@ -276,15 +276,7 @@
         const title = sessionIsLiveLang;
         const hint = youCanJoinTheLiveNowLang;
         const img = 'live_session.svg';
-
-        let otherHtml = "";
-
-        if (session.password) {
-            otherHtml += `<div class="font-14 font-weight-500 text-gray mt-5">${passwordLang}: ${session.password}</div>`
-        }
-
-
-        otherHtml += `
+        const otherHtml = `
             <div class="d-flex align-items-center mt-15">
                 <a href="${session.join_url}" target="_blank" class="btn btn-primary btn-sm ">${joinTheClassLang}</a>
                 <a href="${courseUrl}" class="btn btn-white btn-sm ml-10">${coursePageLang}</a>

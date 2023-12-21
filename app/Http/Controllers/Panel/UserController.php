@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Panel;
 
 use App\Bitwise\UserLevelOfTraining;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Web\traits\UserFormFieldsTrait;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\Category;
 use App\Models\DeleteAccountRequest;
@@ -29,9 +28,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    use UserFormFieldsTrait;
-
-    public function setting(Request $request, $step = 1)
+    public function setting($step = 1)
     {
         $user = auth()->user();
 
@@ -67,7 +64,6 @@ class UserController extends Controller
         $provinces = null;
         $cities = null;
         $districts = null;
-
         if ($step == 9) {
             $countries = Region::select(DB::raw('*, ST_AsText(geo_center) as geo_center'))
                 ->where('type', Region::$country)
@@ -95,19 +91,6 @@ class UserController extends Controller
             }
         }
 
-        $formFieldsHtml = null;
-        if (($step == 8 and $user->isUser()) or ($step == 9 and !$user->isUser())) {
-            $userType = "organization";
-
-            if ($user->isTeacher()) {
-                $userType = "teacher";
-            } elseif ($user->isUser()) {
-                $userType = "user";
-            }
-
-            $formFieldsHtml = $this->getFormFieldsByUserType($request, $userType, true, $user);
-        }
-
         $userBanks = UserBank::query()
             ->with([
                 'specifications'
@@ -129,7 +112,6 @@ class UserController extends Controller
             'cities' => $cities,
             'districts' => $districts,
             'userBanks' => $userBanks,
-            'formFieldsHtml' => $formFieldsHtml,
         ];
 
         return view(getTemplate() . '.panel.setting.index', $data);
@@ -265,17 +247,11 @@ class UserController extends Controller
                             [
                                 'api_key' => $data['zoom_api_key'] ?? null,
                                 'api_secret' => $data['zoom_api_secret'] ?? null,
-                                'account_id' => $data['zoom_account_id'] ?? null,
                                 'created_at' => time()
                             ]
                         );
                     } else {
                         UserZoomApi::where('user_id', $user->id)->delete();
-                    }
-                } else {
-                    $handleUserExtraForm = $this->handleUserExtraForm($request, $user);
-                    if ($handleUserExtraForm != "ok") {
-                        return $handleUserExtraForm;
                     }
                 }
             } elseif ($step == 9) {
@@ -318,13 +294,6 @@ class UserController extends Controller
                         ]);
                     }
                 }
-
-                if (!$user->isUser()) {
-                    $handleUserExtraForm = $this->handleUserExtraForm($request, $user);
-                    if ($handleUserExtraForm != "ok") {
-                        return $handleUserExtraForm;
-                    }
-                }
             }
 
             if (!empty($updateData)) {
@@ -353,30 +322,6 @@ class UserController extends Controller
             return redirect($url)->with(['toast' => $toastData]);
         }
         abort(404);
-    }
-
-    private function handleUserExtraForm(Request $request, $user)
-    {
-        $userType = "organization";
-        if ($user->isTeacher()) {
-            $userType = "teacher";
-        } elseif ($user->isUser()) {
-            $userType = "user";
-        }
-
-        $form = $this->getFormFieldsByType($userType);
-
-        if (!empty($form)) {
-            $errors = $this->checkFormRequiredFields($request, $form);
-
-            if (count($errors)) {
-                return redirect()->back()->withErrors($errors);
-            }
-
-            $this->storeFormFields($request->all(), $user);
-        }
-
-        return "ok";
     }
 
     private function handleNewsletter($email, $user_id, $joinNewsletter)
@@ -614,8 +559,6 @@ class UserController extends Controller
             $userLanguages = getGeneralSettings('user_languages');
             if (!empty($userLanguages) and is_array($userLanguages)) {
                 $userLanguages = getLanguages($userLanguages);
-            } else {
-                $userLanguages = [];
             }
 
             $data = [
@@ -708,16 +651,7 @@ class UserController extends Controller
                 $userLanguages = getGeneralSettings('user_languages');
                 if (!empty($userLanguages) and is_array($userLanguages)) {
                     $userLanguages = getLanguages($userLanguages);
-                } else {
-                    $userLanguages = [];
                 }
-
-                $userBanks = UserBank::query()
-                    ->with([
-                        'specifications'
-                    ])
-                    ->orderBy('created_at', 'desc')
-                    ->get();
 
                 $data = [
                     'organization_id' => $organization->id,
@@ -731,7 +665,6 @@ class UserController extends Controller
                     'occupations' => $occupations,
                     'userLanguages' => $userLanguages,
                     'currentStep' => $step,
-                    'userBanks' => $userBanks,
                 ];
 
                 return view(getTemplate() . '.panel.setting.index', $data);
@@ -912,5 +845,98 @@ class UserController extends Controller
         }
 
         return response()->json([], 422);
+    }
+
+    public function academyProfileSettings($step = 1)
+    {
+        $user = auth()->user();
+
+        if (!empty($user->location)) {
+            $user->location = \Geo::getST_AsTextFromBinary($user->location);
+
+            $user->location = \Geo::get_geo_array($user->location);
+        }
+
+        $categories = Category::where('parent_id', null)
+            ->with('subCategories')
+            ->get();
+
+        $userMetas = $user->userMetas;
+
+        if (!empty($userMetas)) {
+            foreach ($userMetas as $meta) {
+                $user->{$meta->name} = $meta->value;
+            }
+        }
+
+        $occupations = $user->occupations->pluck('category_id')->toArray();
+
+
+        $userLanguages = getGeneralSettings('user_languages');
+        if (!empty($userLanguages) and is_array($userLanguages)) {
+            $userLanguages = getLanguages($userLanguages);
+        } else {
+            $userLanguages = [];
+        }
+
+        $countries = null;
+        $provinces = null;
+        $cities = null;
+        $districts = null;
+        if ($step == 9) {
+            $countries = Region::select(DB::raw('*, ST_AsText(geo_center) as geo_center'))
+                ->where('type', Region::$country)
+                ->get();
+
+            if (!empty($user->country_id)) {
+                $provinces = Region::select(DB::raw('*, ST_AsText(geo_center) as geo_center'))
+                    ->where('type', Region::$province)
+                    ->where('country_id', $user->country_id)
+                    ->get();
+            }
+
+            if (!empty($user->province_id)) {
+                $cities = Region::select(DB::raw('*, ST_AsText(geo_center) as geo_center'))
+                    ->where('type', Region::$city)
+                    ->where('province_id', $user->province_id)
+                    ->get();
+            }
+
+            if (!empty($user->city_id)) {
+                $districts = Region::select(DB::raw('*, ST_AsText(geo_center) as geo_center'))
+                    ->where('type', Region::$district)
+                    ->where('city_id', $user->city_id)
+                    ->get();
+            }
+        }
+
+        $userBanks = UserBank::query()
+            ->with([
+                'specifications'
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $data = [
+            'pageTitle' => trans('panel.settings'),
+            'user' => $user,
+            'categories' => $categories,
+            'educations' => $userMetas->where('name', 'education'),
+            'experiences' => $userMetas->where('name', 'experience'),
+            'occupations' => $occupations,
+            'userLanguages' => $userLanguages,
+            'currentStep' => $step,
+            'countries' => $countries,
+            'provinces' => $provinces,
+            'cities' => $cities,
+            'districts' => $districts,
+            'userBanks' => $userBanks,
+        ];
+//        dd($data);
+
+        return view('web.public_academy.dashboard_settings', [
+            'user' => $user,
+            'userLanguages' => $userLanguages,
+        ]);
     }
 }

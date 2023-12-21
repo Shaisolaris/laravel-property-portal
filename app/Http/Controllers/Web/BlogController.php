@@ -110,7 +110,6 @@ class BlogController extends Controller
                 $data = [
                     'pageTitle' => $post->title,
                     'pageDescription' => $post->meta_description,
-                    'pageMetaImage' => $post->image,
                     'blogCategories' => $blogCategories,
                     'popularPosts' => $popularPosts,
                     'pageRobot' => $pageRobot,

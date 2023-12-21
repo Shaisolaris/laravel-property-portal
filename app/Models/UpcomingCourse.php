@@ -106,7 +106,7 @@ class UpcomingCourse extends Model implements TranslatableContract
      *
      * @return array
      */
-    public function sluggable(): array
+    public function sluggable()
     {
         return [
             'slug' => [

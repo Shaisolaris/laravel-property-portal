@@ -18,7 +18,6 @@ class AddNewColumnsToUsersZoomApiTable extends Migration
 
             $table->text('api_key')->after('jwt_token')->nullable();
             $table->text('api_secret')->after('api_key')->nullable();
-            $table->text('account_id')->after('api_secret')->nullable();
         });
     }
 

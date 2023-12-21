@@ -18,7 +18,7 @@ class CreateProductSelectedSpecificationTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_selected_specification_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->text('value');
 
             $table->foreign('product_selected_specification_id','product_selected_specification_id_translations')->references('id')->on('product_selected_specifications')->onDelete('cascade');

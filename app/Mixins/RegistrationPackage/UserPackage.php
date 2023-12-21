@@ -46,7 +46,6 @@ class UserPackage
             $package->courses_count = (!empty($data) and isset($data->courses_count)) ? $data->courses_count : null;
             $package->meeting_count = (!empty($data) and isset($data->meeting_count)) ? $data->meeting_count : null;
             $package->product_count = (!empty($data) and isset($data->product_count)) ? $data->product_count : null;
-            $package->ai_content_access = !!(!empty($data) and !empty($data->ai_content_access) and $data->ai_content_access);
 
             if ($type == 'package') {
                 $package->package_id = $data->id;

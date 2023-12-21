@@ -25,7 +25,7 @@
                         <p class="font-weight-500 text-gray mt-10">{{ trans('panel.promotion_days',['day' => $promotion->days]) }}</p>
 
                         <div class="d-flex align-items-start text-primary mt-30">
-                            <span class="font-36 line-height-1 subscribe-plan-price">{{ (!empty($promotion->price) and $promotion->price > 0) ? handlePrice($promotion->price, true, true, false, null, true) : trans('public.free') }}</span>
+                            <span class="font-36 line-height-1 subscribe-plan-price">{{ (!empty($promotion->price) and $promotion->price > 0) ? handlePrice($promotion->price) : trans('public.free') }}</span>
                         </div>
 
                         <p class="text-dark-blue font-14 mt-25">{{ nl2br($promotion->description) }}</p>

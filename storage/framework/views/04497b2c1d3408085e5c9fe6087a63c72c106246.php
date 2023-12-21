@@ -54,7 +54,7 @@
                                         <ul class="cat-dropdown-menu">
                                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li>
-                                                    <a href="<?php echo e($category->getUrl()); ?>" class="<?php echo e((!empty($category->subCategories) and count($category->subCategories)) ? 'js-has-subcategory' : ''); ?>">
+                                                    <a href="<?php echo e($category->getUrl()); ?>">
                                                         <div class="d-flex align-items-center">
                                                             <img src="<?php echo e($category->icon); ?>" class="cat-dropdown-menu-icon mr-10" alt="<?php echo e($category->title); ?> icon">
                                                             <?php echo e($category->title); ?>
@@ -102,7 +102,7 @@
                 </ul>
             </div>
 
-            <div class="nav-icons-or-start-live navbar-order d-flex align-items-center justify-content-end">
+            <div class="nav-icons-or-start-live navbar-order">
 
                 <?php if(!empty($navBtnUrl)): ?>
                     <a href="<?php echo e($navBtnUrl); ?>" class="d-none d-lg-flex btn btn-sm btn-primary nav-start-a-live-btn">
@@ -116,23 +116,12 @@
                     </a>
                 <?php endif; ?>
 
-                <?php if(!empty($isPanel)): ?>
-                    <?php if($authUser->checkAccessToAIContentFeature()): ?>
-                        <div class="js-show-ai-content-drawer show-ai-content-drawer-btn d-flex-center mr-40">
-                            <div class="d-flex-center size-32 rounded-circle bg-white">
-                                <img src="/assets/default/img/ai/ai-chip.svg" alt="ai" class="" width="16px" height="16px">
-                            </div>
-                            <span class="ml-5 font-weight-500 text-secondary font-14 d-none d-lg-block"><?php echo e(trans('update.ai_content')); ?></span>
-                        </div>
-                    <?php endif; ?>
-                <?php endif; ?>
-
-                <div class="d-none nav-notify-cart-dropdown top-navbar">
-                    <?php echo $__env->make('web.default.includes.shopping-cart-dropdwon', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <div class="d-none nav-notify-cart-dropdown top-navbar ">
+                    <?php echo $__env->make(getTemplate().'.includes.shopping-cart-dropdwon', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                     <div class="border-left mx-15"></div>
 
-                    <?php echo $__env->make('web.default.includes.notification-dropdown', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                    <?php echo $__env->make(getTemplate().'.includes.notification-dropdown', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
 
             </div>

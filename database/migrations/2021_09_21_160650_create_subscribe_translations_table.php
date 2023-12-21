@@ -18,7 +18,7 @@ class CreateSubscribeTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('subscribe_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('description')->nullable();
 

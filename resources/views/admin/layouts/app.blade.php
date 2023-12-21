@@ -72,13 +72,6 @@
     </div>
 
 </div>
-
-{{-- AI Contents --}}
-@if(!empty(getAiContentsSettingsName("status")) and !empty(getAiContentsSettingsName("active_for_admin_panel")))
-    @include('admin.includes.aiContent.generator')
-@endif
-
-
 <!-- General JS Scripts -->
 <script src="/assets/admin/vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="/assets/admin/vendor/poper/popper.min.js"></script>
@@ -136,14 +129,9 @@
     var deleteAlertSuccessHint = '{{ trans('public.deleteAlertSuccessHint') }}';
     var forbiddenRequestToastTitleLang = '{{ trans('public.forbidden_request_toast_lang') }}';
     var forbiddenRequestToastMsgLang = '{{ trans('public.forbidden_request_toast_msg_lang') }}';
-    var generatedContentLang = '{{ trans('update.generated_content') }}';
-    var copyLang = '{{ trans('public.copy') }}';
-    var doneLang = '{{ trans('public.done') }}';
 </script>
 
 <script src="/assets/admin/js/custom.js"></script>
-<script src="/assets/default/js/panel/ai-content-generator.min.js"></script>
-
 <script>
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
 </script>

@@ -32,7 +32,7 @@ class CreateInstallmentsTable extends Migration
         Schema::create('installment_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('installment_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('main_title');
             $table->text('description');
@@ -82,7 +82,7 @@ class CreateInstallmentsTable extends Migration
         Schema::create('installment_step_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('installment_step_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('installment_step_id')->on('installment_steps')->references('id')->cascadeOnDelete();

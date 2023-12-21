@@ -47,7 +47,6 @@ return [
             'driver' => 'local',
             'root' => public_path('store'),
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         'public' => [
@@ -65,7 +64,6 @@ return [
                     'private' => 0700,
                 ],
             ],
-            'throw' => false,
         ],
 
         'upload' => [
@@ -125,8 +123,6 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
         ],
 
         'minio' => [

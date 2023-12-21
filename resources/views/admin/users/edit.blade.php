@@ -35,13 +35,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link @if(empty($becomeInstructor)) active @endif" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">{{ trans('admin/main.main_general') }}</a>
                                 </li>
-
-                                @if(!empty($formFieldsHtml))
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="extra_information-tab" data-toggle="tab" href="#extra_information" role="tab" aria-controls="extra_information" aria-selected="true">{{ trans('site.extra_information') }}</a>
-                                    </li>
-                                @endif
-
                                 <li class="nav-item">
                                     <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="true">{{ trans('auth.images') }}</a>
                                 </li>
@@ -101,10 +94,6 @@
                             <div class="tab-content" id="myTabContent2">
 
                                 @include('admin.users.editTabs.general')
-
-                                @if(!empty($formFieldsHtml))
-                                    @include('admin.users.editTabs.extra_information')
-                                @endif
 
                                 @include('admin.users.editTabs.images')
 

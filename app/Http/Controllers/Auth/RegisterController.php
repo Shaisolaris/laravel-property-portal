@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Web\traits\UserFormFieldsTrait;
 use App\Mixins\RegistrationBonus\RegistrationBonusAccounting;
+use App\Models\Accounting;
 use App\Models\Affiliate;
+use App\Models\AffiliateCode;
 use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\Role;
 use App\Models\UserMeta;
+use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -18,14 +20,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
-
-    use UserFormFieldsTrait;
-
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -56,7 +53,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm(Request $request)
+    public function showRegistrationForm()
     {
         $seoSettings = getSeoMetas('register');
         $pageTitle = !empty($seoSettings['title']) ? $seoSettings['title'] : trans('site.register_page_title');
@@ -67,15 +64,12 @@ class RegisterController extends Controller
 
         $referralCode = Cookie::get('referral_code');
 
-        $formFields = $this->getFormFieldsByUserType($request, 'user', true);
-
         $data = [
             'pageTitle' => $pageTitle,
             'pageDescription' => $pageDescription,
             'pageRobot' => $pageRobot,
             'referralCode' => $referralCode,
             'referralSettings' => $referralSettings,
-            'formFields' => $formFields
         ];
 
         return view(getTemplate() . '.auth.register', $data);
@@ -171,67 +165,13 @@ class RegisterController extends Controller
             ]);
         }
 
-        $this->storeFormFields($data, $user);
-
         return $user;
     }
 
 
     public function register(Request $request)
     {
-        $validate = $this->validator($request->all());
-
-        if ($validate->fails()) {
-            $errors = $validate->errors();
-
-            $form = $this->getFormFieldsByType($request->get('account_type'));
-
-            if (!empty($form)) {
-                $fieldErrors = $this->checkFormRequiredFields($request, $form);
-
-                if (!empty($fieldErrors) and count($fieldErrors)) {
-                    foreach ($fieldErrors as $id => $error) {
-                        $errors->add($id, $error);
-                    }
-                }
-            }
-
-            throw new ValidationException($validate);
-        } else {
-            $form = $this->getFormFieldsByType($request->get('account_type'));
-            $errors = [];
-
-            if (!empty($form)) {
-                $fieldErrors = $this->checkFormRequiredFields($request, $form);
-
-                if (!empty($fieldErrors) and count($fieldErrors)) {
-                    foreach ($fieldErrors as $id => $error) {
-                        $errors[$id] = $error;
-                    }
-                }
-            }
-
-            if (count($errors)) {
-                return back()->withErrors($errors)->withInput($request->all());
-            }
-        }
-
-
-        $data = $request->all();
-
-        if (!empty($data['mobile']) and !empty($data['country_code'])) {
-            $data['mobile'] = $data['country_code'] . ltrim($data['mobile'], '0');
-        }
-
-
-        if (!empty($data['mobile'])) {
-            $checkIsValid = checkMobileNumber($data['mobile']);
-
-            if (!$checkIsValid) {
-                $errors['mobile'] = [trans('update.mobile_number_is_not_valid')];
-                return back()->withErrors($errors)->withInput($request->all());
-            }
-        }
+        $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
 
@@ -305,5 +245,4 @@ class RegisterController extends Controller
                 : redirect($this->redirectPath());
         }
     }
-
 }

@@ -35,7 +35,7 @@ class CreateRegistrationPackagesTable extends Migration
 
             $table->bigIncrements('id');
             $table->integer('registration_package_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('description')->nullable();
 

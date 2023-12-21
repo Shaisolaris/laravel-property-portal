@@ -134,11 +134,11 @@
                                 @if(!empty($package->price) and $package->price > 0)
                                     @if(!empty($specialOffer))
                                         <div class="d-flex align-items-end line-height-1">
-                                            <span class="font-36 text-primary">{{ handlePrice($package->getPrice(), true, true, false, null, true) }}</span>
-                                            <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($package->price, true, true, false, null, true) }}</span>
+                                            <span class="font-36 text-primary">{{ handlePrice($package->getPrice()) }}</span>
+                                            <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($package->price) }}</span>
                                         </div>
                                     @else
-                                        <span class="font-36 text-primary line-height-1">{{ handlePrice($package->price, true, true, false, null, true) }}</span>
+                                        <span class="font-36 text-primary line-height-1">{{ handlePrice($package->price) }}</span>
                                     @endif
                                 @else
                                     <span class="font-36 text-primary line-height-1">{{ trans('public.free') }}</span>

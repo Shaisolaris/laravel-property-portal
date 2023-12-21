@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\OfflinePaymentsExport;
 use App\Http\Controllers\Controller;
-use App\Mixins\Cashback\CashbackAccounting;
 use App\Models\Accounting;
 use App\Models\OfflineBank;
 use App\Models\OfflinePayment;
-use App\Models\Order;
 use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\Role;
@@ -170,15 +168,6 @@ class OfflinePaymentController extends Controller
 
         $chargeWalletReward = RewardAccounting::calculateScore(Reward::CHARGE_WALLET, $offlinePayment->amount);
         RewardAccounting::makeRewardAccounting($offlinePayment->user_id, $chargeWalletReward, Reward::CHARGE_WALLET);
-
-        if (!empty($offlinePayment->user)) {
-            $order = new Order();
-            $order->total_amount = $offlinePayment->amount;
-            $order->user_id = $offlinePayment->user_id;
-
-            $cashbackAccounting = new CashbackAccounting($offlinePayment->user);
-            $cashbackAccounting->rechargeWallet($order);
-        }
 
         return back();
     }

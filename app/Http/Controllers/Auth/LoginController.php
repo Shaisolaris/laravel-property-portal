@@ -63,20 +63,13 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        $rules = [
+            'username' => 'required|numeric',
+            'password' => 'required|min:6',
+        ];
 
-        $type = $request->get('type');
-
-        if ($type == 'mobile') {
-            $rules = [
-                'mobile' => 'required|numeric',
-                'country_code' => 'required',
-                'password' => 'required|min:6',
-            ];
-        } else {
-            $rules = [
-                'email' => 'required|email|exists:users,email',
-                'password' => 'required|min:6',
-            ];
+        if ($this->username() == 'email') {
+            $rules['username'] = 'required|email';
         }
 
         if (!empty(getGeneralSecuritySettings('captcha_for_login'))) {
@@ -84,17 +77,6 @@ class LoginController extends Controller
         }
 
         $this->validate($request, $rules);
-
-        if ($type == 'mobile') {
-            $value = $this->getUsernameValue($request);
-
-            $checkIsValid = checkMobileNumber("+{$value}");
-
-            if (!$checkIsValid) {
-                $errors['mobile'] = [trans('update.mobile_number_is_not_valid')];
-                return back()->withErrors($errors)->withInput($request->all());
-            }
-        }
 
         if ($this->attemptLogin($request)) {
             return $this->afterLogged($request);
@@ -136,33 +118,10 @@ class LoginController extends Controller
         return $this->username;
     }
 
-    protected function getUsername(Request $request)
-    {
-        $type = $request->get('type');
-
-        if ($type == 'mobile') {
-            return 'mobile';
-        } else {
-            return 'email';
-        }
-    }
-
-    protected function getUsernameValue(Request $request)
-    {
-        $type = $request->get('type');
-        $data = $request->all();
-
-        if ($type == 'mobile') {
-            return ltrim($data['country_code'], '+') . ltrim($data['mobile'], '0');
-        } else {
-            return $request->get('email');
-        }
-    }
-
     protected function attemptLogin(Request $request)
     {
         $credentials = [
-            $this->getUsername($request) => $this->getUsernameValue($request),
+            $this->username() => $request->get('username'),
             'password' => $request->get('password')
         ];
         $remember = true;
@@ -177,14 +136,14 @@ class LoginController extends Controller
     public function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
-            $this->getUsername($request) => [trans('validation.password_or_username')],
+            'username' => [trans('validation.password_or_username')],
         ]);
     }
 
-    protected function sendBanResponse(Request $request, $user)
+    protected function sendBanResponse($user)
     {
         throw ValidationException::withMessages([
-            $this->getUsername($request) => [trans('auth.ban_msg', ['date' => dateTimeFormat($user->ban_end_at, 'j M Y')])],
+            'username' => [trans('auth.ban_msg', ['date' => dateTimeFormat($user->ban_end_at, 'j M Y')])],
         ]);
     }
 
@@ -222,7 +181,7 @@ class LoginController extends Controller
                 $request->session()->flush();
                 $request->session()->regenerate();
 
-                return $this->sendBanResponse($request, $user);
+                return $this->sendBanResponse($user);
             } elseif (!empty($endBan) and $endBan < $time) {
                 $user->update([
                     'ban' => false,
@@ -280,6 +239,8 @@ class LoginController extends Controller
 
         if ($user->isAdmin()) {
             return redirect(getAdminPanelUrl() . '');
+        } elseif ($user->role->name == 'user') {
+            return redirect('/academy/dashboard');
         } else {
             return redirect('/panel');
         }

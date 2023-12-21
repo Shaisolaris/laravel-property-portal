@@ -39,73 +39,23 @@
     // date & time piker
     window.resetDatePickers = () => {
         if (jQuery().daterangepicker) {
-            const $dateRangePicker = $('.date-range-picker');
-            const format1 = $dateRangePicker.attr('data-format') ?? 'YYYY-MM-DD';
-            const timepicker1 = !!$dateRangePicker.attr('data-timepicker');
-            const drops1 = $dateRangePicker.attr('data-drops') ?? 'down';
-
-            $dateRangePicker.daterangepicker({
-                locale: {
-                    format: format1,
-                    cancelLabel: 'Clear'
-                },
-                drops: drops1,
-                autoUpdateInput: false,
-                timePicker: timepicker1,
-                timePicker24Hour: true,
+            $('.date-range-picker').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
+                drops: 'down',
                 opens: 'right'
             });
-            $dateRangePicker.on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format(format1) + ' - ' + picker.endDate.format(format1));
-            });
 
-            $dateRangePicker.on('cancel.daterangepicker', function (ev, picker) {
-                $(this).val('');
-            });
-
-
-            const $datetimepicker = $('.datetimepicker');
-            const format2 = $datetimepicker.attr('data-format') ?? 'YYYY-MM-DD HH:mm';
-            const drops2 = $datetimepicker.attr('data-drops') ?? 'down';
-
-            $datetimepicker.daterangepicker({
-                locale: {
-                    format: format2,
-                    cancelLabel: 'Clear'
-                },
+            $('.datetimepicker').daterangepicker({
+                locale: {format: 'YYYY-MM-DD HH:mm'},
                 singleDatePicker: true,
                 timePicker: true,
                 timePicker24Hour: true,
-                autoUpdateInput: false,
-                drops: drops2,
-            });
-            $datetimepicker.on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm'));
             });
 
-            $datetimepicker.on('cancel.daterangepicker', function (ev, picker) {
-                $(this).val('');
-            });
-
-            const $datepicker = $('.datepicker');
-            const drops3 = $datepicker.attr('data-drops') ?? 'down';
-
-            $datepicker.daterangepicker({
-                locale: {
-                    format: 'YYYY-MM-DD',
-                    cancelLabel: 'Clear'
-                },
+            $('.datepicker').daterangepicker({
+                locale: {format: 'YYYY-MM-DD'},
                 singleDatePicker: true,
                 timePicker: false,
-                autoUpdateInput: false,
-                drops: drops3,
-            });
-            $datepicker.on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD'));
-            });
-
-            $datepicker.on('cancel.daterangepicker', function (ev, picker) {
-                $(this).val('');
             });
         }
     };

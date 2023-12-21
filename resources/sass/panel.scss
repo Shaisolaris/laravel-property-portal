@@ -8,7 +8,6 @@
 @import "panel/store";
 @import "panel/forum";
 @import "panel/upcoming";
-@import "panel/ai_contents";
 
 body {
     background-color: var(--panel-bg);
@@ -16,8 +15,6 @@ body {
 
 #panel_app {
     .nav-icons-or-start-live {
-        flex-grow: .3;
-
         .nav-notify-cart-dropdown {
             display: flex !important;
         }

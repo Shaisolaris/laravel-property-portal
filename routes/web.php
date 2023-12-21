@@ -30,19 +30,13 @@ Route::get('/maintenance', 'Web\MaintenanceController@index')->middleware(['shar
 
 /* Emergency Database Update */
 Route::get('/emergencyDatabaseUpdate', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate', [
-        '--force' => true
-    ]);
+    \Illuminate\Support\Facades\Artisan::call('migrate');
     $msg1 = \Illuminate\Support\Facades\Artisan::output();
 
-    \Illuminate\Support\Facades\Artisan::call('db:seed', [
-        '--force' => true
-    ]);
+    \Illuminate\Support\Facades\Artisan::call('db:seed --class=SectionsTableSeeder');
     $msg2 = \Illuminate\Support\Facades\Artisan::output();
 
-    \Illuminate\Support\Facades\Artisan::call('clear:all', [
-        '--force' => true
-    ]);
+    \Illuminate\Support\Facades\Artisan::call('clear:all');
 
     return response()->json([
         'migrations' => $msg1,
@@ -56,7 +50,6 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['check_mobile_app', 'share
     Route::get('/logout', 'LoginController@logout');
     Route::get('/register', 'RegisterController@showRegistrationForm');
     Route::post('/register', 'RegisterController@register');
-    Route::post('/register/form-fields', 'RegisterController@getFormFieldsByUserType');
     Route::get('/verification', 'VerificationController@index');
     Route::post('/verification', 'VerificationController@confirmCode');
     Route::get('/verification/resend', 'VerificationController@resendCode');
@@ -86,11 +79,8 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
     // set Locale
     Route::post('/set-currency', 'SetCurrencyController@setCurrency');
 
-    Route::get('/', 'HomeController@index');
-    Route::get('/home1', 'HomeController1@index');
-    Route::get('/home2', 'HomeController2@index');
-
-
+    Route::get('/lms', 'HomeController@index');
+    Route::get('/', 'HomeController@academy');
 
     Route::get('/getDefaultAvatar', 'DefaultAvatarController@make');
 
@@ -193,7 +183,6 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
             Route::get('/packages/{id}/checkHasInstallment', 'BecomeInstructorController@checkPackageHasInstallment');
             Route::get('/packages/{id}/installments', 'BecomeInstructorController@getInstallmentsByRegistrationPackage');
             Route::post('/', 'BecomeInstructorController@store');
-            Route::post('/form-fields', 'BecomeInstructorController@getFormFieldsByUserType');
         });
 
     });
@@ -389,9 +378,69 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
         });
     });
 
-    /* Forms */
-    Route::get('/forms/{url}', 'FormsController@index');
-    Route::post('/forms/{url}/store', 'FormsController@store');
+    Route::group(['prefix' => 'design'], function () {
+        Route::get('/academy', 'DesignController@academy');
+        Route::get('/categories', 'DesignController@categories');
+        Route::get('/help-and-support', 'DesignController@helpAndSupport');
 
+        Route::get('/school', 'DesignController@school');
+        Route::get('/course-list', 'DesignController@courseList');
+        Route::get('/course-card', 'DesignController@courseCard');
+        Route::get('/course-details', 'DesignController@courseDetails');
+        Route::get('/class-details', 'DesignController@classDetails');
+        Route::get('/class-list', 'DesignController@classList');
+        Route::get('/short-and-causal-courses', 'DesignController@shortAndCausalCourses');
+        Route::get('/my-courses', 'DesignController@myCourses');
+
+        Route::get('/student-dashboard', 'DesignController@studentDashboard');
+        Route::get('/my-mentor', 'DesignController@myMentor');
+        Route::get('/my-courses-course', 'DesignController@myCoursesCourse');
+        Route::get('/sub-mentor', 'DesignController@subMentor');
+
+        Route::get('/my-courses-assignment', 'DesignController@myCoursesAssignment');
+        Route::get('/my-assignments', 'DesignController@myAssignments');
+        Route::get('/my-assignment-brief', 'DesignController@myAssignmentsBrief');
+
+        Route::get('/my-mentor-session', 'DesignController@myMentorSession');
+        Route::get('/payment', 'DesignController@payment');
+        Route::get('/dashboard-settings', 'DesignController@dashboardSettings');
+
+        Route::get('/learning-resource', 'DesignController@learningResource');
+        Route::get('/tutor-and-live-sessions', 'DesignController@tutorAndLiveSessions');
+
+        Route::get('/my-grades', 'DesignController@myGrades');
+        Route::get('/school-my-assignments', 'DesignController@schoolMyAssignments');
+        Route::get('/my-classes', 'DesignController@myClasses');
+
+        Route::get('/my-class-group-call', 'DesignController@myClassGroupCall');
+        Route::get('/mentorship-single-call', 'DesignController@mentorshipSingleCall');
+        Route::get('/dashboard-school', 'DesignController@dashboardSchool');
+        Route::get('/dashboard-school-setting', 'DesignController@dashboardSchoolSetting');
+        Route::get('/dashboard-school-podcast', 'DesignController@dashboardSchoolPodcast');
+        Route::get('/dashboard-school-mentorship', 'DesignController@dashboardSchoolMentorship');
+
+        Route::get('/calender', 'DesignController@calender');
+
+        Route::get('/messages', 'DesignController@messages');
+        Route::get('/podcast-open', 'DesignController@podcastOpen');
+    });
+
+    Route::group(['prefix' => 'academy'], function () {
+        Route::get('/', 'HomeController@academy');
+        Route::get('/all-courses-list', 'ClassesController@allCourse');
+        Route::get('/all-courses-grid', 'ClassesController@courseCard');
+        Route::get('/course-details/{slug}', 'WebinarController@courseDetails');
+
+        Route::group(['prefix' => 'dashboard'], function () {
+            Route::get('/', '\App\Http\Controllers\Panel\DashboardController@academyDashboard');
+            Route::get('/courses', '\App\Http\Controllers\Panel\WebinarController@academyCourses');
+            Route::get('/courses/details/{slug}', 'WebinarController@academyCoursesDetails');
+            Route::get('/assignments', '\App\Http\Controllers\Panel\AssignmentController@academyAssignments');
+            Route::get('/assignment/details/{id}', '\App\Http\Controllers\Panel\AssignmentController@academyAssignmentDetails');
+            Route::get('/mentors', 'InstructorFinderController@academyMentors');
+            Route::get('/mentor/details/{id}', 'UserController@academyMentorDetail');
+            Route::get('/settings', '\App\Http\Controllers\Panel\UserController@academyProfileSettings');
+        });
+    });
 });
 

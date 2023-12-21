@@ -34,7 +34,7 @@ class CreateFloatingBarsTable extends Migration
         Schema::create('floating_bar_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('floating_bar_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('btn_text')->nullable();

@@ -50,7 +50,6 @@ class NotificationTemplate extends Model
         'gift_message' => '[gift_message]',
         'content_type' => '[content_type]',
         'points' => '[points]',
-        'form_title' => '[form_title]',
     ];
 
     static $notificationTemplateAssignSetting = [
@@ -78,6 +77,5 @@ class NotificationTemplate extends Model
         'registration_bonus' => ['registration_bonus_achieved', 'registration_bonus_unlocked', 'registration_bonus_unlocked_for_admin'],
         'registration_package' => ['registration_package_activated', 'registration_package_activated_for_admin', 'registration_package_expired'],
         'misc' => ['contact_message_submission', 'contact_message_submission_for_admin', 'waitlist_submission', 'waitlist_submission_for_admin', 'user_get_new_point', 'new_course_notice'],
-        'forms' => ['submit_form_by_users'],
     ];
 }

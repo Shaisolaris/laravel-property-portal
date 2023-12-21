@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\AiContentTemplate;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +22,7 @@ class PanelAuthenticate
             $referralSettings = getReferralSettings();
             view()->share('referralSettings', $referralSettings);
 
-            $aiContentTemplates = AiContentTemplate::query()->where('enable', true)->get();
-            view()->share('aiContentTemplates', $aiContentTemplates);
+
 
             return $next($request);
         }

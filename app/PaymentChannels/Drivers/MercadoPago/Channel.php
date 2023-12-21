@@ -11,7 +11,6 @@ use MercadoPago\SDK as Mercado;
 use MercadoPago\Preference as MercadoPreference;
 use MercadoPago\Item as MercadoItem;
 use MercadoPago\Payer as MercadoPagoPayer;
-use Omnipay\Omnipay;
 
 class Channel extends BasePaymentChannel implements IChannel
 {
@@ -21,7 +20,6 @@ class Channel extends BasePaymentChannel implements IChannel
     protected $client_id;
     protected $client_secret;
     protected $order_session_key;
-    protected $test_mode;
 
     /**
      * Channel constructor.
@@ -35,86 +33,81 @@ class Channel extends BasePaymentChannel implements IChannel
         $this->access_token = env('MERCADO_PAGO_ACCESS_TOKEN');
         $this->client_id = env('MERCADO_CLIENT_ID');
         $this->client_secret = env('MERCADO_CLIENT_SECRET');
-        $this->test_mode = env('MERCADO_TEST_MODE', false);
 
         $this->order_session_key = 'mercado.payments.order_id';
     }
 
-    protected function makeGateway()
-    {
-        $gateway = Omnipay::create('MercadoPago');
-
-        $gateway->setClientId($this->client_id);
-        $gateway->setClientSecret($this->client_secret);
-        $gateway->setAccessToken($this->access_token);
-
-        return $gateway;
-    }
-
-
     public function paymentRequest(Order $order)
     {
-        $generalSettings = getGeneralSettings();
         $user = $order->user;
 
-        try {
+        Mercado::setAccessToken($this->access_token);
 
-            $gateway = $this->makeGateway();
+        $payer = new MercadoPagoPayer();
+        $payer->name = $user->full_name;
+        $payer->email = $user->email;
+        $payer->phone = array(
+            "area_code" => "",
+            "number" => $user->mobile
+        );
 
-            $card = [
-                'email' => $user->email ?? $generalSettings['site_email'],
-                'billingFirstName' => $user->full_name,
-                'billingLastName' => '',
-                'billingPhone' => $user->mobile,
-                'billingCompany' => $generalSettings['site_name'],
-                'billingAddress1' => '',
-                'billingCity' => '',
-                'billingPostcode' => '',
-                'billingCountry' => '',
-            ];
+        $orderItems = $order->orderItems;
 
-            // Send purchase request
-            $response = $gateway->purchase(
-                [
-                    'transactionId' => $order->id,
-                    'amount' => $this->makeAmountByCurrency($order->total_amount, $this->currency),
-                    'currency' => $this->currency,
-                    'testMode' => $this->test_mode,
-                    'returnUrl' => $this->makeCallbackUrl($order, 'success'),
-                    'cancelUrl' => $this->makeCallbackUrl($order, 'cancel'),
-                    'notifyUrl' => $this->makeCallbackUrl($order, 'notify'),
-                    'card' => $card,
-                ]
-            )->send();
+        $items = [];
+        foreach ($orderItems as $orderItem) {
+            $item = new MercadoItem();
 
-            if ($response->isRedirect()) {
-                return $response->redirect();
-            }
+            $item->id = $orderItem->id;
+            $item->title = "item " . $orderItem->id;
+            $item->quantity = 1;
+            $item->unit_price = $this->makeAmountByCurrency($orderItem->total_amount, $this->currency);
+            $item->currency_id = $this->currency;
 
-        } catch (\Exception $exception) {
-//            dd($exception);
-            throw new \Exception($exception->getMessage(), $exception->getCode());
+            $items[] = $item;
         }
 
+        $preference = new MercadoPreference();
+        $preference->items = $items;
+        $preference->payer = $payer;
+        $preference->back_urls = $this->makeCallbackUrl($order);
+        $preference->auto_return = "approved";
 
-        $toastData = [
-            'title' => trans('cart.fail_purchase'),
-            'msg' => '',
-            'status' => 'error'
+        /*$preference->payment_methods = array(
+            "excluded_payment_types" => array(
+                array("id" => "credit_card")
+            ),
+            "installments" => 12
+        );*/
+
+        $preference->save();
+
+        session()->put($this->order_session_key, $order->id);
+
+//        return $preference->sandbox_init_point;
+        $data = [
+            'public_key' => $this->public_key,
+            'preference_id' => $preference->id,
         ];
 
-        return redirect()->back()->with(['toast' => $toastData])->withInput();
+        return view('web.default.cart.channels.mercado', $data);
     }
 
-    private function makeCallbackUrl($order, $status)
+    private function makeCallbackUrl($order)
     {
-        return url("/payments/verify/MercadoPago?status=$status&order_id=$order->id");
+        return [
+            'success' => url("/payments/verify/MercadoPago"),
+            'failure' => url("/payments/verify/MercadoPago"),
+            'pending' => url("/payments/verify/MercadoPago"),
+        ];
     }
 
     public function verify(Request $request)
     {
         $data = $request->all();
-        $order_id = $data['order_id'];
+        $status = $data['status']; // approved or pending
+
+        $order_id = session()->get($this->order_session_key, null);
+        session()->forget($this->order_session_key);
 
         $user = auth()->user();
 
@@ -122,25 +115,21 @@ class Channel extends BasePaymentChannel implements IChannel
             ->where('user_id', $user->id)
             ->first();
 
-        // Setup payment gateway
-        $gateway = $this->makeGateway();
-
-        // Accept the notification
-        $response = $gateway->acceptNotification()->send();
-
-        if ($response->isSuccessful() and !empty($order)) {
-            // Mark the order as paid
-
-            $order->update([
-                'status' => Order::$paying
-            ]);
-
-            return $order;
-        }
-
         if (!empty($order)) {
+
+            if ($status == 'approved') {
+                $order->update([
+                    'status' => Order::$paying,
+                    'payment_data' => json_encode($data),
+                ]);
+
+                return $order;
+            }
+
+
             $order->update([
-                'status' => Order::$fail
+                'status' => Order::$fail,
+                'payment_data' => json_encode($data),
             ]);
         }
 

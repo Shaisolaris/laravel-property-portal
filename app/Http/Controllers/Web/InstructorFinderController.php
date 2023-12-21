@@ -555,4 +555,66 @@ class InstructorFinderController extends Controller
 
         return view('web.default.instructorFinder.wizard', $data);
     }
+
+    public function academyMentors(Request $request)
+    {
+        $query = User::where('users.status', 'active')
+            ->where(function ($query) {
+                $query->where('users.ban', false)
+                    ->orWhere(function ($query) {
+                        $query->whereNotNull('users.ban_end_at')
+                            ->orWhere('users.ban_end_at', '<', time());
+                    });
+            })
+            ->with([
+                'meeting' => function ($query) {
+                    $query->with('meetingTimes');
+                    $query->withCount('meetingTimes');
+                },
+                'occupations'
+            ]);
+
+        $query = $this->handleFilters($query, $request);
+
+        $query = $query->addSelect(DB::raw('ST_AsText(location) as userLocation'));
+
+        $instructors = deepClone($query)->paginate(6);
+
+        foreach ($instructors as $instructor) {
+            $instructor->location = $instructor->userLocation;
+        }
+
+        if ($request->ajax()) {
+            return $this->handleLoadMoreHtml($instructors);
+        }
+
+        $mapUsers = $query->whereNotNull('location')->get();
+
+        foreach ($mapUsers as $mapUser) {
+            $mapUser->price = $mapUser->meeting ? convertPriceToUserCurrency($mapUser->meeting->amount) : 0;
+            $mapUser->avatar = $mapUser->getAvatar();
+            $mapUser->rate = $mapUser->rates();
+            $mapUser->profileUrl = url($mapUser->getProfileUrl());
+
+            $mapUser->location = \Geo::get_geo_array($mapUser->userLocation);
+        }
+
+        $seoSettings = getSeoMetas('instructor_finder');
+        $pageTitle = !empty($seoSettings['title']) ? $seoSettings['title'] : trans('home.instructors');
+        $pageDescription = !empty($seoSettings['description']) ? $seoSettings['description'] : trans('home.instructors');
+        $pageRobot = getPageRobot('instructor_finder');
+
+        $data = [
+            'pageTitle' => $pageTitle,
+            'pageDescription' => $pageDescription,
+            'pageRobot' => $pageRobot,
+            'mapUsers' => $mapUsers,
+            'instructors' => $instructors,
+        ];
+
+        $locationData = $this->getLocationData($request);
+        $data = array_merge($data, $locationData);
+
+        return view('web.public_academy.mentors', $data);
+    }
 }

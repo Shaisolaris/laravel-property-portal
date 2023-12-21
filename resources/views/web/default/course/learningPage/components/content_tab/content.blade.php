@@ -6,7 +6,7 @@
         $icon = 'video';
         $hintText = dateTimeFormat($item->date, 'j M Y  H:i') . ' | ' . $item->duration . ' ' . trans('public.min');
     } elseif ($type == \App\Models\WebinarChapter::$chapterFile) {
-        $hintText = trans('update.file_type_'.$item->file_type) . ($item->volume > 0 ? ' | '.$item->getVolume() : '');
+        $hintText = $item->file_type . ($item->volume > 0 ? ' | '.$item->getVolume() : '');
 
         $icon = $item->getIconByType();
     } elseif ($type == \App\Models\WebinarChapter::$chapterTextLesson) {

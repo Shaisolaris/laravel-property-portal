@@ -2,12 +2,12 @@
 
 @php
     $maintenanceSettings = getMaintenanceSettings();
-    $endDate = !empty($maintenanceSettings['end_date']) ? $maintenanceSettings['end_date'] : null;
+    $endDate = !empty($maintenanceSettings['end_date']) ? dateTimeFormat($maintenanceSettings['end_date'], 'j M Y H:i') : null;
 
     $remainingTimes = null;
 
-    if (!empty($endDate) and is_numeric($endDate)) {
-        $remainingTimes = time2string($endDate -  time());
+    if (!empty($endDate)) {
+        $remainingTimes = time2string(strtotime($endDate) -  time());
     }
 @endphp
 

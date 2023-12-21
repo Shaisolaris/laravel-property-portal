@@ -46,11 +46,6 @@
             'lang' => 'public.extra_information',
             'icon' => 'extra_info'
         ];
-    } else {
-        $progressSteps[8] =[
-            'lang' => 'public.extra_information',
-            'icon' => 'extra_info'
-        ];
     }
 
     $currentStep = empty($currentStep) ? 1 : $currentStep;

@@ -46,10 +46,8 @@ class SendResetPasswordSMS extends Notification
         $content .= PHP_EOL;
         $content .= trans('update.your_new_password_on_the_site', ['site' => $siteName]);
 
-        $mobile = ltrim($user->mobile, '+');
-
         return [
-            'to' => "+{$mobile}",
+            'to' => $user->mobile,
             'content' => $content,
         ];
     }

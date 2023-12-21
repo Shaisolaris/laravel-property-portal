@@ -604,4 +604,140 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function academyMentorDetail($id)
+    {
+        $user = User::where('id', $id)
+            //->whereIn('role_name', [Role::$organization, Role::$teacher, Role::$user])
+            ->with([
+                'blog' => function ($query) {
+                    $query->where('status', 'publish');
+                    $query->withCount([
+                        'comments' => function ($query) {
+                            $query->where('status', 'active');
+                        }
+                    ]);
+                },
+                'products' => function ($query) {
+                    $query->where('status', Product::$active);
+                },
+                'userMetas'
+            ])
+            ->first();
+
+        if (!$user) {
+            abort(404);
+        }
+
+        $userMetas = $user->userMetas;
+
+        if (!empty($userMetas)) {
+            foreach ($userMetas as $meta) {
+                $user->{$meta->name} = $meta->value;
+            }
+        }
+
+        $userBadges = $user->getBadges();
+
+        $meeting = Meeting::where('creator_id', $user->id)
+            ->with([
+                'meetingTimes'
+            ])
+            ->first();
+
+        $times = [];
+        $installments = null;
+        $cashbackRules = null;
+
+        if (!empty($meeting) and !empty($meeting->meetingTimes)) {
+            $times = convertDayToNumber($meeting->meetingTimes->groupby('day_label')->toArray());
+
+            $authUser = auth()->user();
+            // Installments
+            /*
+            if (getInstallmentsSettings('status') and (empty($authUser) or $authUser->enable_installments)) {
+                $installmentPlans = new InstallmentPlans($authUser);
+                $installments = $installmentPlans->getPlans('meetings', null, null, null, $user->id);
+            }*/
+
+            /* Cashback Rules */
+            if (getFeaturesSettings('cashback_active') and (empty($authUser) or !$authUser->disable_cashback)) {
+                $cashbackRulesMixin = new CashbackRules($authUser);
+                $cashbackRules = $cashbackRulesMixin->getRules('meetings', null, null, null, $user->id);
+            }
+        }
+
+        $followings = $user->following();
+        $followers = $user->followers();
+
+        $authUserIsFollower = false;
+        if (auth()->check()) {
+            $authUserIsFollower = $followers->where('follower', auth()->id())
+                ->where('status', Follow::$accepted)
+                ->first();
+        }
+
+        $userMetas = $user->userMetas;
+        $occupations = $user->occupations()
+            ->with([
+                'category'
+            ])->get();
+
+
+        $webinars = Webinar::where('status', Webinar::$active)
+            ->where('private', false)
+            ->where(function ($query) use ($user) {
+                $query->where('creator_id', $user->id)
+                    ->orWhere('teacher_id', $user->id);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->with(['teacher' => function ($qu) {
+                $qu->select('id', 'full_name', 'avatar');
+            }, 'reviews', 'tickets', 'feature'])
+            ->get();
+
+        $meetingIds = Meeting::where('creator_id', $user->id)->pluck('id');
+        $appointments = ReserveMeeting::whereIn('meeting_id', $meetingIds)
+            ->whereNotNull('reserved_at')
+            ->where('status', '!=', ReserveMeeting::$canceled)
+            ->count();
+
+        $studentsIds = Sale::whereNull('refund_at')
+            ->where('seller_id', $user->id)
+            ->whereNotNull('webinar_id')
+            ->pluck('buyer_id')
+            ->toArray();
+        $user->students_count = count(array_unique($studentsIds));
+
+        $instructors = null;
+        if ($user->isOrganization()) {
+            $instructors = User::where('organ_id', $user->id)
+                ->where('role_name', Role::$teacher)
+                ->where('status', 'active')
+                ->get();
+        }
+
+        $data = [
+            'pageTitle' => $user->full_name . ' ' . trans('public.profile'),
+            'user' => $user,
+            'userBadges' => $userBadges,
+            'meeting' => $meeting,
+            'times' => $times,
+            'userRates' => $user->rates(),
+            'userFollowers' => $followers,
+            'userFollowing' => $followings,
+            'authUserIsFollower' => $authUserIsFollower,
+            'educations' => $userMetas->where('name', 'education'),
+            'experiences' => $userMetas->where('name', 'experience'),
+            'occupations' => $occupations,
+            'webinars' => $webinars,
+            'appointments' => $appointments,
+            'meetingTimezone' => $meeting ? $meeting->getTimezone() : null,
+            'instructors' => $instructors,
+            'forumTopics' => $this->getUserForumTopics($user->id),
+            'cashbackRules' => $cashbackRules,
+        ];
+
+        return view('web.public_academy.mentor_details', $data);
+    }
 }

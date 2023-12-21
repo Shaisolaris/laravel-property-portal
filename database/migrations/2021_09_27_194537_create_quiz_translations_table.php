@@ -18,7 +18,7 @@ class CreateQuizTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('quiz_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('quiz_id')->on('quizzes')->references('id')->onDelete('cascade');

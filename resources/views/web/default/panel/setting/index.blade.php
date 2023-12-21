@@ -51,9 +51,7 @@
 
                 @case(8)
                 @if(!$user->isUser())
-                        @include('web.default.panel.setting.setting_includes.zoom_api')
-                @else
-                        @include('web.default.panel.setting.setting_includes.settings')
+                    @include('web.default.panel.setting.setting_includes.zoom_api')
                 @endif
                 @break
 

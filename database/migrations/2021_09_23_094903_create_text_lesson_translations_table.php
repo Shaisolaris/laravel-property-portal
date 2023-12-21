@@ -18,7 +18,7 @@ class CreateTextLessonTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('text_lesson_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('summary');
             $table->longText('content');

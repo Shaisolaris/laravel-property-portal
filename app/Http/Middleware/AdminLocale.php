@@ -31,9 +31,6 @@ class AdminLocale
         $generalSettings = getGeneralSettings();
         view()->share('generalSettings', $generalSettings);
 
-        $defaultLocale = getDefaultLocale();
-        view()->share('defaultLocale', $defaultLocale);
-
         return $next($request);
     }
 }

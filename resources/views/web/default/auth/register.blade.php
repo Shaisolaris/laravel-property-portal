@@ -2,7 +2,6 @@
 
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
 @endpush
 
 @section('content')
@@ -141,12 +140,6 @@
                             </div>
                         @endif
 
-                        <div class="js-form-fields-card">
-                            @if(!empty($formFields))
-                                {!! $formFields !!}
-                            @endif
-                        </div>
-
                         @if(!empty(getGeneralSecuritySettings('captcha_for_register')))
                             @include('web.default.includes.captcha_input')
                         @endif
@@ -187,8 +180,4 @@
 
 @push('scripts_bottom')
     <script src="/assets/default/vendors/select2/select2.min.js"></script>
-    <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-    <script src="/assets/default/js/parts/forms.min.js"></script>
-    <script src="/assets/default/js/parts/register.min.js"></script>
 @endpush

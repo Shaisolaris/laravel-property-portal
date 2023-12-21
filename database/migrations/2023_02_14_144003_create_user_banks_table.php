@@ -22,7 +22,7 @@ class CreateUserBanksTable extends Migration
         Schema::create('user_bank_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_bank_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('user_bank_id')->on('user_banks')->references('id')->cascadeOnDelete();
@@ -38,7 +38,7 @@ class CreateUserBanksTable extends Migration
         Schema::create('user_bank_specification_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_bank_specification_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('name');
 
             $table->foreign('user_bank_specification_id', 'user_bank_specification_id')->on('user_bank_specifications')->references('id')->cascadeOnDelete();

@@ -335,6 +335,7 @@ class CartManagerController extends Controller
             'msg' => trans('cart.cart_add_success_msg'),
             'status' => 'success'
         ];
+        session()->put('status','success');
         return back()->with(['toast' => $toastData]);
     }
 

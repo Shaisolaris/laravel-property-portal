@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="fa">
 
 @php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
@@ -47,10 +47,10 @@
 
 <div id="panel_app">
 
-    @include('web.default.includes.navbar')
+    @include(getTemplate().'.includes.navbar')
 
     <div class="d-flex justify-content-end">
-        @include('web.default.panel.includes.sidebar')
+        @include(getTemplate(). '.panel.includes.sidebar')
 
         <div class="panel-content">
             @yield('content')
@@ -58,12 +58,6 @@
     </div>
 
     @include('web.default.includes.advertise_modal.index')
-
-    {{-- AI Contents --}}
-    @if($authUser->checkAccessToAIContentFeature())
-        @include('web.default.panel.includes.aiContent.generator')
-    @endif
-
 </div>
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>
@@ -85,9 +79,6 @@
     var deleteAlertSuccessHint = '{{ trans('public.deleteAlertSuccessHint') }}';
     var forbiddenRequestToastTitleLang = '{{ trans('public.forbidden_request_toast_lang') }}';
     var forbiddenRequestToastMsgLang = '{{ trans('public.forbidden_request_toast_msg_lang') }}';
-    var generatedContentLang = '{{ trans('update.generated_content') }}';
-    var copyLang = '{{ trans('public.copy') }}';
-    var doneLang = '{{ trans('public.done') }}';
 </script>
 
 @if(session()->has('toast'))
@@ -113,7 +104,6 @@
 
 <script src="/assets/default/js//parts/main.min.js"></script>
 <script src="/assets/default/js/panel/public.min.js"></script>
-<script src="/assets/default/js/panel/ai-content-generator.min.js"></script>
 
 @stack('scripts_bottom2')
 

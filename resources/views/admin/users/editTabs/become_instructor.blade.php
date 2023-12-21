@@ -1,12 +1,10 @@
-
-
 <div class="tab-pane mt-3 fade active show" id="become_instructor" role="tabpanel" aria-labelledby="become_instructor-tab">
     <div class="row">
         <div class="col-12">
             <table class="table">
                 <tr>
                     <td class="text-left">{{ trans('admin/main.role') }}</td>
-                    <td class="text-left">{{ trans('site.extra_information') }}:</td>
+                    <td class="text-left">{{ trans('site.extra_information') }}</td>
                     <td class="text-center">{{ trans('public.certificate_and_documents') }}</td>
                 </tr>
 
@@ -22,17 +20,6 @@
                     </td>
                 </tr>
             </table>
-
-            @if(!empty($becomeInstructorFormFieldValues) and count($becomeInstructorFormFieldValues))
-                <h3 class="section-title after-line mt-4">{{ trans('update.extra_form') }}</h3>
-
-                @foreach($becomeInstructorFormFieldValues as $becomeInstructorFormFieldTitle => $becomeInstructorFormFieldValue)
-                    <div class="mt-3">
-                        <label>{{ $becomeInstructorFormFieldTitle }}:</label>
-                        <p class="text-muted white-space-pre-wrap">{{ $becomeInstructorFormFieldValue }}</p>
-                    </div>
-                @endforeach
-            @endif
 
 
             @include('admin.includes.delete_button',[

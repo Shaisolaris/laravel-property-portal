@@ -191,7 +191,7 @@
                                                     <i data-feather="more-vertical" height="20"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    @if((!$result->can_try and $result->status != 'waiting') or ($result->status == 'passed'))
+                                                    @if(!$result->can_try and $result->status != 'waiting')
                                                         <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">{{ trans('public.view_answers') }}</a>
                                                     @endif
 

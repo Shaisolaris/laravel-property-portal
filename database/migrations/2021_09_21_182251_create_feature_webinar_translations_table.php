@@ -18,7 +18,7 @@ class CreateFeatureWebinarTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('feature_webinar_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->text('description')->nullable();
 
             $table->foreign('feature_webinar_id')->on('feature_webinars')->references('id')->onDelete('cascade');

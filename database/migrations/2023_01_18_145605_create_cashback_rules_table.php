@@ -31,7 +31,7 @@ class CreateCashbackRulesTable extends Migration
         Schema::create('cashback_rule_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cashback_rule_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('cashback_rule_id')->on('cashback_rules')->references('id')->cascadeOnDelete();

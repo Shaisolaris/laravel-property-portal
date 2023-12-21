@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\PaymentController;
-use App\Mixins\Cashback\CashbackRules;
 use App\Models\Accounting;
 use App\Models\OfflineBank;
 use App\Models\OfflinePayment;
@@ -40,10 +39,11 @@ class AccountingController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+
         $data = [
             'pageTitle' => trans('financial.summary_page_title'),
             'accountings' => $accountings,
-            'commission' => getFinancialSettings('commission') ?? 0,
+            'commission' => getFinancialSettings('commission') ?? 0
         ];
 
         return view(getTemplate() . '.panel.financial.summary', $data);
@@ -92,12 +92,6 @@ class AccountingController extends Controller
             $registrationBonusAmount = (empty($registrationBonusAccounting) and !empty($registrationBonusSettings['status']) and !empty($registrationBonusSettings['registration_bonus_amount'])) ? $registrationBonusSettings['registration_bonus_amount'] : null;
         }
 
-        /* Cashback Rules */
-        if (getFeaturesSettings('cashback_active') and !$userAuth->disable_cashback) {
-            $cashbackRulesMixin = new CashbackRules($userAuth);
-            $cashbackRules = $cashbackRulesMixin->getRules('recharge_wallet');
-        }
-
         $data = [
             'pageTitle' => trans('financial.charge_account_page_title'),
             'offlinePayments' => $offlinePayments,
@@ -109,7 +103,6 @@ class AccountingController extends Controller
             'editOfflinePayment' => $editOfflinePayment,
             'razorpay' => $razorpay,
             'registrationBonusAmount' => $registrationBonusAmount,
-            'cashbackRules' => $cashbackRules ?? null,
         ];
 
         return view('web.default.panel.financial.account', $data);

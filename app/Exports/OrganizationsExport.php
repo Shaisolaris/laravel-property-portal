@@ -2,8 +2,6 @@
 
 namespace App\Exports;
 
-use App\Http\Controllers\Web\traits\UserFormFieldsTrait;
-use App\Models\UserFormField;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -11,17 +9,13 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
 {
-    use UserFormFieldsTrait;
-
     protected $users;
     protected $currency;
-    protected $form;
 
     public function __construct($users)
     {
         $this->users = $users;
         $this->currency = currencySign();
-        $this->form = $this->getFormFieldsByType("organization");
     }
 
     /**
@@ -37,7 +31,7 @@ class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
      */
     public function headings(): array
     {
-        $items = [
+        return [
             'ID',
             'Name',
             'Mobile',
@@ -53,14 +47,6 @@ class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
             'Verified',
             'Ban',
         ];
-
-        if (!empty($this->form)) {
-            foreach ($this->form->fields as $field) {
-                $items[] = $field->title;
-            }
-        }
-
-        return $items;
     }
 
     /**
@@ -68,7 +54,7 @@ class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
      */
     public function map($user): array
     {
-        $items = [
+        return [
             $user->id,
             $user->full_name,
             $user->mobile,
@@ -84,11 +70,5 @@ class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
             $user->verified ? 'Yes' : 'No',
             ($user->ban and !empty($user->ban_end_at) and $user->ban_end_at > time()) ? ('Yes ' . '(Until ' . dateTimeFormat($user->ban_end_at, 'Y/m/j') . ')') : 'No',
         ];
-
-        if (!empty($this->form)) {
-            $items = $this->handleFieldsForExport($this->form, $user, $items);
-        }
-
-        return $items;
     }
 }

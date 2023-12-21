@@ -18,7 +18,7 @@ class CreateCertificateTemplateTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('certificate_template_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title')->nullable();
             $table->text('body')->nullable();
             $table->boolean('rtl')->default(false);

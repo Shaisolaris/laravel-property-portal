@@ -18,7 +18,7 @@ class CreateTestimonialTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('testimonial_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('user_name');
             $table->string('user_bio');
             $table->text('comment');

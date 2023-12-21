@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Bitwise\UserLevelOfTraining;
-use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\Accounting;
 use App\Models\Badge;
 use App\Models\BundleWebinar;
@@ -299,21 +298,6 @@ class User extends Authenticatable
         }
 
         return $webinars->get();
-    }
-
-    public function getLiveChatJsCode()
-    {
-        $code = null;
-
-        if (!empty($this->userMetas)) {
-            $meta = $this->userMetas->where('name', 'live_chat_js_code')->first();
-
-            if ($meta) {
-                $code = $meta->value;
-            }
-        }
-
-        return $code;
     }
 
     public function userMetas()
@@ -943,73 +927,5 @@ class User extends Authenticatable
         }
 
         return '';
-    }
-
-
-    /******
-     * Zoom
-     * ****/
-    public function clientID()
-    {
-        $key = null;
-        $zoomApi = $this->zoomApi;
-
-        if (!empty($zoomApi)) {
-            $key = $zoomApi->api_key;
-        }
-
-        return $key;
-    }
-
-    public function clientSecret()
-    {
-        $key = null;
-        $zoomApi = $this->zoomApi;
-
-        if (!empty($zoomApi)) {
-            $key = $zoomApi->api_secret;
-        }
-
-        return $key;
-    }
-
-    public function accountID()
-    {
-        $key = null;
-        $zoomApi = $this->zoomApi;
-
-        if (!empty($zoomApi)) {
-            $key = $zoomApi->account_id;
-        }
-
-        return $key;
-    }
-
-    public function checkAccessToAIContentFeature()
-    {
-        $access = false;
-
-        if (!empty(getAiContentsSettingsName('status'))) {
-            if ($this->isOrganization() and !empty(getAiContentsSettingsName("active_for_organization_panel"))) {
-                $access = true;
-            }
-
-            if ($this->isTeacher() and !empty(getAiContentsSettingsName("active_for_instructor_panel"))) {
-                $access = true;
-            }
-        }
-
-        if ($this->enable_ai_content) {
-            $access = true;
-        }
-
-        if (!$access) {
-            $userPackage = new UserPackage($this);
-            $activePackage = $userPackage->getPackage();
-
-            $access = !!(!empty($activePackage->ai_content_access) and $activePackage->ai_content_access);
-        }
-
-        return $access;
     }
 }

@@ -93,7 +93,6 @@
         var showLang = '{{ trans('update.show') }}';
         var sessionIsLiveLang = '{{ trans('update.session_is_live') }}';
         var youCanJoinTheLiveNowLang = '{{ trans('update.you_can_join_the_live_now') }}';
-        var passwordLang = '{{ trans('auth.password') }}';
         var joinTheClassLang = '{{ trans('update.join_the_class') }}';
         var coursePageLang = '{{ trans('update.course_page') }}';
         var quizPageLang = '{{ trans('update.quiz_page') }}';

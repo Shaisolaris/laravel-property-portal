@@ -65,26 +65,11 @@ class Channel extends BasePaymentChannel implements IChannel
 
     public function verify(Request $request)
     {
-        $data = $request->all();
-        $order_id = $data['order_id'];
-
-        $user = auth()->user();
-
-        $order = Order::where('id', $order_id)
-            ->where('user_id', $user->id)
-            ->with('user')
-            ->first();
-
+dd($request->all());
         if (!empty($order)) {
-            if($data['status'] == 'finish'){
-                $order->update(['status' => Order::$paying]);
-            }else if($data['status'] == 'unfinish'){
-                $order->update(['status' => Order::$paid]);
-            }else if($data['status'] == 'error'){
-                $order->update(['status' => Order::$paid]);
-            }
+            $order->update(['status' => Order::$fail]);
         }
 
-        return $order;
+        return null;
     }
 }

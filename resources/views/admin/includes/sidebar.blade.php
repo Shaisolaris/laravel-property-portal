@@ -739,9 +739,7 @@
                 $authUser->can('admin_testimonials') or
                 $authUser->can('admin_tags') or
                 $authUser->can('admin_regions') or
-                $authUser->can('admin_store') or
-                $authUser->can('admin_forms') or
-                $authUser->can('admin_ai_contents')
+                $authUser->can('admin_store')
             )
                 <li class="menu-header">{{ trans('admin/main.content') }}</li>
             @endif
@@ -985,70 +983,6 @@
                                 <a class="nav-link" href="{{ getAdminPanelUrl() }}/regions/districts">{{ trans('update.districts') }}</a>
                             </li>
                         @endcan()
-                    </ul>
-                </li>
-            @endcan
-
-            @can('admin_forms')
-                <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/forms*', false))) ? 'active' : '' }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                        <i class="fas fa-file-alt"></i>
-                        <span>{{ trans('update.form_builder') }}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        @can('admin_forms_create')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/forms/create', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/forms/create">{{ trans('admin/main.new') }}</a>
-                            </li>
-                        @endcan()
-
-                        @can('admin_forms_lists')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/forms', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/forms">{{ trans('admin/main.lists') }}</a>
-                            </li>
-                        @endcan()
-
-                        @can('admin_forms_submissions')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/forms/submissions', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/forms/submissions">{{ trans('update.submissions') }}</a>
-                            </li>
-                        @endcan()
-
-                    </ul>
-                </li>
-            @endcan
-
-            @can('admin_ai_contents')
-                <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/ai-contents*', false))) ? 'active' : '' }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                        <i class="fas fa-robot"></i>
-                        <span>{{ trans('update.ai_contents') }}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        @can('admin_ai_contents_lists')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/ai-contents/lists', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/ai-contents/lists">{{ trans('update.generated_contents') }}</a>
-                            </li>
-                        @endcan()
-
-                        @can('admin_ai_contents_templates_create')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/ai-contents/templates/create', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/ai-contents/templates/create">{{ trans('update.new_template') }}</a>
-                            </li>
-                        @endcan()
-
-                        @can('admin_ai_contents_templates_lists')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/ai-contents/templates', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/ai-contents/templates">{{ trans('update.service_template') }}</a>
-                            </li>
-                        @endcan()
-
-                        @can('admin_ai_contents_settings')
-                            <li class="{{ (request()->is(getAdminPanelUrl('/ai-contents/settings', false))) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ getAdminPanelUrl() }}/ai-contents/settings">{{ trans('update.settings') }}</a>
-                            </li>
-                        @endcan()
-
                     </ul>
                 </li>
             @endcan

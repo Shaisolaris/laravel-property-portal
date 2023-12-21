@@ -38,9 +38,9 @@ function formatSizeUnits($bytes)
  *
  * // Use this format everywhere : j:day , M:month, Y:year, H:hour, i:minute => {j M Y} or {j M Y H:i}
  * */
-function dateTimeFormat($timestamp, $format = 'H:i', $useAdminSetting = true, $applyTimezone = true, $timezone = null)
+function dateTimeFormat($timestamp, $format = 'H:i', $useAdminSetting = true, $applyTimezone = true, $timezone = "UTC")
 {
-    if ($applyTimezone and empty($timezone)) {
+    if ($applyTimezone) {
         $timezone = getTimezone();
     }
 
@@ -303,12 +303,10 @@ function getLanguages($lang = null)
         "FR" => 'French',
         "KA" => 'Georgian',
         "DE" => 'German',
-        "DV" => 'Dhivehi',
         "EL" => 'Greek',
         "KL" => 'Greenlandic',
         "GN" => 'Guarani',
         "HI" => 'Hindi',
-        "HE" => 'Hebrew',
         "HU" => 'Hungarian',
         "IS" => 'Icelandic',
         "ID" => 'Indonesian',
@@ -401,7 +399,6 @@ function localeToCountryCode($code, $revers = false)
         "HR" => 'HR',
         "CS" => 'CZ',
         "DA" => 'DK',
-        "DV" => 'MV',
         "NL" => 'NL',
         "EN" => 'US',
         "ET" => 'EE',
@@ -415,7 +412,6 @@ function localeToCountryCode($code, $revers = false)
         "KL" => 'GL',
         "GN" => 'GN',
         "HI" => 'IN',
-        "HE" => 'IL',
         "HU" => 'HU',
         "IS" => 'IS',
         "ID" => 'ID',
@@ -538,7 +534,6 @@ function getMoneyUnits($unit = null)
         "LBP" => 'Lebanon Pound',
         "MAD" => 'Moroccan dirham',
         "MYR" => 'Malaysia Ringgit',
-        "MVR" => 'Maldivian Rufiyaa',
         "NGN" => 'Nigeria Naira',
         "NPR" => 'Nepalese Rupee',
         "NOK" => 'Norway Krone',
@@ -550,7 +545,6 @@ function getMoneyUnits($unit = null)
         "ZAR" => 'South Africa Rand',
         "LKR" => 'Sri Lanka Rupee',
         "SEK" => 'Sweden Krona',
-        "SGD" => 'Singapore Dollar',
         "CHF" => 'Switzerland Franc',
         "THB" => 'Thailand Baht',
         "TRY" => 'Turkey Lira',
@@ -560,10 +554,6 @@ function getMoneyUnits($unit = null)
         "VND" => 'Viet Nam Dong',
         "UZS" => 'Uzbekistan Som',
         "KZT" => 'Kazakhstani Tenge',
-        "TZS" => 'Tanzanian shilling',
-        "ETB" => 'Ethiopian Birr',
-        "KWD" => 'Kuwaiti Dinar',
-        "EGP" => 'Egyptian Pound',
     ];
 
     if (!empty($unit)) {
@@ -628,7 +618,6 @@ function currenciesLists($sing = null)
         "LBP" => 'Lebanon Pound',
         "MAD" => 'Moroccan dirham',
         "MYR" => 'Malaysia Ringgit',
-        "MVR" => 'Maldivian Rufiyaa',
         "NGN" => 'Nigeria Naira',
         "NPR" => 'Nepalese Rupee',
         "NOK" => 'Norway Krone',
@@ -640,7 +629,6 @@ function currenciesLists($sing = null)
         "ZAR" => 'South Africa Rand',
         "LKR" => 'Sri Lanka Rupee',
         "SEK" => 'Sweden Krona',
-        "SGD" => 'Singapore Dollar',
         "CHF" => 'Switzerland Franc',
         "THB" => 'Thailand Baht',
         "TRY" => 'Turkey Lira',
@@ -650,10 +638,6 @@ function currenciesLists($sing = null)
         "VND" => 'Viet Nam Dong',
         "UZS" => 'Uzbekistan Som',
         "KZT" => 'Kazakhstani Tenge',
-        "TZS" => 'Tanzanian shilling',
-        "ETB" => 'Ethiopian Birr',
-        "KWD" => 'Kuwaiti Dinar',
-        "EGP" => 'Egyptian Pound',
 
     ];
 
@@ -829,9 +813,6 @@ function currencySign($currency = null)
         case 'MYR':
             return 'RM';
             break;
-        case 'MVR':
-            return 'MVR';
-            break;
         case 'NGN':
             return '₦';
             break;
@@ -865,9 +846,6 @@ function currencySign($currency = null)
         case 'SEK':
             return 'kr';
             break;
-        case 'SGD':
-            return '$';
-            break;    
         case 'CHF':
             return 'CHF';
             break;
@@ -898,18 +876,6 @@ function currencySign($currency = null)
         case 'KZT':
             return '₸';
             break;
-        case 'TZS':
-            return 'TSh';
-            break;
-        case 'ETB':
-            return 'Br';
-            break;
-        case 'KWD':
-            return 'KD';
-            break; 
-        case 'EGP':
-            return 'ج.م';
-            break;                       
         default:
             return '$';
     }
@@ -1108,7 +1074,6 @@ function getCountriesMobileCode()
         'Switzerland (+41)' => '+41',
         'Syria (+963)' => '+963',
         'Taiwan (+886)' => '+886',
-        'Tanzania (+255)' => '+255',
         'Tajikistan (+992)' => '+992',
         'Thailand (+66)' => '+66',
         'Togo (+228)' => '+228',
@@ -1474,11 +1439,6 @@ function getGeneralOptionsSettings($key = null)
 function getGiftsGeneralSettings($key = null)
 {
     return App\Models\Setting::getGiftsGeneralSettings($key);
-}
-
-function getAiContentsSettingsName($key = null)
-{
-    return App\Models\Setting::getAiContentsSettingsName($key);
 }
 
 function getRemindersSettings($key = null)
@@ -2230,7 +2190,7 @@ function addCurrencyToPrice($price, $userCurrencyItem = null)
  * */
 function handleCoursePagePrice($price)
 {
-    $result = handlePrice($price, true, true, true, null, true);
+    $result = handlePrice($price, true, true, true);
 
     $price = addCurrencyToPrice($result['price']);
 
@@ -2274,7 +2234,7 @@ function getNavbarButton($roleId = null, $forGuest = false)
 
 function getLeafletApiPath()
 {
-    return "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+    return "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
     //return 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 }
 
@@ -2288,14 +2248,4 @@ function convertToMB($size, $unit = 'B')
     $mb_size = $bytes / pow(1024, 2);
 
     return round($mb_size, 2);
-}
-
-
-function checkMobileNumber($phoneNumber)
-{
-    if (preg_match('/^\+\d{12}$/', $phoneNumber)) {
-        return true;
-    }
-
-    return false;
 }

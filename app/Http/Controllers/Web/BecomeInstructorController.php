@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\traits\InstallmentsTrait;
-use App\Http\Controllers\Web\traits\UserFormFieldsTrait;
 use App\Mixins\Installment\InstallmentPlans;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\BecomeInstructor;
@@ -16,15 +15,12 @@ use App\Models\UserOccupation;
 use App\Models\UserSelectedBank;
 use App\Models\UserSelectedBankSpecification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 class BecomeInstructorController extends Controller
 {
     use InstallmentsTrait;
-    use UserFormFieldsTrait;
 
-    public function index(Request $request)
+    public function index()
     {
         $user = auth()->user();
 
@@ -49,8 +45,6 @@ class BecomeInstructorController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
 
-            $formFields = $this->getFormFieldsByUserType($request, 'become_instructor', true, null, $lastRequest);
-
             $data = [
                 'pageTitle' => trans('site.become_instructor'),
                 'user' => $user,
@@ -60,7 +54,6 @@ class BecomeInstructorController extends Controller
                 'isOrganizationRole' => $isOrganizationRole,
                 'isInstructorRole' => $isInstructorRole,
                 'userBanks' => $userBanks,
-                'formFields' => $formFields
             ];
 
             return view('web.default.user.become_instructor.index', $data);
@@ -74,109 +67,69 @@ class BecomeInstructorController extends Controller
         $user = auth()->user();
 
         if ($user->isUser()) {
-            $hasLastRequest = BecomeInstructor::where('user_id', $user->id)
+            $lastRequest = BecomeInstructor::where('user_id', $user->id)
                 ->whereIn('status', ['pending', 'accept'])
                 ->first();
 
-            $data = $request->all();
+            if (empty($lastRequest)) {
+                $this->validate($request, [
+                    'role' => 'required',
+                    'occupations' => 'required',
+                    'certificate' => 'nullable|string',
+                    'bank_id' => 'required',
+                    'identity_scan' => 'required',
+                    'description' => 'nullable|string',
+                ]);
 
-            $rules = [
-                'role' => 'required',
-                'occupations' => 'required',
-                'certificate' => 'nullable|string',
-                'bank_id' => 'required',
-                'identity_scan' => 'required',
-                'description' => 'nullable|string',
-            ];
+                $data = $request->all();
 
-            $validate = Validator::make($data, $rules);
+                BecomeInstructor::create([
+                    'user_id' => $user->id,
+                    'role' => $data['role'],
+                    'certificate' => $data['certificate'],
+                    'description' => $data['description'],
+                    'created_at' => time()
+                ]);
 
-            if ($validate->fails()) {
-                $errors = $validate->errors();
+                $user->update([
+                    'identity_scan' => $data['identity_scan'],
+                    'certificate' => $data['certificate'],
+                ]);
 
-                $type = ($data['role'] == "teacher") ? "become_instructor" : "become_organization";
-                $form = $this->getFormFieldsByType($type);
+                UserSelectedBank::query()->where('user_id', $user->id)->delete();
+                $userSelectedBank = UserSelectedBank::query()->create([
+                    'user_id' => $user->id,
+                    'user_bank_id' => $data['bank_id']
+                ]);
 
-                if (!empty($form)) {
-                    $fieldErrors = $this->checkFormRequiredFields($request, $form);
+                if (!empty($data['bank_specifications'])) {
+                    $specificationInsert = [];
 
-                    if (!empty($fieldErrors) and count($fieldErrors)) {
-                        foreach ($fieldErrors as $id => $error) {
-                            $errors->add($id, $error);
+                    foreach ($data['bank_specifications'] as $specificationId => $specificationValue) {
+                        if (!empty($specificationValue)) {
+                            $specificationInsert[] = [
+                                'user_selected_bank_id' => $userSelectedBank->id,
+                                'user_bank_specification_id' => $specificationId,
+                                'value' => $specificationValue
+                            ];
                         }
                     }
+
+                    UserSelectedBankSpecification::query()->insert($specificationInsert);
                 }
 
-                throw new ValidationException($validate);
-            } else {
-                $type = ($data['role'] == "teacher") ? "become_instructor" : "become_organization";
-                $form = $this->getFormFieldsByType($type);
-                $errors = [];
+                if (!empty($data['occupations'])) {
+                    UserOccupation::where('user_id', $user->id)->delete();
 
-                if (!empty($form)) {
-                    $fieldErrors = $this->checkFormRequiredFields($request, $form);
-
-                    if (!empty($fieldErrors) and count($fieldErrors)) {
-                        foreach ($fieldErrors as $id => $error) {
-                            $errors[$id] = $error;
-                        }
+                    foreach ($data['occupations'] as $category_id) {
+                        UserOccupation::create([
+                            'user_id' => $user->id,
+                            'category_id' => $category_id
+                        ]);
                     }
                 }
 
-                if (count($errors)) {
-                    return back()->withErrors($errors)->withInput($request->all());
-                }
-            }
 
-            $lastRequest = BecomeInstructor::query()->updateOrCreate([
-                'user_id' => $user->id,
-            ], [
-                'role' => $data['role'],
-                'certificate' => $data['certificate'],
-                'description' => $data['description'],
-                'created_at' => time()
-            ]);
-
-            $user->update([
-                'identity_scan' => $data['identity_scan'],
-                'certificate' => $data['certificate'],
-            ]);
-
-            UserSelectedBank::query()->where('user_id', $user->id)->delete();
-            $userSelectedBank = UserSelectedBank::query()->create([
-                'user_id' => $user->id,
-                'user_bank_id' => $data['bank_id']
-            ]);
-
-            if (!empty($data['bank_specifications'])) {
-                $specificationInsert = [];
-
-                foreach ($data['bank_specifications'] as $specificationId => $specificationValue) {
-                    if (!empty($specificationValue)) {
-                        $specificationInsert[] = [
-                            'user_selected_bank_id' => $userSelectedBank->id,
-                            'user_bank_specification_id' => $specificationId,
-                            'value' => $specificationValue
-                        ];
-                    }
-                }
-
-                UserSelectedBankSpecification::query()->insert($specificationInsert);
-            }
-
-            if (!empty($data['occupations'])) {
-                UserOccupation::where('user_id', $user->id)->delete();
-
-                foreach ($data['occupations'] as $category_id) {
-                    UserOccupation::create([
-                        'user_id' => $user->id,
-                        'category_id' => $category_id
-                    ]);
-                }
-            }
-
-
-            if (empty($hasLastRequest)) {
                 $notifyOptions = [
                     '[u.name]' => $user->full_name,
                     '[time.date]' => dateTimeFormat(time(), 'j M Y H:i'),
@@ -188,9 +141,6 @@ class BecomeInstructorController extends Controller
             if ((!empty(getRegistrationPackagesGeneralSettings('show_packages_during_registration')) and getRegistrationPackagesGeneralSettings('show_packages_during_registration'))) {
                 return redirect(route('becomeInstructorPackages'));
             }
-
-            // Extra Form
-            $this->storeBecomeInstructorFormFields($data, $lastRequest);
 
             $toastData = [
                 'title' => trans('public.request_success'),

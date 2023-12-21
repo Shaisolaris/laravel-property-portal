@@ -396,7 +396,7 @@ class FileController extends Controller
     {
         $user = auth()->user();
 
-        $path = '/store/' . $user->id;
+        $path = 'store/' . $user->id;
 
         $result = [
             'path' => null,

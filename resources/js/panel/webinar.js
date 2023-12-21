@@ -855,8 +855,6 @@
             case 'vimeo':
             case 'iframe':
                 $fileTypeVolumeInputs.addClass('d-none');
-                $fileTypeVolumeInputs.find('select').val('')
-
                 $downloadableInput.find('input').prop('checked', false);
                 $downloadableInput.addClass('d-none');
 
@@ -899,8 +897,6 @@
                 break;
             case 'secure_host':
                 $fileTypeVolumeInputs.addClass('d-none');
-                $fileTypeVolumeInputs.find('select').val('')
-
                 $filePathInputGroup.addClass('d-none');
                 $s3FilePathInputGroup.removeClass('d-none');
                 $downloadableInput.find('input').prop('checked', false);
@@ -937,11 +933,6 @@
                     $onlineViewerInput.find('input').prop('checked', false);
                     $onlineViewerInput.addClass('d-none');
                 }
-        }
-
-        if (fileType && (fileType === 'image' || fileType === 'document' || fileType === 'powerpoint' || fileType === 'sound' || fileType === 'archive' || fileType === 'project')) {
-            $downloadableInput.find('input').prop('checked', true);
-            $downloadableInput.addClass('d-none');
         }
 
         if (icon) {

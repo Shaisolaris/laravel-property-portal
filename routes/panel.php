@@ -459,12 +459,6 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
             Route::get('/', 'BlogCommentsController@index');
         });
     });
-
-    Route::group(['prefix' => 'ai-contents'], function () {
-        Route::get('/', 'AiContentController@index');
-        Route::post('/generate', 'AiContentController@generate');
-    });
-
 });
 
 

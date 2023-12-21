@@ -187,9 +187,7 @@ class DashboardController extends Controller
     {
         $this->authorize('admin_clear_cache');
 
-        Artisan::call('clear:all', [
-            '--force' => true
-        ]);
+        Artisan::call('clear:all');
 
         $toastData = [
             'title' => trans('public.request_success'),
