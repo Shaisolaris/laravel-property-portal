@@ -27,7 +27,7 @@ class CreateProductSpecificationMultiValuesTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_specification_multi_value_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('product_specification_multi_value_id', 'product_specification_multi_value_id')->on('product_specification_multi_values')->references('id')->onDelete('cascade');

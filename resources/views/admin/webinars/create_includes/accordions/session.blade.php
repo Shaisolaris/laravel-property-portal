@@ -125,7 +125,7 @@
                                         <i data-feather="calendar" width="18" height="18" class=""></i>
                                     </span>
                                 </div>
-                                <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][date]" class="js-ajax-date form-control datetimepicker" value="{{ !empty($session) ? dateTimeFormat($session->date, 'Y-m-d H:i', false, true, ($session->webinar ? $session->webinar->timezone : null)) : '' }}" aria-describedby="dateRangeLabel" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }} autocomplete="off"/>
+                                <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][date]" class="js-ajax-date form-control datetimepicker" value="{{ !empty($session) ? dateTimeFormat($session->date, 'Y-m-d H:i', false) : '' }}" aria-describedby="dateRangeLabel" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }} autocomplete="off"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

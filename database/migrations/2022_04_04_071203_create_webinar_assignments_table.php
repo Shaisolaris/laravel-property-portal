@@ -38,7 +38,7 @@ class CreateWebinarAssignmentsTable extends Migration
             $table->engine = "InnoDB";
 
             $table->bigIncrements('id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->integer('webinar_assignment_id')->unsigned();
             $table->string('title');
             $table->text('description');

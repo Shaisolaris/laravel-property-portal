@@ -46,6 +46,17 @@
       0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
     ),
   ),
+  'facade/ignition' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
+    ),
+  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
@@ -58,6 +69,17 @@
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    ),
+  ),
+  'gathuku/laravelmpesa' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Gathuku\\Mpesa\\MpesaServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Mpesa' => 'Gathuku\\Mpesa\\Facades\\Mpesa',
     ),
   ),
   'intervention/image' => 
@@ -93,29 +115,15 @@
       'Share' => 'Jorenvh\\Share\\ShareFacade',
     ),
   ),
-  'jubaer/zoom-laravel' => 
+  'kingflamez/laravelrave' => 
   array (
     'providers' => 
     array (
-      0 => 'Jubaer\\Zoom\\ZoomServiceProvider',
+      0 => 'KingFlamez\\Rave\\RaveServiceProvider',
     ),
     'aliases' => 
     array (
-      'Zoom' => 'Jubaer\\Zoom\\Facades\\Zoom',
-    ),
-  ),
-  'laravel/sail' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Sail\\SailServiceProvider',
-    ),
-  ),
-  'laravel/sanctum' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+      'Rave' => 'KingFlamez\\Rave\\Facades\\Rave',
     ),
   ),
   'laravel/socialite' => 
@@ -154,6 +162,37 @@
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
+  'macsidigital/laravel-api-client' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'MacsiDigital\\API\\Providers\\APIServiceProvider',
+    ),
+    'aliases' => 
+    array (
+    ),
+  ),
+  'macsidigital/laravel-oauth2-client' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'MacsiDigital\\OAuth2\\Providers\\OAuth2ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+    ),
+  ),
+  'macsidigital/laravel-zoom' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'MacsiDigital\\Zoom\\Providers\\ZoomServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Zoom' => 'MacsiDigital\\Zoom\\Facades\\Zoom',
+    ),
+  ),
   'mews/captcha' => 
   array (
     'providers' => 
@@ -190,20 +229,6 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'nunomaduro/termwind' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    ),
-  ),
-  'openai-php/laravel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'OpenAI\\Laravel\\ServiceProvider',
-    ),
-  ),
   'sebacarrasco93/laravel-payku' => 
   array (
     'providers' => 
@@ -236,17 +261,6 @@
     'aliases' => 
     array (
       'GoogleCalendar' => 'Spatie\\GoogleCalendar\\GoogleCalendarFacade',
-    ),
-  ),
-  'spatie/laravel-ignition' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
   'ssheduardo/redsys-laravel' => 

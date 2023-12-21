@@ -53,7 +53,7 @@
                                         <ul class="cat-dropdown-menu">
                                             @foreach($categories as $category)
                                                 <li>
-                                                    <a href="{{ $category->getUrl() }}" class="{{ (!empty($category->subCategories) and count($category->subCategories)) ? 'js-has-subcategory' : '' }}">
+                                                    <a href="{{ $category->getUrl() }}">
                                                         <div class="d-flex align-items-center">
                                                             <img src="{{ $category->icon }}" class="cat-dropdown-menu-icon mr-10" alt="{{ $category->title }} icon">
                                                             {{ $category->title }}
@@ -99,7 +99,7 @@
                 </ul>
             </div>
 
-            <div class="nav-icons-or-start-live navbar-order d-flex align-items-center justify-content-end">
+            <div class="nav-icons-or-start-live navbar-order">
 
                 @if(!empty($navBtnUrl))
                     <a href="{{ $navBtnUrl }}" class="d-none d-lg-flex btn btn-sm btn-primary nav-start-a-live-btn">
@@ -111,23 +111,12 @@
                     </a>
                 @endif
 
-                @if(!empty($isPanel))
-                    @if($authUser->checkAccessToAIContentFeature())
-                        <div class="js-show-ai-content-drawer show-ai-content-drawer-btn d-flex-center mr-40">
-                            <div class="d-flex-center size-32 rounded-circle bg-white">
-                                <img src="/assets/default/img/ai/ai-chip.svg" alt="ai" class="" width="16px" height="16px">
-                            </div>
-                            <span class="ml-5 font-weight-500 text-secondary font-14 d-none d-lg-block">{{ trans('update.ai_content') }}</span>
-                        </div>
-                    @endif
-                @endif
-
-                <div class="d-none nav-notify-cart-dropdown top-navbar">
-                    @include('web.default.includes.shopping-cart-dropdwon')
+                <div class="d-none nav-notify-cart-dropdown top-navbar ">
+                    @include(getTemplate().'.includes.shopping-cart-dropdwon')
 
                     <div class="border-left mx-15"></div>
 
-                    @include('web.default.includes.notification-dropdown')
+                    @include(getTemplate().'.includes.notification-dropdown')
                 </div>
 
             </div>

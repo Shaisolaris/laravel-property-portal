@@ -275,46 +275,6 @@
         }
     });
 
-    window.lockBodyScroll = function (lock) {
-        const root = document.getElementsByTagName('html')[0];
-
-        if (lock) {
-            root.classList.add('close-body-scroll');
-        } else {
-            root.classList.remove('close-body-scroll');
-        }
-    }
-
-
-    $('body').on('click', '.js-copy', function (e) {
-        e.preventDefault();
-
-        const $this = $(this);
-        const inputName = $this.attr('data-input');
-        const copyText = $this.attr('data-copy-text');
-        const doneText = $this.attr('data-done-text');
-
-        const input = $this.closest('.form-group').find('input[name="' + inputName + '"]');
-
-        input.removeAttr('disabled');
-        input.focus();
-        input.select();
-        document.execCommand("copy");
-        navigator.clipboard.writeText(input.val());
-
-        $this.attr('data-original-title', doneText)
-            .tooltip('show');
-        $this.attr('data-original-title', copyText);
-    });
-
-    $('body').on('click', '.js-has-subcategory', function (e) {
-
-        if(window.innerWidth < 992) {
-            e.preventDefault();
-        }
-    })
-
-
     /* feather icons */
     // **
     // **

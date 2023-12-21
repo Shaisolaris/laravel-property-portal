@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Models\AgoraHistory;
 use App\Models\ReserveMeeting;
+use App\Models\Sale;
 use App\Models\Session;
 use App\Models\Translation\SessionTranslation;
 use App\Models\Webinar;
 use App\Models\WebinarChapterItem;
-use App\Sessions\ZoomOAuth;
 use Illuminate\Http\Request;
+use App\Sessions\Zoom;
+use Illuminate\Support\Carbon;
 use Validator;
 
 class SessionController extends Controller
@@ -262,28 +264,46 @@ class SessionController extends Controller
     private function handleZoomApi($session, $user)
     {
         try {
-            if (!empty($user->zoomApi) and !empty($user->zoomApi->api_key) and !empty($user->zoomApi->api_secret) and !empty($user->zoomApi->account_id)) {
+            if (!empty($user->zoomApi) and !empty($user->zoomApi->api_key) and !empty($user->zoomApi->api_secret)) {
+                $apiKey = $user->zoomApi->api_key;
+                $apiSecret = $user->zoomApi->api_secret;
+                $tokenLife = 60 * 60 * 24 * 7;
+                $baseUrl = 'https://api.zoom.us/v2/';
+                $maxQueries = 5;
 
-                $meeting = (new ZoomOAuth())->makeMeeting($session);
+                $zoom = new \MacsiDigital\Zoom\Support\Entry($apiKey, $apiSecret, $tokenLife, $maxQueries, $baseUrl);
 
-                if ($meeting) {
-                    return response()->json([
-                        'code' => 200,
-                    ], 200);
-                } else {
-                    $session->delete();
-                }
+                $zoomUserQuery = new \MacsiDigital\Zoom\User($zoom);
+                $zoomUser = $zoomUserQuery->first();
+
+                $meeting = new \MacsiDigital\Zoom\Meeting($zoom);
+
+                $meeting->make([
+                    'topic' => 'New meeting',
+                    'type' => 1,
+                    'start_time' => new Carbon($session->date),
+                    'duration' => $session->duration,
+                ]);
+                $meeting = $zoomUser->meetings()->save($meeting);
+
+                $session->update([
+                    'link' => $meeting->join_url,
+                    'api_secret' => $meeting->password,
+                ]);
+
+                return response()->json([
+                    'code' => 200,
+                ], 200);
             }
         } catch (\Exception $exception) {
             $session->delete();
-            //dd($exception);
-        }
 
-        return response()->json([
-            'code' => 422,
-            'status' => 'zoom_token_invalid',
-            'zoom_error_msg' => trans('update.zoom_error_msg')
-        ], 422);
+            return response()->json([
+                'code' => 422,
+                'status' => 'zoom_token_invalid',
+                'zoom_error_msg' => trans('update.zoom_error_msg')
+            ], 422);
+        }
     }
 
     private function handleBigBlueButtonApi($session, $user)

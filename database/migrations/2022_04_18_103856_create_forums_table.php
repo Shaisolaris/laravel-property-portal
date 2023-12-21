@@ -35,7 +35,7 @@ class CreateForumsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('forum_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description')->nullable();
 

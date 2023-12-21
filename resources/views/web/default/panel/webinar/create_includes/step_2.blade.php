@@ -31,8 +31,7 @@
                                 <i data-feather="calendar" width="18" height="18" class="text-white"></i>
                             </span>
                             </div>
-                            <input type="text" name="start_date" value="{{ (!empty($webinar) and $webinar->start_date) ? dateTimeFormat($webinar->start_date, 'Y-m-d H:i', false, false, $webinar->timezone) : old('start_date') }}"
-                                   class="form-control @error('start_date')  is-invalid @enderror datetimepicker" aria-describedby="dateInputGroupPrepend"/>
+                            <input type="text" name="start_date" value="{{ (!empty($webinar) and $webinar->start_date) ? dateTimeFormat($webinar->start_date, 'Y-m-d H:i', false, false, $webinar->timezone) : old('start_date') }}" class="form-control @error('start_date')  is-invalid @enderror datetimepicker" aria-describedby="dateInputGroupPrepend"/>
                             @error('start_date')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -91,19 +90,17 @@
             </div>
         @endif
 
-        @if(!empty(getFeaturesSettings("course_forum_status")))
-            <div class="form-group mt-30 d-flex align-items-center justify-content-between mb-5">
-                <label class="cursor-pointer input-label" for="forumSwitch">{{ trans('update.course_forum') }}</label>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" name="forum" class="custom-control-input" id="forumSwitch" {{ !empty($webinar) && $webinar->forum ? 'checked' : (old('forum') ? 'checked' : '')  }}>
-                    <label class="custom-control-label" for="forumSwitch"></label>
-                </div>
+        <div class="form-group mt-30 d-flex align-items-center justify-content-between mb-5">
+            <label class="cursor-pointer input-label" for="forumSwitch">{{ trans('update.course_forum') }}</label>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" name="forum" class="custom-control-input" id="forumSwitch" {{ !empty($webinar) && $webinar->forum ? 'checked' : (old('forum') ? 'checked' : '')  }}>
+                <label class="custom-control-label" for="forumSwitch"></label>
             </div>
+        </div>
 
-            <div>
-                <p class="font-12 text-gray">- {{ trans('update.panel_course_forum_hint') }}</p>
-            </div>
-        @endif
+        <div>
+            <p class="font-12 text-gray">- {{ trans('update.panel_course_forum_hint') }}</p>
+        </div>
 
         <div class="form-group mt-30 d-flex align-items-center justify-content-between">
             <label class="cursor-pointer input-label" for="supportSwitch">{{ trans('webinars.support') }}</label>

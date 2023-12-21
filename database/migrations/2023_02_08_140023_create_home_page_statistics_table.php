@@ -25,7 +25,7 @@ class CreateHomePageStatisticsTable extends Migration
         Schema::create('home_page_statistic_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('home_page_statistic_id')->unsigned();
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
 

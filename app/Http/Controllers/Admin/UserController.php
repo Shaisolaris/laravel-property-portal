@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Bitwise\UserLevelOfTraining;
-use App\Exports\InstructorsExport;
 use App\Exports\OrganizationsExport;
 use App\Exports\StudentsExport;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Web\traits\UserFormFieldsTrait;
 use App\Models\Badge;
 use App\Models\BecomeInstructor;
 use App\Models\Category;
@@ -38,8 +36,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
-    use UserFormFieldsTrait;
-
     public function staffs(Request $request)
     {
         $this->authorize('admin_staffs_list');
@@ -572,15 +568,9 @@ class UserController extends Controller
         }
 
         $becomeInstructor = null;
-        $becomeInstructorFormFieldValues = null;
-
         if (!empty($request->get('type')) and $request->get('type') == 'check_instructor_request') {
             $becomeInstructor = BecomeInstructor::where('user_id', $user->id)
                 ->first();
-
-            if (!empty($becomeInstructor)) {
-                $becomeInstructorFormFieldValues = $this->getBecomeInstructorFormFieldValues($becomeInstructor);
-            }
         }
 
         $categories = Category::where('parent_id', null)
@@ -638,16 +628,6 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $userType = "organization";
-        if ($user->isTeacher()) {
-            $userType = "teacher";
-        } elseif ($user->isUser()) {
-            $userType = "user";
-        }
-
-        $formFieldsHtml = $this->getFormFieldsByUserType($request, $userType, true, $user);
-
-
         $data = [
             'pageTitle' => trans('admin/pages/users.edit_page_title'),
             'user' => $user,
@@ -664,8 +644,6 @@ class UserController extends Controller
             'cities' => $cities,
             'districts' => $districts,
             'userBanks' => $userBanks,
-            'formFieldsHtml' => $formFieldsHtml,
-            'becomeInstructorFormFieldValues' => $becomeInstructorFormFieldValues,
         ];
 
         // Purchased Classes Data
@@ -691,20 +669,6 @@ class UserController extends Controller
         }
 
         return view('admin.users.edit', $data);
-    }
-
-    private function getBecomeInstructorFormFieldValues($becomeInstructor)
-    {
-        $values = [];
-        $becomeInstructorFields = \App\Models\UserFormField::query()->where('become_instructor_id', $becomeInstructor->id)->get();
-
-        foreach ($becomeInstructorFields as $becomeInstructorField) {
-            $field = $becomeInstructorField->field;
-
-            $values[$field->title] = $becomeInstructorField->value;
-        }
-
-        return $values;
     }
 
     private function getPurchasedClassesData($user)
@@ -940,8 +904,6 @@ class UserController extends Controller
 
         $user->access_content = (!empty($data['access_content']) and $data['access_content'] == '1');
 
-        $user->enable_ai_content = (!empty($data['enable_ai_content']) and $data['enable_ai_content'] == '1');
-
         $user->save();
 
         // save certificate_additional in user metas table
@@ -992,34 +954,6 @@ class UserController extends Controller
         }
 
         $user->save();
-
-        return redirect()->back();
-    }
-
-    public function updateFormFields(Request $request, $id)
-    {
-        $this->authorize('admin_users_edit');
-
-        $user = User::findOrFail($id);
-
-        $userType = "organization";
-        if ($user->isTeacher()) {
-            $userType = "teacher";
-        } elseif ($user->isUser()) {
-            $userType = "user";
-        }
-
-        $form = $this->getFormFieldsByType($userType);
-
-        if (!empty($form)) {
-            $errors = $this->checkFormRequiredFields($request, $form);
-
-            if (count($errors)) {
-                return redirect()->back()->withErrors($errors);
-            }
-
-            $this->storeFormFields($request->all(), $user);
-        }
 
         return redirect()->back();
     }
@@ -1253,7 +1187,7 @@ class UserController extends Controller
 
         $users = $this->instructors($request, true);
 
-        $usersExport = new InstructorsExport($users);
+        $usersExport = new OrganizationsExport($users);
 
         return Excel::download($usersExport, 'instructors.xlsx');
     }

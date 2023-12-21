@@ -44,7 +44,7 @@ class CreateBundlesTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('bundle_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('seo_description')->nullable();
             $table->longText('description')->nullable();

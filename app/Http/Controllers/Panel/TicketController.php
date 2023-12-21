@@ -32,13 +32,14 @@ class TicketController extends Controller
             if (!empty($webinar) and $webinar->canAccess($user)) {
                 $canStore = true;
 
+                $sumTicketsCapacities = $webinar->tickets->sum('capacity');
+                $capacity = $webinar->capacity - $sumTicketsCapacities;
+
                 $rules ['webinar_id'] = 'required';
+                $rules ['capacity'] = 'nullable|numeric|min:1|max:' . $capacity;
 
-                if (!empty($webinar->capacity)) {
-                    $sumTicketsCapacities = $webinar->tickets->sum('capacity');
-                    $capacity = $webinar->capacity - $sumTicketsCapacities;
-
-                    $rules ['capacity'] = 'nullable|numeric|min:1|max:' . $capacity;
+                if (empty($data['capacity'])) {
+                    $data['capacity'] = $capacity;
                 }
             }
         } else if (!empty($data['bundle_id'])) {
@@ -67,7 +68,7 @@ class TicketController extends Controller
                 'start_date' => strtotime($data['start_date']),
                 'end_date' => strtotime($data['end_date']),
                 'discount' => $data['discount'],
-                'capacity' => $data['capacity'] ?? null,
+                'capacity' => $data['capacity'],
                 'created_at' => time()
             ]);
 
@@ -109,13 +110,14 @@ class TicketController extends Controller
             if (!empty($webinar) and $webinar->canAccess($user)) {
                 $canStore = true;
 
+                $sumTicketsCapacities = $webinar->tickets->sum('capacity');
+                $capacity = $webinar->capacity - $sumTicketsCapacities;
+
                 $rules ['webinar_id'] = 'required';
+                $rules ['capacity'] = 'nullable|numeric|min:1|max:' . $capacity;
 
-                if (!empty($webinar->capacity)) {
-                    $sumTicketsCapacities = $webinar->tickets->sum('capacity');
-                    $capacity = $webinar->capacity - $sumTicketsCapacities;
-
-                    $rules ['capacity'] = 'nullable|numeric|min:1|max:' . $capacity;
+                if (empty($data['capacity'])) {
+                    $data['capacity'] = $capacity;
                 }
             }
         } else if (!empty($data['bundle_id'])) {
@@ -152,7 +154,7 @@ class TicketController extends Controller
                     'start_date' => strtotime($data['start_date']),
                     'end_date' => strtotime($data['end_date']),
                     'discount' => $data['discount'],
-                    'capacity' => $data['capacity'] ?? null,
+                    'capacity' => $data['capacity'],
                     'updated_at' => time()
                 ]);
 

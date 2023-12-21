@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 $prefix = getAdminPanelUrlPrefix();
 
-Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => ['web', 'admin_locale']], function () use ($prefix) {
+Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => ['web',  'admin_locale']], function () use ($prefix) {
 
     // Admin Auth Routes
     Route::get('login', 'LoginController@showLoginForm');
@@ -79,7 +79,6 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => ['web
             Route::get('/{id}/edit', 'UserController@edit');
             Route::post('/{id}/update', 'UserController@update');
             Route::post('/{id}/updateImage', 'UserController@updateImage');
-            Route::post('/{id}/updateFormFields', 'UserController@updateFormFields');
             Route::post('/{id}/financialUpdate', 'UserController@financialUpdate');
             Route::post('/{id}/occupationsUpdate', 'UserController@occupationsUpdate');
             Route::post('/{id}/badgesUpdate', 'UserController@badgesUpdate');
@@ -1054,58 +1053,5 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => ['web
                 Route::post('/', 'GiftsController@storeSettings');
             });
         });
-
-
-        /* Forms */
-        Route::group(['prefix' => 'forms'], function () {
-            Route::get('/', 'FormsController@index');
-            Route::get('/create', 'FormsController@create');
-            Route::post('/store', 'FormsController@store');
-            Route::get('/{id}/edit', 'FormsController@edit');
-            Route::post('/{id}/update', 'FormsController@update');
-            Route::get('/{id}/delete', 'FormsController@delete');
-
-            Route::group(['prefix' => '{form_id}/fields'], function () {
-                Route::post('/orders', 'FormFieldsController@orders');
-                Route::post('/store', 'FormFieldsController@store');
-                Route::get('/{id}/edit', 'FormFieldsController@edit');
-                Route::post('/{id}/update', 'FormFieldsController@update');
-                Route::get('/{id}/delete', 'FormFieldsController@delete');
-
-                Route::group(['prefix' => '/{field_id}/options'], function () {
-                    Route::post('/orders', 'FormFieldsController@orderOptions');
-                    Route::get('/{id}/delete', 'FormFieldsController@deleteOption');
-                });
-            });
-
-            Route::group(['prefix' => 'submissions'], function () {
-                Route::get('/', 'FormSubmissionsController@index');
-                Route::get('/{id}/show', 'FormSubmissionsController@show');
-                Route::get('/{id}/delete', 'FormSubmissionsController@delete');
-            });
-
-            Route::post("/{form_id}/submissions/{id}/update", 'FormSubmissionsController@update');
-
-        });
-
-        Route::group(['prefix' => 'ai-contents'], function () {
-            Route::get('/lists', 'AIContentsController@index');
-            Route::get('/{id}/delete', 'AIContentsController@delete');
-            Route::post('/generate', 'AIContentsController@generate');
-            Route::get('/settings', 'AIContentsController@settings');
-
-            Route::group(['prefix' => 'templates'], function () {
-                Route::get('/', 'AIContentTemplatesController@index');
-                Route::get('/create', 'AIContentTemplatesController@create');
-                Route::post('/store', 'AIContentTemplatesController@store');
-                Route::get('/{id}/edit', 'AIContentTemplatesController@edit');
-                Route::post('/{id}/update', 'AIContentTemplatesController@update');
-                Route::get('/{id}/delete', 'AIContentTemplatesController@delete');
-                Route::get('/{id}/statusToggle', 'AIContentTemplatesController@statusToggle');
-            });
-
-        });
-
-        /* End Admin Middleware */
     });
 });

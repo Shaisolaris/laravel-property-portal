@@ -101,13 +101,10 @@
 
                                         <td>
                                             {{-- For Modal --}}
-                                             @if(!empty($payout->userSelectedBank->bank))
                                             @php
                                                 $bank = $payout->userSelectedBank->bank;
                                             @endphp
-                                             @endif
-                                             
-                                             @if(!empty($bank->title))
+
                                             <input type="hidden" class="js-bank-details" data-name="{{ trans("admin/main.bank") }}" value="{{ $bank->title }}">
                                             @foreach($bank->specifications as $specification)
                                                 @php
@@ -118,8 +115,6 @@
                                                     <input type="hidden" class="js-bank-details" data-name="{{ $specification->name }}" value="{{ $selectedBankSpecification->value }}">
                                                 @endif
                                             @endforeach
-                                            @endif
-                                            
 
                                             <button type="button" class="js-show-details btn-transparent btn-sm" data-toggle="tooltip" data-placement="top" title="{{ trans('update.show_details') }}">
                                                 <i data-feather="eye" width="18" class=""></i>

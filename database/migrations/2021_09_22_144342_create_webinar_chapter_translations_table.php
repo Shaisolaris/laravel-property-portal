@@ -18,7 +18,7 @@ class CreateWebinarChapterTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('webinar_chapter_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('webinar_chapter_id', 'webinar_chapter_id')->on('webinar_chapters')->references('id')->onDelete('cascade');

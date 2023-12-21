@@ -111,7 +111,6 @@ class RegistrationPackagesController extends Controller
             'courses_count' => $data['courses_count'] ?? null,
             'meeting_count' => $data['meeting_count'] ?? null,
             'product_count' => $data['product_count'] ?? null,
-            'ai_content_access' => (!empty($data['ai_content_access']) and $data['ai_content_access'] == '1'),
             'status' => $data['status'],
             'created_at' => time(),
         ]);
@@ -183,7 +182,6 @@ class RegistrationPackagesController extends Controller
             'courses_count' => $data['courses_count'] ?? null,
             'meeting_count' => $data['meeting_count'] ?? null,
             'product_count' => $data['product_count'] ?? null,
-            'ai_content_access' => (!empty($data['ai_content_access']) and $data['ai_content_access'] == '1'),
             'status' => $data['status'],
             'created_at' => time(),
         ]);

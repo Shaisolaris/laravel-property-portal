@@ -46,7 +46,7 @@ class CreateProductsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('seo_description')->nullable();
             $table->text('summary')->nullable();

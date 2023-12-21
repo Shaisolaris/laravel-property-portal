@@ -71,7 +71,6 @@ class ProductController extends Controller
 
     public function handleFilters(Request $request, $query, $isRewardProducts = false)
     {
-        $search = $request->get('search', null);
         $isFree = $request->get('free', null);
         $isFreeShipping = $request->get('free_shipping', null);
         $withDiscount = $request->get('discount', null);
@@ -80,10 +79,6 @@ class ProductController extends Controller
         $options = $request->get('options', null);
         $categoryId = $request->get('category_id', null);
         $filterOption = $request->get('filter_option', null);
-
-        if (!empty($search)) {
-            $query->whereTranslationLike('title', '%' . $search . '%');
-        }
 
         if (!empty($isFree) and $isFree == 'on') {
             $query->where(function ($qu) {
@@ -285,7 +280,6 @@ class ProductController extends Controller
             'pageTitle' => $product->title,
             'pageDescription' => $product->seo_description,
             'pageRobot' => $pageRobot,
-            'pageMetaImage' => $product->thumbnail,
             'product' => $product,
             'user' => $user,
             'selectableSpecifications' => $selectableSpecifications,

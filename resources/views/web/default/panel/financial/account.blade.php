@@ -6,25 +6,6 @@
 
 @section('content')
 
-    {{-- Cashback Alert --}}
-    @if(!empty($cashbackRules) and count($cashbackRules))
-        @foreach($cashbackRules as $cashbackRule)
-            <div class="d-flex align-items-center mb-20 p-15 success-transparent-alert {{ $classNames ?? '' }}">
-                <div class="success-transparent-alert__icon d-flex align-items-center justify-content-center">
-                    <i data-feather="credit-card" width="18" height="18" class=""></i>
-                </div>
-
-                <div class="ml-10">
-                    <div class="font-14 font-weight-bold ">{{ trans('update.get_cashback') }}</div>
-
-                    <div class="font-12 ">{{ trans('update.by_charging_your_wallet_will_get_amount_as_cashback',['amount' => ($cashbackRule->amount_type == 'percent' ? "%{$cashbackRule->amount}" : handlePrice($cashbackRule->amount))]) }}</div>
-                </div>
-            </div>
-        @endforeach
-    @endif
-
-
-
     @if(!empty($registrationBonusAmount))
         <div class="mb-25 d-flex align-items-center justify-content-between p-15 bg-white panel-shadow">
             <div class="d-flex align-items-center">
@@ -298,7 +279,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{ trans('financial.bank') }}</th>
-                                    <th>{{ trans('admin/main.referral_code') }}</th>
+                                    <th>{{ trans('financial.referral_code') }}</th>
                                     <th class="text-center">{{ trans('panel.amount') }} ({{ $currency }})</th>
                                     <th class="text-center">{{ trans('update.attachment') }}</th>
                                     <th class="text-center">{{ trans('public.status') }}</th>
@@ -312,9 +293,9 @@
                                             <div class="d-flex flex-column">
 
                                                 @if(!empty($offlinePayment->offlineBank))
-                                                    <span class="font-weight-500 text-dark-blue">{{ $offlinePayment->offlineBank->title }}</span>
+                                                <span class="font-weight-500 text-dark-blue">{{ $offlinePayment->offlineBank->title }}</span>
                                                 @else
-                                                    <span class="font-weight-500 text-dark-blue">-</span>
+                                                <span class="font-weight-500 text-dark-blue">-</span>
                                                 @endif
                                                 <span class="font-12 text-gray">{{ dateTimeFormat($offlinePayment->pay_date, 'j M Y H:i') }}</span>
                                             </div>

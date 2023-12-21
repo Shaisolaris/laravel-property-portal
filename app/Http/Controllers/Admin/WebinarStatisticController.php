@@ -7,7 +7,6 @@ use App\Models\Comment;
 use App\Models\CourseForum;
 use App\Models\CourseLearning;
 use App\Models\Gift;
-use App\Models\InstallmentOrder;
 use App\Models\Quiz;
 use App\Models\QuizzesResult;
 use App\Models\Role;
@@ -64,14 +63,6 @@ class WebinarStatisticController extends Controller
                 })
                 ->whereHas('sale')
                 ->get();
-
-            $installmentStudentIds = InstallmentOrder::query()
-                ->where('webinar_id', $webinar->id)
-                ->where('status', 'open')
-                ->pluck('user_id')
-                ->toArray();
-
-            $studentsIds = array_merge($studentsIds, $installmentStudentIds);
 
             $getStudents = $this->getStudents($request, $webinar, $studentsIds, $gifts);
 

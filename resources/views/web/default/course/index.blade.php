@@ -25,7 +25,7 @@
                 <div class="course-content-body user-select-none">
                     <div class="course-body-on-cover text-white">
                         <h1 class="font-30 course-title">
-                            {{ $course->title }}
+                            {{ clean($course->title, 't') }}
                         </h1>
 
                         @if(!empty($course->category))
@@ -244,7 +244,7 @@
                                 </div>
                             @endif
 
-                            @if($course->certificate or ($course->quizzes->where('certificate', 1)->count() > 0))
+                            @if($course->quizzes->where('certificate', 1)->count() > 0)
                                 <div class="mt-20 d-flex align-items-center text-gray">
                                     <i data-feather="award" width="20" height="20"></i>
                                     <span class="ml-5 font-14 font-weight-500">{{ trans('webinars.official_certificate') }}</span>
@@ -565,12 +565,12 @@
     <script src="/assets/default/js/parts/webinar_show.min.js"></script>
 
 
-    @if(!empty($course->creator) and !empty($course->creator->getLiveChatJsCode()) and !empty(getFeaturesSettings('show_live_chat_widget')))
+    @if(!empty($course->creator) and !empty($course->creator->live_chat_js_code) and !empty(getFeaturesSettings('show_live_chat_widget')))
         <script>
             (function () {
                 "use strict"
 
-                {!! $course->creator->getLiveChatJsCode() !!}
+                {!! $course->creator->live_chat_js_code !!}
             })(jQuery)
         </script>
     @endif

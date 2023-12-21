@@ -53,7 +53,7 @@ class CreateUpcomingCoursesTable extends Migration
         Schema::create('upcoming_course_translations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('upcoming_course_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('seo_description')->nullable();
             $table->longText('description')->nullable();

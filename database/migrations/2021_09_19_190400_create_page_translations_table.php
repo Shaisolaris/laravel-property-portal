@@ -18,7 +18,7 @@ class CreatePageTranslationsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('page_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('seo_description')->nullable();
             $table->longText('content');

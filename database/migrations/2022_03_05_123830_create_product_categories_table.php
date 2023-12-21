@@ -27,7 +27,7 @@ class CreateProductCategoriesTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_category_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('product_category_id', 'product_category_id')->on('product_categories')->references('id')->onDelete('cascade');

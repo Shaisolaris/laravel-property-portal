@@ -38,7 +38,7 @@ class Setting extends Model implements TranslatableContract
         $registrationPackagesGeneral, $registrationPackagesInstructors, $registrationPackagesOrganizations, $becomeInstructorSection,
         $themeColors, $themeFonts, $forumHomeSection, $cookieSettings, $mobileAppSettings, $remindersSettings, $generalSecuritySettings, $advertisingModal,
         $othersPersonalization, $installmentsSettings, $installmentsTermsSettings, $registrationBonusSettings, $registrationBonusTermsSettings, $statisticsSettings,
-        $maintenanceSettings, $generalOptions, $giftsGeneralSettings, $aiContentsSettings;
+        $maintenanceSettings, $generalOptions, $giftsGeneralSettings;
 
     // settings name , Using these keys, values are taken from the settings table
     static $seoMetasName = 'seo_metas';
@@ -87,7 +87,6 @@ class Setting extends Model implements TranslatableContract
     static $maintenanceSettingsName = 'maintenance_settings';
     static $generalOptionsName = 'general_options';
     static $giftsGeneralSettingsName = 'gifts_general_settings';
-    static $aiContentsSettingsName = 'ai_contents_settings';
 
     //statics
     static $pagesSeoMetas = ['home', 'search', 'categories', 'classes', 'login', 'register', 'contact', 'blog', 'certificate_validation',
@@ -474,10 +473,5 @@ class Setting extends Model implements TranslatableContract
     static function getGiftsGeneralSettings($key = null)
     {
         return self::getSetting(self::$giftsGeneralSettings, self::$giftsGeneralSettingsName, $key);
-    }
-
-    static function getAiContentsSettingsName($key = null)
-    {
-        return self::getSetting(self::$aiContentsSettings, self::$aiContentsSettingsName, $key);
     }
 }

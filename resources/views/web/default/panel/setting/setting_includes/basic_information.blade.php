@@ -53,23 +53,20 @@
                 @enderror
             </div>
 
-
-            @if(!empty($userLanguages))
-                <div class="form-group">
-                    <label class="input-label">{{ trans('auth.language') }}</label>
-                    <select name="language" class="form-control">
-                        <option value="">{{ trans('auth.language') }}</option>
-                        @foreach($userLanguages as $lang => $language)
-                            <option value="{{ $lang }}" @if(!empty($user) and mb_strtolower($user->language) == mb_strtolower($lang)) selected @endif>{{ $language }}</option>
-                        @endforeach
-                    </select>
-                    @error('language')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            <div class="form-group">
+                <label class="input-label">{{ trans('auth.language') }}</label>
+                <select name="language" class="form-control">
+                    <option value="">{{ trans('auth.language') }}</option>
+                    @foreach($userLanguages as $lang => $language)
+                        <option value="{{ $lang }}" @if(!empty($user) and mb_strtolower($user->language) == mb_strtolower($lang)) selected @endif>{{ $language }}</option>
+                    @endforeach
+                </select>
+                @error('language')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-            @endif
+                @enderror
+            </div>
 
             <div class="form-group">
                 <label class="input-label">{{ trans('update.timezone') }}</label>

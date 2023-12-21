@@ -309,7 +309,7 @@ class CartController extends Controller
         return $productFee;
     }
 
-    private function physicalProductCountBySeller($carts)
+    private function productCountBySeller($carts)
     {
         $productCount = [];
 
@@ -317,12 +317,10 @@ class CartController extends Controller
             if (!empty($cart->productOrder) and !empty($cart->productOrder->product)) {
                 $product = $cart->productOrder->product;
 
-                if (!empty($product) and $product->isPhysical()) {
-                    if (!empty($productCount[$product->creator_id])) {
-                        $productCount[$product->creator_id] += 1;
-                    } else {
-                        $productCount[$product->creator_id] = 1;
-                    }
+                if (!empty($productCount[$product->creator_id])) {
+                    $productCount[$product->creator_id] += 1;
+                } else {
+                    $productCount[$product->creator_id] = 1;
                 }
             }
         }
@@ -414,18 +412,13 @@ class CartController extends Controller
         }
 
         $hasPhysicalProduct = $carts->where('productOrder.product.type', Product::$physical);
-        $checkAddressValidation = (count($hasPhysicalProduct) > 0);
-
-        if (empty(getStoreSettings('show_address_selection_in_cart')) or !empty(getStoreSettings('take_address_selection_optional'))) {
-            $checkAddressValidation = false;
-        }
 
         $this->validate($request, [
-            'country_id' => Rule::requiredIf($checkAddressValidation),
-            'province_id' => Rule::requiredIf($checkAddressValidation),
-            'city_id' => Rule::requiredIf($checkAddressValidation),
-            'district_id' => Rule::requiredIf($checkAddressValidation),
-            'address' => Rule::requiredIf($checkAddressValidation),
+            'country_id' => Rule::requiredIf(count($hasPhysicalProduct) > 0),
+            'province_id' => Rule::requiredIf(count($hasPhysicalProduct) > 0),
+            'city_id' => Rule::requiredIf(count($hasPhysicalProduct) > 0),
+            'district_id' => Rule::requiredIf(count($hasPhysicalProduct) > 0),
+            'address' => Rule::requiredIf(count($hasPhysicalProduct) > 0),
         ]);
 
         $discountId = $request->input('discount_id');
@@ -537,7 +530,7 @@ class CartController extends Controller
         ]);
 
         $productsFee = $this->productDeliveryFeeBySeller($carts);
-        $sellersProductsCount = $this->physicalProductCountBySeller($carts);
+        $sellersProductsCount = $this->productCountBySeller($carts);
 
         foreach ($carts as $cart) {
 
@@ -554,7 +547,7 @@ class CartController extends Controller
             if (!empty($cart->product_order_id)) {
                 $product = $cart->productOrder->product;
 
-                if (!empty($product) and $product->isPhysical() and !empty($productsFee[$product->creator_id])) {
+                if (!empty($product) and !empty($productsFee[$product->creator_id])) {
                     $productDeliveryFee = $productsFee[$product->creator_id];
                 }
 
@@ -679,9 +672,8 @@ class CartController extends Controller
             $product = $cart->productOrder->product;
 
             if (!empty($product)) {
-                $productQuantity = $cart->productOrder->quantity;
-                $price = ($product->price * $productQuantity);
-                $discount = $product->getDiscountPrice() * $productQuantity;
+                $price = ($product->price * $cart->productOrder->quantity);
+                $discount = $product->getDiscountPrice();
 
                 $commission = $product->getCommission();
                 $productTax = $product->getTax();

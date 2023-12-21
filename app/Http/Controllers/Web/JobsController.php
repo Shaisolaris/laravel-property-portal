@@ -33,9 +33,7 @@ class JobsController extends Controller
 
     public function sdfds()
     {
-        /*Schema::table("ai_content_template_translations", function (Blueprint $table) {
 
-        });*/
     }
 
     public function sendSessionsReminder($request)

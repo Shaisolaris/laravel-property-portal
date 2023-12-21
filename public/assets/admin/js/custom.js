@@ -6,7 +6,7 @@
  */
 (function ($) {
     "use strict";
-    console.log('test');
+
     var datefilter = $('.datefilter');
     datefilter.daterangepicker({
         singleDatePicker: true,
@@ -434,28 +434,5 @@
      * Captcha
      * *********/
 
-    window.lockBodyScroll = function (lock) {
-        const root = document.getElementsByTagName('html')[0];
-
-        if (lock) {
-            root.classList.add('close-body-scroll');
-        } else {
-            root.classList.remove('close-body-scroll');
-        }
-    }
-
-    $('body').on('click', '.js-currency-dropdown-item', function () {
-        const $this = $(this);
-        const value = $this.attr('data-value');
-        const title = $this.attr('data-title');
-        const parent = $this.closest('.js-currency-select');
-
-        parent.find('input[name="currency"]').val(value);
-        parent.find('.js-lang-title').text(title);
-
-        if (!parent.hasClass('js-dont-submit')) {
-            parent.find('form').trigger('submit')
-        }
-    });
 
 })(jQuery);

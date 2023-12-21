@@ -120,12 +120,10 @@
                                 <span class="real">{{ trans('public.free') }}</span>
                             @endif
 
-                            @if($product->isPhysical())
-                                @if(!empty($product->delivery_fee) and $product->delivery_fee > 0)
-                                    <span class="shipping-price d-block mt-5">+ {{ handlePrice($product->delivery_fee) }} {{ trans('update.shipping') }}</span>
-                                @else
-                                    <span class="text-warning d-block font-14 font-weight-500 mt-5">{{ trans('update.free_shipping') }}</span>
-                                @endif
+                            @if(!empty($product->delivery_fee) and $product->delivery_fee > 0)
+                                <span class="shipping-price d-block mt-5">+ {{ handlePrice($product->delivery_fee) }} {{ trans('update.shipping') }}</span>
+                            @else
+                                <span class="text-warning d-block font-14 font-weight-500 mt-5">{{ trans('update.free_shipping') }}</span>
                             @endif
                         </div>
 

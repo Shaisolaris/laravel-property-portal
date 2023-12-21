@@ -516,4 +516,192 @@ class AssignmentController extends Controller
             'code' => 200
         ], 200);
     }
+
+    public function academyAssignments(Request $request)
+    {
+        if (!getFeaturesSettings('webinar_assignment_status')) {
+            abort(403);
+        }
+
+        $user = auth()->user();
+
+        $purchasedCoursesIds = Sale::where('buyer_id', $user->id)
+            ->whereNotNull('webinar_id')
+            ->whereNull('refund_at')
+            ->pluck('webinar_id')
+            ->toArray();
+
+        $webinars = Webinar::select('id', 'creator_id', 'teacher_id')
+            ->whereIn('id', $purchasedCoursesIds)
+            ->where('status', 'active')
+            ->get();
+
+        $query = WebinarAssignment::whereIn('webinar_id', $purchasedCoursesIds)
+            ->where('status', 'active');
+
+        $courseAssignmentsCount = deepClone($query)->count();
+
+        $pendingReviewCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$pending);
+        })->count();
+
+        $passedCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$passed);
+        })->count();
+
+        $failedCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$notPassed);
+        })->count();
+
+
+        $query = $this->handleMyAssignmentsFilters($request, $query, $user);
+
+        $assignments = $query->with([
+            'webinar',
+            'assignmentHistory' => function ($query) use ($user) {
+                $query->where('student_id', $user->id);
+                $query->with([
+                    'messages' => function ($query) use ($user) {
+                        $query->where('sender_id', $user->id);
+                        $query->orderBy('created_at', 'desc');
+                    }
+                ]);
+            },
+        ])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        foreach ($assignments as &$assignment) {
+            $this->getAssignmentDeadline($assignment, $user);
+            $assignment->usedAttemptsCount = 0;
+
+            if (!empty($assignment->assignmentHistory) and count($assignment->assignmentHistory->messages)) {
+                try {
+                    $assignment->last_submission = $assignment->assignmentHistory->messages->first()->created_at;
+                    $assignment->first_submission = $assignment->assignmentHistory->messages->last()->created_at;
+                    $assignment->usedAttemptsCount = $assignment->assignmentHistory->messages->count();
+                } catch (\Exception $exception) {
+
+                }
+            }
+        }
+
+        $data = [
+            'pageTitle' => trans('update.my_assignments'),
+            'assignments' => $assignments,
+            'webinars' => $webinars,
+            'courseAssignmentsCount' => $courseAssignmentsCount,
+            'pendingReviewCount' => $pendingReviewCount,
+            'passedCount' => $passedCount,
+            'failedCount' => $failedCount,
+        ];
+
+        return view('web.public_academy.assignments', $data);
+    }
+
+    public function academyAssignmentDetails(Request $request, $id = 0)
+    {
+        if (!getFeaturesSettings('webinar_assignment_status')) {
+            abort(403);
+        }
+
+        $user = auth()->user();
+
+        $purchasedCoursesIds = Sale::where('buyer_id', $user->id)
+            ->whereNotNull('webinar_id')
+            ->whereNull('refund_at')
+            ->pluck('webinar_id')
+            ->toArray();
+
+        $webinars = Webinar::select('id', 'creator_id', 'teacher_id')
+            ->whereIn('id', $purchasedCoursesIds)
+            ->where('status', 'active')
+            ->get();
+
+        $query = WebinarAssignment::whereIn('webinar_id', $purchasedCoursesIds)
+            ->where('status', 'active');
+
+        $courseAssignmentsCount = deepClone($query)->count();
+
+        $pendingReviewCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$pending);
+        })->count();
+
+        $passedCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$passed);
+        })->count();
+
+        $failedCount = deepClone($query)->whereHas('assignmentHistory', function ($query) use ($user) {
+            $query->where('student_id', $user->id);
+            $query->where('status', WebinarAssignmentHistory::$notPassed);
+        })->count();
+
+
+        $query = $this->handleMyAssignmentsFilters($request, $query, $user);
+
+        $assignments = $query->with([
+            'webinar',
+            'assignmentHistory' => function ($query) use ($user) {
+                $query->where('student_id', $user->id);
+                $query->with([
+                    'messages' => function ($query) use ($user) {
+                        $query->where('sender_id', $user->id);
+                        $query->orderBy('created_at', 'desc');
+                    }
+                ]);
+            },
+        ])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        foreach ($assignments as &$assignment) {
+            $this->getAssignmentDeadline($assignment, $user);
+            $assignment->usedAttemptsCount = 0;
+
+            if (!empty($assignment->assignmentHistory) and count($assignment->assignmentHistory->messages)) {
+                try {
+                    $assignment->last_submission = $assignment->assignmentHistory->messages->first()->created_at;
+                    $assignment->first_submission = $assignment->assignmentHistory->messages->last()->created_at;
+                    $assignment->usedAttemptsCount = $assignment->assignmentHistory->messages->count();
+                } catch (\Exception $exception) {
+
+                }
+            }
+        }
+
+
+        $assignmentDetailsQuery = WebinarAssignment::whereIn('webinar_id', $purchasedCoursesIds)
+            ->where('status', 'active')->where('id', $id);
+
+        $assignmentDetails = $assignmentDetailsQuery->with([
+            'webinar',
+            'assignmentHistory' => function ($query) use ($user) {
+                $query->where('student_id', $user->id);
+                $query->with([
+                    'messages' => function ($query) use ($user) {
+                        $query->where('sender_id', $user->id);
+                        $query->orderBy('created_at', 'desc');
+                    }
+                ]);
+            },
+        ])->first();
+
+        $data = [
+            'pageTitle' => trans('update.my_assignments'),
+            'assignments' => $assignments,
+            'webinars' => $webinars,
+            'courseAssignmentsCount' => $courseAssignmentsCount,
+            'pendingReviewCount' => $pendingReviewCount,
+            'passedCount' => $passedCount,
+            'failedCount' => $failedCount,
+            'assignmentDetails' => $assignmentDetails
+        ];
+
+        return view('web.public_academy.assignment_details', $data);
+    }
 }

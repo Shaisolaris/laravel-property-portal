@@ -1,11 +1,6 @@
 @extends(getTemplate().'.layouts.app')
 
-@push('styles_top')
-    <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
-@endpush
-
 @section('content')
-
     <div class="container">
         @if(!empty(session()->has('msg')))
             <div class="alert alert-info alert-dismissible fade show mt-30" role="alert">
@@ -27,9 +22,16 @@
 
                     <form method="Post" action="/login" class="mt-35">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        @include('web.default.auth.includes.register_methods')
-
+                        <div class="form-group">
+                            <label class="input-label" for="username">{{ trans('auth.email_or_mobile') }}:</label>
+                            <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username"
+                                   value="{{ old('username') }}" aria-describedby="emailHelp">
+                            @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                             <label class="input-label" for="password">{{ trans('auth.password') }}:</label>
@@ -92,8 +94,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts_bottom')
-    <script src="/assets/default/vendors/select2/select2.min.js"></script>
-    <script src="/assets/default/js/parts/forgot_password.min.js"></script>
-@endpush

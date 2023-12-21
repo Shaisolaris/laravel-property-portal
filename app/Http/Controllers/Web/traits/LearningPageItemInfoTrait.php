@@ -110,7 +110,6 @@ trait LearningPageItemInfoTrait
                     'title' => $session->title,
                     'is_finished' => $isFinished,
                     'is_started' => (time() > $session->date),
-                    'password' => $session->api_secret,
                     'join_url' => !$isFinished ? $session->getJoinLink(true) : null,
                     'start_data' => dateTimeFormat($session->date, 'j M Y H:i')
                 ]

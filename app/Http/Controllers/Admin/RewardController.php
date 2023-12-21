@@ -19,7 +19,7 @@ class RewardController extends Controller
         $this->authorize('admin_rewards_history');
 
         $rewards = RewardAccounting::selectRaw('*,
-                SUM(CASE WHEN status = "addiction" THEN score ELSE 0 END) as total_points,
+                sum(score) as total_points,
                 sum(case when status = "deduction" then score else 0 end) as spent_points
                 ')
             ->groupBy('user_id')

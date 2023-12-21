@@ -1,9 +1,4 @@
-<?php $__env->startPush('styles_top'); ?>
-    <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
-<?php $__env->stopPush(); ?>
-
 <?php $__env->startSection('content'); ?>
-
     <div class="container">
         <?php if(!empty(session()->has('msg'))): ?>
             <div class="alert alert-info alert-dismissible fade show mt-30" role="alert">
@@ -26,9 +21,31 @@
 
                     <form method="Post" action="/login" class="mt-35">
                         <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+                        <div class="form-group">
+                            <label class="input-label" for="username"><?php echo e(trans('auth.email_or_mobile')); ?>:</label>
+                            <input name="username" type="text" class="form-control <?php $__errorArgs = ['username'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="username"
+                                   value="<?php echo e(old('username')); ?>" aria-describedby="emailHelp">
+                            <?php $__errorArgs = ['username'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="invalid-feedback">
+                                <?php echo e($message); ?>
 
-                        <?php echo $__env->make('web.default.auth.includes.register_methods', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+                            </div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        </div>
 
                         <div class="form-group">
                             <label class="input-label" for="password"><?php echo e(trans('auth.password')); ?>:</label>
@@ -106,10 +123,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startPush('scripts_bottom'); ?>
-    <script src="/assets/default/vendors/select2/select2.min.js"></script>
-    <script src="/assets/default/js/parts/forgot_password.min.js"></script>
-<?php $__env->stopPush(); ?>
 
 <?php echo $__env->make(getTemplate().'.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/web/default/auth/login.blade.php ENDPATH**/ ?>

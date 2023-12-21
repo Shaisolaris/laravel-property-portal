@@ -178,7 +178,7 @@ class InstallmentsController extends Controller
             $order = 0;
 
             foreach ($data['steps'] as $stepId => $stepData) {
-                if (!empty($stepData) and $stepId != "record" and !empty($stepData['title']) and !empty($stepData['amount']) and $stepData['amount'] > 0) {
+                if (!empty($stepData) and $stepId != "record") {
                     $step = InstallmentStep::query()->where('id', $stepId)
                         ->where('installment_id', $installment->id)
                         ->first();

@@ -44,7 +44,7 @@ class SocialiteController extends Controller
                     'role_id' => Role::getUserRoleId(),
                     'role_name' => Role::$user,
                     'status' => User::$active,
-                    'verified' => false,
+                    'verified' => true,
                     'created_at' => time(),
                     'password' => null
                 ]);
@@ -108,7 +108,7 @@ class SocialiteController extends Controller
                     'role_id' => Role::getUserRoleId(),
                     'role_name' => Role::$user,
                     'status' => User::$active,
-                    'verified' => false,
+                    'verified' => true,
                     'created_at' => time(),
                     'password' => null
                 ]);

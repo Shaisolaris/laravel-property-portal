@@ -63,13 +63,17 @@ class SearchController extends Controller
                 'pageDescription' => $pageDescription,
                 'pageRobot' => $pageRobot,
                 'resultCount' => count($webinars) + count($teachers) + count($organizations),
-                'webinars' => $webinars,
-                'teachers' => $teachers,
+                'sales' => $webinars,
+                'instructors' => $teachers,
                 'organizations' => $organizations,
                 'products' => $products,
             ];
+            if (!$teachers->isEmpty()){
+                return view('web.public_academy.mentors',$data);
+            }elseif(!$webinars->isEmpty()){
+                return view('web.public_academy.courses',$data);
+            }
         }
-
-        return view(getTemplate() . '.pages.search', $data);
+//        return view(getTemplate() . '.pages.search', $data);
     }
 }

@@ -27,7 +27,7 @@ class CreateProductFiltersTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_filter_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
 
             $table->foreign('product_filter_id', 'product_filter_id')->on('product_filters')->references('id')->onDelete('cascade');

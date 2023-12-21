@@ -252,8 +252,7 @@ body {
         }
 
         @media (max-width: $screen-sm-max) {
-            height: calc(100vh - 240px);
-            min-height: calc(100vh - 240px);
+            height: auto;
 
             .learning-content-video-player {
                 height: 60vh;

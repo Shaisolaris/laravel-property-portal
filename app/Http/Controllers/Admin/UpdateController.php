@@ -155,8 +155,6 @@ class UpdateController extends Controller
 
     private function handleClearCache()
     {
-        Artisan::call('clear:all', [
-            '--force' => true
-        ]);
+        Artisan::call('clear:all');
     }
 }

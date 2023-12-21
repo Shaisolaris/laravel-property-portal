@@ -14,7 +14,6 @@ use App\Models\File;
 use App\Models\Gift;
 use App\Models\Group;
 use App\Models\GroupUser;
-use App\Models\InstallmentOrder;
 use App\Models\Notification;
 use App\Models\Prerequisite;
 use App\Models\Quiz;
@@ -903,30 +902,16 @@ class WebinarController extends Controller
                 ->pluck('id')
                 ->toArray();
 
-            $installmentSalesIds = [];
-            $installmentOrders = InstallmentOrder::query()
-                ->where('webinar_id', $webinar->id)
-                ->where('status', 'open')
-                ->get();
-
-            foreach ($installmentOrders as $installmentOrder) {
-
-                $salesId = $installmentOrder->payments->pluck('sale_id')->toArray();
-                $installmentSalesIds = array_merge($installmentSalesIds, $salesId);
-            }
-
             $query = User::join('sales', 'sales.buyer_id', 'users.id')
                 ->leftJoin('webinar_reviews', function ($query) use ($webinar) {
                     $query->on('webinar_reviews.creator_id', 'users.id')
                         ->where('webinar_reviews.webinar_id', $webinar->id);
                 })
-                ->select('users.*', 'webinar_reviews.rates', 'sales.access_to_purchased_item', 'sales.id as sale_id', 'sales.gift_id', DB::raw('min(sales.created_at) as purchase_date'))
-                ->where(function ($query) use ($webinar, $giftsIds, $installmentSalesIds) {
+                ->select('users.*', 'webinar_reviews.rates', 'sales.access_to_purchased_item', 'sales.id as sale_id', 'sales.gift_id', DB::raw('sales.created_at as purchase_date'))
+                ->where(function ($query) use ($webinar, $giftsIds) {
                     $query->where('sales.webinar_id', $webinar->id);
                     $query->orWhereIn('sales.gift_id', $giftsIds);
-                    $query->orWhereIn('sales.id', $installmentSalesIds);
                 })
-                ->groupBy('sales.buyer_id')
                 ->whereNull('sales.refund_at');
 
             $students = $this->studentsListsFilters($webinar, $query, $request)

@@ -31,7 +31,7 @@ class CreateProductFaqsTable extends Migration
 
             $table->bigIncrements('id');
             $table->unsignedInteger('product_faq_id');
-            $table->string('locale', 191)->index();
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('answer');
 

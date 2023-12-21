@@ -257,18 +257,6 @@
                     <div class="text-muted text-small">{{ trans('update.admin_user_edit_content_access_limitation_hint') }}</div>
                 </div>
 
-                @if(!empty($user) and !$user->isUser())
-                    <div class="form-group custom-switches-stacked mt-2">
-                        <label class="custom-switch pl-0">
-                            <input type="hidden" name="enable_ai_content" value="0">
-                            <input type="checkbox" name="enable_ai_content" id="aiContentLimitationSwitch" value="1" {{ (!empty($user) and $user->enable_ai_content) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
-                            <span class="custom-switch-indicator"></span>
-                            <label class="custom-switch-description mb-0 cursor-pointer" for="aiContentLimitationSwitch">{{ trans('update.enable_ai_content') }}</label>
-                        </label>
-                        <div class="text-muted text-small">{{ trans('update.admin_user_edit_enable_ai_content_hint') }}</div>
-                    </div>
-                @endif
-
                 <div class=" mt-4">
                     <button class="btn btn-primary">{{ trans('admin/main.submit') }}</button>
                 </div>

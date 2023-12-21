@@ -16,6 +16,7 @@
         @endif
 
         <section class="slider-container  {{ ($heroSection == "2") ? 'slider-hero-section2' : '' }}" @if(empty($heroSectionData['is_video_background'])) style="background-image: url('{{ $heroSectionData['hero_background'] }}')" @endif>
+
             @if($heroSection == "1")
                 @if(!empty($heroSectionData['is_video_background']))
                     <video playsinline autoplay muted loop id="homeHeroVideoBackground" class="img-cover">
@@ -540,11 +541,11 @@
                                                 @if(!empty($subscribe->price) and $subscribe->price > 0)
                                                     @if(!empty($subscribeSpecialOffer))
                                                         <div class="d-flex align-items-end line-height-1">
-                                                            <span class="font-36 text-primary">{{ handlePrice($subscribe->getPrice(), true, true, false, null, true) }}</span>
-                                                            <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($subscribe->price, true, true, false, null, true) }}</span>
+                                                            <span class="font-36 text-primary">{{ handlePrice($subscribe->getPrice()) }}</span>
+                                                            <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($subscribe->price) }}</span>
                                                         </div>
                                                     @else
-                                                        <span class="font-36 text-primary line-height-1">{{ handlePrice($subscribe->price, true, true, false, null, true) }}</span>
+                                                        <span class="font-36 text-primary line-height-1">{{ handlePrice($subscribe->price) }}</span>
                                                     @endif
                                                 @else
                                                     <span class="font-36 text-primary line-height-1">{{ trans('public.free') }}</span>
