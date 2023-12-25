@@ -18,9 +18,32 @@
 
 .page-content {
     padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
+
+    @media (min-width: 768px) {
+        $grid-gutter-width-2: 7.3rem;
+        padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width-2} * 0.172) $footer-height calc(#{$grid-gutter-width-2} * 0.5);
+    }
+
+    @media (min-width: 1025px) {
+        $header-height: 159px;
+        $grid-gutter-width-2: 7.3rem;
+        padding: calc(#{$header-height} + #{$grid-gutter-width}) 0 $footer-height calc(#{$grid-gutter-width-2} * 0.5);
+    }
+}
+
+
+@media (min-width: 768px) {
+    $grid-gutter-width-2: 7.3rem;
 }
 
 .navbar-menu {
+    --in-vertical-menu-width: 300px;
+    --in-vertical-menu-bg: white;
+
+    @media (min-width: 1025px) {
+        border-radius: 20px;
+    }
+
     width: var(--#{$prefix}vertical-menu-width);
     z-index: $vertical-menu-z-index;
     background: var(--#{$prefix}vertical-menu-bg);
@@ -30,7 +53,8 @@
     position: fixed;
     top: 0;
     box-shadow: var(--#{$prefix}vertical-menu-box-shadow);
-    padding: 0 0 calc(#{$header-height} + 25px) 0;
+    padding: 20px;
+    //padding: 0 0 calc(#{$header-height} + 25px) 0;
     transition: all .1s ease-out;
 
     .navbar-nav {
@@ -779,26 +803,28 @@
         }
 
         @media (min-width: 1024.1px) {
+            $header-height: 159px;
+
             .main-content {
                 position: relative;
             }
 
             #layout-wrapper {
-                max-width: 95%;
+                max-width: 89.6%;
                 margin: 0 auto;
-                padding-left: $grid-gutter-width;
+                //padding-left: $grid-gutter-width;
             }
 
             .navbar-header {
-                padding-left: $grid-gutter-width;
+                //padding-left: $grid-gutter-width;
             }
 
             .navbar-menu {
                 top: calc(#{$header-height} + #{$grid-gutter-width});
                 bottom: $grid-gutter-width;
-                padding: 0;
-                border-right: var(--#{$prefix}vertical-menu-bg);
-                border-radius: 5px;
+                border: 1px solid var(--#{$prefix}vertical-menu-border);
+                //border-right: var(--#{$prefix}vertical-menu-bg);
+                border-radius: 20px;
                 padding: 10px 0;
                 z-index: 1;
 
@@ -1031,7 +1057,6 @@
     }
 
     @media (min-width: 1440px) {
-
         .page-content {
             padding: calc(#{$header-height} + #{$grid-gutter-width} * 2) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
         }

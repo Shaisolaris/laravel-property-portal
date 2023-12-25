@@ -9,6 +9,11 @@
     box-shadow: $card-box-shadow;
 }
 
+.card-body {
+    --in-card-spacer-y: 1.25rem;
+    --in-card-spacer-x: 1.25rem;
+}
+
 .card-header {
     border-bottom: 1px solid var(--#{$prefix}border-color);
 }

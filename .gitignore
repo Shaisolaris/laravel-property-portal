@@ -5,6 +5,7 @@
 /public/vendor
 /public/storage
 /storage/*.key
+storage/framework/views/*.php
 /storage/vite
 /docker/mysql/*
 /vendor

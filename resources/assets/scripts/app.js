@@ -342,7 +342,7 @@
 					e.stopPropagation();
 					var childCollapses = collapse.querySelectorAll(".collapse");
 					Array.from(childCollapses).forEach(function (childCollapse) {
-						childCollapseInstance = bootstrap.Collapse.getInstance(childCollapse);
+						let childCollapseInstance = bootstrap.Collapse.getInstance(childCollapse);
 						childCollapseInstance.hide();
 					});
 				});
@@ -596,7 +596,7 @@
 		/**
 		 * Vertical layout menu scroll add
 		 */
-		if (document.documentElement.getAttribute("data-layout") == "vertical" || document.documentElement.getAttribute("data-layout") == "semibox") {
+		if (document.documentElement.getAttribute("data-layout") === "vertical" || document.documentElement.getAttribute("data-layout") === "semibox") {
 			document.getElementById("two-column-menu").innerHTML = "";
 			if (document.querySelector(".navbar-menu")) {
 				document.querySelector(".navbar-menu").innerHTML = navbarMenuHTML;
