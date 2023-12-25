@@ -72,15 +72,15 @@ class StatisticSettingsController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . $name);
         }

@@ -14,7 +14,7 @@
 <?php endif; ?>
 
 <link rel='shortcut icon' type='image/x-icon' href="<?php echo e(url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '')); ?>">
-<link rel="manifest" href="/mix-manifest.json?v=4">
+
 <meta name="theme-color" content="#FFF">
 <!-- Windows Phone -->
 <meta name="msapplication-starturl" content="/">

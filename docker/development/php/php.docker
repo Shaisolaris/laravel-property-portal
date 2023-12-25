@@ -1,0 +1,75 @@
+FROM php:8.2-rc-fpm
+
+USER root
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+  && apt-get install -y \
+     tzdata \
+     wget \
+     unzip \
+     apt-utils \
+     git \
+     nano \
+     man \
+     curl \
+     nodejs\
+     npm \
+     pkg-config \
+     icu-devtools \
+     libicu-dev \
+     libcurl4 \
+     libcurl4-gnutls-dev \
+     libfreetype6-dev \
+     libjpeg62-turbo-dev \
+     libpng-dev \
+     libbz2-dev \
+     libssl-dev \
+     libgmp-dev \
+     libtidy-dev \
+     libxml2-dev \
+     libxslt1-dev \
+     libzip-dev \
+     libonig-dev \
+     chromium \
+     xvfb \
+     gtk2-engines-pixbuf \
+     xfonts-100dpi \
+     xfonts-75dpi \
+     xfonts-base \
+     xfonts-scalable \
+     imagemagick x11-apps \
+  &&  ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
+
+RUN apt-get install -y wget
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+RUN docker-php-ext-install mysqli \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install bz2 \
+    && docker-php-ext-install calendar \
+    && docker-php-ext-install bcmath \
+    && docker-php-ext-install exif \
+    && docker-php-ext-install gettext \
+    && docker-php-ext-install gmp \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-install shmop \
+    && docker-php-ext-install sysvmsg \
+    && docker-php-ext-install sysvsem \
+    && docker-php-ext-install sysvshm \
+    && docker-php-ext-install tidy \
+    && docker-php-ext-install xsl \
+    && docker-php-source delete
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+  && docker-php-ext-install -j$(nproc) gd \
+  && pecl install redis \
+  && docker-php-ext-enable redis.so \
+  && docker-php-source delete
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /app

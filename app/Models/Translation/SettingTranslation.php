@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SettingTranslation extends Model
 {
-    protected $table = 'setting_translations';
-    public $timestamps = false;
-    protected $dateFormat = 'U';
-    protected $guarded = ['id'];
+//    protected $table = 'setting_translations';
+//    public $timestamps = false;
+//    protected $dateFormat = 'U';
+//    protected $guarded = ['id'];
 }

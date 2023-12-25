@@ -38,17 +38,17 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         $minutes = 60 * 60; // 1 hour
-        $sections = Cache::remember('sections', $minutes, function () {
-            return Section::all();
-        });
-
-        $scopes = [];
-        foreach ($sections as $section) {
-            $scopes[$section->name] = $section->caption;
-            Gate::define($section->name, function ($user) use ($section) {
-                return $user->hasPermission($section->name);
-            });
-        }
+//        $sections = Cache::remember('sections', $minutes, function () {
+//            return Section::all();
+//        });
+//
+//        $scopes = [];
+//        foreach ($sections as $section) {
+//            $scopes[$section->name] = $section->caption;
+//            Gate::define($section->name, function ($user) use ($section) {
+//                return $user->hasPermission($section->name);
+//            });
+//        }
 
 
         //

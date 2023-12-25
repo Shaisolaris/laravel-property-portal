@@ -78,15 +78,15 @@ class NavbarLinksSettingsController extends Controller
             ]
         );
 
-        SettingTranslation::updateOrCreate(
-            [
-                'setting_id' => $settings->id,
-                'locale' => mb_strtolower($locale)
-            ],
-            [
-                'value' => json_encode($values),
-            ]
-        );
+//        SettingTranslation::updateOrCreate(
+//            [
+//                'setting_id' => $settings->id,
+//                'locale' => mb_strtolower($locale)
+//            ],
+//            [
+//                'value' => json_encode($values),
+//            ]
+//        );
 
         removeContentLocale();
 

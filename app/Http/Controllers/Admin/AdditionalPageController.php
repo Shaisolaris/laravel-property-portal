@@ -78,15 +78,15 @@ class AdditionalPageController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $setting->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $setting->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . $name);
         }
@@ -128,15 +128,15 @@ class AdditionalPageController extends Controller
             $values = json_encode($values);
             $values = str_replace('record', Str::random(8), $values);
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . Setting::$footerName);
 

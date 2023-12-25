@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -200,7 +200,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -243,7 +242,6 @@ return [
         'Share' => Jorenvh\Share\ShareFacade::class,
         'Rave' => KingFlamez\Rave\Facades\Rave::class,
         'Mpesa' => Gathuku\Mpesa\Facades\Mpesa::class,
-        'Redsys'    => Ssheduardo\Redsys\Facades\Redsys::class,
+        'Redsys' => Ssheduardo\Redsys\Facades\Redsys::class,
     ],
-
 ];

@@ -6,7 +6,8 @@
         <div class="section-header">
             <h1>{{ trans('admin/main.comments_reports') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ getAdminPanelUrl() }}">{{trans('admin/main.dashboard')}}</a>
+                <div class="breadcrumb-item active">
+                    <a href="{{ getAdminPanelUrl() }}">{{trans('admin/main.dashboard')}}</a>
                 </div>
                 <div class="breadcrumb-item">{{ trans('admin/main.comments_reports') }}</div>
             </div>
@@ -53,11 +54,20 @@
                                                 <td>
 
                                                     @can('admin_comments_status')
-                                                        <a href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ $comment->id }}/toggle" class="btn btn-{{ (($comment->status == 'pending') ? 'success' : 'primary') }} btn-sm">{{ trans('admin/main.'.(($comment->status == 'pending') ? 'publish' : 'pending')) }}</a>
+                                                        <a
+                                                                href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ $comment->id }}/toggle"
+                                                                class="btn btn-{{ (($comment->status == 'pending') ? 'success' : 'primary') }} btn-sm"
+                                                        >{{ trans('admin/main.'.(($comment->status == 'pending') ? 'publish' : 'pending')) }}</a>
                                                     @endcan
 
                                                     @can('admin_comments_edit')
-                                                        <a href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ $comment->id }}/edit" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">
+                                                        <a
+                                                                href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ $comment->id }}/edit"
+                                                                class="btn btn-info btn-sm"
+                                                                data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                title="{{ trans('admin/main.edit') }}"
+                                                        >
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                     @endcan
@@ -65,11 +75,14 @@
                                                     <br>
 
                                                     @can('admin_comments_reply')
-                                                        <a href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ !empty($comment->reply_id) ? $comment->reply_id : $comment->id }}/reply" class="btn btn-warning btn-sm mt-2">{{ trans('admin/main.reply') }}</a>
+                                                        <a
+                                                                href="{{ getAdminPanelUrl() }}/{{ $page }}/comments/{{ !empty($comment->reply_id) ? $comment->reply_id : $comment->id }}/reply"
+                                                                class="btn btn-warning btn-sm mt-2"
+                                                        >{{ trans('admin/main.reply') }}</a>
                                                     @endcan
 
                                                     @can('admin_comments_delete')
-                                                        @include('admin.includes.delete_button',['url' => getAdminPanelUrl().'/'. $page .'/comments/'.$comment->id.'/delete?redirect_to='.getAdminPanelUrl().'/'. $page .'/comments/reports','btnClass' => 'btn-sm mt-2'])
+                                                        @include('admin.includes.delete_button',['url' => getAdminPanelUrl().'report_show.blade.php/'. $page .'/comments/'.$comment->id.'/delete?redirect_to='.getAdminPanelUrl().'/'. $page .'/comments/reports','btnClass' => 'btn-sm mt-2'])
                                                     @endcan
                                                 </td>
                                             </tr>
@@ -104,7 +117,7 @@
                                         <td width="150px" class="text-right">
 
                                             @can('admin_'. $itemRelation .'_comments_reports')
-                                                @include('admin.includes.delete_button',['url' => getAdminPanelUrl().'/'. $page .'/comments/reports/'.$report->id.'/delete?redirect_to='.getAdminPanelUrl().'/'. $page .'/comments/reports','btnClass' => 'btn-sm'])
+                                                @include('admin.includes.delete_button',['url' => getAdminPanelUrl().'report_show.blade.php/'. $page .'/comments/reports/'.$report->id.'/delete?redirect_to='.getAdminPanelUrl().'/'. $page .'/comments/reports','btnClass' => 'btn-sm'])
                                             @endcan
                                         </td>
                                     </tr>

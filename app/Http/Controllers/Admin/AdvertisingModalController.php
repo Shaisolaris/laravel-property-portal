@@ -73,15 +73,15 @@ class AdvertisingModalController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $setting->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $setting->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . $this->settingName);
         }

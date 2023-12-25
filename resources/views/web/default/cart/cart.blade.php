@@ -4,7 +4,7 @@
 @section('content')
     <section class="cart-banner position-relative text-center">
         <h1 class="font-30 text-white font-weight-bold">{{ trans('cart.shopping_cart') }}</h1>
-        <span class="payment-hint font-20 text-white d-block"> {{ handlePrice($subTotal) . ' ' . trans('cart.for_items',['count' => $carts->count()]) }}</span>
+        <span class="payment-hint font-20 text-white d-block"> {{ handlePrice($subTotal) . ' cart.blade.php' . trans('cart.for_items',['count' => $carts->count()]) }}</span>
     </section>
 
     <div class="container">
@@ -29,11 +29,14 @@
                 @if($carts->count() > 0)
                     <div class="row d-none d-md-flex">
                         <div class="col-12 col-lg-8"><span
-                                class="text-gray font-weight-500">{{ trans('cart.item') }}</span></div>
+                                    class="text-gray font-weight-500"
+                            >{{ trans('cart.item') }}</span></div>
                         <div class="col-6 col-lg-2 text-center"><span
-                                class="text-gray font-weight-500">{{ trans('public.price') }}</span></div>
+                                    class="text-gray font-weight-500"
+                            >{{ trans('public.price') }}</span></div>
                         <div class="col-6 col-lg-2 text-center"><span
-                                class="text-gray font-weight-500">{{ trans('public.remove') }}</span></div>
+                                    class="text-gray font-weight-500"
+                            >{{ trans('public.remove') }}</span></div>
                     </div>
                 @endif
                 @foreach($carts as $cart)
@@ -77,7 +80,11 @@
                                         @if(!empty($cartItemInfo['profileUrl']) and !empty($cartItemInfo['teacherName']))
                                             <span class="text-gray font-14 mt-auto">
                                                 {{ trans('public.by') }}
-                                                <a href="{{ $cartItemInfo['profileUrl'] }}" target="_blank" class="text-gray text-decoration-underline">{{ $cartItemInfo['teacherName'] }}</a>
+                                                <a
+                                                        href="{{ $cartItemInfo['profileUrl'] }}"
+                                                        target="_blank"
+                                                        class="text-gray text-decoration-underline"
+                                                >{{ $cartItemInfo['teacherName'] }}</a>
                                             </span>
                                         @endif
 
@@ -115,14 +122,21 @@
                         <div class="col-6 col-lg-2 d-flex flex-md-column align-items-center justify-content-center">
                             <span class="text-gray d-inline-block d-md-none mr-10 mr-md-0">{{ trans('public.remove') }} :</span>
 
-                            <a href="/cart/{{ $cart->id }}/delete" class="delete-action btn-cart-list-delete d-flex align-items-center justify-content-center">
+                            <a
+                                    href="/cart/{{ $cart->id }}/delete"
+                                    class="delete-action btn-cart-list-delete d-flex align-items-center justify-content-center"
+                            >
                                 <i data-feather="x" width="20" height="20" class=""></i>
                             </a>
                         </div>
                     </div>
                 @endforeach
 
-                <button type="button" onclick="window.history.back()" class="btn btn-sm btn-primary mt-25">{{ trans('cart.continue_shopping') }}</button>
+                <button
+                        type="button"
+                        onclick="window.history.back()"
+                        class="btn btn-sm btn-primary mt-25"
+                >{{ trans('cart.continue_shopping') }}</button>
             </div>
         </section>
 
@@ -148,14 +162,18 @@
                             <form action="/carts/coupon/validate" method="Post">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="text" name="coupon" id="coupon_input" class="form-control mt-25"
-                                           placeholder="{{ trans('cart.enter_your_code_here') }}">
+                                    <input
+                                            type="text" name="coupon" id="coupon_input" class="form-control mt-25"
+                                            placeholder="{{ trans('cart.enter_your_code_here') }}"
+                                    >
                                     <span class="invalid-feedback">{{ trans('cart.coupon_invalid') }}</span>
                                     <span class="valid-feedback">{{ trans('cart.coupon_valid') }}</span>
                                 </div>
 
-                                <button type="submit" id="checkCoupon"
-                                        class="btn btn-sm btn-primary mt-50">{{ trans('cart.validate') }}</button>
+                                <button
+                                        type="submit" id="checkCoupon"
+                                        class="btn btn-sm btn-primary mt-50"
+                                >{{ trans('cart.validate') }}</button>
                             </form>
                         </div>
                     </section>
@@ -201,7 +219,10 @@
                                 <span class="font-14 text-gray font-weight-bold"><span id="totalAmount">{{ handlePrice($total) }}</span></span>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-primary mt-15">{{ trans('cart.checkout') }}</button>
+                            <button
+                                    type="submit"
+                                    class="btn btn-sm btn-primary mt-15"
+                            >{{ trans('cart.checkout') }}</button>
                         </div>
                     </section>
                 </div>

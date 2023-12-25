@@ -5,7 +5,7 @@
                 <div class="d-flex logoWrapper">
                     <div class="logo d-lg-block d-none">
                         <a class="" href="{{ url('/') }}">
-                            <img src="{{ asset('design/img/navbar/Logo.svg') }}" alt="logo"/>
+                            <img src="{{ asset('design/img/navbar/logo.svg') }}" alt="logo"/>
                         </a>
                     </div>
                     <div class="contactWrapper d-flex align-items-md-center">
@@ -41,7 +41,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-expand-lg bg-transparent px-sm-0 px-2">
                 <a class="d-lg-none d-block" href="/">
-                    <img src="{{ asset('design/img/navbar/Logo.svg') }}" alt="logo"/>
+                    <img src="{{ asset('design/img/navbar/logo.svg') }}" alt="logo"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">

@@ -176,15 +176,15 @@ class SettingsController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . $name);
 
@@ -242,15 +242,15 @@ class SettingsController extends Controller
             ]
         );
 
-        SettingTranslation::updateOrCreate(
-            [
-                'setting_id' => $settings->id,
-                'locale' => mb_strtolower($locale)
-            ],
-            [
-                'value' => json_encode($values),
-            ]
-        );
+//        SettingTranslation::updateOrCreate(
+//            [
+//                'setting_id' => $settings->id,
+//                'locale' => mb_strtolower($locale)
+//            ],
+//            [
+//                'value' => json_encode($values),
+//            ]
+//        );
 
         cache()->forget('settings.' . $name);
 
@@ -308,15 +308,15 @@ class SettingsController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => json_encode($values),
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => json_encode($values),
+//                ]
+//            );
 
             cache()->forget('settings.' . Setting::$socialsName);
 
@@ -366,15 +366,15 @@ class SettingsController extends Controller
             ]
         );
 
-        SettingTranslation::updateOrCreate(
-            [
-                'setting_id' => $settings->id,
-                'locale' => mb_strtolower($locale)
-            ],
-            [
-                'value' => json_encode($values),
-            ]
-        );
+//        SettingTranslation::updateOrCreate(
+//            [
+//                'setting_id' => $settings->id,
+//                'locale' => mb_strtolower($locale)
+//            ],
+//            [
+//                'value' => json_encode($values),
+//            ]
+//        );
 
         cache()->forget('settings.' . Setting::$socialsName);
 
@@ -420,15 +420,15 @@ class SettingsController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . Setting::$customCssJsName);
 
@@ -463,15 +463,15 @@ class SettingsController extends Controller
                 ]
             );
 
-            SettingTranslation::updateOrCreate(
-                [
-                    'setting_id' => $settings->id,
-                    'locale' => mb_strtolower($locale)
-                ],
-                [
-                    'value' => $values,
-                ]
-            );
+//            SettingTranslation::updateOrCreate(
+//                [
+//                    'setting_id' => $settings->id,
+//                    'locale' => mb_strtolower($locale)
+//                ],
+//                [
+//                    'value' => $values,
+//                ]
+//            );
 
             cache()->forget('settings.' . $name);
         }

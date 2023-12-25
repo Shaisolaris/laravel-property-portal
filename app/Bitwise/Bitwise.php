@@ -7,7 +7,7 @@ class Bitwise
     /**
      * @return array
      */
-    public function getList()
+    public function getList(): array
     {
         $class = new \ReflectionClass($this);
         return $class->getConstants();
