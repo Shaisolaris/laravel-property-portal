@@ -1,0 +1,15 @@
+.h-lg-87 {
+    height: 100%;
+
+    @media (min-width: 992px) {
+        height: 87%;
+    }
+}
+
+.radius-26 {
+    border-radius: 26px
+}
+
+.bg-crimson, .bg-light-steel-blue, .bg-thistle {
+    --in-bg-opacity: 0.4;
+}

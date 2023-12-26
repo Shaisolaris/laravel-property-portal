@@ -183,7 +183,6 @@ $value in $theme-colors {
     margin-bottom: 0px;
 }
 
-
 @each $color,
 $value in $theme-colors {
     .form-switch-#{$color} {

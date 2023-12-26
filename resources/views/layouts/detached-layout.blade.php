@@ -10,6 +10,7 @@
     data-layout-width="fluid"
     data-preloader="disabled"
     data-lt-installed="true"
+    data-role-auth="{{\Illuminate\Support\Facades\Auth::user()?->role?->name}}"
 >
     <head>
         <meta charset="utf-8" />
@@ -29,7 +30,10 @@
             <div class="main-content">
                 <div class="page-content">
                     <div class="container-fluid pe-0">
-                        @include('layouts.partials.breadcrumbs')
+                        @if(isset($title) && isset($li))
+                            @include('layouts.partials.breadcrumbs', ['title' => $title, 'li' => $li])
+                        @endif
+
                         @yield('content')
                     </div>
                 </div>

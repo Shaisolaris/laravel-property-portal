@@ -9,8 +9,8 @@ class GeneralService
 
         return [
             [
-                'href' => route('welcome'),
-                'active' => request()->routeIs('welcome'),
+                'href' => route('dashboard'),
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-layout-left-line',
                 'text' => "Dashboards"
             ],
@@ -27,8 +27,8 @@ class GeneralService
                 'text' => "My Courses"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('assignments'),
+                'active' => request()->routeIs('assignments'),
                 'icon' => ' ri-file-text-line',
                 'text' => "Assignments"
             ],
@@ -39,44 +39,44 @@ class GeneralService
                 'text' => "Messages"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('mentoring'),
+                'active' => request()->routeIs('mentoring'),
                 'icon' => 'ri-group-line',
                 'text' => "Mentoring"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('forum'),
+                'active' => request()->routeIs('forum'),
                 'icon' => 'ri-file-list-2-line',
                 'text' => "Forum"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('payments'),
+                'active' => request()->routeIs('payments'),
                 'icon' => 'ri-bank-card-line',
                 'text' => "Payments"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('settings'),
+                'active' => request()->routeIs('settings'),
                 'icon' => ' ri-settings-2-line',
                 'text' => "Setting"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('profile'),
+                'active' => request()->routeIs('profile'),
                 'icon' => 'ri-settings-2-fill',
                 'text' => "Edit Profile"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('change-password'),
+                'active' => request()->routeIs('change-password'),
                 'icon' => 'ri-lock-password-fill',
                 'text' => "Change Password"
             ],
             [
-                'href' => route('messages'),
-                'active' => request()->routeIs('messages'),
+                'href' => route('logout'),
+                'active' => false,
                 'icon' => 'ri-logout-box-r-line',
                 'text' => "Logout"
             ]

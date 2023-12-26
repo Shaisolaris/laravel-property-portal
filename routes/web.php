@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,13 +13,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('welcome', function () {
+\Illuminate\Support\Facades\Auth::routes();
+Route::get('dashboard', function () {
     \Illuminate\Support\Facades\Auth::login(\App\User::find(1015));
-    return view('welcome');
-})->name('welcome');
-Route::get('add-new-course', function () {return view('welcome');})->name('add-new-course');
-Route::get('courses', function () {return view('welcome');})->name('courses');
-Route::get('messages', function () {return view('welcome');})->name('messages');
+    $tags = Tag::orderBy('id','desc')
+        ->paginate(10);;
+    $data = [
+        'pageTitle' => trans('admin/pages/tags.tags_list_page_title'),
+        'tags' => $tags
+    ];
+    return view('pages.dashboard', $data);
+})->name('dashboard');
+
+Route::get('add-new-course', function () {return view('pages.course.create');})->name('add-new-course');
+Route::get('courses', function () {return view('pages.course.index');})->name('courses');
+Route::get('assignments', function () {return view('pages.assignments');})->name('assignments');
+Route::get('messages', function () {return view('pages.messages');})->name('messages');
+Route::get('mentoring', function () {return view('pages.mentoring');})->name('mentoring');
+Route::get('forum', function () {return view('pages.forum');})->name('forum');
+Route::get('payments', function () {return view('pages.payments');})->name('payments');
+Route::get('settings', function () {return view('pages.settings');})->name('settings');
+Route::get('profile', function () {return view('pages.profile');})->name('profile');
+Route::get('change-password', function () {return view('pages.change-password');})->name('change-password');
 
 
 

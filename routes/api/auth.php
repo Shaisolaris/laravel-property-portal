@@ -20,6 +20,6 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['api.request.type']], func
 
 });
 
-Route::post('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout', 'middleware' => ['api.auth']]);
+Route::post('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout', 'middleware' => ['api.auth']])->name('auth-logout');
 
 

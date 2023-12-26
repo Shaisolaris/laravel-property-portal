@@ -1,8 +1,19 @@
-//Common plugins
-if(document.querySelectorAll("[toast-list]") || document.querySelectorAll('[data-choices]') || document.querySelectorAll("[data-provider]")){ 
-  document.writeln("<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/toastify-js'></script>");
-  document.writeln("<script type='text/javascript' src='build/libs/choices.js/public/assets/scripts/choices.min.js'></script>");
-  document.writeln("<script type='text/javascript' src='build/libs/flatpickr/flatpickr.min.js'></script>");    
-  document.writeln("<script type='text/javascript' src='build/libs/simplebar/simplebar.min.js'></script>");
-  document.writeln("<script type='text/javascript' src='build/libs/sweetalert2/sweetalert2.min.js'></script>");
+if (document.querySelectorAll("[toast-list]").length > 0 ||
+    document.querySelectorAll('[data-choices]').length > 0 ||
+    document.querySelectorAll("[data-provider]").length > 0) {
+
+    const scripts = [
+        'https://cdn.jsdelivr.net/npm/toastify-js',
+        'build/libs/choices.js/public/assets/scripts/choices.min.js',
+        'build/libs/flatpickr/flatpickr.min.js',
+        'build/libs/simplebar/simplebar.min.js',
+        'build/libs/sweetalert2/sweetalert2.min.js'
+    ];
+
+    scripts.forEach(function (src) {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        document.body.appendChild(script);
+    });
 }

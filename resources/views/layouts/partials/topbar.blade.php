@@ -4,7 +4,7 @@
             <div class="d-flex align-items-center">
                 <div class="d-flex">
                     <div class="navbar-brand-box horizontal-logo">
-                        <a href="{{route('welcome')}}" class="logo logo-dark">
+                        <a href="{{route('dashboard')}}" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="{{ URL::asset('images/logo.svg') }}" alt="" />
                             </span>
@@ -13,20 +13,12 @@
                             </span>
                         </a>
 
-                        <a href="index" class="logo logo-light">
+                        <a href="{{route('dashboard')}}" class="logo logo-light">
                             <span class="logo-sm">
-                                <img
-                                    src="{{ URL::asset('build/images/logo-sm.png') }}"
-                                    alt=""
-                                    height="22"
-                                >
+                                <img src="{{ URL::asset('build/images/logo-sm.png') }}" height="22" alt >
                             </span>
                             <span class="logo-lg">
-                                <img
-                                    src="{{ URL::asset('build/images/logo-light.png') }}"
-                                    alt=""
-                                    height="17"
-                                >
+                                <img src="{{ URL::asset('build/images/logo-light.png') }}" height="17" alt>
                             </span>
                         </a>
                     </div>

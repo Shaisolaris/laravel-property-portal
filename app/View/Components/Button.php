@@ -8,11 +8,11 @@ class Button extends Component
 {
 
     public function __construct(
-        public readonly string $type = 'button',
-        public readonly string $variable = 'light-blue',
-        public readonly string $viewType = 'default',
         public readonly string $text = '',
-        public readonly string $icon = ''
+        public readonly string $icon = '',
+        public readonly string $type = 'button',
+        public readonly string $viewType = 'default',
+        public readonly string $variable = 'light-blue',
     ) {}
 
 

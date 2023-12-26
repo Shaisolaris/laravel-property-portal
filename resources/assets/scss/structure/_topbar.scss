@@ -28,12 +28,14 @@
     align-items: center;
     margin: 0 auto;
     height: $header-height;
-    padding: 0;
-    /*rtl: 0 0 0 calc(#{$grid-gutter-width} * 0.5) */
-    ;
+    padding: 0 calc(#{$grid-gutter-width} * 0.5) 0 calc(#{$grid-gutter-width} * 1.7);
 
     @media (max-width: 767.98px) {
         padding: 0 calc(#{$grid-gutter-width} * 0.5) 0 calc(#{$grid-gutter-width} * 0.5);
+    }
+
+    @media (min-width: 1200px) {
+        padding: 0;
     }
 
     .topbar-head-dropdown {

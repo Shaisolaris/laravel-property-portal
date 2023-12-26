@@ -3,17 +3,17 @@
 //
 .badge {
     &:not(.topbar-badge) {
-        --in-badge-padding-x: 12px;
         --in-badge-padding-y: 8px;
+        --in-badge-padding-x: 12px;
 
         &.badge-md {
+            --in-badge-padding-y: 8px;
             --in-badge-padding-x: 20px;
-            --in-badge-padding-y: 20px;
         }
 
         &.badge-lg {
-            --in-badge-padding-x: 24px;
             --in-badge-padding-y: 16px;
+            --in-badge-padding-x: 24px;
         }
     }
 

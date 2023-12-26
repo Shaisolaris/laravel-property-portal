@@ -42,6 +42,7 @@
 
     @media (min-width: 1025px) {
         border-radius: 20px;
+        padding: 20px !important;
     }
 
     width: var(--#{$prefix}vertical-menu-width);
@@ -53,8 +54,7 @@
     position: fixed;
     top: 0;
     box-shadow: var(--#{$prefix}vertical-menu-box-shadow);
-    padding: 20px;
-    //padding: 0 0 calc(#{$header-height} + 25px) 0;
+    padding: 0 0 calc(#{$header-height} + 25px) 0;
     transition: all .1s ease-out;
 
     .navbar-nav {
@@ -65,6 +65,10 @@
             color: var(--#{$prefix}vertical-menu-item-color);
             font-size: $vertical-menu-item-font-size;
             font-family: $vertical-menu-item-font-family;
+
+            @media (min-width: 1040px) {
+                padding: $vertical-menu-item-padding-y 0 !important;
+            }
 
             &.active {
                 color: var(--#{$prefix}vertical-menu-item-active-color);

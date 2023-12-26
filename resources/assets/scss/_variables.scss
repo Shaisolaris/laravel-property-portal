@@ -543,9 +543,9 @@ $royal-blue: #154BD8;
 $dim-gray: #676A6C;
 $beige: #F7F6F2;
 $gainsboro: #E3E3E3;
-$thistle: rgba(222, 179, 224, .4);
-$light-steel-blue: rgba(155, 184, 237, .4);
-$crimson: rgba(216, 21, 68, .4);
+$thistle: rgba(222, 179, 224, 0.4);
+$light-steel-blue: rgba(155, 184, 237, 0.4);
+$crimson: rgba(216, 21, 68, 0.4);
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -1079,7 +1079,7 @@ $table-variants: (
 
 // scss-docs-start input-btn-variables
 $input-btn-padding-y: .5rem;
-$input-btn-padding-x: .9rem;
+$input-btn-padding-x: .75rem;
 $input-btn-font-family: null;
 $input-btn-font-size: $font-size-base;
 $input-btn-line-height: $line-height-base;
@@ -1194,8 +1194,8 @@ $input-disabled-color: null;
 $input-disabled-bg: var(--#{$prefix}tertiary-bg);
 $input-disabled-border-color: null;
 
-$input-color: var(--#{$prefix}body-color);
-$input-border-color: var(--#{$prefix}input-border-custom);
+$input-color: $dim-gray;
+$input-border-color: $border-base-color;
 $input-border-width: $input-btn-border-width;
 $input-box-shadow: $box-shadow-inset;
 
@@ -1581,7 +1581,7 @@ $dropdown-dark-header-color: $gray-500;
 
 // scss-docs-start pagination-variables
 $pagination-padding-y: .375rem;
-$pagination-padding-x: .75rem;
+$pagination-padding-x: .875rem;
 $pagination-padding-y-sm: .25rem;
 $pagination-padding-x-sm: .5rem;
 $pagination-padding-y-lg: .6rem;
@@ -1589,25 +1589,31 @@ $pagination-padding-x-lg: 1.2rem;
 
 $pagination-font-size: $font-size-base;
 
-$pagination-color: var(--#{$prefix}link-color);
+$pagination-color: $dim-gray;
 $pagination-bg: var(--#{$prefix}secondary-bg);
 $pagination-border-radius: var(--#{$prefix}border-radius);
 $pagination-border-width: var(--#{$prefix}border-width);
-$pagination-margin-start: calc(#{$pagination-border-width} * -1); // stylelint-disable-line function-disallowed-list
-$pagination-border-color: var(--#{$prefix}border-color);
+$pagination-margin-start: calc(#{$pagination-border-width} * -1);
+$pagination-border-color: $gainsboro;
 
-$pagination-focus-color: var(--#{$prefix}link-hover-color);
+$pagination-focus-color: $black;
 $pagination-focus-bg: var(--#{$prefix}tertiary-bg);
 $pagination-focus-box-shadow: $focus-ring-box-shadow;
 $pagination-focus-outline: 0;
 
-$pagination-hover-color: var(--#{$prefix}link-hover-color);
+$pagination-hover-color: $black;
 $pagination-hover-bg: var(--#{$prefix}tertiary-bg);
-$pagination-hover-border-color: var(--#{$prefix}border-color); // Todo in v6: remove this?
+$pagination-hover-border-color: var(--#{$prefix}border-color);
 
+/*
 $pagination-active-color: $component-active-color;
 $pagination-active-bg: $component-active-bg;
 $pagination-active-border-color: $component-active-bg;
+*/
+
+$pagination-active-color: $black;
+$pagination-active-bg: $light-blue;
+$pagination-active-border-color: $light-blue;
 
 $pagination-disabled-color: var(--#{$prefix}secondary-color);
 $pagination-disabled-bg: var(--#{$prefix}secondary-bg);

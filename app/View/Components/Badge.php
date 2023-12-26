@@ -8,8 +8,8 @@ class Badge extends Component
 {
     public function __construct(
         public string $size = '',
-        public readonly string $text = '',
         public string $type = '',
+        public readonly string $text = '',
         public readonly string $variable = 'beige',
     )
     {

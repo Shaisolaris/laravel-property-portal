@@ -631,7 +631,7 @@
         @endif
 
         <li class="sidenav-item">
-            <a href="/logout" class="d-flex align-items-center">
+            <a href="{{route('logout')}}" class="d-flex align-items-center">
                 <span class="sidenav-logout-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.logout')
                 </span>

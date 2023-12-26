@@ -9,7 +9,7 @@ function getChartColorsArray(chartId) {
                 if (newValue.indexOf(",") === -1) {
                     var color = getComputedStyle(document.documentElement).getPropertyValue(newValue);
                     if (color) return color;
-                    else return newValue;;
+                    else return newValue;
                 } else {
                     var val = value.split(',');
                     if (val.length == 2) {
@@ -196,9 +196,7 @@ if (chartColumnDatatalabelColors) {
             offsetY: 320,
             align: 'center',
             style: {
-                color: '#444'
-            },
-            style: {
+                color: '#444',
                 fontWeight: 500,
             },
         },
@@ -214,6 +212,7 @@ if (chartColumnDatatalabelColors) {
 
 // Stacked Columns Charts
 var chartColumnStackedColors = getChartColorsArray("column_stacked");
+
 if (chartColumnStackedColors) {
     var options = {
         series: [{
@@ -238,9 +237,6 @@ if (chartColumnStackedColors) {
             },
             zoom: {
                 enabled: true
-            },
-            toolbar: {
-                show: false,
             }
         },
         responsive: [{

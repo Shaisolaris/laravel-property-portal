@@ -218,12 +218,12 @@
 					dateData.dateFormat = isFlatpickerVal["data-date-format"].value.toString();
 				}
 				if (isFlatpickerVal["data-disable-date"]) {
-					var dates = [];
+					let dates = [];
 					dates.push(isFlatpickerVal["data-disable-date"].value);
 					dateData.disable = dates.toString().split(",");
 				}
 				if (isFlatpickerVal["data-week-number"]) {
-					var dates = [];
+					let dates = [];
 					dates.push(isFlatpickerVal["data-week-number"].value);
 					dateData.weekNumbers = true
 				}
@@ -603,7 +603,7 @@
 			}
 			document.getElementById("scrollbar").setAttribute("data-simplebar", "");
 			document.getElementById("navbar-nav").setAttribute("data-simplebar", "");
-			document.getElementById("scrollbar").classList.add("h-100");
+			document.getElementById("scrollbar").classList.add("h-lg-87");
 		}
 
 		/**
@@ -611,7 +611,7 @@
 		 */
 		if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
 			document.getElementById("scrollbar").removeAttribute("data-simplebar");
-			document.getElementById("scrollbar").classList.remove("h-100");
+			document.getElementById("scrollbar").classList.remove("h-lg-87");
 		}
 
 		/**
@@ -1058,19 +1058,22 @@
 				});
 			});
 
-			var removeItem = document.getElementById('removeNotificationModal');
-			removeItem.addEventListener('show.bs.modal', function (event) {
-				document.getElementById("delete-notification").addEventListener("click", function () {
-					Array.from(document.querySelectorAll(".notification-item")).forEach(function (element) {
-						if (element.classList.contains("active")) {
-							element.remove();
-						}
-					});
-					emptyNotification();
+			let removeItem = document.getElementById('removeNotificationModal');
 
-					document.getElementById("NotificationModalbtn-close").click();
-				})
-			})
+			if (removeItem) {
+				removeItem.addEventListener('show.bs.modal', function (event) {
+					document.getElementById("delete-notification").addEventListener("click", function () {
+						Array.from(document.querySelectorAll(".notification-item")).forEach(function (element) {
+							if (element.classList.contains("active")) {
+								element.remove();
+							}
+						});
+						emptyNotification();
+
+						document.getElementById("NotificationModalbtn-close").click();
+					})
+				});
+			}
 		}
 	}
 
@@ -1131,7 +1134,7 @@
 		}
 		document.getElementById("scrollbar").removeAttribute("data-simplebar");
 		document.getElementById("navbar-nav").removeAttribute("data-simplebar");
-		document.getElementById("scrollbar").classList.remove("h-100");
+		document.getElementById("scrollbar").classList.remove("h-lg-87");
 
 		var splitMenu = horizontalMenuSplit;
 		var extraMenuName = "More";
@@ -1200,7 +1203,7 @@
 			initActiveMenu();
 		} else if (dataLayout == "twocolumn") {
 			document.getElementById("scrollbar").removeAttribute("data-simplebar");
-			document.getElementById("scrollbar").classList.remove("h-100");
+			document.getElementById("scrollbar").classList.remove("h-lg-87");
 			if (document.getElementById("theme-settings-offcanvas")) {
 				document.getElementById("sidebar-size").style.display = "none";
 				document.getElementById("sidebar-view").style.display = "none";
@@ -1237,15 +1240,19 @@
 
 	// add listener Sidebar Hover icon on change layout from setting
 	function addEventListenerOnSmHoverMenu() {
-		document.getElementById("vertical-hover").addEventListener("click", function () {
-			if (document.documentElement.getAttribute("data-sidebar-size") === "sm-hover") {
-				document.documentElement.setAttribute("data-sidebar-size", "sm-hover-active");
-			} else if (document.documentElement.getAttribute("data-sidebar-size") === "sm-hover-active") {
-				document.documentElement.setAttribute("data-sidebar-size", "sm-hover");
-			} else {
-				document.documentElement.setAttribute("data-sidebar-size", "sm-hover");
-			}
-		});
+		const verticalHoverElement = document.getElementById("vertical-hover");
+
+		if (verticalHoverElement) {
+			verticalHoverElement.addEventListener("click", function () {
+				if (document.documentElement.getAttribute("data-sidebar-size") === "sm-hover") {
+					document.documentElement.setAttribute("data-sidebar-size", "sm-hover-active");
+				} else if (document.documentElement.getAttribute("data-sidebar-size") === "sm-hover-active") {
+					document.documentElement.setAttribute("data-sidebar-size", "sm-hover");
+				} else {
+					document.documentElement.setAttribute("data-sidebar-size", "sm-hover");
+				}
+			});
+		}
 	}
 	// set full layout
 	function layoutSwitch(isLayoutAttributes) {
@@ -1697,6 +1704,7 @@
 			if (sidebarMenu) {
 				var activeMenu = sidebarMenu.querySelector(".nav-item .active");
 				var offset = activeMenu ? activeMenu.offsetTop : 0;
+
 				if (offset > 300) {
 					var verticalMenu = document.getElementsByClassName("app-menu") ? document.getElementsByClassName("app-menu")[0] : "";
 					if (verticalMenu && verticalMenu.querySelector(".simplebar-content-wrapper")) {
