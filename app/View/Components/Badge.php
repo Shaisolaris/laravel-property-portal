@@ -7,9 +7,9 @@ use Illuminate\View\Component;
 class Badge extends Component
 {
     public function __construct(
+        public string $key,
         public string $size = '',
         public string $type = '',
-        public readonly string $text = '',
         public readonly string $variable = 'beige',
     )
     {
@@ -17,7 +17,7 @@ class Badge extends Component
     }
 
 
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Support\Htmlable|\Closure|string|\Illuminate\Contracts\Foundation\Application
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('components.badge');
     }

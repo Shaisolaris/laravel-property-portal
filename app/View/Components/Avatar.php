@@ -16,7 +16,7 @@ class Avatar extends Component
     }
 
 
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Support\Htmlable|\Closure|string|\Illuminate\Contracts\Foundation\Application
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('components.avatar');
     }

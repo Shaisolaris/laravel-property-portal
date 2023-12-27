@@ -8,9 +8,9 @@ use Illuminate\Contracts\View\View;
 class ButtonToggleModal extends Component
 {
     public function __construct(
+        public string $key,
         public string $target,
         public readonly string $icon = '',
-        public readonly string $text = '',
         public readonly string $viewType = 'default',
         public readonly string $variable = 'light-blue',
     )

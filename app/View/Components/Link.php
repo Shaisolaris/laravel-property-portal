@@ -7,8 +7,8 @@ use Illuminate\View\Component;
 class Link extends Component
 {
     public function __construct(
+        public string $key,
         public string $href,
-        public string $text,
         public readonly string $variable = 'primary',
     )
     {
@@ -16,7 +16,7 @@ class Link extends Component
     }
 
 
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Support\Htmlable|string|\Closure|\Illuminate\Contracts\Foundation\Application
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('components.link');
     }

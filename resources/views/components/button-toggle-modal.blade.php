@@ -8,7 +8,7 @@
         <i class="{{$icon}} align-bottom me-1"></i>
     @endif
 
-    {{ $text }}
+    {{ trans("translation.button-toggle-modal.$key") }}
 
     @if($viewType === 'icon-right' && strlen($icon) > 0)
         <i class="{{$icon}} align-bottom me-1"></i>

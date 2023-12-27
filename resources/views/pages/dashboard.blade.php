@@ -46,10 +46,10 @@ $items = [
     <br>
     <x-form.input label="Title" icon="ri-home-7-line" placeholder="tt" />
     <br>
-    <x-badge text="Accepted" variable="thistle"  />
-    <x-badge text="Active" variable="light-steel-blue" />
-    <x-badge text="Not Accepted" variable="crimson" size="md" />
-    <x-button-toggle-modal target=".bs-example-modal-center" text="TEST-MODAL" />
+    <x-badge key="Accepted" variable="thistle"  />
+    <x-badge key="Active" variable="light-steel-blue" />
+    <x-badge key="Not Accepted" variable="crimson" size="md" />
+    <x-button-toggle-modal target=".bs-example-modal-center" key="TEST-MODAL" />
     <br>
     <x-form.input type="checkbox" />
     @include('modals.add-new-payment-method-modal', ['target' => 'bs-example-modal-center'])
