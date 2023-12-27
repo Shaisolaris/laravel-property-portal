@@ -13,3 +13,39 @@
 .bg-crimson, .bg-light-steel-blue, .bg-thistle {
     --in-bg-opacity: 0.4;
 }
+
+.input-group-text {
+    padding: 13px 18px;
+    background-color: white;
+    border-radius: 30px 0 0 30px;
+    color: black;
+}
+
+.sidebar-nav-item:hover {
+    .sidebar-item {
+        background: #F7F6F2;
+        width: 100%;
+        padding: 8px 0 8px 15px;
+    }
+}
+
+.sidebar-item {
+    color: black;
+    padding: 8px 0 8px 0;
+    border-radius: 100px;
+    transition: .2s ease-in-out;
+
+    &.active {
+        background: #F7F6F2;
+        width: 100%;
+        padding: 8px 0 8px 15px;
+    }
+}
+
+.navbar-header-2 {
+    display: none;
+
+    @media (min-width: 1025px) {
+        display: flex;
+    }
+}

@@ -7,8 +7,8 @@ use Illuminate\View\Component;
 class Input extends Component
 {
     public function __construct(
-        public string $label,
         public string $icon = '',
+        public string $label = '',
         public string $type = 'text',
         public bool $required = true,
         public string $placeholder = '',

@@ -45,26 +45,3 @@
     <div class="sidebar-background"></div>
 </div>
 <div class="vertical-overlay"></div>
-
-<style lang="scss">
-    .sidebar-nav-item:hover {
-        .sidebar-item {
-            background: #F7F6F2;
-            width: 100%;
-            padding: 8px 0 8px 15px;
-        }
-    }
-
-    .sidebar-item {
-        color: black;
-        padding: 8px 0 8px 0;
-        border-radius: 100px;
-        transition: .2s ease-in-out;
-
-        &.active {
-            background: #F7F6F2;
-            width: 100%;
-            padding: 8px 0 8px 15px;
-        }
-    }
-</style>

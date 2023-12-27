@@ -15,7 +15,7 @@
 
                         <a href="{{route('dashboard')}}" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ URL::asset('build/images/logo-sm.png') }}" height="22" alt >
+                                <img src="{{ URL::asset('build/images/logo-sm.png') }}" height="22" alt>
                             </span>
                             <span class="logo-lg">
                                 <img src="{{ URL::asset('build/images/logo-light.png') }}" height="17" alt>
@@ -59,9 +59,11 @@
                         English
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        @foreach(getLocalLanguages() as $lang)
+                            <a class="dropdown-item" href="javascript:void(0);">
+                                {{ $lang }}
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -87,9 +89,10 @@
                         aria-expanded="false"
                     >
                         <i class='bx bx-bell fs-22'></i>
-                        <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">5<span
-                                class="visually-hidden"
-                            >unread messages</span></span>
+                        <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">
+                            5
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
                     </button>
                     <div
                         class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
@@ -488,20 +491,27 @@
                         type="button"
                         class="btn pe-2"
                         id="page-header-user-dropdown"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
+{{--                        data-bs-toggle="dropdown"--}}
+{{--                        aria-haspopup="true"--}}
+{{--                        aria-expanded="false"--}}
                     >
                         <span class="d-flex align-items-center">
-                            <img
-                                class="rounded-circle header-profile-user"
-                                src="@if (Auth::user()?->avatar){{ Auth::user()?->avatar }}@else{{ URL::asset('build/images/users/avatar-1.jpg') }}@endif"
-                                alt="Header Avatar"
-                            >
+                            @if(Auth::user()?->avatar)
+                                <img
+                                    src="{{Auth::user()?->avatar}}"
+                                    class="rounded-circle header-profile-user"
+                                    width="32"
+                                    height="32"
+                                    alt
+                                >
+                            @else
+                                <div class="bg-beige text-black text-center align-center rounded-circle" style="height: 29px; width: 29px">
+                                <div class="pt-1">{{Auth::user()?->firstLettersInFullName}}</div>
+                            </div>
+                            @endif
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
                         <h6 class="dropdown-header">Welcome Anna!</h6>
                         <a
                             class="dropdown-item"
@@ -525,7 +535,8 @@
                             class="dropdown-item"
                             href="pages-faqs"
                         >
-                            <i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Help</span></a>
+                            <i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">Help</span></a>
                         <div class="dropdown-divider">
 
                         </div>

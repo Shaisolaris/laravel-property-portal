@@ -86,7 +86,7 @@ $crimson: rgba(216, 21, 68, 0.40);
 /**/
 /**/
 $border-base-color: #F1F3F5;
-
+$border-focus-base-color: #c0c2c4;
 
 // scss-docs-end color-variables
 // scss-docs-start colors-map
@@ -816,7 +816,7 @@ $border-widths: (
 );
 $border-style: solid;
 $border-color: $border-base-color;
-$border-color-translucent: $gray-400;
+$border-color-translucent: $border-base-color;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
@@ -1204,7 +1204,8 @@ $input-border-radius-sm: var(--#{$prefix}border-radius-sm);
 $input-border-radius-lg: var(--#{$prefix}border-radius-lg);
 
 $input-focus-bg: $input-bg;
-$input-focus-border-color: var(--#{$prefix}primary-border-subtle);
+$input-focus-border-color: $border-focus-base-color;
+//$input-focus-border-color: var(--#{$prefix}primary-border-subtle);
 $input-focus-color: $input-color;
 $input-focus-width: $input-btn-focus-width;
 $input-focus-box-shadow: $input-btn-focus-box-shadow;
@@ -1311,7 +1312,7 @@ $form-select-feedback-icon-position: center right $form-select-indicator-padding
 $form-select-feedback-icon-size: $input-height-inner-half $input-height-inner-half;
 
 $form-select-border-width: $input-border-width;
-$form-select-border-color: $input-border-color;
+$form-select-border-color: $border-base-color;
 $form-select-border-radius: $input-border-radius;
 $form-select-box-shadow: $box-shadow-inset;
 

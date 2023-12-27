@@ -1,19 +1,35 @@
-<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div
+    class="modal fade zoomIn {{$target}}" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center p-5">
-                <lord-icon src="https://cdn.lordicon.com/hrqwmuhr.json"
-                           trigger="loop" colors="primary:#25a0e2,secondary:#00bd9d" style="width:120px;height:120px">
-                </lord-icon>
-                <div class="mt-4">
-                    <h4 class="mb-3">Oops something went wrong!</h4>
-                    <p class="text-muted mb-4"> The transfer was not successfully received by us. the email of the recipient wasn't correct.</p>
+        <div class="modal-content border-0">
+            <div class="modal-header p-3 border-bottom">
+                <h5 class="modal-title" id="exampleModalLabel">Create Task</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    id="close-modal"
+                ></button>
+            </div>
+            <form class="tablelist-form" autocomplete="off">
+                <div class="modal-body">
+                    
+                </div>
+
+                <div class="modal-footer justify-content-center">
                     <div class="hstack gap-2 justify-content-center">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <a href="javascript:void(0);" class="btn btn-primary">Try Again</a>
+                        <button type="submit" class="btn w-lg btn-light-blue" id="add-btn">
+                            Add Task
+                        </button>
+                        <button type="button" class="btn w-lg btn-outline-light bg-white text-black" id="close-modal" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

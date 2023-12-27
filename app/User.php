@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use App\Bitwise\UserLevelOfTraining;
 use App\Models\Accounting;
 use App\Models\Badge;
@@ -23,6 +24,7 @@ use App\Models\Follow;
 use App\Models\Sale;
 use App\Models\Section;
 use App\Models\Webinar;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -927,5 +929,26 @@ class User extends Authenticatable
         }
 
         return '';
+    }
+
+
+    public function firstLettersInFullName(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this->setFirstLetters()
+        );
+    }
+
+    private function setFirstLetters()
+    {
+        if (!$this->full_name) return '';
+
+        $name = explode(' ', $this->full_name);
+
+        if (count($name) > 1) {
+            return Str::ucfirst($name[0][0]) . Str::ucfirst($name[1][0]);
+        }
+
+        return Str::ucfirst($name[0][0]);
     }
 }

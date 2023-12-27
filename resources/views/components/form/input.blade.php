@@ -1,3 +1,6 @@
+@if(!in_array($type, ['radio', 'checkbox']))
+
+
 @if(\Illuminate\Support\Str::length($icon) > 0)
     <label for="{{$label . 'label'}}" class="form-label">
         {{$label}}
@@ -33,6 +36,19 @@
         {{ $attributes->merge(['class' => "form-control radius-26"])}}
     >
 </div>
+@else
+    <div class="form-check form-check-royal-blue">
+        <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}">
+
+        @if(\Illuminate\Support\Str::length($label) > 0)
+            <label class="form-check-label" for="{{$label . 'label'}}">
+                {{$label}}
+            </label>
+        @endif
+    </div>
+@endif
+
+
 
 @if(gettype($error) === 'string')
     <div class="invalid-feedback">{{ $error }}</div>
@@ -41,12 +57,3 @@
         <div class="invalid-feedback">{{ $item }}</div>
     @endforeach
 @endif
-
-<style lang="scss">
-    .input-group-text {
-        padding: 13px 18px;
-        background-color: white;
-        border-radius: 30px 0 0 30px;
-        color: black;
-    }
-</style>

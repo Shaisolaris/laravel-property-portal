@@ -170,7 +170,10 @@
 			if (isChoicesVal["data-choices-text-disabled-true"]) {
 				choiceData.addItems = false;
 			}
-			isChoicesVal["data-choices-text-disabled-true"] ? new Choices(item, choiceData).disable() : new Choices(item, choiceData);
+
+			if (Choices) {
+				isChoicesVal["data-choices-text-disabled-true"] ? new Choices(item, choiceData).disable() : new Choices(item, choiceData);
+			}
 		});
 
 		/**

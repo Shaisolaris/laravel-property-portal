@@ -50,9 +50,12 @@ $items = [
     <x-badge text="Active" variable="light-steel-blue" />
     <x-badge text="Not Accepted" variable="crimson" size="md" />
     <x-button-toggle-modal target=".bs-example-modal-center" text="TEST-MODAL" />
-    @include('modals.add-new-payment-method-modal')
-
-
+    <br>
+    <x-form.input type="checkbox" />
+    @include('modals.add-new-payment-method-modal', ['target' => 'bs-example-modal-center'])
+    <br>
+    <x-form.multiselect />
+    <img src="" alt="">
     <div class="row project-wrapper">
         <div class="col-xxl-8">
             <div class="row">
@@ -374,9 +377,9 @@ $items = [
     <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <script src="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/dayjs.min.js') }}"></script>
-    <script src="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/plugin/quarterOfYear.min.js') }}">
-    </script>
+    <script src="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.0/plugin/quarterOfYear.min.js') }}"></script>
 
     <script src="{{ URL::asset('build/scripts/pages/apexcharts-column.init.js') }}"></script>
+    <script src="{{ URL::asset('build/libs/prismjs/prism.js') }}"></script>
     <script src="{{ URL::asset('build/scripts/app.js') }}"></script>
 @endsection
