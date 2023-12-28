@@ -28,6 +28,7 @@ $items = [
 ];
 ?>
 
+
 @section('content')
     <x-table type="rounded-tr-border" :head-items="['Student name', 'Deadline', 'Score', 'Status', 'Action']">
         <x-slot:body>
@@ -75,6 +76,24 @@ $items = [
         <br><x-collapse />
         <br><x-form.select name="f1" />
         <br><x-form.select name="f2" />
+
+    <hr>
+    <x-button-toggle-modal target=".bs-modal-edit-section-name-modal" key="edit-section-name-modal" />
+    @include('modals.edit-section-name-modal', ['target' => 'bs-modal-edit-section-name-modal','title' => 'Edit Section name'])
+
+    <x-button-toggle-modal target=".bs-modal-lecture-video-modal" key="lecture-video-modal" />
+    @include('modals.lecture-video-modal', ['target' => 'bs-modal-lecture-video-modal','title' => 'Lecture Video'])
+
+    <x-button-toggle-modal target=".bs-modal-attach-file-modal" key="attach-file-modal" />
+    @include('modals.attach-file-modal', ['target' => 'bs-modal-attach-file-modal','title' => 'Attach File'])
+
+    <x-button-toggle-modal target=".bs-modal-add-lecture-caption-modal" key="add-lecture-caption-modal" />
+    @include('modals.add-lecture-caption-modal', ['target' => 'bs-modal-add-lecture-caption-modal','title' => 'Add lecture caption'])
+
+    <x-button-toggle-modal target=".bs-modal-add-new-payment-method-modal" key="add-new-payment-method-modal" />
+    @include('modals.add-new-payment-method-modal', ['target' => 'bs-modal-add-new-payment-method-modal','title' => 'Add New Payment method'])
+    <hr>
+    <x-form.textarea label="Textarea" icon="ri-home-7-line" />
 
 @endsection
 {{--    <div class="row project-wrapper">--}}
