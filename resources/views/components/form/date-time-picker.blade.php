@@ -1,6 +1,6 @@
 <div>
     @if(\Illuminate\Support\Str::length($label) > 0)
-        <label for="{{$label . 'label'}}" class="font-size-12">
+        <label for="{{$label . 'label'}}" class="fs-12">
             {{$label}}
             @if(isset($required))
                 <span class="text-black">*</span>
@@ -17,7 +17,6 @@
                 @endif
             </span>
         @endif
-
         <input
             type="text"
             id="{{$label . 'label'}}"

@@ -74,27 +74,29 @@ $items = [
 
     <br><x-accordion :items="[['title' => 'f', 'text' => 'ff'], ['title' => 'g', 'text' => 'gg']]"/>
     <br><x-collapse />
-    <br><x-form.select name="f1" />
-    <br><x-form.select name="f2" />
+    <br><x-form.select name="f1" :items="[['title' => 'f', 'text' => 'ff'], ['title' => 'g', 'text' => 'gg']]" />
+    <br><x-form.select name="f2" :items="[['title' => 'f', 'text' => 'ff'], ['title' => 'g', 'text' => 'gg']]" />
 
     <br><x-form.input name="fyjytjty" type="checkbox" label="ff" />
 
-    <hr>
-    <x-button-toggle-modal target=".bs-modal-edit-section-name-modal" key="edit-section-name-modal" />
-    @include('modals.edit-section-name-modal', ['target' => 'bs-modal-edit-section-name-modal','title' => 'Edit Section name'])
+{{--    <x-button-toggle-modal target=".bs-modal-edit-section-name-modal" key="edit-section-name-modal" />--}}
+{{--    @include('modals.edit-section-name-modal', ['target' => 'bs-modal-edit-section-name-modal','title' => 'Edit Section name'])--}}
 
-    <x-button-toggle-modal target=".bs-modal-lecture-video-modal" key="lecture-video-modal" />
-    @include('modals.lecture-video-modal', ['target' => 'bs-modal-lecture-video-modal','title' => 'Lecture Video'])
+{{--    <x-button-toggle-modal target=".bs-modal-lecture-video-modal" key="lecture-video-modal" />--}}
+{{--    @include('modals.lecture-video-modal', ['target' => 'bs-modal-lecture-video-modal','title' => 'Lecture Video'])--}}
 
-    <x-button-toggle-modal target=".bs-modal-attach-file-modal" key="attach-file-modal" />
-    @include('modals.attach-file-modal', ['target' => 'bs-modal-attach-file-modal','title' => 'Attach File'])
+{{--    <x-button-toggle-modal target=".bs-modal-attach-file-modal" key="attach-file-modal" />--}}
+{{--    @include('modals.attach-file-modal', ['target' => 'bs-modal-attach-file-modal','title' => 'Attach File'])--}}
 
-    <x-button-toggle-modal target=".bs-modal-add-lecture-caption-modal" key="add-lecture-caption-modal" />
-    @include('modals.add-lecture-caption-modal', ['target' => 'bs-modal-add-lecture-caption-modal','title' => 'Add lecture caption'])
+{{--    <x-button-toggle-modal target=".bs-modal-add-lecture-caption-modal" key="add-lecture-caption-modal" />--}}
+{{--    @include('modals.add-lecture-caption-modal', ['target' => 'bs-modal-add-lecture-caption-modal','title' => 'Add lecture caption'])--}}
 
-    <x-button-toggle-modal target=".bs-modal-add-new-payment-method-modal" key="add-new-payment-method-modal" />
-    @include('modals.add-new-payment-method-modal', ['target' => 'bs-modal-add-new-payment-method-modal','title' => 'Add New Payment method'])
-    <hr>
+{{--    <x-button-toggle-modal target=".bs-modal-add-new-payment-method-modal" key="add-new-payment-method-modal" />--}}
+{{--    @include('modals.add-new-payment-method-modal', ['target' => 'bs-modal-add-new-payment-method-modal','title' => 'Add New Payment method'])--}}
+
+{{--    <x-button-toggle-modal target=".bs-modal-add-new-topic-modal" key="add-new-topic-modal" />--}}
+{{--    @include('modals.add-new-topic-modal', ['target' => 'bs-modal-add-new-topic-modal','title' => 'Add New topic'])--}}
+
     <x-form.textarea label="Textarea" icon="ri-home-7-line" />
 
 @endsection

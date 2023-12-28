@@ -10,6 +10,6 @@
     <textarea
         id="{{$label . 'label'}}"
         placeholder="{{$placeholder}}"
-        {{ $attributes->merge(['class' => "form-control radius-26"])}}
+        {{ $attributes->merge(['class' => "form-control rounded-2"])}}
     ></textarea>
 </div>

@@ -14,6 +14,9 @@ class Modal extends Component
     public function __construct(
         public string $title,
         public readonly string $target,
+        public string $method = 'post',
+        public bool $action = false,
+        public bool $isTopic = false,
     ) {}
 
     /**

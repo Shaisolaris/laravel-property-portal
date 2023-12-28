@@ -2,15 +2,14 @@
 
 namespace App\View\Components\Form;
 
-use App\View\Components\Form\Traits\ExtendComponent;
 use Illuminate\View\Component;
 
-class Textarea extends Component
+class DateTimePicker extends Component
 {
-
     public function __construct(
         public string $icon = '',
         public string $label = '',
+        public string $type = 'date',
         public bool $required = true,
         public string $placeholder = '',
         public string|array $error = '',
@@ -23,6 +22,6 @@ class Textarea extends Component
      */
     public function render(): \Illuminate\Contracts\View\View|string|\Closure
     {
-        return view('components.form.textarea');
+        return view('components.form.date-time-picker');
     }
 }

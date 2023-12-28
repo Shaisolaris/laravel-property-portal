@@ -1,0 +1,23 @@
+.dropzone {
+    padding: 24px !important;;
+    border-radius: 11px !important;;
+    border-color: $border-base-color !important;
+
+    & > .dz-message {
+        height: 100%;
+        margin: 18px 0 0 0 !important;
+
+        & > div {
+            color: $black;
+        }
+
+        & > p {
+            color: $dim-gray;
+
+            & > .browse-action {
+                color: $black;
+            }
+        }
+    }
+}
+
