@@ -4,17 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Date extends Component
+class Modal extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        public string $title,
+        public readonly string $target,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -23,6 +23,6 @@ class Date extends Component
      */
     public function render()
     {
-        return view('components.date');
+        return view('components.modal');
     }
 }

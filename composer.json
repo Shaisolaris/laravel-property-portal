@@ -52,6 +52,7 @@
         "openai-php/laravel": "^0.6.3",
         "paypal/rest-api-sdk-php": "*",
         "php-http/guzzle7-adapter": "^1.0",
+        "predis/predis": "*",
         "ptuchik/omnipay-yandex": "^1.0",
         "razorpay/razorpay": "^2.8",
         "sebacarrasco93/laravel-payku": "^1.0",

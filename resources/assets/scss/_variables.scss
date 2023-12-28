@@ -1156,7 +1156,6 @@ $btn-active-border-tint-amount: 10%;
 
 
 // Forms
-
 // scss-docs-start form-text-variables
 $form-text-margin-top: .25rem;
 $form-text-font-size: $small-font-size;
@@ -1166,7 +1165,7 @@ $form-text-color: var(--#{$prefix}secondary-color);
 // scss-docs-end form-text-variables
 
 // scss-docs-start form-label-variables
-$form-label-margin-bottom: .5rem;
+$form-label-margin-bottom: .1rem;
 $form-label-font-size: null;
 $form-label-font-style: null;
 $form-label-font-weight: null;

@@ -43,19 +43,42 @@ $items = [
     </x-card>
 
     <x-form.input label="Title" placeholder="tt" />
-    <br>
-    <x-form.input label="Title" icon="ri-home-7-line" placeholder="tt" />
-    <br>
+    <x-form.input label="Title" icon="ri-home-7-line" />
+    <x-form.date label="Date" icon="ri-home-7-line" />
+    <x-form.textarea label="Textarea" icon="ri-home-7-line" />
+    <x-form.editor label="Editor" icon="ri-home-7-line" />
+
+    <hr>
+
     <x-badge key="Accepted" variable="thistle"  />
     <x-badge key="Active" variable="light-steel-blue" />
     <x-badge key="Not Accepted" variable="crimson" size="md" />
-    <x-button-toggle-modal target=".bs-example-modal-center" key="TEST-MODAL" />
-    <br>
+
+    <hr>
+    <x-button-toggle-modal target=".bs-modal-edit-section-name-modal" key="edit-section-name-modal" />
+    @include('modals.edit-section-name-modal', ['target' => 'bs-modal-edit-section-name-modal','title' => 'Edit Section name'])
+
+    <x-button-toggle-modal target=".bs-modal-lecture-video-modal" key="lecture-video-modal" />
+    @include('modals.lecture-video-modal', ['target' => 'bs-modal-lecture-video-modal','title' => 'Lecture Video'])
+
+    <x-button-toggle-modal target=".bs-modal-attach-file-modal" key="attach-file-modal" />
+    @include('modals.attach-file-modal', ['target' => 'bs-modal-attach-file-modal','title' => 'Attach File'])
+
+    <x-button-toggle-modal target=".bs-modal-add-lecture-caption-modal" key="add-lecture-caption-modal" />
+    @include('modals.add-lecture-caption-modal', ['target' => 'bs-modal-add-lecture-caption-modal','title' => 'Add lecture caption'])
+
+    <x-button-toggle-modal target=".bs-modal-add-new-payment-method-modal" key="add-new-payment-method-modal" />
+    @include('modals.add-new-payment-method-modal', ['target' => 'bs-modal-add-new-payment-method-modal','title' => 'Add New Payment method'])
+    <hr>
+
     <x-form.input type="checkbox" />
-    @include('modals.add-new-payment-method-modal', ['target' => 'bs-example-modal-center'])
-    <br>
+
+    <hr>
+
     <x-form.multiselect />
-    <img src="" alt="">
+
+    <hr>
+
     <div class="row project-wrapper">
         <div class="col-xxl-8">
             <div class="row">
@@ -369,8 +392,6 @@ $items = [
             </div>
         </div>
     </div>
-
-
 @endsection
 
 @section('script')

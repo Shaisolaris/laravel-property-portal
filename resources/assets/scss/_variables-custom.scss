@@ -33,7 +33,7 @@ $vertical-menu-title-color:                       #919da9;
 $vertical-menu-box-shadow:                        none;
 $vertical-menu-dropdown-box-shadow:               0 2px 4px rgba(15, 34, 58, 0.12);
 
-//sidebar dark 
+//sidebar dark
 $dark-vertical-menu-bg:                           #0A2B3D;
 $dark-vertical-menu-border:                       #0A2B3D;
 $dark-vertical-menu-item-color:                   #9aaab3;
@@ -88,12 +88,12 @@ $header-bg:                                       $white;
 $header-border:                                   $border-color;
 $header-item-color:                               $gray-700;
 $header-item-bg:                                  rgba($secondary, .12);
-$header-item-sub-color:                           #878a99;  
+$header-item-sub-color:                           #878a99;
 $topbar-user-bg:                                  #f3f3f9;
 $topbar-search-bg:                                #f3f3f9;
 $topbar-search-color:                             $gray-700;
 
-//page title 
+//page title
 $page-title-box-shadow:                           none;
 $page-title-border:                               var(--#{$prefix}border-color);
 
@@ -102,7 +102,7 @@ $dark-header-bg:                                  #133b50;
 $dark-header-border:                              #133b50;
 $dark-header-item-color:                          rgba($white, .85);
 $dark-header-item-bg:                             #16445c;
-$dark-header-item-sub-color:                      #b0c4d9; 
+$dark-header-item-sub-color:                      #b0c4d9;
 $dark-topbar-user-bg:                             #214c62;
 $dark-topbar-search-bg:                           rgba($white, .05);
 $dark-topbar-search-color:                        $white;
@@ -110,7 +110,7 @@ $dark-topbar-search-color:                        $white;
 // Horizontal Menu
 $horizontal-menu-box-shadow:                      0 2px 4px rgba(15,34,58,0.12);
 $horizontal-menu-dropdown-box-shadow:             0 0px 5px rgba(15,34,58,0.15);
-$horizontal-menu-dropdown-min-width:              12rem; 
+$horizontal-menu-dropdown-min-width:              12rem;
 $horizontal-menu-item-padding-x:                  1.5rem;
 $horizontal-menu-item-padding-y:                  0.75rem;
 $topnav-bg:                                       $white;
@@ -127,7 +127,7 @@ $twocolumn-menu-iconview-bg:                      $white;
 //semibox layout
 $semibox-width:                                   110px;
 
-// Brand 
+// Brand
 $navbar-brand-box-width:                          240px;
 
 // Boxed layout width
@@ -145,7 +145,7 @@ $chat-secondary-bg:                               rgba(var(--#{$prefix}primary-r
 $chat-secondary-color:                            var(--#{$prefix}primary);
 
 // Timeline
-$timeline-color:                                  var(--#{$prefix}border-color);     
+$timeline-color:                                  var(--#{$prefix}border-color);
 
 //auth pages
 $auth-bg-cover:                                   linear-gradient(-45deg, $primary 50%, $success);
@@ -159,3 +159,9 @@ $input-border-custom:                             $border-color-translucent;
 //        gap: 0 $size !important;
 //    }
 //}
+
+@each $name, $size in $font-size-custom {
+    .font-size-#{$name} {
+        font-size: $size;
+    }
+}
