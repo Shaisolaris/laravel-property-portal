@@ -41,7 +41,7 @@
     <div class="form-check form-check-royal-blue">
         <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}" name="{{$name}}">
         @if(\Illuminate\Support\Str::length($label) > 0)
-            <label class="form-check-label form-text ms-2 mb-0" for="{{$label . 'label'}}">
+            <label class="form-check-label text-dim-gray" for="{{$label . 'label'}}">
                 {{$label}}
             </label>
         @endif

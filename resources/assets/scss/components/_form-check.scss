@@ -3,8 +3,11 @@
 //
 
 .form-check {
-    position: relative;
+    display: flex;
     text-align: left;
+    position: relative;
+    align-items: end;
+    gap: 0 4px !important;
 
     &:not(.form-switch) {
         .form-check-input {
@@ -14,7 +17,6 @@
             border-radius: 4px;
         }
     }
-
 
     label {
         cursor: pointer;

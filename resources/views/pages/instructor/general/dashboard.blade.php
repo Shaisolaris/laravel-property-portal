@@ -68,14 +68,16 @@ $items = [
     />
 
 
-        <br><x-stars value="3" /><br>
-        <x-stars value="3.5" /><br>
-        <x-stars value="3.2" /><br>
+    <br><x-stars value="3" /><br>
+    <x-stars value="3.5" /><br>
+    <x-stars value="3.2" /><br>
 
-        <br><x-accordion :items="[['title' => 'f', 'text' => 'ff'], ['title' => 'g', 'text' => 'gg']]"/>
-        <br><x-collapse />
-        <br><x-form.select name="f1" />
-        <br><x-form.select name="f2" />
+    <br><x-accordion :items="[['title' => 'f', 'text' => 'ff'], ['title' => 'g', 'text' => 'gg']]"/>
+    <br><x-collapse />
+    <br><x-form.select name="f1" />
+    <br><x-form.select name="f2" />
+
+    <br><x-form.input name="fyjytjty" type="checkbox" label="ff" />
 
     <hr>
     <x-button-toggle-modal target=".bs-modal-edit-section-name-modal" key="edit-section-name-modal" />
