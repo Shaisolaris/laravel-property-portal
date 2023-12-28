@@ -6,22 +6,18 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(
+        public string $type,
+        public array $headItems,
+        public mixed $body = null,
+        public mixed $pagination = null,
+    )
     {
         //
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('components.table');
     }

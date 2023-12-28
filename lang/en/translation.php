@@ -228,7 +228,9 @@ return [
 
     ],
     "badge" => [
-
+        'active' => 'Active',
+        'accepted' => 'Accepted',
+        'not-accepted' => 'Not Accepted',
     ],
     "button-toggle-modal" => [
 

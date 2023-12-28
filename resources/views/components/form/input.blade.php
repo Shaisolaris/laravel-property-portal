@@ -31,6 +31,7 @@
 
     <input
         type="{{$type}}"
+        name="{{$name}}"
         id="{{$label . 'label'}}"
         placeholder="{{$placeholder}}"
         {{ $attributes->merge(['class' => "form-control radius-26"])}}
@@ -38,7 +39,7 @@
 </div>
 @else
     <div class="form-check form-check-royal-blue">
-        <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}">
+        <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}" name="{{$name}}">
 
         @if(\Illuminate\Support\Str::length($label) > 0)
             <label class="form-check-label" for="{{$label . 'label'}}">

@@ -22,19 +22,31 @@ Route::get('dashboard', function () {
         'pageTitle' => trans('admin/pages/tags.tags_list_page_title'),
         'tags' => $tags
     ];
-    return view('pages.dashboard', $data);
+    return view('pages.instructor.general.dashboard', $data);
 })->name('dashboard');
 
-Route::get('add-new-course', function () {return view('pages.course.create');})->name('add-new-course');
-Route::get('courses', function () {return view('pages.course.index');})->name('courses');
-Route::get('assignments', function () {return view('pages.assignments');})->name('assignments');
-Route::get('messages', function () {return view('pages.messages');})->name('messages');
-Route::get('mentoring', function () {return view('pages.mentoring');})->name('mentoring');
-Route::get('forum', function () {return view('pages.forum');})->name('forum');
-Route::get('payments', function () {return view('pages.payments');})->name('payments');
-Route::get('settings', function () {return view('pages.settings');})->name('settings');
-Route::get('profile', function () {return view('pages.profile');})->name('profile');
-Route::get('change-password', function () {return view('pages.change-password');})->name('change-password');
+Route::get('add-new-course', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');
+Route::get('courses', function () {return view('pages.instructor.academy.course.index');})->name('courses');
+Route::get('assignments', function () {return view('pages.instructor.academy.assignments');})->name('assignments');
+Route::get('messages', function () {return view('pages.instructor.academy.messages');})->name('messages');
+Route::get('mentoring', function () {return view('pages.instructor.academy.mentoring');})->name('mentoring');
+Route::get('forum', function () {return view('pages.instructor.academy.forum');})->name('forum');
+Route::get('payments', function () {return view('pages.instructor.academy.payments');})->name('payments');
+Route::get('settings', function () {return view('pages.instructor.general.settings');})->name('settings');
+Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
+Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
+
+
+Route::get('add-new-class', function () {return view('pages.instructor.school.classes.create');})->name('add-new-class');
+Route::get('classes', function () {return view('pages.instructor.school.classes.index');})->name('classes');
+Route::get('assignments', function () {return view('pages.instructor.school.assignments');})->name('assignments');
+Route::get('grades', function () {return view('pages.instructor.school.grades');})->name('grades');
+Route::get('mentorship', function () {return view('pages.instructor.school.mentorship');})->name('mentorship');
+Route::get('podcast', function () {return view('pages.instructor.school.podcast');})->name('podcast');
+Route::get('payments', function () {return view('pages.instructor.school.payments');})->name('payments');
+Route::get('settings', function () {return view('pages.instructor.general.settings');})->name('settings');
+Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
+Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
 
 
 

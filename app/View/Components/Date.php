@@ -6,22 +6,16 @@ use Illuminate\View\Component;
 
 class Date extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(
+        public string $value,
+        public string $format,
+    )
     {
-        //
+
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+
+    public function render(): \Illuminate\Contracts\View\View|string|\Closure
     {
         return view('components.date');
     }

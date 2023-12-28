@@ -1,3 +1,1 @@
-<div>
-    <!-- The biggest battle is the war against ignorance. - Mustafa Kemal Atatürk -->
-</div>
+<span>{{\Carbon\Carbon::parse($value)->format($format)}}</span>

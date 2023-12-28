@@ -939,6 +939,7 @@ class User extends Authenticatable
         );
     }
 
+
     private function setFirstLetters()
     {
         if (!$this->full_name) return '';
@@ -950,5 +951,13 @@ class User extends Authenticatable
         }
 
         return Str::ucfirst($name[0][0]);
+    }
+
+
+    public function roleName(): Attribute
+    {
+        return new Attribute(
+            get: fn() => $this?->role?->name
+        );
     }
 }
