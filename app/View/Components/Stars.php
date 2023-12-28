@@ -2,20 +2,21 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class Accordion extends Component
+class Stars extends Component
 {
     public function __construct(
-        public array $items,
+        public float $value = 0.0
     )
     {
+
     }
 
 
     public function render(): View
     {
-        return view('components.accordion');
+        return view('components.stars');
     }
 }

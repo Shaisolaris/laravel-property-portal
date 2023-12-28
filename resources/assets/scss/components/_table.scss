@@ -12,8 +12,37 @@
 }
 
 
-.table-nowrap {
+.table-separate {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-top: -10px;
 
+    td {
+        border: solid 1px $border-base-color;
+        border-left: none;
+        border-right: none;
+    }
+
+    td:first-child {
+        border-left: solid 1px $border-base-color;
+        border-right: none;
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
+    }
+
+    td:last-child {
+        border-right: solid 1px $border-base-color;
+        border-left: none;
+        border-bottom-right-radius: 14px;
+        border-top-right-radius: 14px;
+    }
+
+    th {
+        border-bottom: none;
+    }
+}
+
+.table-nowrap {
     th,
     td {
         white-space: nowrap;
@@ -27,7 +56,6 @@
 
     th,
     td {
-
         &:first-child{
             padding-left: 16px;
         }

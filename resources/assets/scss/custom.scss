@@ -50,3 +50,15 @@
         display: flex;
     }
 }
+
+
+$shadows: (
+    light-black: 0px 2px 8px 0px rgba(0, 0, 0, 0.08),
+);
+
+@each $shadowName, $shadow in $shadows {
+    .shadow-#{$shadowName} {
+        box-shadow: $shadow;
+    }
+}
+

@@ -4,15 +4,17 @@
 
 .form-check {
     position: relative;
-    text-align: left
-        /*rtl: right*/;
+    text-align: left;
 
-    .form-check-input {
-        cursor: pointer;
-        width: 22px;
-        height: 22px;
-        border-radius: 4px;
+    &:not(.form-switch) {
+        .form-check-input {
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+        }
     }
+
 
     label {
         cursor: pointer;
@@ -292,7 +294,7 @@ $value in $theme-colors {
     .form-check-input {
         display: none;
 
-        &:checked+.form-check-label {
+        &:checked + .form-check-label {
             border-color: $primary !important;
 
             &:before {
@@ -309,7 +311,7 @@ $value in $theme-colors {
 
     &.dark {
         .form-check-input {
-            &:checked+.form-check-label {
+            &:checked + .form-check-label {
                 &:before {
                     color: $white;
                 }

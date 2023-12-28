@@ -2,12 +2,22 @@
 
 namespace App\View\Components\Form;
 
-use App\View\Components\Form\Traits\ExtendComponent;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
-    use ExtendComponent;
+    public function __construct(
+        public string $name,
+        public string $icon = '',
+        public string $label = '',
+        public string $type = 'text',
+        public bool $required = true,
+        public string $placeholder = '',
+        public string|array $error = '',
+    )
+    {
+        //
+    }
 
     public function render(): \Illuminate\Contracts\View\View|string|\Closure
     {

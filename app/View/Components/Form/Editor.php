@@ -2,19 +2,17 @@
 
 namespace App\View\Components\Form;
 
-use App\View\Components\Form\Traits\ExtendComponent;
 use Illuminate\View\Component;
 
 class Editor extends Component
 {
-    use ExtendComponent;
+    public function __construct(public string $name)
+    {
+        //
+    }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+
+    public function render(): \Illuminate\Contracts\View\View
     {
         return view('components.form.editor');
     }

@@ -1,43 +1,45 @@
 @if(!in_array($type, ['radio', 'checkbox']))
-    @if(\Illuminate\Support\Str::length($icon) > 0)
-        <label for="{{$label . 'label'}}" class="font-size-12">
+
+
+@if(\Illuminate\Support\Str::length($icon) > 0)
+    <label for="{{$label . 'label'}}" class="fs-12">
+        {{$label}}
+        @if($required)
+            <span class="text-black">*</span>
+        @endif
+    </label>
+@endif
+<div @if(\Illuminate\Support\Str::length($icon) > 0) class="input-group" @endif>
+    @if(\Illuminate\Support\Str::length($icon) < 1)
+        <label for="{{$label . 'label'}}" class="fs-12">
             {{$label}}
             @if($required)
                 <span class="text-black">*</span>
             @endif
         </label>
     @endif
-    <div @if(\Illuminate\Support\Str::length($icon) > 0) class="input-group" @endif>
-        @if(\Illuminate\Support\Str::length($icon) < 1)
-            <label for="{{$label . 'label'}}" class="font-size-12">
-                {{$label}}
-                @if($required)
-                    <span class="text-black">*</span>
-                @endif
-            </label>
-        @endif
 
-        @if(\Illuminate\Support\Str::length($icon) > 0)
-            <span class="input-group-text">
+    @if(\Illuminate\Support\Str::length($icon) > 0)
+        <span class="input-group-text">
             @if(\Illuminate\Support\Str::contains($icon, ['ri-', 'bx bx-', 'mdi-', 'lab la-', 'las la-']))
-                    <i class="{{$icon}} align-bottom"></i>
-                @else
-                    {{ $icon }}
-                @endif
-            </span>
-        @endif
+                <i class="{{$icon}} align-bottom"></i>
+            @else
+                {{ $icon }}
+            @endif
+        </span>
+    @endif
 
-        <input
-            type="{{$type}}"
-            id="{{$label . 'label'}}"
-            placeholder="{{$placeholder}}"
-            {{ $attributes->merge(['class' => "form-control radius-26"])}}
-        >
-    </div>
+    <input
+        type="{{$type}}"
+        name="{{$name}}"
+        id="{{$label . 'label'}}"
+        placeholder="{{$placeholder}}"
+        {{ $attributes->merge(['class' => "form-control radius-26"])}}
+    >
+</div>
 @else
     <div class="form-check form-check-royal-blue">
-        <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}">
-
+        <input class="form-check-input" type="{{$type}}" id="{{$label . 'label'}}" name="{{$name}}">
         @if(\Illuminate\Support\Str::length($label) > 0)
             <label class="form-check-label form-text ms-2 mb-0" for="{{$label . 'label'}}">
                 {{$label}}

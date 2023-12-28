@@ -1,15 +1,13 @@
-<table class="table table-nowrap table-centered align-middle">
-    <thead class="bg-light text-muted">
+<table class="table table-nowrap table-centered align-middle {{$type === 'rounded-tr-border' ? 'table-separate' : ''}} ">
+    <thead class="text-black">
         <tr>
-            <th scope="col">Project Name</th>
-            <th scope="col">Project Lead</th>
-            <th scope="col">Progress</th>
-            <th scope="col">Assignee</th>
-            <th scope="col">Status</th>
-            <th scope="col" style="width: 10%;">Due Date</th>
+            @foreach($headItems as $item)
+                <th scope="col">{{$item}}</th>
+            @endforeach
         </tr>
     </thead>
     <tbody>
-
+        {{ $body ?? '' }}
     </tbody>
 </table>
+{{ $pagination ?? '' }}

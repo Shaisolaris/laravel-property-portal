@@ -20,6 +20,17 @@ $light-text-emphasis-dark:                                          tint-color($
 $dark-text-emphasis-dark:                                           tint-color($body-bg-dark, 30%);
 // scss-docs-end theme-text-dark-variables
 
+/**/
+$light-blue-text-emphasis-dark:                                     tint-color($light-blue, 20%);
+$royal-blue-text-emphasis-dark:                                     tint-color($royal-blue, 20%);
+$dim-gray-text-emphasis-dark:                                       tint-color($dim-gray, 20%);
+$beige-text-emphasis-dark:                                          tint-color($beige, 20%);
+$gainsboro-text-emphasis-dark:                                      tint-color($gainsboro, 20%);
+$thistle-text-emphasis-dark:                                        tint-color($thistle, 20%);
+$light-steel-blue-text-emphasis-dark:                               tint-color($light-steel-blue, 20%);
+$crimson-text-emphasis-dark:                                        tint-color($crimson, 20%);
+/**/
+
 // scss-docs-start theme-bg-subtle-dark-variables
 $primary-bg-subtle-dark:                                            rgba($primary, 0.15);
 $secondary-bg-subtle-dark:                                          rgba($secondary, 0.15);
@@ -30,7 +41,16 @@ $danger-bg-subtle-dark:                                             rgba($danger
 $light-bg-subtle-dark:                                              tint-color($body-bg-dark, 5%);
 $dark-bg-subtle-dark:                                               tint-color($body-bg-dark, 10%);
 // scss-docs-end theme-bg-subtle-dark-variables
-
+/**/
+$light-blue-bg-subtle:                                              rgba($light-blue, 0.15);
+$royal-blue-bg-subtle:                                              rgba($royal-blue, 0.15);
+$dim-gray-bg-subtle:                                                rgba($dim-gray, 0.15);
+$beige-bg-subtle:                                                   rgba($beige, 0.15);
+$gainsboro-bg-subtle:                                               rgba($gainsboro, 0.15);
+$thistle-bg-subtle:                                                 rgba($thistle, 0.15);
+$light-steel-blue-bg-subtle:                                        rgba($light-steel-blue, 0.15);
+$crimson-bg-subtle:                                                 rgba($crimson, 0.15);
+/**/
 // scss-docs-start theme-border-subtle-dark-variables
 $primary-border-subtle-dark:                                        shade-color($primary, 35%);
 $secondary-border-subtle-dark:                                      shade-color($secondary, 50%);
@@ -41,7 +61,16 @@ $danger-border-subtle-dark:                                         shade-color(
 $light-border-subtle-dark:                                          tint-color($body-bg-dark, 12%);
 $dark-border-subtle-dark:                                           tint-color($body-bg-dark, 15%);
 // scss-docs-end theme-border-subtle-dark-variables
-
+/**/
+$light-blue-border-subtle-dark:                                     shade-color($light-blue, 50%);
+$royal-blue-border-subtle-dark:                                     shade-color($royal-blue, 50%);
+$dim-gray-border-subtle-dark:                                       shade-color($dim-gray, 50%);
+$beige-border-subtle-dark:                                          shade-color($beige, 50%);
+$gainsboro-border-subtle-dark:                                      shade-color($gainsboro, 50%);
+$thistle-border-subtle-dark:                                        shade-color($thistle, 50%);
+$light-steel-blue-border-subtle-dark:                               shade-color($light-steel-blue, 50%);
+$crimson-border-subtle-dark:                                        shade-color($crimson, 50%);
+/**/
 $body-color-dark:                                                   #ced4da;
 $body-secondary-color-dark:                                         #878a99;
 $body-secondary-bg-dark:                                            #212529;
