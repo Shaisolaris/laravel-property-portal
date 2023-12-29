@@ -258,6 +258,11 @@ return [
         ],
         "sorting" => [
 
+        ],
+        "status" => [
+            "active" => 'Active',
+            "accepted" => 'Accepted',
+            "not_accepted" => 'Not Accepted',
         ]
     ],
     'link' => [

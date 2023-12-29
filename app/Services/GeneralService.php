@@ -31,8 +31,8 @@ class GeneralService
                     'text' => "My Courses"
                 ],
                 [
-                    'href' => route('assignments'),
-                    'active' => request()->routeIs('assignments'),
+                    'href' => route('instructor.school.assignment.index'),
+                    'active' => request()->routeIs('instructor.school.assignment.index'),
                     'icon' => ' ri-file-text-line',
                     'text' => "Assignments"
                 ],
@@ -105,8 +105,8 @@ class GeneralService
                     'text' => "My Courses"
                 ],
                 [
-                    'href' => route('assignments'),
-                    'active' => request()->routeIs('assignments'),
+                    'href' => route('instructor.academy.assignment.index'),
+                    'active' => request()->routeIs('instructor.academy.assignment.index'),
                     'icon' => ' ri-file-text-line',
                     'text' => "Assignments"
                 ],
