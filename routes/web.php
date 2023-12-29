@@ -35,16 +35,21 @@ Route::get('settings', function () {return view('pages.instructor.general.settin
 Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
 Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
 
-//Route::group([
-//    'prefix' => 'test',
-//    'name' => 'assignment.',
-//    'controller' => \App\Http\Controllers\Panel\AssignmentController::class,
-//], function () {
-//
-//});
-Route::get('test/', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('test.index');
-Route::get('test/{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('test.show');
+Route::prefix('instructor')->name('instructor.')->group(function () {
+    Route::prefix('academy')->name('academy.')->group(function () {
+        Route::prefix('assignments')->name('assignment.')->group(function () {
+            Route::get('', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('index');
+            Route::get('{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('show');
+        });
+    });
 
+    Route::prefix('school')->name('school.')->group(function () {
+        Route::prefix('assignments')->name('assignment.')->group(function () {
+            Route::get('', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('index');
+            Route::get('{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('show');
+        });
+    });
+});
 
 Route::get('add-new-class', function () {return view('pages.instructor.school.classes.create');})->name('add-new-class');
 Route::get('classes', function () {return view('pages.instructor.school.classes.index');})->name('classes');
@@ -488,4 +493,3 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
         });
     });
 });
-

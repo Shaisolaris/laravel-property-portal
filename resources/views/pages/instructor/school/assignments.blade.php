@@ -10,7 +10,7 @@
 @endphp
 
 @section('content')
-    <x-card-blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
+    <x-card.card-blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
 
     <x-table.table key-header="instructor_school_assignments">
         <x-slot:filterSort>
@@ -25,7 +25,9 @@
                         <x-date :value="$assignment['deadlineTime'] ?? ''" format="D j Y" />
                     </td>
                     <td><span>gg</span></td>
-                    <td><span>gg</span></td>
+                    <td>
+                        <x-table.partials.td.status :key="$assignment['status']" />
+                    </td>
                     <td>
                         <x-link href="google.com" icon="ri-eye-fill" key="view_assignment" />
                     </td>

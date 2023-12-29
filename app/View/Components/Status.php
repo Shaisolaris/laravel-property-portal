@@ -5,18 +5,18 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class CardBlocksAmount extends Component
+class Status extends Component
 {
     public function __construct(
-        public string $cols,
-        public array $items,
+        public string $key = '',
     )
     {
 
     }
 
+
     public function render(): View
     {
-        return view('components.card-blocks-amount');
+        return view('components.table.partials.td.status');
     }
 }
