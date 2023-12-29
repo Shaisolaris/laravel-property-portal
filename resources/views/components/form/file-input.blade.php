@@ -22,11 +22,7 @@
 
     @if(\Illuminate\Support\Str::length($icon) > 0)
         <label class="input-group-text cursor-pointer" for="{{$id}}">
-            @if(\Illuminate\Support\Str::contains($icon, ['ri-', 'bx bx-', 'mdi-', 'lab la-', 'las la-']))
-                <i class="{{$icon}} align-bottom"></i>
-            @else
-                {{ $icon }}
-            @endif
+            <x-partial-icon :icon="$icon" />
         </label>
     @endif
 

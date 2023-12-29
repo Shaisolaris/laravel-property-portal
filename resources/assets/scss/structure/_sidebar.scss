@@ -1,0 +1,47 @@
+.sidebar-nav-item:hover {
+    .sidebar-item {
+        .btn {
+            background: $beige;
+
+            &[data-role-auth="teacher"] {
+                background: rgba($royal-blue, .12);
+            }
+        }
+
+        width: 100%;
+        padding: 8px 0 8px 15px;
+    }
+}
+
+.sidebar-item {
+    color: black;
+
+    &[data-role-auth="teacher"] {
+        color: $light-blue;
+    }
+
+    padding: 8px 0 8px 0;
+    border-radius: 100px;
+    transition: .2s ease-in-out;
+
+    &.active {
+        background: $beige;
+
+        &[data-role-auth="teacher"] {
+            background: rgba($royal-blue, .12);
+        }
+
+        width: 100%;
+        padding: 8px 0 8px 15px;
+    }
+
+    .btn {
+        &:hover {
+            border: none !important;
+            outline: none !important;
+        }
+
+        border: none !important;
+        outline: none !important;
+    }
+}

@@ -21,9 +21,9 @@ class AssignmentController extends Controller
 {
     public function myAssignments(Request $request)
     {
-        if (!getFeaturesSettings('webinar_assignment_status')) {
-            abort(403);
-        }
+//        if (!getFeaturesSettings('webinar_assignment_status')) {
+//            abort(403);
+//        }
 
         $user = auth()->user();
 
@@ -142,9 +142,9 @@ class AssignmentController extends Controller
 
     public function myCoursesAssignments(Request $request)
     {
-        if (!getFeaturesSettings('webinar_assignment_status')) {
-            abort(403);
-        }
+//        if (!getFeaturesSettings('webinar_assignment_status')) {
+//            abort(403);
+//        }
 
         $user = auth()->user();
 
@@ -206,14 +206,15 @@ class AssignmentController extends Controller
             'failedCount' => $failedCount,
         ];
 
+        return view('pages.instructor.school.assignments', $data);
         return view('web.default.panel.assignments.my-courses-assignments', $data);
     }
 
     public function students(Request $request, $id)
     {
-        if (!getFeaturesSettings('webinar_assignment_status')) {
-            abort(403);
-        }
+//        if (!getFeaturesSettings('webinar_assignment_status')) {
+//            abort(403);
+//        }
 
         $user = auth()->user();
 
@@ -519,9 +520,9 @@ class AssignmentController extends Controller
 
     public function academyAssignments(Request $request)
     {
-        if (!getFeaturesSettings('webinar_assignment_status')) {
-            abort(403);
-        }
+//        if (!getFeaturesSettings('webinar_assignment_status')) {
+//            abort(403);
+//        }
 
         $user = auth()->user();
 
@@ -604,9 +605,9 @@ class AssignmentController extends Controller
 
     public function academyAssignmentDetails(Request $request, $id = 0)
     {
-        if (!getFeaturesSettings('webinar_assignment_status')) {
-            abort(403);
-        }
+//        if (!getFeaturesSettings('webinar_assignment_status')) {
+//            abort(403);
+//        }
 
         $user = auth()->user();
 

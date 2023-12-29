@@ -31,7 +31,7 @@
                     <li class="nav-item sidebar-nav-item {{ $loop->first ? 'pt-1' : '' }}">
                         <a class="nav-link menu-link" href="{{$item['href']}}">
                             <div class="sidebar-item {{$item['active'] ? 'active' : ''}}">
-                                <span class="btn-beige rounded-pill btn btn-icon p-1 p-lg-2">
+                                <span class="btn btn-icon rounded-pill p-1 p-lg-2">
                                     <i class="{{$item['icon']}} text-black fs-16"></i>
                                 </span>
                                 <span class="text-black fs-14">{{ $item['text'] }}</span>

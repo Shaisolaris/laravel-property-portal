@@ -234,6 +234,34 @@ return [
     ],
     "button-toggle-modal" => [
 
+    ],
+    "course" => [
+        'assignments' => 'Course Assignments',
+        'pending' => 'Pending Review',
+        'passed' => 'Passed',
+        'failed' => 'Failed',
+    ],
+    'table' => [
+        'headers' => [
+            'instructor_school_assignments' => [
+                'student_name' => 'Student name',
+                'deadline' => 'Deadline',
+                'score' => 'Score',
+                'status' => 'Status',
+                'action' => 'Action',
+            ]
+        ],
+        "filters" => [
+            'assignments' => 'Assignments',
+            'reviewed ' => 'Reviewed ',
+            'pending-review' => 'Pending Review',
+        ],
+        "sorting" => [
+
+        ]
+    ],
+    'link' => [
+        'view_assignment' => 'View Assignment'
     ]
 ];
 ?>

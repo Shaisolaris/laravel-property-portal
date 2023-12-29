@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 \Illuminate\Support\Facades\Auth::routes();
 Route::get('dashboard', function () {
-    \Illuminate\Support\Facades\Auth::login(\App\User::find(1015));
-    $tags = Tag::orderBy('id','desc')
-        ->paginate(10);;
+    $tags = Tag::orderBy('id','desc')->paginate(10);
+
     $data = [
         'pageTitle' => trans('admin/pages/tags.tags_list_page_title'),
         'tags' => $tags
@@ -36,10 +35,19 @@ Route::get('settings', function () {return view('pages.instructor.general.settin
 Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
 Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
 
+//Route::group([
+//    'prefix' => 'test',
+//    'name' => 'assignment.',
+//    'controller' => \App\Http\Controllers\Panel\AssignmentController::class,
+//], function () {
+//
+//});
+Route::get('test/', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('test.index');
+Route::get('test/{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('test.show');
+
 
 Route::get('add-new-class', function () {return view('pages.instructor.school.classes.create');})->name('add-new-class');
 Route::get('classes', function () {return view('pages.instructor.school.classes.index');})->name('classes');
-Route::get('assignments', function () {return view('pages.instructor.school.assignments');})->name('assignments');
 Route::get('grades', function () {return view('pages.instructor.school.grades');})->name('grades');
 Route::get('mentorship', function () {return view('pages.instructor.school.mentorship');})->name('mentorship');
 Route::get('podcast', function () {return view('pages.instructor.school.podcast');})->name('podcast');
@@ -47,7 +55,6 @@ Route::get('payments', function () {return view('pages.instructor.school.payment
 Route::get('settings', function () {return view('pages.instructor.general.settings');})->name('settings');
 Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
 Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
-
 
 
 Route::group(['prefix' => 'my_api', 'namespace' => 'Api\Panel', 'middleware' => 'signed', 'as' => 'my_api.web.'], function () {

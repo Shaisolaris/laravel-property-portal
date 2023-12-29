@@ -1,1 +1,1 @@
-<span>{{\Carbon\Carbon::parse($value)->format($format)}}</span>
+<span {{ $attributes->merge(['class' => "text-blade fs-14"]) }}>{{\Carbon\Carbon::parse($value)->format($format)}}</span>

@@ -6,6 +6,8 @@
 .pagination-separated {
     .page-item {
         .page-link {
+            --in-border-radius: .313rem;
+
             margin-left: 0.35rem;
             border-radius: var(--#{$prefix}border-radius);
         }

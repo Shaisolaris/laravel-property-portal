@@ -9,7 +9,8 @@ class Link extends Component
     public function __construct(
         public string $key,
         public string $href,
-        public readonly string $variable = 'primary',
+        public string $icon = '',
+        public readonly string $variable = 'royal-blue',
     )
     {
 
