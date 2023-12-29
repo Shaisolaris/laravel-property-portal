@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Form;
 
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class DateTimePicker extends Component
@@ -15,12 +16,8 @@ class DateTimePicker extends Component
         public string|array $error = '',
     ) {}
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render(): \Illuminate\Contracts\View\View|string|\Closure
+
+    public function render(): View
     {
         return view('components.form.date-time-picker');
     }

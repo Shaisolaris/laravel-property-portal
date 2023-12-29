@@ -2,21 +2,22 @@
 
 namespace App\View\Components\Form;
 
-use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class Select extends Component
 {
     public function __construct(
         public string $name,
-        public string $random = ''
+        public array $options,
+        public mixed $modalValue = null,
+        public string $placeholder = 'Select Element',
     )
     {
-        $this->random = Str::random(6);
     }
 
 
-    public function render(): \Illuminate\Contracts\View\View|string|\Closure
+    public function render(): View
     {
         return view('components.form.select');
     }

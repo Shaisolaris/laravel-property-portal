@@ -1,23 +1,19 @@
 <div class="live-preview">
     <div class="hstack gap-2 flex-wrap mb-3">
         <button
-            class="btn btn-primary"
+            class="btn btn-light-blue"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#collapseExample"
+            data-bs-target="#{{$target}}"
             aria-expanded="false"
-            aria-controls="collapseExample"
+            aria-controls="{{$target}}"
         >
-            Button with data-bs-target
+            {{trans("translation.button.collapse.$buttonText")}}
         </button>
+        <button class="btn btn-primary">f</button>
+        <button class="btn btn-secondary">f</button>
     </div>
-    <div class="collapse" id="collapseExample">
-        <div class="card mb-0">
-            <div class="card-body">
-                When designing, the goal is to draw someone’s attention and portray to them what you’re trying to say.
-                You can make a big statement by using little tricks, like this one. Use contrasting fonts. you can use a
-                bold sanserif font with a cursive.
-            </div>
-        </div>
+    <div class="collapse" id="{{$target}}">
+        {{ $text }}
     </div>
 </div>

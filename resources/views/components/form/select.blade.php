@@ -1,19 +1,20 @@
+@php
+    $options = json_encode($options);
+@endphp
+
 <div>
+    <input type="hidden" name="{{$name}}">
     <div id="{{$name}}"></div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         ItcCustomSelect.create('#{{$name}}', {
-            name: 'car',
-            targetValue: 'ford',
-            options: [
-                ['volkswagen', 'Volkswagen'],
-                ['ford', 'Ford'],
-                ['toyota', 'Toyota'],
-                ['nissan', 'Nissan']
-            ],
+            targetValue: "{{$modalValue}}",
+            options: {!! $options !!},
+            placeholder: "{{$placeholder}}",
             onSelected(select, option) {
+                document.querySelector("[name='{{$name}}']").value = select.value;
                 // выбранное значение
                 console.log(`Выбранное значение: ${select.value}`);
                 // индекс выбранной опции

@@ -11,8 +11,7 @@
                 .create(document.querySelector('.ckeditor-classic'))
                 .then(function (editor) {
                     editor.model.document.on('change:data', () => {
-                        const d = document.querySelector("[name='{{$name}}']");
-                        d.value = editor.getData();
+                        document.querySelector("[name='{{$name}}']").value = editor.getData();
                     });
 
                     editor.ui.view.editable.element.style.height = '200px';

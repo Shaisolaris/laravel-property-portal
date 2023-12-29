@@ -22,7 +22,7 @@ Route::get('dashboard', function () {
         'pageTitle' => trans('admin/pages/tags.tags_list_page_title'),
         'tags' => $tags
     ];
-    return view('pages.instructor.general.dashboard', $data);
+    return view('pages.instructor.academy.dashboard', $data);
 })->name('dashboard');
 
 Route::get('add-new-course', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');

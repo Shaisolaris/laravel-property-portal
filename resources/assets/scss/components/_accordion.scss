@@ -5,10 +5,15 @@
 .accordion {
     .accordion-button {
         font-weight: $font-weight-medium;
+
+        &:not(.collapsed) {
+            color: black;
+            background-color: $beige;
+        }
     }
 
     .accordion-body {
-        color: var(--#{$prefix}secondary-color);
+        color: $dim-gray;
     }
 
     &.accordion-icon-none {
@@ -160,9 +165,9 @@ $value in $theme-colors {
 }
 
 // rtl
-[dir="rtl"]{
+[dir="rtl"] {
     .custom-accordionwithicon {
-        .accordion-button::after{
+        .accordion-button::after {
             transform: rotate(180deg);
         }
     }

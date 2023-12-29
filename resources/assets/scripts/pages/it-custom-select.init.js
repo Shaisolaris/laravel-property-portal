@@ -7,11 +7,11 @@ class ItcCustomSelect {
     static DATA_TOGGLE = '[data-select="toggle"]';
 
     static template(params) {
-        const { name, options, targetValue } = params;
+        const { name, options, targetValue, placeholder } = params;
         const items = [];
         let selectedIndex = -1;
         let selectedValue = '';
-        let selectedContent = 'Выберите из списка';
+        let selectedContent = placeholder;
         options.forEach((option, index) => {
             let selectedClass = '';
             if (option[0] === targetValue) {

@@ -2,10 +2,19 @@
 
 @php
     $selector = isset($id) ? $id : $label . 'label';
+    $radius = '';
+
+    switch($size) {
+        case "sm":
+            $radius = 'radius-6';
+            break;
+        default:
+            $radius = 'radius-26';
+    }
 @endphp
 
 @if(!in_array($type, ['radio', 'checkbox']))
-    @if(\Illuminate\Support\Str::length($icon) > 0)
+    @if(\Illuminate\Support\Str::length($icon) > 0 && \Illuminate\Support\Str::length($label) > 0)
         <label for="{{$selector}}" class="fs-12">
             {{$label}}
             @if($required)
@@ -14,7 +23,7 @@
         </label>
     @endif
     <div @if(\Illuminate\Support\Str::length($icon) > 0) class="input-group" @endif>
-        @if(\Illuminate\Support\Str::length($icon) < 1)
+        @if(\Illuminate\Support\Str::length($icon) < 1 && \Illuminate\Support\Str::length($label) > 0)
             <label for="{{$selector}}" class="fs-12">
                 {{$label}}
                 @if($required)
@@ -24,13 +33,13 @@
         @endif
 
         @if(\Illuminate\Support\Str::length($icon) > 0)
-            <span class="input-group-text">
-            @if(\Illuminate\Support\Str::contains($icon, ['ri-', 'bx bx-', 'mdi-', 'lab la-', 'las la-']))
+            <span class="input-group-text {{ \Illuminate\Support\Str::length($size) > 0 ? "input-group-text-$size" : $size }}">
+                @if(\Illuminate\Support\Str::contains($icon, ['ri-', 'bx bx-', 'mdi-', 'lab la-', 'las la-']))
                     <i class="{{$icon}} align-bottom"></i>
                 @else
                     {{ $icon }}
                 @endif
-        </span>
+            </span>
         @endif
 
         <input
@@ -38,7 +47,7 @@
             name="{{$name}}"
             id="{{$selector}}"
             placeholder="{{$placeholder}}"
-            {{ $attributes->merge(['class' => "form-control radius-26"])}}
+            {{ $attributes->merge(['class' => "form-control $radius"])}}
         >
     </div>
 @else

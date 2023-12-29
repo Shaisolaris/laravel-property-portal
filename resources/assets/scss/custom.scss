@@ -10,16 +10,12 @@
     border-radius: 26px
 }
 
-.bg-crimson, .bg-light-steel-blue, .bg-thistle {
-    --in-bg-opacity: 0.4;
+.radius-6 {
+    border-radius: 0 6px 6px;
 }
 
-.input-group-text {
-    height: 39px;
-    padding: 13px 13px;
-    background-color: white;
-    border-radius: 30px 0 0 30px;
-    color: black;
+.bg-crimson, .bg-light-steel-blue, .bg-thistle {
+    --in-bg-opacity: 0.4;
 }
 
 .sidebar-nav-item:hover {
@@ -49,6 +45,20 @@
     @media (min-width: 1025px) {
         display: flex;
     }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-button {
+}
+
+::-webkit-scrollbar-thumb {
+    opacity: 1;
+    border-radius: 7px;
+    background: #9BB8ED;
 }
 
 $shadows: (

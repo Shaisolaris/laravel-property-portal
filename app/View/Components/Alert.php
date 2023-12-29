@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class Alert extends Component
@@ -14,7 +15,7 @@ class Alert extends Component
 
     }
 
-    public function render(): \Illuminate\Contracts\View\View|string|\Closure
+    public function render(): View
     {
         return view('components.alert');
     }

@@ -2,12 +2,11 @@
 
 namespace App\View\Components\Form;
 
-use App\View\Components\Form\Traits\ExtendComponent;
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class Textarea extends Component
 {
-
     public function __construct(
         public string $icon = '',
         public string $label = '',
@@ -16,12 +15,8 @@ class Textarea extends Component
         public string|array $error = '',
     ) {}
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render(): \Illuminate\Contracts\View\View|string|\Closure
+
+    public function render(): View
     {
         return view('components.form.textarea');
     }

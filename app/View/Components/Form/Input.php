@@ -2,12 +2,14 @@
 
 namespace App\View\Components\Form;
 
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
     public function __construct(
         public string $name = '',
+        public string $size = '',
         public string $icon = '',
         public string $label = '',
         public string $type = 'text',
@@ -16,10 +18,10 @@ class Input extends Component
         public string|array $error = '',
     )
     {
-        //
+
     }
 
-    public function render(): \Illuminate\Contracts\View\View|string|\Closure
+    public function render(): View
     {
         return view('components.form.input');
     }
