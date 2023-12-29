@@ -9,27 +9,57 @@
     ];
 @endphp
 
+@section('breadcrumbs')
+    <x-breadcrumbs title="assignments" />
+@endsection
+
 @section('content')
     <x-card.card-blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
 
+    <x-tabs :tab-nav-items="[[ 'title' => 'all', 'active' => true ], [ 'title' => 'recent', 'active' => false ]]">
+        <x-slot:tabContent>
+            <div class="tab-pane active" id="all" role="tabpanel">
+                <span>all</span>
+            </div>
+
+            <div class="tab-pane" id="recent" role="tabpanel">
+                <span>recent</span>
+            </div>
+        </x-slot:tabContent>
+    </x-tabs>
+
     <x-table.table key-header="instructor_school_assignments">
-        <x-slot:filterSort>
-
-        </x-slot:filterSort>
-
         <x-slot:body>
             @foreach($assignments as $assignment)
                 <tr>
-                    <td><span>gg</span></td>
                     <td>
-                        <x-date :value="$assignment['deadlineTime'] ?? ''" format="D j Y" />
+                        <div class="d-flex align-items-center">
+                            <div class="me-2">
+                                <x-avatar :src="$assignment?->assignmentHistory?->student?->avatar" rounded="circle" size="sm" />
+                            </div>
+                            <div>
+                                <div class="fs-16 fw-medium">
+                                    {{trans('translation.from')}}
+                                    {{ $assignment->assignmentHistory->student->full_name }}
+                                </div>
+                                <div class="text-dim-gray fs-12">
+                                    {{trans('translation.assigned')}}:
+                                    <x-date :value="$assignment->created_at ?? ''" format="D j Y" />
+                                </div>
+                            </div>
+                        </div>
                     </td>
-                    <td><span>gg</span></td>
                     <td>
-                        <x-table.partials.td.status :key="$assignment['status']" />
+                        <x-date :value="$assignment?->deadlineTime ?? ''" format="D j Y" />
                     </td>
                     <td>
-                        <x-link href="google.com" icon="ri-eye-fill" key="view_assignment" />
+                        <span class="fs-14">{{ $assignment?->assignmentHistory?->grade }}/{{ $assignment?->grade }}</span>
+                    </td>
+                    <td>
+                        <x-table.partials.td.status :key="$assignment?->status" variable="" />
+                    </td>
+                    <td>
+                        <x-link :href="route('instructor.academy.assignment.show', $assignment?->id)" icon="ri-eye-fill" key="view_assignment" />
                     </td>
                 </tr>
             @endforeach

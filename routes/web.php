@@ -24,6 +24,8 @@ Route::get('dashboard', function () {
     return view('pages.instructor.academy.dashboard', $data);
 })->name('dashboard');
 
+
+/***  OUR ***/
 Route::get('add-new-course', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');
 Route::get('courses', function () {return view('pages.instructor.academy.course.index');})->name('courses');
 Route::get('assignments', function () {return view('pages.instructor.academy.assignments');})->name('assignments');
@@ -50,6 +52,8 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
         });
     });
 });
+/***  END ***/
+
 
 Route::get('add-new-class', function () {return view('pages.instructor.school.classes.create');})->name('add-new-class');
 Route::get('classes', function () {return view('pages.instructor.school.classes.index');})->name('classes');

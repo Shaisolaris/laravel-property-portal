@@ -1,3 +1,1 @@
-@dump($key)
-
-<x-badge size="lg" />
+<x-badge size="md" :key="$key" :variable="$variable" {{ $attributes }} />

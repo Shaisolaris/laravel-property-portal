@@ -224,6 +224,18 @@ return [
     "api-key" => "API Key",
     "privacy-policy" => "Privacy Policy",
     "hot" => "Hot",
+//
+    'from' => 'From',
+    'assigned' => 'Assigned',
+
+    'tab' => [
+        'all' => 'All',
+        'recent' => 'Recent',
+        'favourite' => 'Favourite',
+    ],
+    'page-titles' => [
+        'assignments' => 'Assignments'
+    ],
     "button" => [
 
     ],
@@ -231,6 +243,7 @@ return [
         'active' => 'Active',
         'accepted' => 'Accepted',
         'not-accepted' => 'Not Accepted',
+        'inactive' => 'Inactive',
     ],
     "button-toggle-modal" => [
 

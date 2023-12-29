@@ -1,0 +1,15 @@
+.tabs {
+    .nav-item {
+        .nav-link {
+            border-radius: 100px;
+            padding: 16px 24px;
+            color: $dim-gray;
+            background: white;
+
+            &.active {
+                background: #f3f6fd;
+                color: $royal-blue;
+            }
+        }
+    }
+}

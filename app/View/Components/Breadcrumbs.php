@@ -5,18 +5,18 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class Status extends Component
+class Breadcrumbs extends Component
 {
     public function __construct(
-        public string $key = '',
+        public string $title,
+        public mixed $rightSide = null,
     )
     {
 
     }
 
-
     public function render(): View
     {
-        return view('components.table.partials.td.status');
+        return view('components.breadcrumbs');
     }
 }
