@@ -9,7 +9,8 @@ class AvatarGroup extends Component
 {
     public function __construct(
         public array $avatars,
-        public int $plusAmount = 0
+        public int $plusAmount = 0,
+        public int $limit = 5
     )
     {
 

@@ -1612,13 +1612,13 @@ class WebinarController extends Controller
             ->count();
 
         $data = [
-            'pageTitle' => trans('webinars.webinars_purchases_page_title'),
             'sales' => $sales,
             'purchasedCount' => $purchasedCount + $giftPurchasedCount,
             'hours' => $hours,
             'upComing' => $upComing + $giftUpcoming
         ];
 
-        return view('web.public_academy.courses', $data);
+        return view('pages.instructor.academy.course.index', $data);
+//        return view('web.public_academy.courses', $data);
     }
 }

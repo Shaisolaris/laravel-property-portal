@@ -76,7 +76,7 @@
 
             <div class="d-flex align-items-center">
                 <div>
-                    <a href="{{route('courses')}}" class="text-black">My Course</a>
+                    <a href="{{route('instructor.academy.courses.index')}}" class="text-black">My Course</a>
                 </div>
                 <div class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
                     <button

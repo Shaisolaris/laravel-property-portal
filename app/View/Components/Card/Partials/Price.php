@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Card\Partials;
 
 use Illuminate\View\Component;
 
@@ -11,7 +11,10 @@ class Price extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        public int $value= 0,
+        public string $classes = ''
+    )
     {
         //
     }
@@ -21,8 +24,8 @@ class Price extends Component
      *
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|string|\Closure
     {
-        return view('components.price');
+        return view('components.card.partials.price');
     }
 }

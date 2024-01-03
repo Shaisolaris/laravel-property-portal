@@ -27,7 +27,7 @@ Route::get('dashboard', function () {
 
 /***  OUR ***/
 Route::get('add-new-course', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');
-Route::get('courses', function () {return view('pages.instructor.academy.course.index');})->name('courses');
+//Route::get('courses', function () {return view('pages.instructor.academy.course.index');})->name('courses');
 Route::get('assignments', function () {return view('pages.instructor.academy.assignments');})->name('assignments');
 Route::get('messages', function () {return view('pages.instructor.academy.messages');})->name('messages');
 Route::get('mentoring', function () {return view('pages.instructor.academy.mentoring');})->name('mentoring');
@@ -39,6 +39,12 @@ Route::get('change-password', function () {return view('pages.instructor.general
 
 Route::prefix('instructor')->name('instructor.')->group(function () {
     Route::prefix('academy')->name('academy.')->group(function () {
+
+        Route::prefix('courses')->name('courses.')->group(function () {
+            Route::get('', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCourses'])->name('index');
+            Route::get('/details/{slug}', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCoursesDetails'])->name('detail');
+        });
+
         Route::prefix('assignments')->name('assignment.')->group(function () {
             Route::get('', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('index');
             Route::get('{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('show');
@@ -487,8 +493,8 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
 
         Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/', '\App\Http\Controllers\Panel\DashboardController@academyDashboard');
-            Route::get('/courses', '\App\Http\Controllers\Panel\WebinarController@academyCourses');
-            Route::get('/courses/details/{slug}', 'WebinarController@academyCoursesDetails');
+//            Route::get('/courses', '\App\Http\Controllers\Panel\WebinarController@academyCourses');
+//            Route::get('/courses/details/{slug}', 'WebinarController@academyCoursesDetails');
             Route::get('/assignments', '\App\Http\Controllers\Panel\AssignmentController@academyAssignments');
             Route::get('/assignment/details/{id}', '\App\Http\Controllers\Panel\AssignmentController@academyAssignmentDetails');
             Route::get('/mentors', 'InstructorFinderController@academyMentors');

@@ -1,6 +1,6 @@
-// 
+//
 // _card.scss
-// 
+//
 
 .card {
     --in-border-radius: 1.25rem;
@@ -85,7 +85,7 @@ $value in $theme-colors {
         color: var(--#{$prefix}body-color) !important;
         background-color: rgba(var(--#{$prefix}dark-rgb), 0.1);
     }
-    .card-title, .card-text { 
+    .card-title, .card-text {
         color: var(--#{$prefix}body-color) !important;
     }
 }
@@ -144,17 +144,50 @@ $value in $theme-colors {
     .minimize-card {
         .plus{
             display: none;
-        }  
+        }
         .minus {
             display: block;
         }
         &.collapsed{
             .plus{
                 display: block;
-            }  
+            }
             .minus {
                 display: none;
             }
         }
+    }
+}
+
+.card-simple {
+    & .card-beige {
+        background: $body-bg !important;
+        border: 1px solid $border-base-color
+    }
+
+    &_link, &_link:hover {
+        background: $beige-blue;
+        color: $royal-blue;
+        border-color: transparent;
+    }
+
+    &_link:hover {
+        border: 1px solid $royal-blue;
+    }
+}
+
+.card-little {
+    & .price-format {
+        color: $black
+    }
+}
+
+.card-mark {
+    &_intermediate {
+        background: $color-card-mark-intermediate;
+    }
+
+    &_advance {
+        background: $color-card-mark-advance;
     }
 }

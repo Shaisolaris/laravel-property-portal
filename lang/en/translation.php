@@ -232,12 +232,14 @@ return [
         'all' => 'All',
         'recent' => 'Recent',
         'favourite' => 'Favourite',
+        'published' => 'Published',
+        'draft' => 'Draft',
     ],
     'page-titles' => [
         'assignments' => 'Assignments'
     ],
     "button" => [
-
+        'get_in_touch' => 'Get in touch'
     ],
     "badge" => [
         'active' => 'Active',
@@ -249,10 +251,15 @@ return [
 
     ],
     "course" => [
+        'title' => "Course",
         'assignments' => 'Course Assignments',
         'pending' => 'Pending Review',
         'passed' => 'Passed',
         'failed' => 'Failed',
+        'total' => 'Total Courses',
+        'hours' => 'Hours',
+        'total-sale' => 'Total Courses Sale',
+        'earned' => 'You Earned',
     ],
     'table' => [
         'headers' => [
@@ -279,7 +286,10 @@ return [
         ]
     ],
     'link' => [
-        'view_assignment' => 'View Assignment'
+        'view_assignment' => 'View Assignment',
+        'all' => 'All',
+        'published' => 'Published',
+        'draft' => 'Draft',
     ]
 ];
 ?>

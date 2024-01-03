@@ -25,8 +25,8 @@ class GeneralService
                     'text' => "Add New Course"
                 ],
                 [
-                    'href' => route('courses'),
-                    'active' => request()->routeIs('courses'),
+                    'href' => route('instructor.academy.courses.index'),
+                    'active' => request()->routeIs('instructor.academy.courses.index'),
                     'icon' => 'ri-computer-line',
                     'text' => "My Courses"
                 ],

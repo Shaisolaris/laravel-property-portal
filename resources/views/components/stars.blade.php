@@ -7,13 +7,13 @@
 @endphp
 
 @for ($i = 0; $i < $fullStars; $i++)
-    <i class="bx bxs-star fs-20 text-light-blue"></i>
+    <i class="bx bxs-star fs-17 text-light-blue"></i>
 @endfor
 
 @if($halfStar)
-    <i class="bx bxs-star-half fs-20 text-light-blue"></i>
+    <i class="bx bxs-star-half fs-17 text-light-blue"></i>
 @endif
 
 @for ($i = 0; $i < $emptyStars; $i++)
-    <i class="bx bxs-star fs-20 text-dim-gray"></i>
+    <i class="bx bxs-star fs-17 text-dim-gray"></i>
 @endfor

@@ -10,6 +10,7 @@ class Link extends Component
         public string $key,
         public string $href,
         public string $icon = '',
+        public string $type = 'default',
         public readonly string $variable = 'royal-blue',
     )
     {

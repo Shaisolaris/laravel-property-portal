@@ -1,6 +1,6 @@
-// 
+//
 // _buttons.scss
-// 
+//
 
 button,
 a {
@@ -47,7 +47,7 @@ a {
 
 //
 // Soft Buttons
-// 
+//
 
 @each $state in map-keys($theme-colors) {
 

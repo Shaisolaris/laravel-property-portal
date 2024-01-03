@@ -84,7 +84,7 @@ $twocolumn-menu-iconview-bg-gradient-4:           #1a1d21;
 
 // Topbar - (Default Light)
 $header-height:                                   70px;
-$header-bg:                                       $white;
+$header-bg:                                       $body-bg;
 $header-border:                                   $border-color;
 $header-item-color:                               $gray-700;
 $header-item-bg:                                  rgba($secondary, .12);
@@ -152,3 +152,7 @@ $auth-bg-cover:                                   linear-gradient(-45deg, $prima
 
 $input-bg-custom:                                 $body-secondary-bg;
 $input-border-custom:                             $border-color-translucent;
+
+$color-card-mark-intermediate:                    #FFF3C8;
+$color-card-mark-advance:                         #DEB3E0;
+
