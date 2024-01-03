@@ -18,7 +18,7 @@
             </div>
             <div class="d-block d-lg-none d-xl-block text-start">
                 <div class="fs-14 text-dim-gray">{{ \Illuminate\Support\Str::ucfirst(Auth::user()?->role?->name) }}</div>
-                <div class="text-black fs-4">{{ Auth::user()?->full_name }}</div>
+                <div class="sidebar-name-block fs-4">{{ Auth::user()?->full_name }}</div>
             </div>
         </div>
     </div>

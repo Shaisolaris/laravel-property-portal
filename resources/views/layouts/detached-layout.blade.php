@@ -30,9 +30,7 @@
             <div class="main-content">
                 <div class="page-content">
                     <div class="container-fluid pe-0">
-                        @if(isset($title) && isset($li))
-                            @include('layouts.partials.breadcrumbs', ['title' => $title, 'li' => $li])
-                        @endif
+                        @yield('breadcrumbs')
 
                         @yield('content')
                     </div>

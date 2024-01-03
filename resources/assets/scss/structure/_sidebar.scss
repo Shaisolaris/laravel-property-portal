@@ -1,47 +1,66 @@
 .sidebar-nav-item:hover {
     .sidebar-item {
-        .btn {
-            background: $beige;
-
-            &[data-role-auth="teacher"] {
-                background: rgba($royal-blue, .12);
-            }
-        }
-
+        background: $beige;
         width: 100%;
         padding: 8px 0 8px 15px;
+
+        .btn {
+            background: transparent;
+        }
     }
 }
 
 .sidebar-item {
     color: black;
-
-    &[data-role-auth="teacher"] {
-        color: $light-blue;
-    }
-
     padding: 8px 0 8px 0;
     border-radius: 100px;
     transition: .2s ease-in-out;
 
+    &:not(.active) {
+        .btn {
+            background: $beige;
+        }
+    }
+
     &.active {
         background: $beige;
-
-        &[data-role-auth="teacher"] {
-            background: rgba($royal-blue, .12);
-        }
-
         width: 100%;
         padding: 8px 0 8px 15px;
     }
+}
 
-    .btn {
-        &:hover {
-            border: none !important;
-            outline: none !important;
+.sidebar-name-block {
+    color: black;
+}
+
+[data-role-auth="teacher"] {
+    .sidebar-name-block {
+        color: $royal-blue;
+    }
+
+    .sidebar-nav-item:hover {
+        .sidebar-item {
+            background: rgba($light-blue, .12);
         }
 
-        border: none !important;
-        outline: none !important;
+        .sidebar-item {
+            .btn {
+                background: transparent;
+            }
+        }
+    }
+
+    .sidebar-item {
+        color: $royal-blue;
+
+        &:not(.active) {
+            .btn {
+                background: rgba($light-blue, .12);
+            }
+        }
+
+        &.active {
+            background: rgba($light-blue, .12);
+        }
     }
 }
