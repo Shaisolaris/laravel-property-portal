@@ -207,7 +207,7 @@ class AssignmentController extends Controller
         ];
 
         return view('pages.instructor.academy.assignments', $data);
-        return view('web.default.panel.assignments.my-courses-assignments', $data);
+//        return view('web.default.panel.assignments.my-courses-assignments', $data);
     }
 
     public function students(Request $request, $id)

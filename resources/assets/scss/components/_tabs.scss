@@ -1,14 +1,26 @@
 .tabs {
+    $color_text_active_nav_link: $royal-blue;
+    $bg_nav_link: $beige-blue;
+    $border_nav: none;
+
+    [data-role-auth="teacher"] {
+        $color_text_active_nav_link: $dark;
+        $bg_nav_link: $beige;
+        $border_nav: 1px solid $gainsboro;
+    }
+
     .nav-item {
         .nav-link {
             border-radius: 100px;
             padding: 16px 24px;
             color: $dim-gray;
-            background: white;
+            border: 1px solid transparent;
+            //background: white; // В дизе там нету белого фона
 
             &.active {
-                background: #f3f6fd;
-                color: $royal-blue;
+                background: $bg_nav_link;
+                color: $color_text_active_nav_link;
+                border: $border_nav
             }
         }
     }

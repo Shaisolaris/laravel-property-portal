@@ -234,9 +234,16 @@ return [
         'favourite' => 'Favourite',
         'published' => 'Published',
         'draft' => 'Draft',
+        'reviewed' => 'Reviewed ',
+        'pending_review' => 'Pending Review',
+        'my-students' => 'My Students',
+        'favorite' => 'Favorite',
+        'courses' => 'Courses',
+        'sessions' => 'Sessions',
     ],
     'page-titles' => [
-        'assignments' => 'Assignments'
+        'assignments' => 'Assignments',
+        'mentoring' => 'Mentoring',
     ],
     "button" => [
         'get_in_touch' => 'Get in touch'
@@ -260,6 +267,12 @@ return [
         'hours' => 'Hours',
         'total-sale' => 'Total Courses Sale',
         'earned' => 'You Earned',
+    ],
+    "assignments" => [
+        'my-students' => 'My Students',
+        'my-courses' => 'My Courses',
+        'total-sessions' => 'Total Sessions',
+        'favourite-students' => 'Favourite Students',
     ],
     'table' => [
         'headers' => [

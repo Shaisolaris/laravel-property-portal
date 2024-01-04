@@ -19,8 +19,8 @@ class GeneralService
                     'text' => "Dashboards"
                 ],
                 [
-                    'href' => route('add-new-course'),
-                    'active' => request()->routeIs('add-new-course'),
+                    'href' => route('instructor.academy.courses.add-new-course'),
+                    'active' => request()->routeIs('instructor.academy.courses.add-new-course'),
                     'icon' => 'ri-add-circle-line',
                     'text' => "Add New Course"
                 ],
@@ -43,7 +43,7 @@ class GeneralService
                     'text' => "Messages"
                 ],
                 [
-                    'href' => route('mentoring'),
+                    'href' => route('instructor.academy.mentoring.index'),
                     'active' => request()->routeIs('mentoring'),
                     'icon' => 'ri-group-line',
                     'text' => "Mentoring"
