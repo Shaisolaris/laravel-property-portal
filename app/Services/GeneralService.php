@@ -44,7 +44,7 @@ class GeneralService
                 ],
                 [
                     'href' => route('instructor.academy.mentoring.index'),
-                    'active' => request()->routeIs('mentoring'),
+                    'active' => request()->routeIs('instructor.academy.mentoring.index') || request()->routeIs('instructor.academy.mentoring.detail'),
                     'icon' => 'ri-group-line',
                     'text' => "Mentoring"
                 ],

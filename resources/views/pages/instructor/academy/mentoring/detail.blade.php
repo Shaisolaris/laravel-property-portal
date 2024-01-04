@@ -5,6 +5,11 @@
         [ 'title' => 'sessions', 'active' => false ]
     ];
 @endphp
+
+@section('breadcrumbs')
+    <x-breadcrumbs title="detail"></x-breadcrumbs>
+@endsection
+
 @section('content')
     <div class="detail-mentor">
         <div>

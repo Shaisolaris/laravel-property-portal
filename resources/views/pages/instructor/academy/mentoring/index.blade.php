@@ -14,11 +14,11 @@
     ];
 @endphp
 
-@section('content')
-    <div>
-        <h2 class="section-title">{{ trans('translation.page-titles.mentoring') }}</h2>
-    </div>
+@section('breadcrumbs')
+    <x-breadcrumbs title="mentoring"/>
+@endsection
 
+@section('content')
     <x-card.card-blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
 
     <div>

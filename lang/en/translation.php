@@ -244,6 +244,8 @@ return [
     'page-titles' => [
         'assignments' => 'Assignments',
         'mentoring' => 'Mentoring',
+        'detail' => 'Mentoring',
+        'course' => 'Course',
     ],
     "button" => [
         'get_in_touch' => 'Get in touch'
