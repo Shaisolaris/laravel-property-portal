@@ -39,7 +39,6 @@ Route::get('change-password', function () {return view('pages.instructor.general
 
 Route::prefix('instructor')->name('instructor.')->group(function () {
     Route::prefix('academy')->name('academy.')->group(function () {
-
         Route::prefix('courses')->name('courses.')->group(function () {
             Route::get('', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCourses'])->name('index');
             Route::get('/details/{slug}', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCoursesDetails'])->name('detail');
@@ -56,6 +55,8 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
             Route::get('', [\App\Http\Controllers\Panel\AssignmentController::class, 'myCoursesAssignments'])->name('index');
             Route::get('{assignment}',[\App\Http\Controllers\Panel\AssignmentController::class, 'academyAssignmentDetails'])->name('show');
         });
+
+        Route::get('settings', [\App\Http\Controllers\Panel\UserController::class, 'setting'])->name('settings');
     });
 });
 /***  END ***/

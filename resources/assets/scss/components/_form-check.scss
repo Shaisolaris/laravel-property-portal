@@ -18,6 +18,13 @@
         }
     }
 
+    .form-check-input {
+        &:checked {
+            border-color: $royal-blue;
+            background-color: $royal-blue;
+        }
+    }
+
     label {
         cursor: pointer;
     }

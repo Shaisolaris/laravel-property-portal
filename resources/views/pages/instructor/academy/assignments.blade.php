@@ -7,9 +7,9 @@
     </div>
     <div>
         @foreach($assignments as $$assignment)
-            <x-card.card>
+            <x-card.base>
                 {{$assignment}}
-            </x-card.card>
+            </x-card.base>
         @endforeach
     </div>
 @endsection

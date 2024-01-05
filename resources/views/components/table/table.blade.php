@@ -1,4 +1,4 @@
-<x-card.card>
+<x-card.base>
     {{ $filterSort ?? '' }}
 
     <table class="table table-nowrap table-centered align-middle {{$type === 'rounded-tr-border' ? 'table-separate' : ''}} ">
@@ -15,4 +15,4 @@
     </table>
 
     {{ $pagination ?? '' }}
-</x-card.card>
+</x-card.base>

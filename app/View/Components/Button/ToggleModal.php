@@ -1,11 +1,11 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Button;
 
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class ButtonToggleModal extends Component
+class ToggleModal extends Component
 {
     public function __construct(
         public string $key,
@@ -19,6 +19,6 @@ class ButtonToggleModal extends Component
 
     public function render(): View
     {
-        return view('components.button-toggle-modal');
+        return view('components.button.toggle-modal');
     }
 }

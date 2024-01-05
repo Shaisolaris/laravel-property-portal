@@ -6,11 +6,8 @@ use Illuminate\View\Component;
 
 class Icon extends Component
 {
-    public string $symbolId;
-
-    public function __construct(public string $name, public readonly string $color = '')
+    public function __construct(public string $iconClass = '')
     {
-        $this->symbolId = "#icon-$name";
     }
 
 

@@ -114,6 +114,9 @@ class UserController extends Controller
             'userBanks' => $userBanks,
         ];
 
+
+        return view('pages.instructor.general.settings', $data);
+
         return view(getTemplate() . '.panel.setting.index', $data);
     }
 

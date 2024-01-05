@@ -4,16 +4,15 @@ namespace App\View\Components\Card;
 
 use Illuminate\View\Component;
 
-class Card extends Component
+class Base extends Component
 {
     public function __construct(
         public string $type = 'default',
-        public string $classes = ''
     ) {}
 
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        return view('components.card.card');
+        return view('components.card.base');
     }
 }

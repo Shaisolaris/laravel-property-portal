@@ -91,7 +91,7 @@ address-card:
     - '4.7'
     - 5.0.0
     - 5.0.3
-  label: Address Card
+  label: Address Base
   search:
     terms:
       - about
@@ -3179,7 +3179,7 @@ cat:
 cc-amazon-pay:
   changes:
     - 5.0.2
-  label: Amazon Pay Credit Card
+  label: Amazon Pay Credit Base
   search:
     terms: []
   styles:
@@ -3191,7 +3191,7 @@ cc-amex:
     - '4.2'
     - 5.0.0
     - 5.7.0
-  label: American Express Credit Card
+  label: American Express Credit Base
   search:
     terms:
       - amex
@@ -3202,7 +3202,7 @@ cc-amex:
 cc-apple-pay:
   changes:
     - 5.0.0
-  label: Apple Pay Credit Card
+  label: Apple Pay Credit Base
   search:
     terms: []
   styles:
@@ -3213,7 +3213,7 @@ cc-diners-club:
   changes:
     - '4.4'
     - 5.0.0
-  label: Diner's Club Credit Card
+  label: Diner's Club Credit Base
   search:
     terms: []
   styles:
@@ -3224,7 +3224,7 @@ cc-discover:
   changes:
     - '4.2'
     - 5.0.0
-  label: Discover Credit Card
+  label: Discover Credit Base
   search:
     terms: []
   styles:
@@ -3235,7 +3235,7 @@ cc-jcb:
   changes:
     - '4.4'
     - 5.0.0
-  label: JCB Credit Card
+  label: JCB Credit Base
   search:
     terms: []
   styles:
@@ -3246,7 +3246,7 @@ cc-mastercard:
   changes:
     - '4.2'
     - 5.0.0
-  label: MasterCard Credit Card
+  label: MasterCard Credit Base
   search:
     terms: []
   styles:
@@ -3257,7 +3257,7 @@ cc-paypal:
   changes:
     - '4.2'
     - 5.0.0
-  label: Paypal Credit Card
+  label: Paypal Credit Base
   search:
     terms: []
   styles:
@@ -3268,7 +3268,7 @@ cc-stripe:
   changes:
     - '4.2'
     - 5.0.0
-  label: Stripe Credit Card
+  label: Stripe Credit Base
   search:
     terms: []
   styles:
@@ -3279,7 +3279,7 @@ cc-visa:
   changes:
     - '4.2'
     - 5.0.0
-  label: Visa Credit Card
+  label: Visa Credit Base
   search:
     terms: []
   styles:
@@ -4998,7 +4998,7 @@ credit-card:
   changes:
     - '2'
     - 5.0.0
-  label: Credit Card
+  label: Credit Base
   search:
     terms:
       - buy
@@ -10578,7 +10578,7 @@ id-card:
     - 5.0.3
     - 5.8.0
     - 5.10.1
-  label: Identification Card
+  label: Identification Base
   search:
     terms:
       - contact
@@ -10596,7 +10596,7 @@ id-card-alt:
   changes:
     - 5.0.7
     - 5.10.1
-  label: Alternate Identification Card
+  label: Alternate Identification Base
   search:
     terms:
       - contact
@@ -15985,7 +15985,7 @@ scroll:
 sd-card:
   changes:
     - 5.6.0
-  label: Sd Card
+  label: Sd Base
   search:
     terms:
       - image
@@ -16540,7 +16540,7 @@ sim-card:
     - 5.6.0
     - 5.8.2
     - 5.10.2
-  label: SIM Card
+  label: SIM Base
   search:
     terms:
       - hard drive

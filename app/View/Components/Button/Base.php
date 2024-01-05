@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Button;
 
 use App\View\ExtendComponent;
 
-class Button extends ExtendComponent
+class Base extends ExtendComponent
 {
     public function __construct(
         public string $key,
@@ -19,6 +19,6 @@ class Button extends ExtendComponent
 
     public function render(): \Illuminate\Contracts\View\View
     {
-        return view('components.button');
+        return view('components.button.base');
     }
 }

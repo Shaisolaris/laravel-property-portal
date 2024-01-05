@@ -10,6 +10,7 @@ class BaseSwitch extends Component
         public string $name = '',
         public string $size = '',
         public string $label = '',
+        public bool $checked = false,
     )
     {
 

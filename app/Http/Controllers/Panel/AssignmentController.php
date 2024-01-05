@@ -206,7 +206,7 @@ class AssignmentController extends Controller
             'failedCount' => $failedCount,
         ];
 
-        return view('pages.instructor.academy.assignments', $data);
+        return view('pages.instructor.school.assignments', $data);
         return view('web.default.panel.assignments.my-courses-assignments', $data);
     }
 

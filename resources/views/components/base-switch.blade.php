@@ -1,9 +1,9 @@
-<div class="form-check form-switch{{$size ? "-$size" : ''}}" dir="ltr">
+<div class="form-check form-switch {{ $size ? "form-switch-$size" : '' }}" dir="ltr">
     <input
+        @if($label) id="{{ $label . 'label' }}" @endif
+        @if($checked) checked @endif
         type="checkbox"
         class="form-check-input"
-        @if($label) id="{{ $label . 'label' }}" @endif
-        checked=""
         name="{{$name}}"
     >
 

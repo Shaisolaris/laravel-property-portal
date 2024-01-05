@@ -61,22 +61,10 @@ class GeneralService
                     'text' => "Payments"
                 ],
                 [
-                    'href' => route('settings'),
-                    'active' => request()->routeIs('settings'),
+                    'href' => route('instructor.school.settings'),
+                    'active' => request()->routeIs('instructor.school.settings'),
                     'icon' => ' ri-settings-2-line',
-                    'text' => "Setting"
-                ],
-                [
-                    'href' => route('profile'),
-                    'active' => request()->routeIs('profile'),
-                    'icon' => 'ri-settings-2-fill',
-                    'text' => "Edit Profile"
-                ],
-                [
-                    'href' => route('change-password'),
-                    'active' => request()->routeIs('change-password'),
-                    'icon' => 'ri-lock-password-fill',
-                    'text' => "Change Password"
+                    'text' => "Settings"
                 ],
                 [
                     'href' => route('logout'),
@@ -139,18 +127,6 @@ class GeneralService
                     'active' => request()->routeIs('settings'),
                     'icon' => ' ri-settings-2-line',
                     'text' => "Setting"
-                ],
-                [
-                    'href' => route('profile'),
-                    'active' => request()->routeIs('profile'),
-                    'icon' => 'ri-settings-2-fill',
-                    'text' => "Edit Profile"
-                ],
-                [
-                    'href' => route('change-password'),
-                    'active' => request()->routeIs('change-password'),
-                    'icon' => 'ri-lock-password-fill',
-                    'text' => "Change Password"
                 ],
                 [
                     'href' => route('logout'),

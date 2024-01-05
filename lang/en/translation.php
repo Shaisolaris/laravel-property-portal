@@ -234,12 +234,24 @@ return [
         'favourite' => 'Favourite',
         'published' => 'Published',
         'draft' => 'Draft',
+        'profile' => 'Profile',
+        'notification' => 'Notification',
+        'password' => 'Password',
+    ],
+    'label' => [
+        'email' => 'Email',
+        'password' => 'Password',
     ],
     'page-titles' => [
-        'assignments' => 'Assignments'
+        'assignments' => 'Assignments',
+        'settings' => 'Settings',
     ],
     "button" => [
-        'get_in_touch' => 'Get in touch'
+        'get_in_touch' => 'Get in touch',
+        'change' => 'Change',
+        'update' => 'Update',
+        'save' => 'Save',
+        'upload' => 'Upload',
     ],
     "badge" => [
         'active' => 'Active',
@@ -290,6 +302,25 @@ return [
         'all' => 'All',
         'published' => 'Published',
         'draft' => 'Draft',
+        'change' => 'Change',
+        'update' => 'Update',
+    ],
+    'page' => [
+        'settings' => [
+            'profile' => [
+                'profile_photo' => 'Profile Photo',
+                'basic_information' => [
+                    'title' => 'Basic Information',
+                    'items' => ['Display Name', 'Date of Birth', 'Gender', 'Timezone', 'Languages']
+                ],
+            ],
+            'notification' => [
+                [ 'title' => 'Messages', 'text' => 'Messages from other users' ],
+                [ 'title' => 'Learning Tools', 'text' => 'New prompts and topics' ],
+                [ 'title' => 'Tips', 'text' => 'Notifications related to learning tips, newsletters, and feature updates' ],
+                [ 'title' => 'Promotions', 'text' => 'Promotions, offers, and coupons' ],
+            ],
+        ]
     ]
 ];
 ?>

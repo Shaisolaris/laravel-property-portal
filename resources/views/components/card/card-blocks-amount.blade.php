@@ -1,4 +1,4 @@
-<x-card.card>
+<x-card.base>
     <div class="row g-4">
         @foreach($items as $item)
             <div class="{{$cols}} text-center">
@@ -10,4 +10,4 @@
             </div>
         @endforeach
     </div>
-</x-card.card>
+</x-card.base>

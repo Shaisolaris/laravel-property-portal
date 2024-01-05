@@ -19,7 +19,7 @@
                     <x-card.partials.info name="250 Sessions Completed" icon="mdi mdi-check-circle-outline"/>
                 </div>
                 <div>
-                    <x-button key="get_in_touch"
+                    <x-button.base key="get_in_touch"
                               icon="ri-send-plane-fill"
                               viewType="icon-right"
                               class="px-3 py-2 card-simple_link"/>

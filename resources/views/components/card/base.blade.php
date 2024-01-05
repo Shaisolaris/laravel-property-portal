@@ -1,7 +1,7 @@
 @props(['classes'])
 
 @if($type === 'default')
-    <div class="card card-body {{$classes}}">
+    <div {{ $attributes->merge(['class' => "card card-body "]) }}>
         {!! $slot !!}
     </div>
 @endif
