@@ -261,6 +261,7 @@ return [
         'update' => 'Update',
         'save' => 'Save',
         'upload' => 'Upload',
+        'cancel' => 'Cancel',
     ],
     "badge" => [
         'active' => 'Active',

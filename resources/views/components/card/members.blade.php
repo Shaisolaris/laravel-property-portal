@@ -19,7 +19,7 @@ $avatars = [
 ]
 @endphp
 
-<x-card.card classes="card-members p-0">
+<x-card.base classes="card-members p-0">
     <div class="position-relative">
         <img src="{{ $item->getImage() }}" alt="{{ $item->title }}" class="card-img-top img-fluid"/>
         <x-card.partials.mark name="Intermediate"/>
@@ -36,4 +36,4 @@ $avatars = [
     <div class="card-footer d-flex justify-content-end">
         <x-avatar-group limit="3" :avatars="$avatars"/>
     </div>
-</x-card.card>
+</x-card.base>

@@ -1,6 +1,6 @@
 @props(['item'])
 
-<x-card.card classes="p-0">
+<x-card.base classes="p-0">
     <div class="row g-0 position-relative h-25">
         <div class="col-md-5">
             <img src="{{ $item->getImage() }}" alt="{{ $item->title }}" class="rounded-start img-fluid"/>
@@ -48,4 +48,4 @@
             </div>
         </div>
     </div>
-</x-card.card>
+</x-card.base>

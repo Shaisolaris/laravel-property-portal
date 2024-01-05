@@ -7,6 +7,8 @@
     <div id="{{$name}}"></div>
 </div>
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         ItcCustomSelect.create('#{{$name}}', {
@@ -17,6 +19,5 @@
                 document.querySelector("[name='{{$name}}']").value = select.value;
             },
         });
-    })
-
+    });
 </script>

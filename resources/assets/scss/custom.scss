@@ -49,3 +49,9 @@ $shadows: (
         box-shadow: $shadow;
     }
 }
+
+.hover-element {
+    :hover {
+        cursor: pointer;
+    }
+}

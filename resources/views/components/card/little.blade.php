@@ -1,6 +1,6 @@
 @props(['item'])
 
-<x-card.card classes="card-little p-0">
+<x-card.base classes="card-little p-0">
     <div class="position-relative">
         <img src="{{ $item->getImage() }}" alt="{{ $item->title }}" class="card-img-top img-fluid"/>
         <x-card.partials.mark name="Intermediate"/>
@@ -22,4 +22,4 @@
             {{$hours}}
         </div>
     </div>
-</x-card.card>
+</x-card.base>

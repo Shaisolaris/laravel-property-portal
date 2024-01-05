@@ -115,7 +115,7 @@ class UserController extends Controller
         ];
 
 
-        return view('pages.instructor.general.settings', $data);
+        return view('pages.instructor.general.settings.index', $data);
 
         return view(getTemplate() . '.panel.setting.index', $data);
     }

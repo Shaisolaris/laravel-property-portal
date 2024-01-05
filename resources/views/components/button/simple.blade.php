@@ -1,4 +1,4 @@
-<button type="submit" style="outline: none; border: none; background: white;" class="text-royal-blue">
+<button type="{{$type}}" style="outline: none; border: none; background: white;" {{ $attributes->merge(['class' => "text-royal-blue"]) }}>
     @if(\Illuminate\Support\Str::length($icon))
         <i class="{{$icon}} align-bottom fs-16"></i>
     @endif
