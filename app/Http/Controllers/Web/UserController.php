@@ -738,6 +738,7 @@ class UserController extends Controller
             'cashbackRules' => $cashbackRules,
         ];
 
-        return view('web.public_academy.mentor_details', $data);
+        return view('pages.instructor.academy.mentoring.detail', $data);
+//        return view('web.public_academy.mentor_details', $data);
     }
 }

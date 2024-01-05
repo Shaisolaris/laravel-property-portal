@@ -615,6 +615,7 @@ class InstructorFinderController extends Controller
         $locationData = $this->getLocationData($request);
         $data = array_merge($data, $locationData);
 
-        return view('web.public_academy.mentors', $data);
+        return view('pages.instructor.academy.mentoring.index', $data);
+//        return view('web.public_academy.mentors', $data);
     }
 }

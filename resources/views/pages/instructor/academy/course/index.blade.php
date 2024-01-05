@@ -14,12 +14,16 @@
     ]
 @endphp
 
+@section('breadcrumbs')
+    <x-breadcrumbs title="course">
+        <x-slot:rightSide>
+            <button>Add New</button>
+        </x-slot:rightSide>
+    </x-breadcrumbs>
+@endsection
+
 @section('content')
-    <div>
-        <h2 class="font-30 mb-15">{{ trans('translation.course.title') }}</h2>
-        <button>Add New</button>
-    </div>
-    <x-card.card-blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
+    <x-card.blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
     <div>
         <x-tabs :tabNavItems="$tabNavigation">
             <x-slot:advanceAction>

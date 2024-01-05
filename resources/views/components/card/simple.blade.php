@@ -3,15 +3,12 @@
 <x-card.card classes="card-simple">
     <div class="row g-0 position-relative h-25">
         <div class="col-md-3">
-            <img src="{{ $item->getImage() }}" alt="{{ $item->title }}" class="rounded-2 img-fluid h-100 object-fit-cover"/>
+            <img src="{{ $image }}" alt="{{ $item->title }}" class="rounded-2 img-fluid h-100 object-fit-cover"/>
         </div>
         <div class="col-md-9 p-4 d-flex justify-content-center flex-column">
-            <a href="{{ route('instructor.academy.courses.detail',['slug' => $item->slug]) }}">
-                <h2 class="card-title fw-bold mb-3 fs-20 font-weight-bold">{{ $item->title }}</h2>
-            </a>
+           {{$link}}
             <div class="mt-3">
-{{--                {{$item->description}}--}}
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid atque corporis culpa cupiditate debitis dolores doloribus dolorum, eius est harum incidunt officia perspiciatis quae, quis repellendus repudiandae ullam unde?
+                {{$description}}
             </div>
             <div class="d-flex justify-content-between mt-3">
                 <div class="d-flex gap-3">

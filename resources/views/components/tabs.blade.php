@@ -1,5 +1,12 @@
-<div class="@if(isset($advanceAction)) d-flex justify-content-between align-items-center @endif">
-    <ul class="nav nav-pills nav-primary mb-3 tabs" role="tablist">
+@props(['name'])
+
+<div class="@if(isset($advanceAction)) d-flex align-items-center justify-content-between @endif">
+    <ul class="nav nav-pills nav-primary mb-3 tabs d-flex align-items-center" role="tablist">
+        @if(isset($name))
+            <li class="nav-item">
+                <p class="fs-16 m-0 font-weight-bold me-4">{{$name}}</p>
+            </li>
+        @endif
         @foreach($tabNavItems as $navItem)
             <li class="nav-item">
                 <a class="nav-link {{ $navItem['active'] ? 'active' : '' }}" data-bs-toggle="tab" href="#{{$navItem['title']}}" role="tab">

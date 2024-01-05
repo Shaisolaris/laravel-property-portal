@@ -10,17 +10,16 @@
     </div>
     <div class="card-body">
         <div class="d-flex">
-            <x-stars value="3.5"/>
-            <div class="text-dim-gray mx-2 fs-12">reviews (203)</div>
+            {{$rating}}
         </div>
     </div>
     <div class="card-footer d-flex justify-content-between align-items-center">
         <div class="price">
-            <x-card.partials.price value="10" classes="fs-20 font-weight-bold" discount="11.99"/>
+            {{$price}}
         </div>
         <div class="time">
             <i class="las la-clock"></i>
-            24:12:22
+            {{$hours}}
         </div>
     </div>
 </x-card.card>

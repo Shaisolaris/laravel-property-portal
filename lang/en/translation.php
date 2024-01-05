@@ -241,9 +241,18 @@ return [
     'label' => [
         'email' => 'Email',
         'password' => 'Password',
+        'reviewed' => 'Reviewed ',
+        'pending_review' => 'Pending Review',
+        'my-students' => 'My Students',
+        'favorite' => 'Favorite',
+        'courses' => 'Courses',
+        'sessions' => 'Sessions',
     ],
     'page-titles' => [
         'assignments' => 'Assignments',
+        'mentoring' => 'Mentoring',
+        'detail' => 'Mentoring',
+        'course' => 'Course',
         'settings' => 'Settings',
     ],
     "button" => [
@@ -272,6 +281,12 @@ return [
         'hours' => 'Hours',
         'total-sale' => 'Total Courses Sale',
         'earned' => 'You Earned',
+    ],
+    "assignments" => [
+        'my-students' => 'My Students',
+        'my-courses' => 'My Courses',
+        'total-sessions' => 'Total Sessions',
+        'favourite-students' => 'Favourite Students',
     ],
     'table' => [
         'headers' => [
