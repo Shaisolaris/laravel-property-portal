@@ -7,9 +7,10 @@ use Illuminate\View\Component;
 class Badge extends Component
 {
     public function __construct(
-        public string $key,
+        public string $key = '',
         public string $size = '',
         public string $type = '',
+        public string $text = '',
         public readonly string $variable = 'beige',
     )
     {

@@ -39,11 +39,11 @@
                             </div>
                             <div>
                                 <div class="fs-16 fw-medium">
-                                    {{trans('translation.from')}}
+                                    <x-text key="from" />:
                                     {{ $assignment->assignmentHistory->student->full_name }}
                                 </div>
                                 <div class="text-dim-gray fs-12">
-                                    {{trans('translation.assigned')}}:
+                                    <x-text key="assigned" />:
                                     <x-date :value="$assignment->created_at ?? ''" format="D j Y" />
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                         <span class="fs-14">{{ $assignment?->assignmentHistory?->grade }}/{{ $assignment?->grade }}</span>
                     </td>
                     <td>
-                        <x-table.partials.td.status :key="$assignment?->status" variable="" />
+                        <x-table.partials.td.status :key="$assignment?->status" icon="ri-time-line" variable="" />
                     </td>
                     <td>
                         <x-link :href="route('instructor.academy.assignment.show', $assignment?->id)" icon="ri-eye-fill" key="view_assignment" />

@@ -15,7 +15,8 @@ class Status extends Component
 
     public function __construct(
         public string $key = '',
-        public string $variable = ''
+        public string $variable = '',
+        public string $icon = ''
     )
     {
         $this->variable = match ($this->key) {
