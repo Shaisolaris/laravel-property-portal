@@ -1,0 +1,33 @@
+
+.add-new-course {
+
+    .wrapper-form-add-new-course {
+        border-bottom: 1px solid $gainsboro;
+    }
+
+    & .navigation-add-new-course {
+        &__item {
+            padding: 13px 0 13px;
+
+            &__marker {
+                width: 27px;
+                height: 27px;
+                background-color: $beige;
+                border: 1px solid $gainsboro;
+            }
+
+            &.active {
+                cursor: pointer;
+                border-bottom: 2px solid $black;
+            }
+        }
+
+        &__text {
+            line-height: normal;
+        }
+
+        &__marker {
+
+        }
+    }
+}

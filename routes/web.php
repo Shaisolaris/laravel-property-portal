@@ -37,8 +37,8 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
     Route::prefix('academy')->name('academy.')->group(function () {
         Route::prefix('courses')->name('courses.')->group(function () {
             Route::get('', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCourses'])->name('index');
-            Route::get('/details/{slug}', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCoursesDetails'])->name('detail');
-            Route::get('add-new-course', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');
+            Route::get('details/{slug}', [\App\Http\Controllers\Panel\WebinarController::class, 'academyCoursesDetails'])->name('detail');
+            Route::get('add-new-course/{step?}', function () {return view('pages.instructor.academy.course.create');})->name('add-new-course');
         });
 
         Route::prefix('assignments')->name('assignment.')->group(function () {
@@ -48,7 +48,7 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
 
         Route::prefix('mentoring')->name('mentoring.')->group(function () {
             Route::get('', [App\Http\Controllers\Web\InstructorFinderController::class, 'academyMentors'])->name('index');
-            Route::get('/details/{id}', [App\Http\Controllers\Web\UserController::class, 'academyMentorDetail'])->name('detail');
+            Route::get('details/{id}', [App\Http\Controllers\Web\UserController::class, 'academyMentorDetail'])->name('detail');
         });
     });
 

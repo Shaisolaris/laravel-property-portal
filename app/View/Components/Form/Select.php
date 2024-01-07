@@ -10,6 +10,7 @@ class Select extends Component
     public function __construct(
         public string $name,
         public array $options,
+        public string $label = '',
         public mixed $modalValue = null,
         public string $placeholder = 'Select Element',
     )

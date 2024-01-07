@@ -16,6 +16,7 @@ class Input extends Component
         public bool $required = true,
         public string $placeholder = '',
         public string|array $error = '',
+        public bool $reverseInputBox = false,
     )
     {
 

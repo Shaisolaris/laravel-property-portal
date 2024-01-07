@@ -237,6 +237,10 @@ return [
         'profile' => 'Profile',
         'notification' => 'Notification',
         'password' => 'Password',
+        'my-students' => 'My Students',
+        'favorite' => 'Favorite',
+        'courses' => 'Courses',
+        'sessions' => 'Sessions',
     ],
     'label' => [
         'email' => 'Email',

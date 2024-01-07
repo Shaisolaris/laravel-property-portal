@@ -1,6 +1,6 @@
 <div>
     @if(\Illuminate\Support\Str::length($label) > 0)
-        <label class="form-check-label" for="{{$label . 'label'}}">
+        <label class="form-check-label fs-12" for="{{$label . 'label'}}">
             {{$label}}
             @if($required)
                 <span class="text-black">*</span>

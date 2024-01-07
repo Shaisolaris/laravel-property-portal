@@ -10,6 +10,7 @@ class FileInput extends Component
         public string $name,
         public string $icon = '',
         public string $label = '',
+        public string $placeholder = '',
         public string|array $error = '',
         public bool $required = true,
         public bool $isMultiple = false,

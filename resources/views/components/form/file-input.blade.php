@@ -29,8 +29,12 @@
     <label
         for="{{$id}}"
         id="window_name"
-        {{ $attributes->merge(['class' => "form-control radius-26 cursor-pointer"])}}>
-        Upload {{$isMultiple ? 'files' : 'file'}}
+        {{ $attributes->merge(['class' => "form-control radius-26 cursor-pointer d-flex align-items-center"])}}>
+        @empty($attributes->get('placeholder'))
+            Upload {{$isMultiple ? 'files' : 'file'}}
+        @else
+            {{$attributes->get('placeholder')}}
+        @endif
     </label>
 
     <input

@@ -17,7 +17,9 @@
 @section('breadcrumbs')
     <x-breadcrumbs title="course">
         <x-slot:rightSide>
-            <button>Add New</button>
+            <button>
+                <a href="{{route('instructor.academy.courses.add-new-course')}}">Add New</a>
+            </button>
         </x-slot:rightSide>
     </x-breadcrumbs>
 @endsection
@@ -53,11 +55,11 @@
                         @foreach($sales as $sale)
                             @php $item = !empty($sale->webinar) ? $sale->webinar : $sale->bundle; @endphp
                             <x-card.advance :item="$item">
-                                <x-slot:number_name>Sales</x-slot>
-                                <x-slot:number>{{$item->sales_count}}</x-slot>
-                                <x-slot:lecture>8/24 lectures</x-slot>
-                                <x-slot:section>1/6 sections</x-slot>
-                                <x-slot:time>16/47m</x-slot>
+                                <x-slot:number_name>Sales</x-slot:number_name>
+                                <x-slot:number>{{$item->sales_count}}</x-slot:number>
+                                <x-slot:lecture>8/24 lectures</x-slot:lecture>
+                                <x-slot:section>1/6 sections</x-slot:section>
+                                <x-slot:time>16/47m</x-slot:time>
                             </x-card.advance>
                         @endforeach
 

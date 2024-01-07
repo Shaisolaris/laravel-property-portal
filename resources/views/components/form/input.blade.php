@@ -1,4 +1,4 @@
-@props(['id'])
+@props(['id','reverseInputBox'])
 
 @php
     $selector = isset($id) ? $id : $label . 'label';
@@ -51,12 +51,17 @@
         >
     </div>
 @else
-    <div class="form-check form-check-royal-blue">
-        <input class="form-check-input" type="{{$type}}" id="{{$selector}}" name="{{$name}}">
+    <div class="form-check form-check-royal-blue @if($reverseInputBox) justify-content-between @endif">
+        @if(!$reverseInputBox)
+            <input class="form-check-input" type="{{$type}}" id="{{$selector}}" name="{{$name}}">
+        @endif
         @if(\Illuminate\Support\Str::length($label) > 0)
             <label class="form-check-label text-dim-gray" for="{{$selector}}">
                 {{$label}}
             </label>
+        @endif
+        @if($reverseInputBox)
+            <input class="form-check-input" type="{{$type}}" id="{{$selector}}" name="{{$name}}">
         @endif
     </div>
 @endif
