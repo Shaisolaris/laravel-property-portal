@@ -41,18 +41,19 @@
         name="{{$name}}"
         hidden
         type="file"
-        id="{{$id}}"
+        id="{{$name}}"
         @required($required)
         @if($isMultiple) multiple @endif
     >
 </div>
 
 <script>
-    const fileInput = document.getElementById("{{$id}}")
-    const windowName = document.getElementById('window_name')
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileInput = document.getElementById("{{$name}}")
+        const windowName = document.getElementById('window_name')
 
-    fileInput.addEventListener('change', function (e) {
-        windowName.innerText = e.target.value.replace(/C:\\fakepath\\/, '');
+        fileInput.addEventListener('change', function (e) {
+            windowName.innerText = e.target.value.replace(/C:\\fakepath\\/, '');
+        });
     });
-
 </script>
