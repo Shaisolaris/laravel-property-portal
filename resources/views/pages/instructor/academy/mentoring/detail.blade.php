@@ -25,38 +25,48 @@
             <x-tabs :tabNavItems="$tabNavItems">
                 <x-slot:tabContent>
                     <div class="tab-pane active" id="courses" role="tabpanel">
-                        @foreach($webinars as $webinar)
-                            <div class="col-sm-6 col-xl-4">
-                                <x-card.little :item="$webinar">
-                                    <x-slot:price>
-                                        @php
-                                            $discount = 0;
-                                            if(!empty($isRewardCourses) && !empty($webinar->points)) {
-                                                $price = $webinar->points;
-                                            } elseif(!empty($webinar->price) && $webinar->price > 0) {
-                                                if($webinar->bestTicket() < $webinar->price) {
-                                                    $discount = handlePrice($webinar->bestTicket(), true, true, false, null, true);
-                                                    $price = handlePrice($webinar->price, true, true, false, null, true);
+                        <div class="row">
+                            @foreach($webinars as $webinar)
+                                <div class="col-sm-6 col-xl-4">
+                                    <x-card.little :item="$webinar">
+                                        <x-slot:price>
+                                            @php
+                                                $discount = 0;
+                                                if(!empty($isRewardCourses) && !empty($webinar->points)) {
+                                                    $price = $webinar->points;
+                                                } elseif(!empty($webinar->price) && $webinar->price > 0) {
+                                                    if($webinar->bestTicket() < $webinar->price) {
+                                                        $discount = handlePrice($webinar->bestTicket(), true, true, false, null, true);
+                                                        $price = handlePrice($webinar->price, true, true, false, null, true);
+                                                    } else {
+                                                        $price = handlePrice($webinar->price, true, true, false, null, true);
+                                                    }
                                                 } else {
-                                                    $price = handlePrice($webinar->price, true, true, false, null, true);
+                                                    $price = 0;
                                                 }
-                                            } else {
-                                                $price = 0;
-                                            }
-                                        @endphp
-                                        <x-card.partials.price value="{{$price}}" classes="fs-20 font-weight-bold" discount="{{$discount}}"/>
-                                    </x-slot:price>
-                                    <x-slot:hours>{{convertMinutesToHourAndMinute($webinar->duration)}}</x-slot:hours>
-                                    <x-slot:rating>
-                                        <x-stars value="{{$webinar->getRate()}}"/>
-                                        <div class="text-dim-gray mx-2 fs-12">reviews ({{count($webinar->reviews)}})</div>
-                                    </x-slot:rating>
-                                </x-card.little>
-                            </div>
-                        @endforeach
+                                            @endphp
+                                            <x-card.partials.price value="{{$price}}" classes="fs-20 font-weight-bold" discount="{{$discount}}"/>
+                                        </x-slot:price>
+                                        <x-slot:hours>{{convertMinutesToHourAndMinute($webinar->duration)}}</x-slot:hours>
+                                        <x-slot:rating>
+                                            <div class="d-flex align-items-center">
+                                                <x-stars simple="true" value="{{$webinar->getRate()}}"/>
+                                                <div class="text-dim-gray mx-2 fs-12">{{count($webinar->reviews)}} Reviews</div>
+                                            </div>
+                                        </x-slot:rating>
+                                    </x-card.little>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
-                    <div class="tab-pane active" id="sessions" role="tabpanel">
-
+                    <div class="tab-pane" id="sessions" role="tabpanel">
+                        <div class="row">
+                            @foreach($webinars as $webinar)
+                                <div class="col-sm-6 col-xl-4">
+                                    <x-card.members :item="$webinar"/>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </x-slot:tabContent>
             </x-tabs>

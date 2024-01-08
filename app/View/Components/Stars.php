@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 class Stars extends Component
 {
     public function __construct(
-        public float $value = 0.0
+        public float $value = 0.0,
+        public bool $simple = false
     )
     {
 

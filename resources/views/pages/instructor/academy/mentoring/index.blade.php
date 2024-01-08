@@ -49,7 +49,26 @@
                     @endforeach
                 </div>
                 <div class="tab-pane active" id="favorite" role="tabpanel">
-
+                    <x-card.simple :item="$instructor">
+                        <x-slot:image>{{$instructor->getAvatar(70)}}</x-slot:image>
+                        <x-slot:description>
+                            <p>
+                                @if(!empty($instructor->occupations))
+                                    @foreach($instructor->occupations as $occupation)
+                                        @if(!empty($occupation->category))
+                                            {{ $occupation->category->title }}{{ !($loop->last) ? ', ' : '' }}
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </p>
+                            <span>{{ truncate($instructor->about, 200) }}</span>
+                        </x-slot:description>
+                        <x-slot:link>
+                            <a href="{{ route('instructor.academy.mentoring.detail',['id' => $instructor->id]) }}">
+                                <h2 class="card-title fw-bold mb-3 fs-20 font-weight-bold">{{ $instructor->full_name }}</h2>
+                            </a>
+                        </x-slot:link>
+                    </x-card.simple>
                 </div>
             </x-slot:tabContent>
         </x-tabs>

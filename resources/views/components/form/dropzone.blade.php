@@ -46,7 +46,7 @@
     if(dropzonePreviewNode){
         let previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
         dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);
-        let dropzone = new Dropzone(".dropzone", {
+        new Dropzone(".dropzone", {
             url: 'https://httpbin.org/post',
             method: "post",
             previewTemplate: previewTemplate,

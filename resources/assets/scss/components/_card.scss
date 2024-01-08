@@ -9,6 +9,10 @@
     box-shadow: $card-box-shadow;
 }
 
+.card-image {
+    height: 200px;
+}
+
 .card-body {
     --in-card-spacer-y: 1.25rem;
     --in-card-spacer-x: 1.25rem;
@@ -75,7 +79,6 @@ $value in $theme-colors {
         .card-header, .card-footer {
             border-color: $value;
         }
-
     }
 }
 

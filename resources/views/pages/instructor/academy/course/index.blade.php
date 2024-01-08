@@ -17,9 +17,7 @@
 @section('breadcrumbs')
     <x-breadcrumbs title="course">
         <x-slot:rightSide>
-            <button>
-                <a href="{{route('instructor.academy.courses.add-new-course')}}">Add New</a>
-            </button>
+            <x-button.base varible="light-blue" key="add-new" />
         </x-slot:rightSide>
     </x-breadcrumbs>
 @endsection
@@ -88,7 +86,9 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="draft" role="tabpanel">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, dignissimos ea eos eum facere inventore libero modi quam! Adipisci dolorum error esse, est excepturi fuga quod reiciendis sequi similique voluptas!
+                    <div>
+
+                    </div>
                 </div>
             </x-slot:tabContent>
         </x-tabs>
