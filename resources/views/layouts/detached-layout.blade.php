@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{ public_path('favicon.ico') }}">
         @include('layouts.partials.head-css')
     </head>
 

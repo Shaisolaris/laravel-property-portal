@@ -10,7 +10,7 @@ class Badge extends Component
         public string $key = '',
         public string $size = '',
         public string $type = '',
-        public string $text = '',
+        public string $body = '',
         public readonly string $variable = 'beige',
     )
     {

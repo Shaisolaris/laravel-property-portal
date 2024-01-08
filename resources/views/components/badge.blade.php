@@ -2,6 +2,6 @@
     @if(\Illuminate\Support\Str::length($key) > 0)
         {{ trans("translation.badge.$key") }}
     @else
-        {!! $text !!}
+        {!! $body !!}
     @endif
 </span>

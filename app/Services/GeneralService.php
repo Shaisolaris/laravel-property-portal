@@ -55,8 +55,8 @@ class GeneralService
                     'text' => "Forum"
                 ],
                 [
-                    'href' => route('payments'),
-                    'active' => request()->routeIs('payments'),
+                    'href' => route('instructor.school.payment'),
+                    'active' => request()->routeIs('instructor.school.payment'),
                     'icon' => 'ri-bank-card-line',
                     'text' => "Payments"
                 ],

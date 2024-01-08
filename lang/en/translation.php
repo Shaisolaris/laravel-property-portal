@@ -241,6 +241,8 @@ return [
         'favorite' => 'Favorite',
         'courses' => 'Courses',
         'sessions' => 'Sessions',
+        'payment' => 'Payment',
+        'history' => 'History',
     ],
     'label' => [
         'email' => 'Email',
@@ -252,12 +254,13 @@ return [
         'courses' => 'Courses',
         'sessions' => 'Sessions',
     ],
-    'page-titles' => [
+    'page-title' => [
         'assignments' => 'Assignments',
         'mentoring' => 'Mentoring',
         'detail' => 'Mentoring',
         'course' => 'Course',
         'settings' => 'Settings',
+        'sales-report' => 'Sales Report'
     ],
     "button" => [
         'get_in_touch' => 'Get in touch',
@@ -341,6 +344,14 @@ return [
                 [ 'title' => 'Tips', 'text' => 'Notifications related to learning tips, newsletters, and feature updates' ],
                 [ 'title' => 'Promotions', 'text' => 'Promotions, offers, and coupons' ],
             ],
+        ]
+    ],
+    'block-amount' => [
+        'payment' => [
+            'total-students' => 'Total Students',
+            'courses-sale' => 'Courses sale',
+            'one-on-one-sessions ' => 'One on One Sessions',
+            'total-earning' => 'Total Earning',
         ]
     ]
 ];

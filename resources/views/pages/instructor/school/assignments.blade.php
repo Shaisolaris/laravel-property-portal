@@ -16,7 +16,7 @@
 @section('content')
     <x-card.blocks-amount :items="$items" cols="col-12 col-sm-6 col-lg-3" />
 
-    <x-tabs :tab-nav-items="[[ 'title' => 'all', 'active' => true ], [ 'title' => 'recent', 'active' => false ]]"/>
+    <x-tabs :tab-nav-items="[[ 'title' => 'all', 'active' => true ], [ 'title' => 'recent', 'active' => false ]]" />
 
     <x-table.table key-header="instructor_school_assignments">
         <x-slot:body>
