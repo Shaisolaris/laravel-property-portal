@@ -1,7 +1,7 @@
 <div>
     @if(\Illuminate\Support\Str::length($label) > 0)
         <label for="{{$label . 'label'}}" class="fs-12">
-            {{$label}}
+            <x-text key="label.{{$label}}" />
             @if(isset($required))
                 <span class="text-black">*</span>
             @endif
@@ -22,8 +22,8 @@
             id="{{$id}}"
             data-provider="flatpickr"
             data-date-format="d M, Y"
-            placeholder="{{isset($placeholder) ? $placeholder : ''}}"
-            {{ $attributes->merge(['class' => "form-control radius-26"])}}
+            @isset($placeholder)placeholder="{{trans("translation.placeholder.$placeholder")}}"@endisset
+            {{ $attributes->merge(['class' => "form-control flatpickr radius-26 text-black"])}}
         >
     </div>
 </div>

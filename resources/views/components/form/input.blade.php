@@ -1,4 +1,4 @@
-@props(['id','reverseInputBox'])
+@props(['id', 'reverseInputBox'])
 
 @php
     $selector = isset($id) ? $id : $label . 'label';

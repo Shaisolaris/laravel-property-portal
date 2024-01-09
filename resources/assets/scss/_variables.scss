@@ -76,19 +76,22 @@ $cyan: #25a0e2;
 
 /* additional */
 $light-blue: #9BB8ED;
-$light-yellow: #FFF3C8;
+$light-steel-blue: #9BB8ED66;
 $royal-blue: #154BD8;
+$beige-blue: #F3F6FD;
+$light-yellow: #FFF3C8;
 $dim-gray: #676A6C;
 $beige: #F7F6F2;
-$beige-blue: #F3F6FD;
 $gainsboro: #E3E3E3;
-$thistle: rgba(222, 179, 224, 0.40);
-$light-steel-blue: rgba(155, 184, 237, 0.40);
-$crimson: rgba(216, 21, 68, 0.40);
+$thistle: #DEB3E066;
+$crimson: #D8154466;
+$cosmic-sapphire: #122D98;
 /**/
 /**/
-$border-base-color: #F1F3F5;
+$border-base-color: #E3E3E3;
+$card-border-base-color: #F1F3F5;
 $border-focus-base-color: #c0c2c4;
+$border-color-1: #EEEFFF;
 
 // scss-docs-end color-variables
 // scss-docs-start colors-map
@@ -116,7 +119,10 @@ $colors: (
     "thistle": $thistle,
     "light-steel-blue": $light-steel-blue,
     "crimson": $crimson,
+    "cosmic-sapphire": $cosmic-sapphire,
     "border-base-color": $border-base-color,
+    "border-color-1": $border-color-1,
+    "card-border-base-color": $card-border-base-color,
 );
 // scss-docs-end colors-map
 
@@ -321,6 +327,17 @@ $crimson-600: shade-color($crimson, 20%);
 $crimson-700: shade-color($crimson, 40%);
 $crimson-800: shade-color($crimson, 60%);
 $crimson-900: shade-color($crimson, 80%);
+
+
+$cosmic-sapphire-100: tint-color($cosmic-sapphire, 80%);
+$cosmic-sapphire-200: tint-color($cosmic-sapphire, 60%);
+$cosmic-sapphire-300: tint-color($cosmic-sapphire, 40%);
+$cosmic-sapphire-400: tint-color($cosmic-sapphire, 20%);
+$cosmic-sapphire-500: $cosmic-sapphire;
+$cosmic-sapphire-600: shade-color($cosmic-sapphire, 20%);
+$cosmic-sapphire-700: shade-color($cosmic-sapphire, 40%);
+$cosmic-sapphire-800: shade-color($cosmic-sapphire, 60%);
+$cosmic-sapphire-900: shade-color($cosmic-sapphire, 80%);
 /**/
 
 $blues: (
@@ -527,7 +544,7 @@ $thistles: (
     "thistle-900": $thistle-900
 );
 
-$light-steel-blue: (
+$light-steel-blues: (
     "light-steel-blue-100": $light-steel-blue-100,
     "light-steel-blue-200": $light-steel-blue-200,
     "light-steel-blue-300": $light-steel-blue-300,
@@ -539,7 +556,7 @@ $light-steel-blue: (
     "light-steel-blue-900": $light-steel-blue-900
 );
 
-$crimson: (
+$crimsons: (
     "crimson-100": $crimson-100,
     "crimson-200": $crimson-200,
     "crimson-300": $crimson-300,
@@ -549,6 +566,18 @@ $crimson: (
     "crimson-700": $crimson-700,
     "crimson-800": $crimson-800,
     "crimson-900": $crimson-900
+);
+
+$cosmic-sapphires: (
+    "cosmic-sapphire-100": $cosmic-sapphire-100,
+    "cosmic-sapphire-200": $cosmic-sapphire-200,
+    "cosmic-sapphire-300": $cosmic-sapphire-300,
+    "cosmic-sapphire-400": $cosmic-sapphire-400,
+    "cosmic-sapphire-500": $cosmic-sapphire-500,
+    "cosmic-sapphire-600": $cosmic-sapphire-600,
+    "cosmic-sapphire-700": $cosmic-sapphire-700,
+    "cosmic-sapphire-800": $cosmic-sapphire-800,
+    "cosmic-sapphire-900": $cosmic-sapphire-900
 );
 
 
@@ -571,9 +600,10 @@ $royal-blue: #154BD8;
 $dim-gray: #676A6C;
 $beige: #F7F6F2;
 $gainsboro: #E3E3E3;
-$thistle: rgba(222, 179, 224, 0.4);
-$light-steel-blue: rgba(155, 184, 237, 0.4);
-$crimson: rgba(216, 21, 68, 0.4);
+$thistle: #deb3e0;
+$light-steel-blue: #9bb8ed;
+$crimson: #d81544;
+$cosmic-sapphire: #122D98;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -595,6 +625,7 @@ $theme-colors: (
     "thistle": $thistle,
     "light-steel-blue": $light-steel-blue,
     "crimson": $crimson,
+    "cosmic-sapphire": $cosmic-sapphire,
 );
 // scss-docs-end theme-colors-map
 
@@ -616,6 +647,7 @@ $gainsboro-text-emphasis:        shade-color($gainsboro, 15%);
 $thistle-text-emphasis:          shade-color($thistle, 15%);
 $light-steel-blue-text-emphasis: shade-color($light-steel-blue, 15%);
 $crimson-text-emphasis:          shade-color($crimson, 15%);
+$cosmic-sapphire-text-emphasis:  shade-color($cosmic-sapphire, 15%);
 // scss-docs-end theme-text-variables
 
 // scss-docs-start theme-bg-subtle-variables
@@ -636,6 +668,7 @@ $gainsboro-bg-subtle:        tint-color($gainsboro, 85%);
 $thistle-bg-subtle:          tint-color($thistle, 85%);
 $light-steel-blue-bg-subtle: tint-color($light-steel-blue, 85%);
 $crimson-bg-subtle:          tint-color($crimson, 85%);
+$cosmic-sapphire-bg-subtle:          tint-color($cosmic-sapphire, 85%);
 // scss-docs-end theme-bg-subtle-variables
 
 // scss-docs-start theme-border-subtle-variables
@@ -656,6 +689,7 @@ $gainsboro-border-subtle:        tint-color($gainsboro, 60%);
 $thistle-border-subtle:          tint-color($thistle, 60%);
 $light-steel-blue-border-subtle: tint-color($light-steel-blue, 60%);
 $crimson-border-subtle:          tint-color($crimson, 60%);
+$cosmic-sapphire-border-subtle:          tint-color($cosmic-sapphire, 60%);
 // scss-docs-end theme-border-subtle-variables
 
 // Characters which are escaped by the escape-svg function
@@ -993,6 +1027,7 @@ $font-size-custom: (
     23: 23px,
     24: 24px,
     36: 36px,
+    40: 40px,
     48: 48px
 );
 
@@ -1666,7 +1701,7 @@ $card-title-spacer-y: $spacer * .5;
 $card-title-color: var(--#{$prefix}heading-color);
 $card-subtitle-color: null;
 $card-border-width: 1px;
-$card-border-color: var(--#{$prefix}border-color);
+$card-border-color: $card-border-base-color;
 $card-border-radius: var(--#{$prefix}border-radius);
 $card-box-shadow: none;
 $card-inner-border-radius: $card-border-radius;

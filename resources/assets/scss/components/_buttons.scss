@@ -258,3 +258,24 @@ $value in $theme-colors {
         }
     }
 }
+
+$buttons: (
+    "light-blue": $light-blue-text-emphasis,
+    "light-yellow": $light-yellow-text-emphasis,
+    "royal-blue": $royal-blue-text-emphasis,
+    "dim-gray": $dim-gray-text-emphasis,
+    "beige": $beige-text-emphasis,
+    "gainsboro": $gainsboro-text-emphasis,
+    "thistle": $thistle-text-emphasis,
+    "light-steel-blue": $light-steel-blue-text-emphasis,
+    "crimson": $crimson-text-emphasis,
+    "cosmic-sapphire": $cosmic-sapphire-text-emphasis,
+);
+
+@each $buttonName, $buttonColor in $buttons {
+    .btn-#{$buttonName}:hover {
+        background-color: $buttonColor;
+        border-color: $buttonColor;
+        color: #ffffff;
+    }
+}

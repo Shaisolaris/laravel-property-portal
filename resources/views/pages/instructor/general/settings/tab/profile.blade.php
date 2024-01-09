@@ -39,7 +39,7 @@
 
 <x-card.base>
     <div class="pb-3">
-        <x-text key="page.settings.profile.profile_photo" class="fw-medium" />
+        <x-text key="page.settings.profile.profile-photo" class="fw-medium" />
     </div>
 
     <div class="position-relative">
@@ -65,7 +65,7 @@
 
     <div>
         <div class="pb-3">
-            <x-text key="page.settings.profile.basic_information.title" class="fw-medium" />
+            <x-text key="page.settings.profile.basic-information.title" class="fw-medium" />
         </div>
 
         <form method="POST" action="">
@@ -74,7 +74,7 @@
                     <div class="row align-items-center gx-4">
                         <div class="col col-12 col-sm-3">
                             <x-text
-                                key="page.settings.profile.basic_information.items.0"
+                                key="page.settings.profile.basic-information.items.0"
                                 class="text-dim-gray fw-medium"
                             />
                         </div>
@@ -104,7 +104,7 @@
                     <div class="row align-items-center gx-4">
                         <div class="col col-12 col-sm-3">
                             <x-text
-                                key="page.settings.profile.basic_information.items.1"
+                                key="page.settings.profile.basic-information.items.1"
                                 class="text-dim-gray fw-medium"
                             />
                         </div>
@@ -134,7 +134,7 @@
                     <div class="row align-items-center gx-4">
                         <div class="col col-12 col-sm-3">
                             <x-text
-                                key="page.settings.profile.basic_information.items.2"
+                                key="page.settings.profile.basic-information.items.2"
                                 class="text-dim-gray fw-medium"
                             />
                         </div>
@@ -164,7 +164,7 @@
                     <div class="row align-items-center gx-4">
                         <div class="col col-12 col-sm-3">
                             <x-text
-                                key="page.settings.profile.basic_information.items.3"
+                                key="page.settings.profile.basic-information.items.3"
                                 class="text-dim-gray fw-medium"
                             />
                         </div>
@@ -194,7 +194,7 @@
                     <div class="row align-items-center gx-4">
                         <div class="col col-12 col-sm-3">
                             <x-text
-                                key="page.settings.profile.basic_information.items.4"
+                                key="page.settings.profile.basic-information.items.4"
                                 class="text-dim-gray fw-medium"
                             />
                         </div>

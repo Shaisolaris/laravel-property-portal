@@ -18,7 +18,7 @@
 
     <x-tabs :tab-nav-items="[[ 'title' => 'all', 'active' => true ], [ 'title' => 'recent', 'active' => false ]]" />
 
-    <x-table.table key-header="instructor_school_assignments">
+    <x-table.base key-header="{{\App\Enums\TableHeaderEnum::HEADER_INSTRUCTOR_SCHOOL_ASSIGNMENTS}}">
         <x-slot:body>
             @foreach($assignments as $assignment)
                 <tr>
@@ -58,5 +58,5 @@
         <x-slot:pagination>
             {{ $assignments->links() }}
         </x-slot:pagination>
-    </x-table.table>
+    </x-table.base>
 @endsection

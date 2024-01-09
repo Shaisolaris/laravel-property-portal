@@ -222,13 +222,13 @@ class LoginController extends Controller
         }
 
         $checkLoginDeviceLimit = $this->checkLoginDeviceLimit($user);
-//        if ($checkLoginDeviceLimit != "ok") {
-//            $this->guard()->logout();
-//            $request->session()->flush();
-//            $request->session()->regenerate();
-//
-//            return $this->sendMaximumActiveSessionResponse();
-//        }
+        if ($checkLoginDeviceLimit != "ok") {
+            $this->guard()->logout();
+            $request->session()->flush();
+            $request->session()->regenerate();
+
+            return $this->sendMaximumActiveSessionResponse();
+        }
 
         $user->update([
             'logged_count' => (int)$user->logged_count + 1

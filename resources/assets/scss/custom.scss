@@ -14,10 +14,6 @@
     border-radius: 0 6px 6px;
 }
 
-.bg-crimson, .bg-light-steel-blue, .bg-thistle {
-    --in-bg-opacity: 0.4;
-}
-
 .navbar-header-2 {
     display: none;
 
@@ -53,5 +49,27 @@ $shadows: (
 .hover-element {
     :hover {
         cursor: pointer;
+    }
+}
+
+@for $i from 1 through 1000 {
+    .hp-#{$i} {
+        height: #{$i}px;
+    }
+
+    .wp-#{$i} {
+        width: #{$i}px;
+    }
+}
+
+@for $i from 1 through 300 {
+    .radius-#{$i} {
+        border-radius: #{$i}px;
+    }
+}
+
+i {
+    &:not(.fs-) {
+        font-size: 16px;
     }
 }

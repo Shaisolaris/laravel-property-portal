@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\View\View;
 use Illuminate\View\Component;
 
 class Modal extends Component
@@ -19,12 +20,8 @@ class Modal extends Component
         public bool $isTopic = false,
     ) {}
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+
+    public function render(): View
     {
         return view('components.modal');
     }

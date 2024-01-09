@@ -228,6 +228,13 @@ return [
     'from' => 'From',
     'assigned' => 'Assigned',
 
+    'placeholder' => [
+        'search-by-student-name' => 'Search by student name',
+        'type' => 'Type',
+        'status' => 'Status',
+        'from' => 'From',
+        'to' => 'To',
+    ],
     'tab' => [
         'all' => 'All',
         'recent' => 'Recent',
@@ -274,6 +281,7 @@ return [
         'save-draft' => 'Save as Draft',
         'previous' => 'Previous',
         'continue' => 'Continue',
+        'delete' => 'Delete'
     ],
     "badge" => [
         'active' => 'Active',
@@ -282,7 +290,7 @@ return [
         'inactive' => 'Inactive',
     ],
     "button-toggle-modal" => [
-
+        'add-new-payment-method' => 'Add new payment method'
     ],
     "course" => [
         'title' => "Course",
@@ -308,6 +316,15 @@ return [
                 'deadline' => 'Deadline',
                 'score' => 'Score',
                 'status' => 'Status',
+                'action' => 'Action',
+            ],
+            'instructor_school_payment_history' => [
+                'course_name' => 'Course Name',
+                'student' => 'Student',
+                'date' => 'Date',
+                'total_price' => 'Total Price',
+                'status' => 'Status',
+                'payment_type' => 'Payment type',
                 'action' => 'Action',
             ]
         ],
@@ -336,8 +353,8 @@ return [
     'page' => [
         'settings' => [
             'profile' => [
-                'profile_photo' => 'Profile Photo',
-                'basic_information' => [
+                'profile-photo' => 'Profile Photo',
+                'basic-information' => [
                     'title' => 'Basic Information',
                     'items' => ['Display Name', 'Date of Birth', 'Gender', 'Timezone', 'Languages']
                 ],
@@ -348,6 +365,10 @@ return [
                 [ 'title' => 'Tips', 'text' => 'Notifications related to learning tips, newsletters, and feature updates' ],
                 [ 'title' => 'Promotions', 'text' => 'Promotions, offers, and coupons' ],
             ],
+        ],
+        'payment' => [
+            'credit-card-ends-with' => 'Credit card ends with',
+            'expiration-date' => 'Expiration date',
         ]
     ],
     'block-amount' => [
@@ -357,6 +378,9 @@ return [
             'one-on-one-sessions ' => 'One on One Sessions',
             'total-earning' => 'Total Earning',
         ]
+    ],
+    'modal-title' => [
+        'add-new-payment-method-modal' => 'Add New Payment method'
     ]
 ];
 ?>
