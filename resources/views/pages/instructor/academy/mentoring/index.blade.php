@@ -48,7 +48,7 @@
                         </x-card.simple>
                     @endforeach
                 </div>
-                <div class="tab-pane active" id="favorite" role="tabpanel">
+                <div class="tab-pane" id="favorite" role="tabpanel">
                     <x-card.simple :item="$instructor">
                         <x-slot:image>{{$instructor->getAvatar(70)}}</x-slot:image>
                         <x-slot:description>

@@ -26,11 +26,11 @@ Route::get('dashboard', function () {
 
 
 /***  OUR ***/
-Route::get('messages', function () {return view('pages.instructor.academy.messages');})->name('messages');
 Route::get('forum', function () {return view('pages.instructor.academy.forum');})->name('forum');
+Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
 Route::get('payments', function () {return view('pages.instructor.academy.payments');})->name('payments');
 Route::get('settings', function () {return view('pages.instructor.general.settings');})->name('settings');
-Route::get('profile', function () {return view('pages.instructor.general.profile');})->name('profile');
+Route::get('messages', function () {return view('pages.instructor.academy.messages');})->name('messages');
 Route::get('change-password', function () {return view('pages.instructor.general.change-password');})->name('change-password');
 
 Route::prefix('instructor')->name('instructor.')->group(function () {

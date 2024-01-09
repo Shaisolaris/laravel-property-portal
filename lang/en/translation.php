@@ -270,6 +270,10 @@ return [
         'upload' => 'Upload',
         'cancel' => 'Cancel',
         'add-new' => 'Add new',
+        'send-review' => 'Send for review',
+        'save-draft' => 'Save as Draft',
+        'previous' => 'Previous',
+        'continue' => 'Continue',
     ],
     "badge" => [
         'active' => 'Active',

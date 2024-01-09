@@ -6,7 +6,7 @@
     $emptyStars = 5 - $fullStars - $halfStar;
 @endphp
 <div>
-    @if(!empty($simple) && !$simple)
+    @if(!$simple)
         @for ($i = 0; $i < $fullStars; $i++)
             <i class="bx bxs-star fs-17 text-light-blue"></i>
         @endfor

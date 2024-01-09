@@ -17,7 +17,7 @@
 @section('breadcrumbs')
     <x-breadcrumbs title="course">
         <x-slot:rightSide>
-            <x-button.base varible="light-blue" key="add-new" />
+            <x-button.link :href="route('instructor.academy.courses.add-new-course')" key="add-new" />
         </x-slot:rightSide>
     </x-breadcrumbs>
 @endsection

@@ -1,7 +1,7 @@
 <div>
-    <div>
+    {{--<div>
         <div class="mb-3">
-            <label for="choices-multiple-remove-button" class="form-label text-muted">With remove button</label>
+            <label for="choices-multiple-remove-button" class="form-label text-black fs-12">{{$label}}</label>
             <select
                 id="choices-multiple-remove-button"
                 class="form-control"
@@ -16,11 +16,11 @@
                 <option value="Choice 4">Choice 4</option>
             </select>
         </div>
-    </div>
+    </div>--}}
 
     <div>
         <div class="mb-3">
-            <label for="choices-multiple-groups" class="form-label text-muted">Option groups</label>
+            <label for="choices-multiple-remove-button" class="form-label text-black fs-12">{{$label}}</label>
             <select
                 class="form-control"
                 id="choices-multiple-groups"
@@ -30,7 +30,7 @@
                 data-choices-removeItem
                 data-choices-multiple-groups="true"
             >
-                <option value="">Choose a city</option>
+                <option value="">{{$placeholder}}</option>
                 <optgroup label="UK">
                     <option value="London">London</option>
                     <option value="Manchester">Manchester</option>

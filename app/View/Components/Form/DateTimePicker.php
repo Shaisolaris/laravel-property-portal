@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 class DateTimePicker extends Component
 {
     public function __construct(
+        public string $id = '',
         public string $icon = '',
         public string $label = '',
         public string $type = 'date',
@@ -15,7 +16,6 @@ class DateTimePicker extends Component
         public string $placeholder = '',
         public string|array $error = '',
     ) {}
-
 
     public function render(): View
     {

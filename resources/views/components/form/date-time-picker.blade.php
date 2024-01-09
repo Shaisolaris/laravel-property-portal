@@ -19,7 +19,7 @@
         @endif
         <input
             type="text"
-            id="{{$label . 'label'}}"
+            id="{{$id}}"
             data-provider="flatpickr"
             data-date-format="d M, Y"
             placeholder="{{isset($placeholder) ? $placeholder : ''}}"
@@ -27,3 +27,5 @@
         >
     </div>
 </div>
+
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js'></script>
