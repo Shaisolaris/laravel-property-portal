@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 
 class DesignController extends Controller
 {
+    public function grade()
+    {
+        return view('pages.instructor.school.grades');
+    }
+
     public function academy()
     {
         return view('design.academy_landing_page');

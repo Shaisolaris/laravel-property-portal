@@ -270,6 +270,7 @@ return [
         'settings' => 'Settings',
         'sales-report' => 'Sales Report',
         'quiz' => 'Comments statistics',
+        'grade' => 'Grades',
     ],
     "button" => [
         'get_in_touch' => 'Get in touch',
@@ -339,6 +340,21 @@ return [
                 'status' => 'Status',
                 'date-created' => 'Date Created',
                 'actions' => 'Actions',
+            ],
+            'instructor_school_grades' => [
+                'student' => 'Student',
+                'midterm' => 'Midterm (20%)',
+                'homework' => 'Homework (20%)',
+                'final-exam' => 'Final Exam (60%)',
+                'average-score' => 'Average Score',
+                '' => '',
+            ],
+            'instructor_school_grades_dropdown' => [
+                'student' => 'Student',
+                'midterm' => 'Midterm (20%)',
+                'homework' => 'Homework (20%)',
+                'final-exam' => 'Final Exam (60%)',
+                'average-score' => 'Average Score',
             ]
         ],
         "filters" => [

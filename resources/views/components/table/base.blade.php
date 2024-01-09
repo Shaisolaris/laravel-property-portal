@@ -6,10 +6,10 @@
     {{ $filterSort ?? '' }}
 
     <table class="table table-nowrap table-centered align-middle {{$classType}}">
-        <thead class="text-black">
+        <thead>
             <tr>
                 @foreach($headItems as $item)
-                    <th scope="col" class="{{!$loop->first ? $align : ''}}">{{ trans("translation.table.headers.$item") }}</th>
+                    <th scope="col" class="{{!$loop->first ? $align : ''}} {{\Illuminate\Support\Str::length($variable) > 0 ? "text-$variable" : 'text-black'}}">{{ trans("translation.table.headers.$item") }}</th>
                 @endforeach
             </tr>
         </thead>

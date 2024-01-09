@@ -2,10 +2,10 @@
 
 namespace App\View\Components\Table;
 
-use Illuminate\View\View;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class Base extends Component
+class OnlyTable extends Component
 {
     public function __construct(
         public string $keyHeader,
@@ -22,12 +22,6 @@ class Base extends Component
     }
 
 
-    public function render(): View
-    {
-        return view('components.table.base');
-    }
-
-
     private function setHeadItems(): array
     {
         $keys = [];
@@ -37,5 +31,10 @@ class Base extends Component
         }
 
         return $keys;
+    }
+
+    public function render(): View
+    {
+        return view('components.table.only-table');
     }
 }

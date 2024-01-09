@@ -45,13 +45,13 @@ class GeneralService
                 [
                     'href' => route('instructor.school.quiz'),
                     'active' => request()->routeIs('instructor.school.quiz'),
-                    'icon' => 'bx bx-message-rounded',
+                    'icon' => 'ri-question-line',
                     'text' => "Quizzes"
                 ],
                 [
-                    'href' => route('messages'),
-                    'active' => request()->routeIs('messages'),
-                    'icon' => 'bx bx-message-rounded',
+                    'href' => route('instructor.school.grade'),
+                    'active' => request()->routeIs('instructor.school.grade'),
+                    'icon' => 'ri-calendar-check-line',
                     'text' => "Grades"
                 ],
                 [
