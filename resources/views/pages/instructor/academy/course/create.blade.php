@@ -3,9 +3,10 @@
 @php
     $number = request()->route('step'); // TODO::
 
-    if(is_null($number) && empty($number)) {
-        $number = 1;
-    }
+    if(is_null($number) && empty($number)) $number = 1;
+
+    if($number < 1) $number = 1;
+    if($number > 6) $number = 6;
 @endphp
 
 @section('breadcrumbs')
@@ -48,7 +49,7 @@
             </div>
         </div>
     </form>
-    <div class="navigation-by-form-steps d-flex justify-content-between">
+    <div class="navigation-by-form-steps d-flex justify-content-between mt-3">
         <x-button.link
             disabled="{{$number <= 1 ? true : false}}"
             :href="route('instructor.academy.courses.add-new-course',['step' => $number - 1])"

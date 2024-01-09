@@ -1,0 +1,86 @@
+.curriculum-steps {
+    &--add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $beige;
+        padding: 17px;
+        gap: 5px;
+        margin-top: 15px;
+    }
+
+    & .curriculum-step {
+        background: $beige;
+        padding: 16px;
+
+        &__header {
+            color: $dim-gray;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+
+            &--actions {
+                gap: 10px;
+                display: flex;
+            }
+
+            &--name {
+                color: $black;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+
+            &--sort {
+                margin-right: 8px;
+                color: $black;
+            }
+        }
+
+        &__body {
+
+            &--item {
+                margin-bottom: 12px;
+                padding: 10px;
+                background: $white;
+
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+
+                    &--name {
+                        color: $black;
+                    }
+
+                    &--sort {
+                        margin-right: 8px;
+                        color: $black;
+                    }
+                }
+
+                &-fields {
+                    display: flex;
+                    margin-top: 5px;
+                    padding: 0 23px;
+                    gap: 10px;
+
+                    & input {
+                        padding: 0 0 0 10px;
+                    }
+
+                    & .input-group {
+                        height: 31px;
+                    }
+
+                    & .input-group-text {
+                        padding: 10px;
+                        height: 31px;
+                        border-bottom-left-radius: 6px !important;
+                        border-top-left-radius: 6px !important;
+                    }
+                }
+            }
+        }
+    }
+}
