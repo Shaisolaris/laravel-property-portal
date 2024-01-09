@@ -2,6 +2,8 @@
 
 use App\Mixins\Financial\MultiCurrency;
 use Illuminate\Support\Facades\Cookie;
+use Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
 
 function getTemplate()
 {
@@ -2267,4 +2269,20 @@ function getLocalLanguages(): array
     }
 
     return $localLanguage;
+}
+
+
+if (! function_exists('setActiveTabNavItem')) {
+    /**
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
+    function setActiveTabNavItem(bool $origin, string $key, mixed $value): ?bool
+    {
+        if ($origin) {
+            return  !request()->has($key) || request()->get($key) === $value;
+        } else {
+            return request()->get($key) === $value;
+        }
+    }
 }

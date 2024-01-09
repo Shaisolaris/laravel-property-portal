@@ -53,7 +53,7 @@
                                         <span class="fs-14">{{ $assignment?->assignmentHistory?->grade }}/{{ $assignment?->grade }}</span>
                                     </td>
                                     <td>
-                                        <x-table.partials.td.status :key="$assignment?->status" variable="" />
+                                        <x-table.partials.td.status :key="$assignment?->status" />
                                     </td>
                                     <td>
                                         <x-link :href="route('instructor.academy.assignment.show', $assignment?->id)" icon="ri-eye-fill" key="view_assignment" />

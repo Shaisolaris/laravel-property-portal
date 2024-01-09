@@ -59,7 +59,8 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
         });
 
         Route::get('settings', [\App\Http\Controllers\Panel\UserController::class, 'setting'])->name('settings');
-        Route::get('payments', [\App\Http\Controllers\Web\DesignController::class, 'payment'])->name('payment');
+        Route::get('payments', [\App\Http\Controllers\Panel\SaleController::class, 'index'])->name('payment');
+        Route::get('quizzes', [\App\Http\Controllers\Panel\QuizController::class, 'index'])->name('quiz');
     });
 });
 /***  END ***/

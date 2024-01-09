@@ -43,6 +43,18 @@ class GeneralService
                     'text' => "Messages"
                 ],
                 [
+                    'href' => route('instructor.school.quiz'),
+                    'active' => request()->routeIs('instructor.school.quiz'),
+                    'icon' => 'bx bx-message-rounded',
+                    'text' => "Quizzes"
+                ],
+                [
+                    'href' => route('messages'),
+                    'active' => request()->routeIs('messages'),
+                    'icon' => 'bx bx-message-rounded',
+                    'text' => "Grades"
+                ],
+                [
                     'href' => route('instructor.academy.mentoring.index'),
                     'active' => request()->routeIs('instructor.academy.mentoring.index') || request()->routeIs('instructor.academy.mentoring.detail'),
                     'icon' => 'ri-group-line',

@@ -108,7 +108,6 @@ class DesignController extends Controller
 
     public function payment()
     {
-        return view('pages.instructor.general.payments');
         return view('design.payment');
     }
 

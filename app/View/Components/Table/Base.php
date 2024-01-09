@@ -9,6 +9,7 @@ class Base extends Component
 {
     public function __construct(
         public string $keyHeader,
+        public string $align = '',
         public mixed  $body = null,
         public array  $headItems = [],
         public mixed  $pagination = null,

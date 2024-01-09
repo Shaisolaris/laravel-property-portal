@@ -2,10 +2,10 @@
 
 @php
     $items = [
-       ['text' => 'block-amount.payment.total-students', 'icon' => 'ri-group-fill', 'amount' => 1],
-       ['text' => 'block-amount.payment.courses-sale', 'icon' => 'bx bx-bar-chart-alt', 'amount' => 2],
-       ['text' => 'block-amount.payment.one-on-one-sessions ', 'icon' => 'ri-customer-service-fill', 'amount' => 3],
-       ['text' => 'block-amount.payment.total-earning', 'icon' => 'ri-money-dollar-circle-line', 'amount' => 4]
+       ['text' => 'block-amount.payment.total-students', 'icon' => 'ri-group-fill', 'amount' => $studentCount],
+       ['text' => 'block-amount.payment.courses-sale', 'icon' => 'bx bx-bar-chart-alt', 'amount' => $webinarCount],
+       ['text' => 'block-amount.payment.one-on-one-sessions ', 'icon' => 'ri-customer-service-fill', 'amount' => $meetingCount],
+       ['text' => 'block-amount.payment.total-earning', 'icon' => 'ri-money-dollar-circle-line', 'amount' => $totalSales]
     ];
 
     $payments = [

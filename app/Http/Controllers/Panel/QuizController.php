@@ -40,9 +40,7 @@ class QuizController extends Controller
             'webinar',
             'quizQuestions',
             'quizResults',
-        ])->orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+        ])->orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->paginate(10);
 
         $userSuccessRate = [];
         $questionsCount = 0;
@@ -78,7 +76,8 @@ class QuizController extends Controller
             'allQuizzesLists' => $allQuizzesLists
         ];
 
-        return view(getTemplate() . '.panel.quizzes.lists', $data);
+        return view('pages.instructor.school.quiz.index', $data);
+//        return view(getTemplate() . '.panel.quizzes.lists', $data);
     }
 
     public function filters(Request $request, $query)

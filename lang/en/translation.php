@@ -250,6 +250,7 @@ return [
         'sessions' => 'Sessions',
         'payment' => 'Payment',
         'history' => 'History',
+        'active' => 'Active',
     ],
     'label' => [
         'email' => 'Email',
@@ -267,7 +268,8 @@ return [
         'detail' => 'Mentoring',
         'course' => 'Course',
         'settings' => 'Settings',
-        'sales-report' => 'Sales Report'
+        'sales-report' => 'Sales Report',
+        'quiz' => 'Comments statistics',
     ],
     "button" => [
         'get_in_touch' => 'Get in touch',
@@ -326,6 +328,17 @@ return [
                 'status' => 'Status',
                 'payment_type' => 'Payment type',
                 'action' => 'Action',
+            ],
+            'instructor_school_quizzes' => [
+                'title' => 'Title',
+                'questions' => 'Questions',
+                'time-min' => 'Time (Min)',
+                'total-mark' => 'Total Mark',
+                'pass-mark' => 'Pass Mark',
+                'students' => 'Students',
+                'status' => 'Status',
+                'date-created' => 'Date Created',
+                'actions' => 'Actions',
             ]
         ],
         "filters" => [
@@ -340,6 +353,10 @@ return [
             "active" => 'Active',
             "accepted" => 'Accepted',
             "not_accepted" => 'Not Accepted',
+        ],
+        'action' => [
+            'delete' => 'Delete',
+            'edit' => 'Edit',
         ]
     ],
     'link' => [
@@ -377,6 +394,11 @@ return [
             'courses-sale' => 'Courses sale',
             'one-on-one-sessions ' => 'One on One Sessions',
             'total-earning' => 'Total Earning',
+        ],
+        'quiz' => [
+            'quizzes' => 'Quizzes',
+            'questions' => 'Questions',
+            'students' => 'Students',
         ]
     ],
     'modal-title' => [

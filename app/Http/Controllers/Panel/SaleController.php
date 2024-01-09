@@ -58,6 +58,7 @@ class SaleController extends Controller
             'students' => $students,
         ];
 
+        return view('pages.instructor.general.payments', $data);
         return view(getTemplate() . '.panel.financial.sales', $data);
     }
 

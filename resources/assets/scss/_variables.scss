@@ -604,6 +604,7 @@ $thistle: #deb3e0;
 $light-steel-blue: #9bb8ed;
 $crimson: #d81544;
 $cosmic-sapphire: #122D98;
+$emerald-green: #1B9930;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -626,28 +627,30 @@ $theme-colors: (
     "light-steel-blue": $light-steel-blue,
     "crimson": $crimson,
     "cosmic-sapphire": $cosmic-sapphire,
+    "emerald-green": $emerald-green,
 );
 // scss-docs-end theme-colors-map
 
 // scss-docs-start theme-text-variables
 $light-text-emphasis: $gray-400;
 $dark-text-emphasis: $gray-800;
-$primary-text-emphasis:          shade-color($primary, 15%);
-$secondary-text-emphasis:        shade-color($secondary, 15%);
-$success-text-emphasis:          shade-color($success, 15%);
-$info-text-emphasis:             shade-color($info, 15%);
-$warning-text-emphasis:          shade-color($warning, 15%);
-$danger-text-emphasis:           shade-color($danger, 15%);
-$light-blue-text-emphasis:       shade-color($light-blue, 15%);
-$light-yellow-text-emphasis:     shade-color($light-yellow, 15%);
-$royal-blue-text-emphasis:       shade-color($royal-blue, 15%);
-$dim-gray-text-emphasis:         shade-color($dim-gray, 15%);
-$beige-text-emphasis:            shade-color($beige, 15%);
-$gainsboro-text-emphasis:        shade-color($gainsboro, 15%);
-$thistle-text-emphasis:          shade-color($thistle, 15%);
-$light-steel-blue-text-emphasis: shade-color($light-steel-blue, 15%);
-$crimson-text-emphasis:          shade-color($crimson, 15%);
-$cosmic-sapphire-text-emphasis:  shade-color($cosmic-sapphire, 15%);
+$primary-text-emphasis:                 shade-color($primary, 15%);
+$secondary-text-emphasis:               shade-color($secondary, 15%);
+$success-text-emphasis:                 shade-color($success, 15%);
+$info-text-emphasis:                    shade-color($info, 15%);
+$warning-text-emphasis:                 shade-color($warning, 15%);
+$danger-text-emphasis:                  shade-color($danger, 15%);
+$light-blue-text-emphasis:              shade-color($light-blue, 15%);
+$light-yellow-text-emphasis:            shade-color($light-yellow, 15%);
+$royal-blue-text-emphasis:              shade-color($royal-blue, 15%);
+$dim-gray-text-emphasis:                shade-color($dim-gray, 15%);
+$beige-text-emphasis:                   shade-color($beige, 15%);
+$gainsboro-text-emphasis:               shade-color($gainsboro, 15%);
+$thistle-text-emphasis:                 shade-color($thistle, 15%);
+$light-steel-blue-text-emphasis:        shade-color($light-steel-blue, 15%);
+$crimson-text-emphasis:                 shade-color($crimson, 15%);
+$cosmic-sapphire-text-emphasis:         shade-color($cosmic-sapphire, 15%);
+$emerald-green-sapphire-text-emphasis:  shade-color($emerald-green, 15%);
 // scss-docs-end theme-text-variables
 
 // scss-docs-start theme-bg-subtle-variables
@@ -668,7 +671,8 @@ $gainsboro-bg-subtle:        tint-color($gainsboro, 85%);
 $thistle-bg-subtle:          tint-color($thistle, 85%);
 $light-steel-blue-bg-subtle: tint-color($light-steel-blue, 85%);
 $crimson-bg-subtle:          tint-color($crimson, 85%);
-$cosmic-sapphire-bg-subtle:          tint-color($cosmic-sapphire, 85%);
+$cosmic-sapphire-bg-subtle:  tint-color($cosmic-sapphire, 85%);
+$emerald-green-bg-subtle:    tint-color($emerald-green, 85%);
 // scss-docs-end theme-bg-subtle-variables
 
 // scss-docs-start theme-border-subtle-variables
@@ -689,7 +693,8 @@ $gainsboro-border-subtle:        tint-color($gainsboro, 60%);
 $thistle-border-subtle:          tint-color($thistle, 60%);
 $light-steel-blue-border-subtle: tint-color($light-steel-blue, 60%);
 $crimson-border-subtle:          tint-color($crimson, 60%);
-$cosmic-sapphire-border-subtle:          tint-color($cosmic-sapphire, 60%);
+$cosmic-sapphire-border-subtle:  tint-color($cosmic-sapphire, 60%);
+$emerald-green-border-subtle:    tint-color($emerald-green, 60%);
 // scss-docs-end theme-border-subtle-variables
 
 // Characters which are escaped by the escape-svg function
@@ -1165,12 +1170,16 @@ $input-btn-border-width: var(--#{$prefix}border-width);
 //
 // For each of Bootstrap's buttons, define text, background, and border color.
 
+$btn-padding-x-custom: 1rem;
+$btn-padding-y-custom: .75rem;
+$btn-font-size-custom: 1rem;
+
 // scss-docs-start btn-variables
 $btn-color: var(--#{$prefix}body-color);
-$btn-padding-y: $input-btn-padding-y;
-$btn-padding-x: $input-btn-padding-x;
+$btn-padding-y: $btn-padding-y-custom;
+$btn-padding-x: $btn-padding-x-custom;
 $btn-font-family: $input-btn-font-family;
-$btn-font-size: $input-btn-font-size;
+$btn-font-size: $btn-font-size-custom;
 $btn-line-height: $input-btn-line-height;
 $btn-white-space: null; // Set to `nowrap` to prevent text wrapping
 
