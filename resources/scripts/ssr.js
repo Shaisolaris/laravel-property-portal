@@ -7,6 +7,9 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m.js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+import 'virtual:svg-icons-register';
+
+
 createServer((page) =>
     createInertiaApp({
         page,

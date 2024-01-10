@@ -14,10 +14,10 @@ import VueFeather from 'vue-feather';
 import VueTheMask from 'vue-the-mask';
 
 
-import 'virtual:svg-icons-register';
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
+import 'virtual:svg-icons-register';
 
 import store from "./state/store";
 import i18n from './i18n'
