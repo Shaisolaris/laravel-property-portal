@@ -135,8 +135,16 @@ return [
             'component-view' => ['path' => 'resources/views/components', 'generate' => false],
             'component-class' => ['path' => 'app/View/Components', 'generate' => false],
 
-            'traits' => ['path' => 'app/Traits', 'generate' => true],
-            'http-resource' => ['path' => 'app/Http/Resources', 'generate' => false],
+            'traits' => [
+                'namespace' => 'app/Traits',
+                'path' => 'app/Traits',
+                'generate' => true
+            ],
+            'http-resource' => [
+                'namespace' => 'app/Http/Resources',
+                'path' => 'app/Http/Resources',
+                'generate' => true
+            ],
         ],
     ],
 
