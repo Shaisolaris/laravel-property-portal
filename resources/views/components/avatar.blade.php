@@ -1,1 +1,0 @@
-<img src="{{$src}}" {{ $attributes->merge(['class' => "rounded-$rounded avatar-$size"])}} alt>

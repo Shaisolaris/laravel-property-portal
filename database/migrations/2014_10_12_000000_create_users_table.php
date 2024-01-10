@@ -4,44 +4,31 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->increments('id');
-            $table->string('full_name', 128)->nullable();
-            $table->string('role_name',64);
-            $table->integer('role_id')->unsigned();
-            $table->string('avatar', 64)->nullable();
-            $table->string('mobile')->unique()->nullable();
+            $table->id();
+            $table->string('name');
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('google_id')->nullable();
-            $table->string('facebook_id')->nullable();
-            $table->string('remember_token')->nullable();
-            $table->enum('status', ['active','pending', 'inactive'])->default('active');
-            $table->integer('created_at');
-            $table->integer('updated_at')->nullable();
-            $table->integer('deleted_at')->nullable();
-
+            $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }
-}
+};

@@ -1,1 +1,0 @@
-<span>{{\Carbon\Carbon::parse($value)->format($format)}}</span>
