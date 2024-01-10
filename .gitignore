@@ -8,7 +8,7 @@
 /storage/*.key
 storage/framework/views/*.php
 /storage/vite
-/docker/mysql/*
+/docker/postgres/*
 /vendor
 .env
 .env.backup

@@ -2,21 +2,16 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+use Illuminate\Http\Request;
 use App\Enums\User\UserRoleEnum;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
     protected $rootView = 'app';
-
-
-    public function version(Request $request): ?string
-    {
-        return parent::version($request);
-    }
 
 
     public function share(Request $request): array
@@ -34,7 +29,7 @@ class HandleInertiaRequests extends Middleware
         ];
     }
 
-    private function setNavigations(): array|Collection
+    private function setNavigations(): Collection
     {
         $navigations = collect([]);
 
