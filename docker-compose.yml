@@ -34,6 +34,7 @@ services:
         working_dir: /var/www/html
         ports:
             - '9001:9001'
+            - '${LARAVEL_WEBSOCKETS_PORT}:6001'
         links:
             - database
         depends_on:

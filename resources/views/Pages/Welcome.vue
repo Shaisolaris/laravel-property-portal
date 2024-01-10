@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "../Layouts/AppLayout.vue";
 import Icon from "../Components/Icon.vue";
+import { onMounted } from "vue";
 </script>
 
 <template>

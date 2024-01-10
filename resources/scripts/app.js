@@ -17,7 +17,7 @@ import VueTheMask from 'vue-the-mask';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import 'virtual:svg-icons-register';
+// import 'virtual:svg-icons-register';
 
 import store from "./state/store";
 import i18n from './i18n'
