@@ -1,11 +1,9 @@
-
-
-
 var start_date = document.getElementById("event-start-date");
 var timepicker1 = document.getElementById("timepicker1");
 var timepicker2 = document.getElementById("timepicker2");
 var date_range = null;
 var T_check = null;
+
 document.addEventListener("DOMContentLoaded", function () {
     flatPickrInit();
     var addEvent = new bootstrap.Modal(document.getElementById('event-modal'), {

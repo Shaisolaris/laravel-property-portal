@@ -36,6 +36,10 @@
     background: #9BB8ED;
 }
 
+.bg-crimson, .bg-light-steel-blue, .bg-thistle, .bg-light-yellow {
+    --in-bg-opacity: 0.4;
+}
+
 $shadows: (
     light-black: 0px 2px 8px 0px rgba(0, 0, 0, 0.08),
 );

@@ -206,7 +206,7 @@ class AssignmentController extends Controller
             'failedCount' => $failedCount,
         ];
 
-        return view('pages.instructor.school.assignments', $data);
+        return view('pages.instructor.school.assignment.index', $data);
 //        return view('web.default.panel.assignments.my-courses-assignments', $data);
     }
 
@@ -703,6 +703,7 @@ class AssignmentController extends Controller
             'assignmentDetails' => $assignmentDetails
         ];
 
+        return view('pages.instructor.school.assignment.show', $data);
         return view('web.public_academy.assignment_details', $data);
     }
 }

@@ -210,8 +210,10 @@ return [
     "file-manager" => "File Manager",
     "to-do" => "To Do",
     "crypto-svg" => "Crypto SVG",
+    "score" => "Score",
 
     "job" => "Job",
+    "accepted" => "Accepted",
     "jobs" => "Jobs",
     "statistics" => "Statistics",
     "job-lists" => "Job Lists",
@@ -271,6 +273,7 @@ return [
         'sales-report' => 'Sales Report',
         'quiz' => 'Comments statistics',
         'grade' => 'Grades',
+        'assignment-one' => 'Assignment one',
     ],
     "button" => [
         'get_in_touch' => 'Get in touch',
@@ -284,7 +287,8 @@ return [
         'save-draft' => 'Save as Draft',
         'previous' => 'Previous',
         'continue' => 'Continue',
-        'delete' => 'Delete'
+        'delete' => 'Delete',
+        'back-to-assignment' => 'Back to assignments',
     ],
     "badge" => [
         'active' => 'Active',

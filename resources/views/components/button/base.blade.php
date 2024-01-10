@@ -3,7 +3,11 @@
         <i class="{{$icon}} align-bottom me-1"></i>
     @endif
 
-    {{ trans("translation.button.$key") }}
+    @if(\Illuminate\Support\Str::length($body) > 0)
+        {!! $body !!}
+    @else
+        {{ trans("translation.button.$key") }}
+    @endif
 
     @if($viewType === 'icon-right' && strlen($icon) > 0)
         <i class="{{$icon}} align-bottom me-1"></i>

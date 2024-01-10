@@ -62,6 +62,7 @@ Route::prefix('instructor')->name('instructor.')->group(function () {
         Route::get('payments', [\App\Http\Controllers\Panel\SaleController::class, 'index'])->name('payment');
         Route::get('quizzes', [\App\Http\Controllers\Panel\QuizController::class, 'index'])->name('quiz');
         Route::get('grades', [\App\Http\Controllers\Web\DesignController::class, 'grade'])->name('grade');
+        Route::get('schedule', function (){return view('pages.instructor.school.schedule');})->name('schedule');
     });
 });
 /***  END ***/

@@ -3,6 +3,20 @@
 //
 
 .accordion {
+    &.accordion-not-border {
+        .accordion-item {
+            border: none;
+
+            .accordion-header {
+                .accordion-button {
+                    background-color: white;
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+
     .accordion-button {
         font-weight: $font-weight-medium;
 

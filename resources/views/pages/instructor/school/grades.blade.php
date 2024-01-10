@@ -9,27 +9,39 @@
         <x-slot:body>
             @foreach(range(0, 3) as $index)
                 <tr>
-                    <td>
-                        <x-avatar src="{{ Auth::user()?->avatar }}" size="xs" rounded="circle" />
-                        <span>{{ Auth::user()?->full_name }}</span>
-                    </td>
-                    <td colspan="5">
+                    <td colspan="6">
                         <div class="row align-items-center g-2">
-{{--                            <div class="col col-lg-">--}}
-{{--                                <x-avatar src="{{ Auth::user()?->avatar }}" size="xs" rounded="circle" />--}}
-{{--                                <span>{{ Auth::user()?->full_name }}</span>--}}
-{{--                            </div>--}}
-                            <div class="col col-2">
-                                <button class="px-5">85</button>
+                            <div style="flex: 0 0 auto; width: 13%;">
+                                <x-avatar src="{{ Auth::user()?->avatar }}" size="xs" rounded="circle" />
+                                <span>{{ Auth::user()?->full_name }}</span>
                             </div>
                             <div class="col col-2">
-                                <button class="px-5">90</button>
+                                <x-button.base variable="beige" class="text-royal-blue w-100">
+                                    <x-slot:body>
+                                        85
+                                    </x-slot:body>
+                                </x-button.base>
+                            </div>
+                            <div class="col col-2 text-end">
+                                <x-button.base variable="beige" class="text-royal-blue w-75">
+                                    <x-slot:body>
+                                        90
+                                    </x-slot:body>
+                                </x-button.base>
                             </div>
                             <div class="col col-2">
-                                <button class="px-5">75</button>
+                                <x-button.base variable="beige" class="text-royal-blue w-100">
+                                    <x-slot:body>
+                                        75
+                                    </x-slot:body>
+                                </x-button.base>
                             </div>
                             <div class="col col-2">
-                                <button class="px-5">80,5</button>
+                                <x-button.base variable="royal-blue" class="text-white">
+                                    <x-slot:body>
+                                        80,5
+                                    </x-slot:body>
+                                </x-button.base>
                             </div>
                             <div class="col col-2">
                                 <i class="ri-arrow-right-s-line align-bottom fw-medium" style="font-size: 25px"></i>

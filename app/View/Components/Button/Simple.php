@@ -7,7 +7,12 @@ use Illuminate\Contracts\View\View;
 
 class Simple extends Component
 {
-    public function __construct(public string $icon = '', public string $key = '', public string $type = 'submit')
+    public function __construct(
+        public string $key = '',
+        public string $href = '',
+        public string $icon = '',
+        public string $type = 'submit'
+    )
     {
     }
 

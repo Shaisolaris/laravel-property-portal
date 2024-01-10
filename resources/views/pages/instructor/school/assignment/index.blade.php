@@ -49,7 +49,7 @@
                         <x-table.partials.td.status :key="$assignment?->status" icon="ri-time-line" />
                     </td>
                     <td>
-                        <x-link :href="route('instructor.academy.assignment.show', $assignment?->id)" icon="ri-eye-fill" key="view_assignment" />
+                        <x-link :href="route('instructor.school.assignment.show', $assignment?->id)" icon="ri-eye-fill" key="view_assignment" />
                     </td>
                 </tr>
             @endforeach

@@ -7,7 +7,8 @@ use App\View\ExtendComponent;
 class Base extends ExtendComponent
 {
     public function __construct(
-        public string $key,
+        public string $key = '',
+        public mixed $body = null,
         public readonly string $icon = '',
         public readonly string $type = 'button',
         public readonly string $viewType = 'default',
