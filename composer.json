@@ -13,11 +13,13 @@
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3.3",
         "laravel/tinker": "^2.9.0",
-        "spatie/laravel-medialibrary": "^11.0",
+        "spatie/laravel-enum": "^3.0.2",
+        "spatie/laravel-medialibrary": "^11.0.4",
         "spatie/laravel-permission": "^6.3",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.8.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.23.1",
         "laravel/pint": "^1.13.8",
         "laravel/sail": "^1.27.0",
