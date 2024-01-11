@@ -7,8 +7,8 @@
         "strict": true,
         "skipLibCheck": true,
         "paths": {
-            "~/*": ["resources/js/*", "./dist/*", ""],
-            "@assets/*": ["resources/assets/*"]
+            "~/*": ["./resources/js/*", "./dist/*"],
+            "@assets/*": ["./resources/assets/*"]
         }
     }
 }

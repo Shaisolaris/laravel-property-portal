@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Academy\app\Http\Controllers\AcademyController;
+use Modules\Academy\app\Http\Controllers\MyCoursesControlelrController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\Academy\app\Http\Controllers\AcademyController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('academy', AcademyController::class)->names('academy');
+Route::middleware([])->prefix('academy')->name('academy.')->group(function () {
+    Route::resource('my-courses', MyCoursesControlelrController::class)->names('courses');
 });

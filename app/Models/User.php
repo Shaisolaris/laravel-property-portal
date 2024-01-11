@@ -15,17 +15,18 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 class User extends Authenticatable implements HasMedia
 {
-    use HasRoles,
-        HasRoles,
-        HasFactory,
-        Notifiable,
-        HasApiTokens,
-        HasUuidTrait,
-        HasProfilePhoto,
-        InteractsWithMedia,
-        TwoFactorAuthenticatable;
+    use HasRoles;
+    use HasRoles;
+    use HasFactory;
+    use Notifiable;
+    use HasApiTokens;
+    use HasUuidTrait;
+    use HasProfilePhoto;
+    use InteractsWithMedia;
+    use TwoFactorAuthenticatable;
 
     protected $fillable = [
         'name',

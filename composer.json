@@ -17,8 +17,9 @@
         "nwidart/laravel-modules": "^10.0",
         "predis/predis": "^2.2",
         "pusher/pusher-php-server": "^7.2",
-        "spatie/laravel-medialibrary": "^11.0",
+        "react/promise": "^2.3",
         "spatie/laravel-enum": "^3.0.2",
+        "spatie/laravel-medialibrary": "^11.0",
         "spatie/laravel-permission": "^6.3",
         "tightenco/ziggy": "^1.8.1"
     },
@@ -46,12 +47,6 @@
         }
     },
     "scripts": {
-        "start": [
-            "@php artisan serve --host=0.0.0.0 --port=80"
-        ],
-        "socket": [
-            "@php artisan websocket:serve --host=0.0.0.0"
-        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

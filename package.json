@@ -2,7 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --host=0.0.0.0",
         "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
@@ -55,6 +55,7 @@
         "simplebar-vue": "^2.3.3",
         "sweetalert2": "^11.10.1",
         "swiper": "^11.0.5",
+        "unplugin-auto-import": "^0.17.3",
         "vite-plugin-svg-icons": "^2.0.1",
         "vue-draggable-next": "^2.2.1",
         "vue-feather": "^2.0.0",

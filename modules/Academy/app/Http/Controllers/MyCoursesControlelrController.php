@@ -5,16 +5,16 @@ namespace Modules\Academy\app\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Inertia\Inertia;
 
-class AcademyController extends Controller
+class MyCoursesControlelrController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('academy::index');
+        return Inertia::render('Academy::MyCourses/List');
     }
 
     /**
@@ -22,7 +22,7 @@ class AcademyController extends Controller
      */
     public function create()
     {
-        return view('academy::create');
+        return Inertia::render('Academy::MyCourses/Create');
     }
 
     /**
@@ -38,7 +38,7 @@ class AcademyController extends Controller
      */
     public function show($id)
     {
-        return view('academy::show');
+        return Inertia::render('Academy::MyCourses/Show');
     }
 
     /**
@@ -46,7 +46,7 @@ class AcademyController extends Controller
      */
     public function edit($id)
     {
-        return view('academy::edit');
+        return Inertia::render('Academy::MyCourses/Edit');
     }
 
     /**

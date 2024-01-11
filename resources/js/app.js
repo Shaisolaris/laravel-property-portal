@@ -27,9 +27,26 @@ AOS.init({
     duration: 1000
 });
 
+const renderPath = (name) => {
+    let parts = name.split("::");
+    let module = false;
+
+    if (parts.length > 1) module = parts[0];
+
+    if (module) {
+        let nameVue = parts[1].split(".")[0];
+        return resolvePageComponent(
+            `../../modules/${module}/resources/assets/js/pages/${nameVue}.vue`,
+            import.meta.glob([`../../modules/**/resources/assets/js/pages/**/*.vue`]),
+        );
+    } else {
+        return resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob(["./Pages/**/*.vue"]));
+    }
+};
+
 createInertiaApp({
     title: title => title ? `${title}` : 'Inertia + Vue & Laravel',
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    resolve: (name) => renderPath(name),
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
