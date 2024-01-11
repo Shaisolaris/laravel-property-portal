@@ -1,0 +1,41 @@
+[data-role-auth="teacher"] {
+    .sidebar-name-block {
+        color: $royal-blue;
+    }
+
+    .sidebar-nav-item:hover {
+        .sidebar-item {
+            background: rgba($light-blue, .12);
+        }
+
+        .sidebar-item {
+            .btn {
+                background: transparent;
+            }
+        }
+    }
+
+    .sidebar-item {
+        color: $royal-blue;
+
+        &:not(.active) {
+            .btn {
+                background: rgba($light-blue, .12);
+            }
+        }
+
+        &.active {
+            background: rgba($light-blue, .12);
+        }
+    }
+
+    .nav-item {
+        .nav-link {
+            &.active {
+                background: $beige-blue;
+                color: $royal-blue;
+                border-color: $beige-blue;
+            }
+        }
+    }
+}

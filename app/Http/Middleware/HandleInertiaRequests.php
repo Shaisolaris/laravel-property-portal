@@ -20,7 +20,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => $request->user() ? $request->user() : null,
-            'navigation' => $this->setNavigations(),
+            'navigations' => $this->setNavigations(),
             'flash' => $this->setFlush($request),
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
@@ -31,12 +31,85 @@ class HandleInertiaRequests extends Middleware
 
     private function setNavigations(): Collection
     {
-        $navigations = collect([]);
+        $navigations = collect([
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-layout-left-line',
+                'tKey' => 'Dashboards'
+            ],
+            [
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
+                'icon' => 'ri-add-circle-line',
+                'tKey' => 'Add New Course'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-computer-line',
+                'tKey' => 'My Courses'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => ' ri-file-text-line',
+                'tKey' => 'Assignments'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'bx bx-message-rounded',
+                'tKey' => 'Messages'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-question-line',
+                'tKey' => 'Quizzes'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-calendar-check-line',
+                'tKey' => 'Grades'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home') || request()->routeIs('home'),
+                'icon' => 'ri-group-line',
+                'tKey' => 'Mentoring'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-file-list-2-line',
+                'tKey' => 'Forum'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => 'ri-bank-card-line',
+                'tKey' => 'Payments'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => request()->routeIs('home'),
+                'icon' => ' ri-settings-2-line',
+                'tKey' => 'Settings'
+            ],
+            [
+                'routeName' => 'home',
+                'active' => false,
+                'icon' => 'ri-logout-box-r-line',
+                'tKey' => 'Logout'
+            ]
+        ]);
 
         $checkAuth = Auth::check();
 
         if (!$checkAuth) {
-            return collect([]);
+            return $navigations;
         }
 
         $user = Auth::user();

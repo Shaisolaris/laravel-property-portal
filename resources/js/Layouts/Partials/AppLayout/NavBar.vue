@@ -3,20 +3,20 @@ import { Link, router } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from "vue";
 import simplebar from "simplebar-vue";
 
-import us_flag from "@/assets/images/flags/us.svg";
-import spain from "@/assets/images/flags/spain.svg";
-import germany from "@/assets/images/flags/germany.svg";
-import italy from "@/assets/images/flags/italy.svg";
-import russia from "@/assets/images/flags/russia.svg";
-import china from "@/assets/images/flags/china.svg";
-import french from "@/assets/images/flags/french.svg";
-import ae from "@/assets/images/flags/ae.svg";
+import us_flag from "@/images/flags/us.svg";
+import spain from "@/images/flags/spain.svg";
+import germany from "@/images/flags/germany.svg";
+import italy from "@/images/flags/italy.svg";
+import russia from "@/images/flags/russia.svg";
+import china from "@/images/flags/china.svg";
+import french from "@/images/flags/french.svg";
+import ae from "@/images/flags/ae.svg";
 
-import img1 from "@/assets/images/products/img-1.png";
-import img2 from "@/assets/images/products/img-2.png";
-import img3 from "@/assets/images/products/img-3.png";
-import img4 from "@/assets/images/products/img-4.png";
-import img5 from "@/assets/images/products/img-5.png";
+import img1 from "@/images/products/img-1.png";
+import img2 from "@/images/products/img-2.png";
+import img3 from "@/images/products/img-3.png";
+import img4 from "@/images/products/img-4.png";
+import img5 from "@/images/products/img-5.png";
 
 const languages = ref([
     {
@@ -102,8 +102,9 @@ const cartItems = ref([
         itemPrice: "990",
     },
 ]);
+import i18n from "~/i18n.js";
 
-
+// const { t } = useI18n();
 
 const lan = ref('en');
 const text = ref(null);
@@ -122,11 +123,16 @@ const toggleRightSidebar = () => {
 }
 const initFullScreen = () => {
 }
-const setLanguage = () => {
+const setLanguage = (locale, country, flag) => {
+    lan.value = locale;
+    text.value = country;
+    flag.value = flag;
+    document.getElementById("header-lang-img").setAttribute("src", flag);
+    i18n.global.locale = locale;
 }
-const toggleDarkMode = () => {
-}
-const removeItem = () => {
+
+const removeItem = (cartItem) => {
+    cartItems.value = cartItems.value.filter(item => item.id !== cartItem.id)
 }
 
 const calculateTotalPrice = computed(() => cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2));
@@ -165,142 +171,37 @@ onMounted(() => {
         <div class="layout-width">
             <div class="navbar-header">
                 <div class="d-flex">
-                    <!-- LOGO -->
                     <div class="navbar-brand-box horizontal-logo">
-                        <Link href="/" class="logo logo-dark">
-              <span class="logo-sm">
-                <img src="@/assets/images/logo-sm.png" alt="" height="22" />
-              </span>
+                        <Link href="/public" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="../../../../assets/images/logo-sm.png" alt="" height="22" />
+                            </span>
                             <span class="logo-lg">
-                <img src="@/assets/images/logo-dark.png" alt="" height="17" />
-              </span>
+                                <img src="../../../../assets/images/logo-dark.png" alt="" height="17" />
+                            </span>
                         </Link>
 
-                        <Link href="/" class="logo logo-light">
-              <span class="logo-sm">
-                <img src="@/assets/images/logo-sm.png" alt="" height="22" />
-              </span>
+                        <Link href="/public" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="../../../../assets/images/logo-sm.png" alt="" height="22" />
+                            </span>
                             <span class="logo-lg">
-                <img src="@/assets/images/logo-light.png" alt="" height="17" />
-              </span>
+                                <img src="../../../../assets/images/logo-light.png" alt="" height="17" />
+                            </span>
                         </Link>
                     </div>
 
                     <button
-                        type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
+                        type="button"
+                        class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
                         id="topnav-hamburger-icon"
                     >
-            <span class="hamburger-icon">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+                        <span class="hamburger-icon">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </span>
                     </button>
-
-                    <!-- App Search-->
-                    <form class="app-search d-none d-md-block">
-                        <div class="position-relative">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Search..."
-                                autocomplete="off"
-                                id="search-options"
-                                value=""
-                            />
-                            <span class="mdi mdi-magnify search-widget-icon"></span>
-                            <span
-                                class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none"
-                                id="search-close-options"
-                            ></span>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
-                            <simplebar data-simplebar style="max-height: 320px">
-                                <div class="dropdown-header">
-                                    <h6 class="text-overflow text-muted mb-0 text-uppercase">
-                                        Recent Searches
-                                    </h6>
-                                </div>
-
-                                <div class="dropdown-item bg-transparent text-wrap">
-                                    <Link href="/" class="btn btn-soft-secondary btn-sm rounded-pill">how to setup <i
-                                        class="mdi mdi-magnify ms-1"
-                                    ></i></Link>
-                                    <Link href="/" class="btn btn-soft-secondary btn-sm rounded-pill">buttons <i
-                                        class="mdi mdi-magnify ms-1"
-                                    ></i></Link>
-                                </div>
-                                <div class="dropdown-header mt-2">
-                                    <h6 class="text-overflow text-muted mb-1 text-uppercase">
-                                        Pages
-                                    </h6>
-                                </div>
-
-                                <BLink href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class=" ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
-                                    <span>Analytics Dashboard</span>
-                                </BLink>
-
-                                <BLink href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
-                                    <span>Help Center</span>
-                                </BLink>
-
-                                <BLink href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class=" ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
-                                    <span>My account settings</span>
-                                </BLink>
-
-                                <div class="dropdown-header mt-2">
-                                    <h6 class="text-overflow text-muted mb-2 text-uppercase">
-                                        Members
-                                    </h6>
-                                </div>
-
-                                <div class="notification-list">
-                                    <BLink href="javascript:void(0);" class="d-flex dropdown-item notify-item py-2">
-                                        <img
-                                            src="@/assets/images/users/avatar-2.jpg"
-                                            class="me-3 rounded-circle avatar-xs"
-                                            alt="user-pic"
-                                        />
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">Angela Bernier</h6>
-                                            <span class="fs-11 mb-0 text-muted">Manager</span>
-                                        </div>
-                                    </BLink>
-                                    <BLink href="javascript:void(0);" class="d-flex dropdown-item notify-item py-2">
-                                        <img
-                                            src="@/assets/images/users/avatar-3.jpg"
-                                            class="me-3 rounded-circle avatar-xs"
-                                            alt="user-pic"
-                                        />
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">David Grasso</h6>
-                                            <span class="fs-11 mb-0 text-muted">Web Designer</span>
-                                        </div>
-                                    </BLink>
-                                    <BLink href="javascript:void(0);" class="d-flex dropdown-item notify-item py-2">
-                                        <img
-                                            src="@/assets/images/users/avatar-5.jpg"
-                                            class="me-3 rounded-circle avatar-xs"
-                                            alt="user-pic"
-                                        />
-                                        <div class="flex-grow-1">
-                                            <h6 class="m-0">Mike Bunch</h6>
-                                            <span class="fs-11 mb-0 text-muted">React Developer</span>
-                                        </div>
-                                    </BLink>
-                                </div>
-                            </simplebar>
-
-                            <div class="text-center pt-3 pb-1">
-                                <Link href="/pages/search-results" class="btn btn-primary btn-sm">View All Results <i
-                                    class="ri-arrow-right-line ms-1"
-                                ></i></Link>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -339,7 +240,7 @@ onMounted(() => {
                         menu-class="dropdown-menu-end"
                     >
                         <template #button-content><img
-                            id="header-lang-img" src="@/assets/images/flags/us.svg" alt="Header Language"
+                            id="header-lang-img" src="../../../../assets/images/flags/us.svg" alt="Header Language"
                             height="20" class="rounded"
                         >
                         </template>
@@ -354,187 +255,6 @@ onMounted(() => {
                     </BDropdown>
 
                     <BDropdown
-                        class="dropdown" variant="ghost-secondary" dropstart
-                        :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
-                        toggle-class="btn-icon btn-topbar rounded-circle mode-layout ms-1 arrow-none"
-                        menu-class="p-0 dropdown-menu-end"
-                    >
-                        <template #button-content>
-                            <i class="bx bx-category-alt fs-22"></i>
-                        </template>
-                        <div class="p-3 border-top-0 dropdown-head border-start-0 border-end-0 border-dashed border dropdown-menu-lg">
-                            <BRow class="align-items-center">
-                                <BCol>
-                                    <h6 class="m-0 fw-semibold fs-15">Web Apps</h6>
-                                </BCol>
-                                <BCol cols="auto">
-                                    <BLink href="#!" class="btn btn-sm btn-soft-info">
-                                        View All Apps
-                                        <i class="ri-arrow-right-s-line align-middle"></i>
-                                    </BLink>
-                                </BCol>
-                            </BRow>
-                        </div>
-
-                        <div class="p-2">
-                            <BRow class="g-0">
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/github.png" alt="Github" />
-                                        <span>GitHub</span>
-                                    </BLink>
-                                </BCol>
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/bitbucket.png" alt="bitbucket" />
-                                        <span>Bitbucket</span>
-                                    </BLink>
-                                </BCol>
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/dribbble.png" alt="dribbble" />
-                                        <span>Dribbble</span>
-                                    </BLink>
-                                </BCol>
-                            </BRow>
-
-                            <BRow class="g-0">
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/dropbox.png" alt="dropbox" />
-                                        <span>Dropbox</span>
-                                    </BLink>
-                                </BCol>
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/mail_chimp.png" alt="mail_chimp" />
-                                        <span>Mail Chimp</span>
-                                    </BLink>
-                                </BCol>
-                                <BCol>
-                                    <BLink class="dropdown-icon-item" href="#!">
-                                        <img src="@/assets/images/brands/slack.png" alt="slack" />
-                                        <span>Slack</span>
-                                    </BLink>
-                                </BCol>
-                            </BRow>
-                        </div>
-                    </BDropdown>
-
-                    <BDropdown
-                        variant="ghost-secondary" dropstart :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
-                        class="ms-1 dropdown" toggle-class="btn-icon btn-topbar rounded-circle mode-layout arrow-none"
-                        menu-class="dropdown-menu-xl dropdown-menu-end p-0" text="Manual close (auto-close=false)"
-                        auto-close="outside"
-                    >
-                        <template #button-content>
-                            <i class="bx bx-shopping-bag fs-22"></i>
-                            <span
-                                class="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-info"
-                            >{{
-                                    cartItems.length }} </span>
-                        </template>
-
-                        <div class="p-3 border-top-0 border-start-0 dropdown-head border-end-0 border-dashed border dropdown-menu-xl">
-                            <BRow class="align-items-center">
-                                <BCol>
-                                    <h6 class="m-0 fs-16 fw-semibold"> My Cart</h6>
-                                </BCol>
-                                <BCol cols="auto">
-                                    <BBadge variant="warning-subtle" class="bg-warning-subtle text-warning fs-13"><span
-                                        class="cartitem-badge"
-                                    > {{ cartItems.length }} </span>
-                                        items
-                                    </BBadge>
-                                </BCol>
-                            </BRow>
-                        </div>
-                        <simplebar data-simplebar style="max-height: 300px">
-                            <div class="p-2">
-                                <div class="text-center empty-cart" id="empty-cart" v-if="cartItems.length === 0">
-                                    <div class="avatar-md mx-auto my-3">
-                                        <div class="avatar-title bg-info-subtle text-info fs-36 rounded-circle">
-                                            <i class="bx bx-cart"></i>
-                                        </div>
-                                    </div>
-                                    <h5 class="mb-3">Your Cart is Empty!</h5>
-                                    <Link href="/ecommerce/products" class="btn btn-success w-md mb-3">Shop Now</Link>
-                                </div>
-                                <div
-                                    class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2"
-                                    v-for="(item, index) in cartItems" :key="index"
-                                >
-                                    <div class="d-flex align-items-center">
-                                        <img
-                                            :src="item.productImage"
-                                            class="me-3 rounded-circle avatar-sm p-2 bg-light"
-                                        />
-                                        <div class="flex-grow-1">
-                                            <h6 class="mt-0 mb-1 fs-14">
-                                                <Link :href="item.productLink" class="text-reset">{{ item.productName
-                                                    }}
-                                                </Link>
-                                            </h6>
-                                            <p class="mb-0 fs-12 text-muted">
-                                                Quantity: <span>{{ item.quantity }}</span>
-                                            </p>
-                                        </div>
-                                        <div class="px-2">
-                                            <h5 class="m-0 fw-normal">$<span class="cart-item-price">{{ item.itemPrice
-                                                }}</span></h5>
-                                        </div>
-                                        <div class="ps-2">
-                                            <button
-                                                type="button"
-                                                class="btn btn-ghost-secondary btn-sm btn-icon remove-item-btn"
-                                                @click="removeItem(item)"
-                                            >
-                                                <i class="ri-close-fill fs-16"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </simplebar>
-                        <div
-                            v-if="cartItems.length"
-                            class="p-3 border-bottom-0 border-start-0 border-end-0 border-dashed border"
-                            id="checkout-elem"
-                        >
-                            <div class="d-flex justify-content-between align-items-center pb-3">
-                                <h5 class="m-0 text-muted">Total:</h5>
-                                <div class="px-2">
-                                    <h5 class="m-0" id="cart-item-total">${{ calculateTotalPrice }}</h5>
-                                </div>
-                            </div>
-
-                            <Link href="/ecommerce/checkout" class="btn btn-success text-center w-100">
-                                Checkout
-                            </Link>
-                        </div>
-                    </BDropdown>
-
-                    <div class="ms-1 header-item d-none d-sm-flex">
-                        <BButton
-                            type="button" variant="ghost-secondary" class="btn-icon btn-topbar rounded-circle"
-                            data-toggle="fullscreen" @click="initFullScreen"
-                        >
-                            <i class="bx bx-fullscreen fs-22"></i>
-                        </BButton>
-                    </div>
-
-                    <div class="ms-1 header-item d-none d-sm-flex">
-                        <BButton
-                            type="button"
-                            variant="ghost-secondary"
-                            class="btn-icon btn-topbar rounded-circle light-dark-mode"
-                            @click="toggleDarkMode"
-                        >
-                            <i class="bx bx-moon fs-22"></i>
-                        </BButton>
-                    </div>
-
-                    <BDropdown
                         variant="ghost-dark"
                         dropstart
                         class="ms-1 dropdown"
@@ -546,12 +266,13 @@ onMounted(() => {
                     >
                         <template #button-content>
                             <i class='bx bx-bell fs-22'></i>
-                            <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"><span
-                                class="notification-badge"
-                            >3</span><span class="visually-hidden">unread
-                  messages
-                </span>
-              </span>
+                            <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">
+                                <span class="notification-badge">
+                                3
+                            </span>
+                                <span class="visually-hidden">unread messages
+                            </span>
+                          </span>
                         </template>
                         <div class="dropdown-head bg-primary bg-pattern rounded-top dropdown-menu-lg">
                             <div class="p-3">
@@ -604,7 +325,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-2.jpg"
+                                                src="../../../../assets/images/users/avatar-2.jpg"
                                                 class="me-3 rounded-circle avatar-xs flex-shrink-0"
                                                 alt="user-pic"
                                             />
@@ -657,7 +378,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-8.jpg"
+                                                src="../../../../assets/images/users/avatar-8.jpg"
                                                 class="me-3 rounded-circle avatar-xs flex-shrink-0"
                                                 alt="user-pic"
                                             />
@@ -700,7 +421,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-3.jpg"
+                                                src="../../../../assets/images/users/avatar-3.jpg"
                                                 class="me-3 rounded-circle avatar-xs"
                                                 alt="user-pic"
                                             />
@@ -728,7 +449,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-2.jpg"
+                                                src="../../../../assets/images/users/avatar-2.jpg"
                                                 class="me-3 rounded-circle avatar-xs"
                                                 alt="user-pic"
                                             />
@@ -758,7 +479,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-6.jpg"
+                                                src="../../../../assets/images/users/avatar-6.jpg"
                                                 class="me-3 rounded-circle avatar-xs"
                                                 alt="user-pic"
                                             />
@@ -788,7 +509,7 @@ onMounted(() => {
                                     <div class="text-reset notification-item d-block dropdown-item">
                                         <div class="d-flex">
                                             <img
-                                                src="@/assets/images/users/avatar-8.jpg"
+                                                src="../../../../assets/images/users/avatar-8.jpg"
                                                 class="me-3 rounded-circle avatar-xs"
                                                 alt="user-pic"
                                             />
@@ -826,7 +547,7 @@ onMounted(() => {
                             <BTab title="Alerts" class="p-4">
                                 <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                                     <div class="w-25 w-sm-50 pt-3 mx-auto">
-                                        <img src="@/assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" />
+                                        <img src="../../../../assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" />
                                     </div>
                                     <div class="text-center pb-5 mt-2">
                                         <h6 class="fs-18 fw-semibold lh-base">

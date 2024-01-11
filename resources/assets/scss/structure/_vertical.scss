@@ -801,8 +801,9 @@
                 top: calc(#{$header-height} + #{$grid-gutter-width});
                 bottom: $grid-gutter-width;
                 padding: 0;
-                border-right: var(--#{$prefix}vertical-menu-bg);
-                border-radius: 5px;
+                border: 1px solid var(--#{$prefix}vertical-menu-border);
+                //border-right: var(--#{$prefix}vertical-menu-bg);
+                border-radius: 20px;
                 padding: 10px 0;
                 z-index: 1;
 

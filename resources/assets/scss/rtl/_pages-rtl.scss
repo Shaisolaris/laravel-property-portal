@@ -82,7 +82,7 @@
 .email-detail-content {
     // right: 68%;
     transform: translateX(-200%);
-    border-right: 2px solid var(--vz-body-bg)
+    border-right: 2px solid var(--in-body-bg)
 }
 
 .email-detail-show {
@@ -264,7 +264,7 @@
                 &::before {
                     right: 110px;
                     left: auto;
-                    border-color: transparent var(--vz-border-color) transparent transparent;
+                    border-color: transparent var(--in-border-color) transparent transparent;
                 }
 
                 .date {
@@ -306,7 +306,7 @@
         &::after {
             left: 100%;
             right: auto;
-            border-color: transparent transparent transparent var(--vz-card-bg-custom);
+            border-color: transparent transparent transparent var(--in-card-bg-custom);
         }
 
         &::before {
@@ -330,14 +330,14 @@
                 right: 30px;
                 left: auto;
                 margin-right: 0;
-                border-color: transparent transparent var(--vz-border-color) transparent;
+                border-color: transparent transparent var(--in-border-color) transparent;
             }
 
             &::before {
                 right: 30px;
                 left: auto;
                 margin-right: 0;
-                border-color: transparent transparent var(--vz-card-bg-custom) transparent;
+                border-color: transparent transparent var(--in-card-bg-custom) transparent;
             }
         }
     }
@@ -976,8 +976,8 @@ ul .form-check,
 .input-group .input-group-text {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-top-left-radius: var(--vz-btn-border-radius) !important;
-    border-bottom-left-radius: var(--vz-btn-border-radius) !important;
+    border-top-left-radius: var(--in-btn-border-radius) !important;
+    border-bottom-left-radius: var(--in-btn-border-radius) !important;
 }
 
 .dropdown-item {
@@ -1013,7 +1013,7 @@ ul .form-check,
 }
 
 .job-panel-filter input.form-control {
-    border-left: 1px solid var(--vz-border-color);
+    border-left: 1px solid var(--in-border-color);
 }
 
 // Base Us

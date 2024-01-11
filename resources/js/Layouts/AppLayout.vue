@@ -5,6 +5,8 @@ import { Head, Link, usePage } from "@inertiajs/vue3";
 import { isEmpty } from "lodash";
 import simplebar from "simplebar-vue";
 import NavBar from "./Partials/AppLayout/NavBar.vue";
+import Menu from "./Partials/AppLayout/Menu.vue";
+import Breadcrumbs from "~/Layouts/Partials/AppLayout/Breadcrumbs.vue";
 
 
 localStorage.setItem('hoverd', false);
@@ -80,12 +82,12 @@ onBeforeMount(() => {
     document.body.setAttribute("data-layout", store.state.layout.layoutType);
     document.body.setAttribute("data-topbar", store.state.layout.topbar);
     document.body.setAttribute("data-sidebar", store.state.layout.sidebarColor);
-    document.body.setAttribute("data-sidebar-size",  store.state.layout.sidebarSize);
+    document.body.setAttribute("data-sidebar-size", store.state.layout.sidebarSize);
     document.body.setAttribute("data-sidebar-image", store.state.layout.sidebarImage);
     document.body.setAttribute("data-preloader", store.state.layout.preloader);
     document.body.setAttribute("data-bs-theme", store.state.layout.mode);
-    document.body.setAttribute("data-layout-width",  store.state.layout.layoutWidth);
-    document.body.setAttribute("data-layout-position",  store.state.layout.position);
+    document.body.setAttribute("data-layout-width", store.state.layout.layoutWidth);
+    document.body.setAttribute("data-layout-position", store.state.layout.position);
     document.body.setAttribute("data-layout-style", store.state.layout.sidebarView);
     document.body.setAttribute("data-sidebar-visibility", store.state.layout.visibility);
 
@@ -114,18 +116,18 @@ onBeforeMount(() => {
                 <div class="navbar-brand-box">
                     <Link href="/" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+                            <img src="@/images/logo-sm.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@/assets/images/logo-dark.png" alt="" height="17" />
+                            <img src="@/images/logo-dark.png" alt="" height="17" />
                         </span>
                     </Link>
                     <Link href="/" class="logo logo-light">
                         <span class="logo-sm">
-                          <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+                          <img src="@/images/logo-sm.png" alt="" height="22" />
                         </span>
                         <span class="logo-lg">
-                            <img src="@/assets/images/logo-light.png" alt="" height="17" />
+                            <img src="@/images/logo-light.png" alt="" height="17" />
                         </span>
                     </Link>
                     <button
@@ -139,7 +141,7 @@ onBeforeMount(() => {
                 </div>
 
                 <simplebar id="scrollbar" class="h-100" ref="scrollbar">
-                    <Menu></Menu>
+                    <Menu />
                 </simplebar>
                 <div class="sidebar-background"></div>
             </div>
@@ -149,6 +151,10 @@ onBeforeMount(() => {
         <div class="main-content">
             <div class="page-content">
                 <b-container fluid>
+                    <slot name="breadcrumbs">
+
+                    </slot>
+<!--                    <Breadcrumbs title="title" page-title="page-title" />-->
                     <slot />
                 </b-container>
             </div>

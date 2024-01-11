@@ -7,7 +7,7 @@ table.dataTable th.dataTables_empty {
     text-align: center;
     padding: 50px;
     font-weight: $font-weight-semibold;
-    --vz-table-accent-bg: var(--#{$prefix}secondary-bg);
+    --in-table-accent-bg: var(--#{$prefix}secondary-bg);
 }
 
 table.dataTable>thead .sorting:before,

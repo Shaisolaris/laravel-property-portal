@@ -349,7 +349,7 @@
 
     &[data-sidebar="dark"] {
         .navbar-menu {
-            border-left: var(--vz-border-width) var(--vz-border-style) var(--vz-border-color) !important;
+            border-left: var(--in-border-width) var(--in-border-style) var(--in-border-color) !important;
             border-right: none;
         }
     }
@@ -644,7 +644,7 @@
             }
 
             .navbar-menu {
-                border-left: var(--vz-vertical-menu-bg);
+                border-left: var(--in-vertical-menu-bg);
             }
 
             &[data-sidebar-size=sm-hover] {
