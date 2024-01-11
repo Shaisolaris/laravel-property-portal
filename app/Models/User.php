@@ -2,30 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
+use App\Traits\HasUuidTrait;
 use Laravel\Sanctum\HasApiTokens;
-use Modules\Notification\Entities\Notification;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
-
+use Laravel\Jetstream\HasProfilePhoto;
+use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Modules\Notification\Entities\Notification;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements HasMedia
 {
-    use HasRoles;
-    use HasUuidTrait;
-    use HasFactory;
-    use Notifiable;
-    use HasApiTokens;
-    use TwoFactorAuthenticatable;
-    use HasRoles;
-    use HasProfilePhoto;
-    use InteractsWithMedia;
+    use HasRoles,
+        HasRoles,
+        HasFactory,
+        Notifiable,
+        HasApiTokens,
+        HasUuidTrait,
+        HasProfilePhoto,
+        InteractsWithMedia,
+        TwoFactorAuthenticatable;
 
     protected $fillable = [
         'name',

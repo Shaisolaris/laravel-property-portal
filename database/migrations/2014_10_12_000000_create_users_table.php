@@ -7,20 +7,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->uuid()->index()->unique();
 
-            $table->string('name');
             $table->string('email')->unique();
-
             $table->string('password');
 
+            $table->string('status', '20')->default(\App\Enums\User\UserStatusEnum::Pending()->value);
+
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('profile_photo_path', 2048)->nullable();
+
+            $table->string('address');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
+            $table->string('timezone');
+            $table->string('phone')->nullable();
 
             $table->text('two_factor_secret')
                 ->nullable();
@@ -28,13 +35,14 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')
                 ->nullable();
 
+            $table->timestamp('birth_at')->nullable();
+
             if (Fortify::confirmsTwoFactorAuthentication()) {
                 $table->timestamp('two_factor_confirmed_at')
                     ->after('two_factor_recovery_codes')
                     ->nullable();
             }
 
-            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
 
@@ -42,9 +50,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('users');
