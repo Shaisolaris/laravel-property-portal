@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use DateTimeZone;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
 class TestCommand extends Command
@@ -13,8 +14,6 @@ class TestCommand extends Command
 
     public function handle(): void
     {
-        dd(DateTimeZone::listIdentifiers());
-
-        dd(\App\Enums\User\UserStatusEnum::Pending()->value);
+        dd( Str::snake('Admin'), Str::snake('StudentSchool'));
     }
 }

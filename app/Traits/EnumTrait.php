@@ -8,7 +8,7 @@ trait EnumTrait
 {
     protected static function values(): \Closure
     {
-        return fn (string $value) => Str::lower($value);
+        return fn (string $value) => Str::snake($value);
     }
 
 

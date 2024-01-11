@@ -114,10 +114,10 @@ class HandleInertiaRequests extends Middleware
 
         $user = Auth::user();
 
-        if ($user->hasRole([UserRoleEnum::StudentSchool()->label])) {}
-        if ($user->hasRole([UserRoleEnum::StudentAcademy()->label])) {}
-        if ($user->hasRole([UserRoleEnum::InstructorAcademy()->label])) {}
-        if ($user->hasRole([UserRoleEnum::InstructorSchool()->label])) {}
+        if ($user->hasRole([UserRoleEnum::StudentSchool()->value])) {}
+        if ($user->hasRole([UserRoleEnum::StudentAcademy()->value])) {}
+        if ($user->hasRole([UserRoleEnum::InstructorAcademy()->value])) {}
+        if ($user->hasRole([UserRoleEnum::InstructorSchool()->value])) {}
 
         return $navigations;
     }
