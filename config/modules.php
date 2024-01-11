@@ -71,7 +71,7 @@ return [
         |
         */
 
-        'modules' => base_path('Modules'),
+        'modules' => base_path('modules'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -110,7 +110,7 @@ return [
                 'namespace' => 'database/seeders',
                 'generate' => true,
             ],
-            'factory' => ['path' => 'database/factories', 'generate' => true],
+            'factory' => ['path' => 'database/factories', 'generate' => false],
             'model' => ['path' => 'app/Models', 'generate' => true],
             'observer' => ['path' => 'app/Observers', 'generate' => false],
             'routes' => ['path' => 'routes', 'generate' => true],
@@ -119,7 +119,7 @@ return [
             'request' => ['path' => 'app/Http/Requests', 'generate' => true],
             'provider' => ['path' => 'app/Providers', 'generate' => true],
             'assets' => ['path' => 'resources/assets', 'generate' => true],
-            'lang' => ['path' => 'lang', 'generate' => true],
+            'lang' => ['path' => 'lang', 'generate' => false],
             'views' => ['path' => 'resources/views', 'generate' => true],
             'test' => ['path' => 'tests/Unit', 'generate' => true],
             'test-feature' => ['path' => 'tests/Feature', 'generate' => true],

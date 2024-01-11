@@ -1,8 +1,6 @@
 <script setup>
-import { layoutMethods } from "@/scripts/state/helpers";
 import { Link, router } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from "vue";
-import { useI18n } from 'vue-i18n'
 import simplebar from "simplebar-vue";
 
 import us_flag from "@/assets/images/flags/us.svg";

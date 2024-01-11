@@ -1,4 +1,6 @@
 {
     "School": true,
-    "Academy": true
+    "Academy": true,
+    "Chat": true,
+    "Blog": true
 }

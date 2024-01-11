@@ -29,7 +29,7 @@ AOS.init({
 
 createInertiaApp({
     title: title => title ? `${title}` : 'Inertia + Vue & Laravel',
-    resolve: (name) => resolvePageComponent(`../views/Pages/${name}.vue`, import.meta.glob('../views/Pages/**/*.vue')),
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)

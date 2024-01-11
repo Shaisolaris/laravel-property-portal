@@ -2,7 +2,6 @@
 import { computed, onBeforeMount, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { Head, Link, usePage } from "@inertiajs/vue3";
-import { layoutComputed } from "@/scripts/state/helpers";
 import { isEmpty } from "lodash";
 import simplebar from "simplebar-vue";
 import NavBar from "./Partials/AppLayout/NavBar.vue";
