@@ -16,6 +16,9 @@ class HandleInertiaRequests extends Middleware
 
     public function share(Request $request): array
     {
+//        app()->setLocale('es');
+//
+//        dd(app()->getLocale());
         //TODO Need Resource for user
         return [
             ...parent::share($request),
@@ -36,7 +39,7 @@ class HandleInertiaRequests extends Middleware
                 'routeName' => 'home',
                 'active' => request()->routeIs('home'),
                 'icon' => 'ri-layout-left-line',
-                'tKey' => 'Dashboards'
+                'tKey' => 'dashboards'
             ],
             [
                 'routeName' => 'dashboard',

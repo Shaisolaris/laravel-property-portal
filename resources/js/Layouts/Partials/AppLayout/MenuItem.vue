@@ -7,10 +7,44 @@ defineProps({
         required: true
     }
 });
+const showDefault = ref(true);
+const observer = ref(null);
+
+
+const watchDataAttribute = () => {
+    const element = document.getElementsByTagName('html');
+
+    const callback = (mutationsList) => {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-sidebar-size') {
+                showDefault.value = !showDefault.value;
+            }
+        }
+    };
+
+    observer.value = new MutationObserver(callback);
+
+    if (element) {
+        observer.value.observe(element[0], { attributes: true });
+    }
+
+}
+
+
+onMounted(() => {
+    watchDataAttribute();
+});
+
+onUnmounted(() => {
+    if (observer.value) {
+        observer.value.disconnect();
+        observer.value = null;
+    }
+});
 </script>
 
 <template>
-    <li class="nav-item sidebar-nav-item">
+    <li v-if="showDefault" class="nav-item sidebar-nav-item">
         <Link
             :class="['nav-link menu-link', { 'active': navigation.active }]"
             :href="route(navigation.routeName)"
@@ -23,6 +57,13 @@ defineProps({
             </span>
         </Link>
     </li>
+    <li v-else class="nav-item">
+        <Link :class="['nav-link menu-link', { 'active': navigation.active }]" :href="route(navigation.routeName)">
+            <i :class="[navigation.icon, 'text-black fs-16']"></i>
+            <span class="ms-2 text-black fs-14" :data-key="navigation.tKey"> {{ $t(navigation.tKey) }}</span>
+        </Link>
+    </li>
+
 </template>
 
 <style scoped>

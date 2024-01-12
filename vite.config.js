@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
-// import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import path, { resolve } from "path";
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import AutoImport from 'unplugin-auto-import/vite'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
+import autoimport from "unplugin-auto-import/vite";
+import components from "unplugin-vue-components/vite"
+
 
 const __dirname = path.dirname(__filename);
 
@@ -27,15 +28,30 @@ export default defineConfig({
                 },
             },
         }),
-        VueI18nPlugin({
-            // runtimeOnly: false,
-            // include: resolve(dirname(fileURLToPath(import.meta.url)), './resource/js/lang/**') // TODO:: нужно понять как мы будем передатьва переводы на фронт, я могу вот такой плагин поставить, но нужно будет ток немного доделать структуру
+        createSvgIconsPlugin({
+            iconDirs: [ resolve(__dirname, 'resources/assets/images') ],
+            symbolId: 'icon-[dir]-[name]',
         }),
-        AutoImport({ /* options */ }),
-        // createSvgIconsPlugin({
-        //     iconDirs: [resolve(__dirname, 'resources/assets/images')],
-        //     symbolId: 'icon-[dir]-[name]',
-        // }),
+        autoimport({
+            vueTemplate: true,
+            imports: [
+                'vue', 'vuex', 'vue-i18n',
+                { "@inertiajs/vue3": [ 'router', 'useForm', 'usePage' ] },
+                { "lodash": [ 'isEmpty' ] },
+            ]
+        }),
+        components({
+            dirs: [ "resources/js/Components" ],
+            dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
+            resolvers: [
+                (name) => {
+                    const components = [ "Link", "Head" ]
+                    if (components.includes(name)) {
+                        return { name, from: "@inertiajs/vue3" }
+                    }
+                },
+            ],
+        }),
     ],
     resolve: {
         alias: {
