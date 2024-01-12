@@ -35,7 +35,11 @@ const props = defineProps({
     showError: {
         type: Boolean,
         default: true,
-    }
+    },
+    type: {
+        type: String,
+        default: 'checkbox',
+    },
 });
 const emit = defineEmits(['update:modelValue']);
 </script>
@@ -45,6 +49,7 @@ const emit = defineEmits(['update:modelValue']);
 
     <input
         v-bind="$attrs"
+        :type="type"
         :class="['form-check-input', { 'is-invalid': error && error.length > 0 }]"
         :checked="modelValue"
         @input="(event) => emit('update:modelValue', event.target.checked)"

@@ -624,7 +624,7 @@ $thistle: rgba(222, 179, 224, 0.40);
 $crimson: rgba(231, 134, 139, 0.40);
 $cosmic-sapphire: #122D98;
 $emerald-green: #1B9930;
-
+$beige-2: #F7F6F2;
 /**/
 $border-base-color: #E3E3E3;
 $border-base-color: #F1F3F5;
@@ -655,6 +655,7 @@ $theme-colors: (
     "crimson": $crimson,
     "cosmic-sapphire": $cosmic-sapphire,
     "emerald-green": $emerald-green,
+    'beige-2': $beige-2,
 );
 // scss-docs-end theme-colors-map
 

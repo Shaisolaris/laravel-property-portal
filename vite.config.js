@@ -42,7 +42,7 @@ export default defineConfig({
         }),
         components({
             dirs: [ "resources/js/Components" ],
-            dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
+            // dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
             resolvers: [
                 (name) => {
                     const components = [ "Link", "Head" ]

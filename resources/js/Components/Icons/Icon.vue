@@ -1,5 +1,5 @@
 <template>
-    <svg :style="[{'margin-top': name.includes('crypto-icons') ? '-2px' : ''}]" aria-hidden="true">
+    <svg  aria-hidden="true">
         <use
             :href="symbolId"
             :color="color"

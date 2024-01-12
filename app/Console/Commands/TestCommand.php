@@ -14,6 +14,6 @@ class TestCommand extends Command
 
     public function handle(): void
     {
-        dd( Str::snake('Admin'), Str::snake('StudentSchool'));
+        dd(route('landing.landing.index'));
     }
 }

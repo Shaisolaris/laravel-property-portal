@@ -1,35 +1,27 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('home');
+use Tightenco\Ziggy\Ziggy;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LandingController;
 
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
+    'universal',
 ])->group(function () {
+    Route::get('/ziggy', fn() => response()->json(new Ziggy));
+});
+
+
+Route::group([
+    'as' => 'landing.',
+    'controller' => LandingController::class
+], function () {
+    Route::get('/', 'index')->name('landing.index');
+});
+
+
+Route::group([], function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Welcome');
     })->name('dashboard');
 });
