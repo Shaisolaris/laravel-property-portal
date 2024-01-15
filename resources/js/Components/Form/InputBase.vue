@@ -1,11 +1,14 @@
 <script setup>
+import { useI18n } from "vue-i18n";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
+import { computed } from "vue";
 
 
 defineOptions({
     inheritAttrs: false,
 });
+
 
 const props = defineProps({
     type: {
@@ -46,7 +49,14 @@ const props = defineProps({
     }
 });
 const emit = defineEmits([ 'update:modelValue' ]);
+const attrs = useAttrs();
+const { t } = useI18n();
+
+const togglePassword = ref(false);
 const iconLength = computed(() => props.icon.length > 0);
+const placeholder_ = computed(() => attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
+const label_ = computed(() => props.label.length > 0 ? t(`label.${props.label}`) : '');
+const type_ = computed(() => props.type === 'password' ? togglePassword.value ? 'text': props.type : props.type);
 
 
 const handleInput = (event) => {
@@ -77,10 +87,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <TagLabel v-if="iconLength || viewType === 'counter'" :label="label" :required="$attrs.required" />
+    <TagLabel v-if="iconLength || viewType === 'counter'" :label="label_" :required="$attrs.required" />
 
     <div :class="[{'input-group': iconLength || viewType === 'counter'}]">
-        <TagLabel v-if="!iconLength && viewType !== 'counter'" :label="label" :required="$attrs.required" />
+        <TagLabel v-if="!iconLength && viewType !== 'counter'" :label="label_" :required="$attrs.required" />
 
         <span v-if="iconLength" class="input-group-text">
             <slot name="group-text">
@@ -89,13 +99,27 @@ onMounted(() => {
             </slot>
         </span>
 
-        <input
-            v-bind="$attrs"
-            :type="type"
-            :value="modelValue"
-            :class="[{ 'is-invalid': error && error.length > 0 }, classMap, 'form-control']"
-            @input="(event) => handleInput(event)"
-        >
+        <span :class="type === 'password' ? 'd-block position-relative auth-pass-inputgroup': ''">
+            <input
+                v-bind="$attrs"
+                :type="type_"
+                :value="modelValue"
+                :placeholder="placeholder_"
+                :class="[{ 'is-invalid': error && error.length > 0 }, classMap, 'form-control']"
+                @input="(event) => handleInput(event)"
+            >
+
+            <BButton
+                v-if="type === 'password'"
+                variant="link"
+                class="position-absolute end-0 top-0 text-decoration-none text-muted"
+                type="button"
+                id="password-addon"
+                @click="togglePassword = !togglePassword"
+            >
+                <i class="ri-eye-fill align-middle" />
+            </BButton>
+        </span>
 
         <span v-if="viewType === 'counter'" class="input-group-text">
             <span class="text-dim-gray">
@@ -104,6 +128,7 @@ onMounted(() => {
                 <span>{{maxCounter}}</span>
             </span>
         </span>
+
         <ErrorMessage :error="error" :show-error="showError" />
     </div>
 </template>

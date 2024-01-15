@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('set-lang', function (Request $request) {
+    $lang = $request->get('lang');
+
+    \Illuminate\Support\Facades\Session::put(['lang', $lang]);
+
+    App::setLocale($lang);
+});

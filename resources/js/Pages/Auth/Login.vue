@@ -1,5 +1,7 @@
 <script setup>
+import { useForm } from "@inertiajs/vue3";
 import AuthLayout from "~/Layouts/AuthLayout.vue";
+
 
 const form = useForm({
     email: '',
@@ -7,59 +9,74 @@ const form = useForm({
     remember: false,
 });
 
+
 const submit = () => {
     form
         .transform((data) => ({
             ...data,
             remember: data.remember ? 'on' : '',
-        })).post(route('fortify-login'), {
-        onFinish: () => form.reset('password'),
-    });
+        }))
+        .post(route('login'), {
+            onFinish: () => form.reset('password'),
+        });
 };
 </script>
 
 <template>
-    <AuthLayout class="overflow-x-hidden">
-        <b-row style="padding-top: 67px">
-            <b-col>
-                <div class=" fontf-McLaren bg">
-                    <div class="fs-3 fw-medium text-center py-5">
-                        Empowering Afghan Dreams: Education for Everyone
-                    </div>
-                </div>
-            </b-col>
-            <b-col>
-                <div class="text-center">
-                    Sign In
-                    Welcome back! You have been missed!
-                </div>
-                <form @submit.prevent="submit" class="row gy-3">
-                    <InputBase v-model="form.email" :error="form.errors.email" placeholder="" label="" />
-                    <InputBase v-model="form.password" :error="form.errors.password" type="password" placeholder="" label="" />
+    <AuthLayout title="login">
+        <template #right-content>
+            <b-row class="justify-content-center">
+                <b-col cols="12" sm="6" lg="8" xl="10" xxl="7">
+                    <div class="text-center">
+                        <Icon name="logo-logo" width="102" height="40" />
 
-                    <div class="mb-3">
-                        <CheckboxRadio v-model="form.remember" label="Remember me" value="" />
-
-                        <div class="float-end">
-                            <Link :href="route('password.request')" class="text-muted">
-                                Forgot your password?
-                            </Link>
+                        <div class="pbc-48 ptc-32">
+                            <Text t-key="sign-in" class="fw-bold fs-2 pb-2" />
+                            <Text t-key="page.login.text-2" class="text-dim-gray" />
                         </div>
                     </div>
-                </form>
+                    <form @submit.prevent="submit" class="row gy-3">
+                        <InputBase
+                            v-model="form.email"
+                            :error="form.errors.email"
+                            placeholder="enter-email"
+                            label="email"
+                        />
 
-                <div class="text-center">
-                    Already have an account?
-                </div>
-            </b-col>
-        </b-row>
+                        <InputBase
+                            v-model="form.password"
+                            :error="form.errors.password"
+                            type="password"
+                            placeholder="enter-password"
+                            label="password"
+                        />
+                        <div>
+                            <CheckboxRadio v-model="form.remember" label="remember-me" />
+
+                            <div class="float-end">
+                                <BaseLink :href="route('password.request')" t-key="forgot-password" />
+                            </div>
+                        </div>
+
+                        <div class="pyc-40">
+                            <BaseButton
+                                t-key="sign-in"
+                                type="submit"
+                                class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
+                            />
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                        <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
+                        <BaseLink :href="route('register')" t-key="sign-up" class="fs-16 fw-bold" />
+                    </div>
+                </b-col>
+            </b-row>
+        </template>
     </AuthLayout>
 </template>
 
 <style scoped>
-.bg {
-    background: url('@/images/page/auth/img-1.svg') no-repeat;
-    width: 650px;
-    height: 920px;
-}
+
 </style>

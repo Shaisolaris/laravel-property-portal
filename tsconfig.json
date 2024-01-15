@@ -9,6 +9,11 @@
         "paths": {
             "~/*": ["./resources/js/*", "./dist/*"],
             "@assets/*": ["./resources/assets/*"]
-        }
+        },
+        "include": [
+            "components.d.ts",
+            "resources/ts/BootstrapVue.ts",
+            "resources/ts/SelfComponents.ts",
+        ]
     }
 }

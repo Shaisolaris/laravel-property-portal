@@ -36,8 +36,8 @@ class HandleInertiaRequests extends Middleware
     {
         $navigations = collect([
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-layout-left-line',
                 'tKey' => 'dashboards'
             ],
@@ -48,61 +48,61 @@ class HandleInertiaRequests extends Middleware
                 'tKey' => 'Add New Course'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-computer-line',
                 'tKey' => 'My Courses'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => ' ri-file-text-line',
                 'tKey' => 'Assignments'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'bx bx-message-rounded',
                 'tKey' => 'Messages'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-question-line',
                 'tKey' => 'Quizzes'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-calendar-check-line',
                 'tKey' => 'Grades'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home') || request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard') || request()->routeIs('dashboard'),
                 'icon' => 'ri-group-line',
                 'tKey' => 'Mentoring'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-file-list-2-line',
                 'tKey' => 'Forum'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-bank-card-line',
                 'tKey' => 'Payments'
             ],
             [
-                'routeName' => 'home',
-                'active' => request()->routeIs('home'),
+                'routeName' => 'dashboard',
+                'active' => request()->routeIs('dashboard'),
                 'icon' => ' ri-settings-2-line',
                 'tKey' => 'Settings'
             ],
             [
-                'routeName' => 'home',
+                'routeName' => 'dashboard',
                 'active' => false,
                 'icon' => 'ri-logout-box-r-line',
                 'tKey' => 'Logout'

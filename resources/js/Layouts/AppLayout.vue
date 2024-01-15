@@ -78,7 +78,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <Head :title="title" />
+    <Head :title="`${$t(`title.${title}`)}`" />
 
     <div id="layout-wrapper">
         <NavBar />

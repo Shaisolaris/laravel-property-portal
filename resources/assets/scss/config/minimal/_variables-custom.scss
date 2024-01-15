@@ -83,7 +83,8 @@ $vertical-menu-border-gradient-4:                 var(--#{$prefix}primary);
 $twocolumn-menu-iconview-bg-gradient-4:           #1a1d21;
 
 // Topbar - (Default Light)
-$header-height:                                   110px;
+$header-height:                                   64px;
+$header-height-custom:                            128px;
 $header-bg:                                       $white;
 $header-border:                                   $border-color;
 $header-item-color:                               $gray-700;

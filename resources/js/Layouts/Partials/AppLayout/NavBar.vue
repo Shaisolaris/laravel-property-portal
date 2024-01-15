@@ -166,72 +166,57 @@ onMounted(() => {
 <template>
     <header id="page-topbar">
         <div class="layout-width">
-            <div class="navbar-header flex-column justify-content-start">
-                <div class="hp-55 w-100 d-flex justify-content-between align-items-center">
-                    <div class="hp-110">
-                        <div class="navbar-brand-box horizontal-logo">
-                            <Link :href="route('home')" class="logo logo-dark">
-                                <span class="logo-sm">
-                                    <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="@/images/logo/logo.svg" alt="" height="35" />
-                                </span>
-                            </Link>
-
-                            <Link :href="route('home')" class="logo logo-light">
-                                <span class="logo-sm">
-                                    <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="@/images/logo/logo.svg" alt="" height="35" />
-                                </span>
-                            </Link>
-                        </div>
-
-                        <button
-                            type="button"
-                            class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
-                            id="topnav-hamburger-icon"
-                        >
-                            <span class="hamburger-icon">
-                              <span></span>
-                              <span></span>
-                              <span></span>
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <div class="navbar-brand-box horizontal-logo">
+                        <Link :href="route('dashboard')" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
-                        </button>
+                            <span class="logo-lg">
+                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                            </span>
+                        </Link>
+
+                        <Link :href="route('dashboard')" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
+                            </span>
+                            <span class="logo-lg">
+                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                            </span>
+                        </Link>
                     </div>
-                    <div>
-                        <BDropdown
-                            class="dropdown" variant="ghost-secondary" dropstart
-                            :offset="{ alignmentAxis: 55, crossAxis: 15, mainAxis: -50 }"
-                            toggle-class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle arrow-none"
-                            menu-class="dropdown-menu-end"
-                        >
-                            <template #button-content>
-                                <div class="rounded">
-                                    {{ lan }}
-                                </div>
-                            </template>
-                            <BLink
-                                href="javascript:void(0);" class="dropdown-item notify-item language py-2"
-                                v-for="(entry, key) in languages" :data-lang="entry.language" :title="entry.title"
-                                @click="setLanguage(entry.language, entry.title, entry.flag)" :key="key"
-                            >
-                                <img :src="entry.flag" alt="user-image" class="me-2 rounded" height="18">
-                                <span class="align-middle">{{ entry.title }}</span>
-                            </BLink>
-                        </BDropdown>
-                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
+                        id="topnav-hamburger-icon"
+                    >
+                        <span class="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </button>
                 </div>
-                <div class="hp-55 w-100 d-flex justify-content-between align-items-center">
-                    <div>
+                <div class="d-flex align-items-center">
+                    <LangDropdown />
+                </div>
+            </div>
+
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <slot name="bottom-left-nav-bar-block">
                         Academy of Inoura
-                    </div>
-                    <div class="d-flex align-items-center">
+                    </slot>
+                </div>
+                <div class="d-flex align-items-center">
+                    <slot name="bottom-right-nav-bar-block">
                         <BDropdown
-                            class="dropdown d-md-none topbar-head-dropdown header-item" variant="ghost-secondary" dropstart
                             :offset="{ alignmentAxis: 55, crossAxis: 15, mainAxis: 0 }"
+                            class="dropdown d-md-none topbar-head-dropdown header-item"
+                            variant="ghost-secondary"
+                            dropstart
                             toggle-class="btn-icon btn-topbar rounded-circle arrow-none"
                             menu-class="dropdown-menu-lg dropdown-menu-end p-0"
                         >
@@ -257,24 +242,25 @@ onMounted(() => {
                             </BDropdownItem>
                         </BDropdown>
                         <BDropdown
+                            :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
                             variant="ghost-dark"
                             dropstart
                             class="ms-1 dropdown"
-                            :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
                             toggle-class="btn-icon btn-topbar rounded-circle arrow-none"
                             id="page-header-notifications-dropdown"
                             menu-class="dropdown-menu-lg dropdown-menu-end p-0"
                             auto-close="outside"
                         >
                             <template #button-content>
-                                <i class='bx bx-bell fs-22'></i>
+                                <i class='bx bx-bell fs-22' />
                                 <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger">
-                                <span class="notification-badge">
-                                3
-                            </span>
-                                <span class="visually-hidden">unread messages
-                            </span>
-                          </span>
+                                    <span class="notification-badge">
+                                        3
+                                    </span>
+                                    <span class="visually-hidden">
+                                        unread messages
+                                    </span>
+                                </span>
                             </template>
                             <div class="dropdown-head bg-primary bg-pattern rounded-top dropdown-menu-lg">
                                 <div class="p-3">
@@ -285,7 +271,8 @@ onMounted(() => {
                                             </h6>
                                         </BCol>
                                         <BCol cols="auto" class="dropdown-tabs">
-                                            <BBadge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4 New
+                                            <BBadge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4
+                                                New
                                             </BBadge>
                                         </BCol>
                                     </BRow>
@@ -293,7 +280,7 @@ onMounted(() => {
                             </div>
                             <BTabs nav-class="dropdown-tabs nav-tab-custom bg-primary px-2 pt-2">
                                 <BTab
-                                    title=" All (4) "
+                                    title="All (4)"
                                     class="tab-pane fade py-2 ps-2 show"
                                     id="all-noti-tab"
                                     role="tabpanel"
@@ -302,9 +289,9 @@ onMounted(() => {
                                         <div class="text-reset notification-item d-block dropdown-item position-relative">
                                             <div class="d-flex">
                                                 <div class="avatar-xs me-3 flex-shrink-0">
-                                                <span class="avatar-title bg-info-subtle text-info rounded-circle fs-16">
-                                                    <i class="bx bx-badge-check"></i>
-                                                </span>
+                                                    <span class="avatar-title bg-info-subtle text-info rounded-circle fs-16">
+                                                        <i class="bx bx-badge-check"></i>
+                                                    </span>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <BLink href="#!" class="stretched-link">
@@ -366,95 +353,6 @@ onMounted(() => {
                                             </div>
                                         </div>
 
-                                        <div class="text-reset notification-item d-block dropdown-item">
-                                            <div class="d-flex">
-                                                <img
-                                                    src="../../../../assets/images/users/avatar-2.jpg"
-                                                    class="me-3 rounded-circle avatar-xs"
-                                                    alt="user-pic"
-                                                />
-                                                <div class="flex-grow-1">
-                                                    <BLink href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                                                            Angela Bernier
-                                                        </h6>
-                                                    </BLink>
-                                                    <div class="fs-13 text-muted">
-                                                        <p class="mb-1">
-                                                            Answered to your comment on the cash flow
-                                                            forecast's graph 🔔.
-                                                        </p>
-                                                    </div>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span><i class="mdi mdi-clock-outline"></i> 2 hrs
-                            ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <input class="form-check-input" type="checkbox" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-reset notification-item d-block dropdown-item">
-                                            <div class="d-flex">
-                                                <img
-                                                    src="../../../../assets/images/users/avatar-6.jpg"
-                                                    class="me-3 rounded-circle avatar-xs"
-                                                    alt="user-pic"
-                                                />
-                                                <div class="flex-grow-1">
-                                                    <BLink href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                                                            Kenneth Brown
-                                                        </h6>
-                                                    </BLink>
-                                                    <div class="fs-13 text-muted">
-                                                        <p class="mb-1">
-                                                            Mentionned you in his comment on 📃 invoice
-                                                            #12501.
-                                                        </p>
-                                                    </div>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span><i class="mdi mdi-clock-outline"></i> 10 hrs
-                            ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <input class="form-check-input" type="checkbox" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-reset notification-item d-block dropdown-item">
-                                            <div class="d-flex">
-                                                <img
-                                                    src="../../../../assets/images/users/avatar-8.jpg"
-                                                    class="me-3 rounded-circle avatar-xs"
-                                                    alt="user-pic"
-                                                />
-                                                <div class="flex-grow-1">
-                                                    <BLink href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 mb-1 fs-13 fw-semibold">
-                                                            Maureen Gibson
-                                                        </h6>
-                                                    </BLink>
-                                                    <div class="fs-13 text-muted">
-                                                        <p class="mb-1">
-                                                            We talked about a project on linkedin.
-                                                        </p>
-                                                    </div>
-                                                    <p class="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span><i class="mdi mdi-clock-outline"></i> 3 days
-                            ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-15">
-                                                    <input class="form-check-input" type="checkbox" />
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <div class="my-3 text-center">
                                             <BButton type="button" variant="soft-success">
                                                 View All Messages
@@ -467,7 +365,11 @@ onMounted(() => {
                                 <BTab title="Alerts" class="p-4">
                                     <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                                         <div class="w-25 w-sm-50 pt-3 mx-auto">
-                                            <img src="../../../../assets/images/svg/bell.svg" class="img-fluid" alt="user-pic" />
+                                            <img
+                                                src="../../../../assets/images/svg/bell.svg"
+                                                class="img-fluid"
+                                                alt="user-pic"
+                                            />
                                         </div>
                                         <div class="text-center pb-5 mt-2">
                                             <h6 class="fs-18 fw-semibold lh-base">
@@ -478,24 +380,19 @@ onMounted(() => {
                                 </BTab>
                             </BTabs>
                         </BDropdown>
-
-                        <div class="hp-55 dropdown ms-sm-3 header-item topbar-user bg-transparent">
+                        <div class="dropdown ms-sm-3 header-item topbar-user bg-transparent">
                             <button
                                 type="button"
                                 class="btn shadow-none"
                                 id="page-header-user-dropdown"
                             >
                             <span class="d-flex align-items-center">
-                                <span class="rounded-circle header-profile-user">img</span>
-<!--                                <img v-if="$page.props.jetstream.managesProfilePhotos" class="rounded-circle header-profile-user">-->
-                                <span class="text-start ms-xl-2">
-                                    <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">gregerg</span>
-                                    <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
-                                </span>
-                              </span>
+                                <img v-if="$page.props.auth" :src="$page.props.auth" class="rounded-circle header-profile-user" alt>
+                                <span v-else class="bg-light-blue rounded-circle header-profile-user" />
+                            </span>
                             </button>
                         </div>
-                    </div>
+                    </slot>
                 </div>
             </div>
         </div>

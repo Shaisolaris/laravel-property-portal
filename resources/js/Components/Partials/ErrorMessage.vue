@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
     error: {
         type: String,
         default: ''
@@ -9,10 +9,15 @@ defineProps({
         default: true
     }
 });
+
+
+const isShow = computed(() => props.error && props.error.length > 0 && props.showError);
 </script>
 
 <template>
-    <span v-if="error && error.length > 0 && showError" class="invalid-feedback">{{ error }}</span>
+    <div v-if="isShow" :class="['invalid-feedback', {'d-block': isShow}]">
+        {{ error }}
+    </div>
 </template>
 
 <style scoped>

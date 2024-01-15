@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use DateTimeZone;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 
@@ -14,6 +15,6 @@ class TestCommand extends Command
 
     public function handle(): void
     {
-        dd(route('landing.landing.index'));
+        dd(User::whereEmail('instructorSchool@gmail.com')->first());
     }
 }

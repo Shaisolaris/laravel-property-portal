@@ -801,7 +801,7 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg: #ffffff;
+$body-bg: #FCFCFC;
 $body-color: $gray-900;
 $body-text-align: null;
 
@@ -911,7 +911,7 @@ $border-color-translucent: $gray-400;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
-$border-radius: .25rem;
+$border-radius: .5rem;
 $border-radius-sm: .2rem;
 $border-radius-lg: .3rem;
 $border-radius-xl: 1rem;
@@ -983,7 +983,7 @@ $font-family-code: var(--#{$prefix}font-monospace);
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
 $font-size-root: null;
-$font-size-base: 0.875rem; // Assumes the browser default, typically `16px`
+$font-size-base: 0.875rem;
 $font-size-sm: $font-size-base * .875;
 $font-size-lg: $font-size-base * 1.25;
 

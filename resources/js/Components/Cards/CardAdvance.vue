@@ -34,7 +34,7 @@ const { value } = defineProps({
                     </a>
                     <div class="d-flex">
                         <Starts value="3.5"/>
-                        <div class="text-dim-gray mx-2 fs-12">(203)</div>
+                        <div class="text-dim-gray mx-2">(203)</div>
                     </div>
                     <div class="mt-3">
                         <CardPrice value="13"/>

@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 
 import "swiper/css";
 import "swiper/css/autoplay";
+import NavBar from "~/Layouts/Partials/AppLayout/NavBar.vue";
+
 
 export default {
     data() {
@@ -13,6 +15,7 @@ export default {
         };
     },
     components: {
+        NavBar,
         Swiper, SwiperSlide, Link, Head
     },
     methods: {
@@ -57,55 +60,10 @@ export default {
 </script>
 
 <template>
-    <Head title="Job Landing" />
+    <Head :title="`${$t(`title.${title}`)}`" />
 
     <div class="layout-wrapper landing">
-        <nav class="navbar navbar-expand-lg navbar-landing fixed-top job-navbar" id="navbar">
-            <BContainer fluid class="custom-container">
-                <Link class="navbar-brand" href="/">
-                    <img src="@/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17">
-                    <img src="@/images/logo-light.png" class="card-logo card-logo-light" alt="logo light" height="17">
-                </Link>
-                <BButton v-b-toggle.navbarSupportedContent class="navbar-toggler py-0 fs-20 text-body" type="button">
-                    <i class="mdi mdi-menu"></i>
-                </BButton>
-
-                <BCollapse class="navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#hero" @click.prevent="scrollToSection('hero')">Home
-                            </BLink>
-                        </li>
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#process" @click.prevent="scrollToSection('process')">
-                                Process
-                            </BLink>
-                        </li>
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#categories" @click.prevent="scrollToSection('categories')">
-                                Categories</BLink>
-                        </li>
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#findJob" @click.prevent="scrollToSection('findJob')">Find
-                                Jobs</BLink>
-                        </li>
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#candidates" @click.prevent="scrollToSection('candidates')">
-                                Candidates</BLink>
-                        </li>
-                        <li class="nav-item">
-                            <BLink class="nav-link fs-15" href="#blog" @click.prevent="scrollToSection('blog')">Blog</BLink>
-                        </li>
-                    </ul>
-
-                    <div class="">
-                        <Link href="/auth/signin-basic" class="btn btn-soft-primary"><i
-                            class="ri-user-3-line align-bottom me-1"></i> Login & Register</Link>
-                    </div>
-                </BCollapse>
-
-            </BContainer>
-        </nav>
+        <NavBar />
 
         <section class="section job-hero-section bg-light pb-0" id="hero">
             <BContainer>
@@ -928,7 +886,7 @@ export default {
                 <BRow class="align-items-center gy-4">
                     <BCol lg="6" order="2" order-lg="1">
                         <div class="text-muted mt-5 mt-lg-0">
-                            <h5 class="fs-12 text-uppercase text-success">Hot Featured Company</h5>
+                            <h5 class="text-uppercase text-success">Hot Featured Company</h5>
                             <h1 class="mb-3 ff-secondary fw-semibold text-capitalize lh-base">Get <span
                                 class="text-primary">10,000+</span> Featured Companies</h1>
                             <p class="ff-secondary mb-2">The demand for content writing services is growing. This is

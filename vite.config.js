@@ -3,7 +3,7 @@ import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import path, { resolve } from "path";
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import autoimport from "unplugin-auto-import/vite";
+import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite"
 
 
@@ -32,17 +32,19 @@ export default defineConfig({
             iconDirs: [ resolve(__dirname, 'resources/assets/images') ],
             symbolId: 'icon-[dir]-[name]',
         }),
-        autoimport({
+        autoImport({
             vueTemplate: true,
             imports: [
-                'vue', 'vuex', 'vue-i18n',
+                'vue',
                 { "@inertiajs/vue3": [ 'router', 'useForm', 'usePage' ] },
+                { "vuex": [ 'useStore' ] },
+                { "vue-i18n": [ 'useI18n' ] },
                 { "lodash": [ 'isEmpty' ] },
             ]
         }),
         components({
             dirs: [ "resources/js/Components" ],
-            // dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
+            dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
             resolvers: [
                 (name) => {
                     const components = [ "Link", "Head" ]

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Resources;
+namespace App\Http\Resources;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;

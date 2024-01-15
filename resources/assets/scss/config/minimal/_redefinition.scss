@@ -33,25 +33,124 @@ i {
     }
 }
 
-@for $i from 1 through 500 {
-    .hp-#{$i} {
-        height: #{$i}px;
-    }
+$shadows: (
+    light-black: 0 2px 8px 0 rgba(0, 0, 0, 0.08),
+    dark-blue: 0 4px 0 0 #001427,
+);
 
-    .wp-#{$i} {
-        width: #{$i}px;
-    }
-
-    .pxc-#{$i} {
-        padding-left: #{$i}px;
-        padding-right: #{$i}px;
-    }
-
-    .pyc-#{$i} {
-        padding-top: #{$i}px;
-        padding-bottom: #{$i}px;
+@each $shadowName, $shadow in $shadows {
+    .shadow-#{$shadowName} {
+        box-shadow: $shadow !important;
     }
 }
+
+
+@each $breakpoint, $dimension in $grid-breakpoints {
+    @for $i from 1 through 500 {
+        .hp-#{$i} {
+            height: #{$i}px;
+        }
+
+        .wp-#{$i} {
+            width: #{$i}px;
+        }
+
+        .hc-#{$i} {
+            height: #{$i}#{'%'};
+        }
+
+        .wc-#{$i} {
+            width: #{$i}#{'%'};
+        }
+
+        .pxc-#{$i} {
+            padding-left: #{$i}px;
+            padding-right: #{$i}px;
+        }
+
+        .pyc-#{$i} {
+            padding-top: #{$i}px;
+            padding-bottom: #{$i}px;
+        }
+
+        .pc-#{$i} {
+            padding: #{$i}px;
+        }
+
+        .ptc-#{$i} {
+            padding-top: #{$i}px;
+        }
+
+        .pbc-#{$i} {
+            padding-bottom: #{$i}px;
+        }
+
+        .psc-#{$i} {
+            padding-left: #{$i}px;
+        }
+
+        .pec-#{$i} {
+            padding-right: #{$i}px;
+        }
+
+        .fsc-#{$i} {
+            font-size: #{$i}px;
+        }
+
+        @media (min-width: $dimension) {
+            .hp-#{$breakpoint}-#{$i} {
+                height: #{$i}px;
+            }
+
+            .wp-#{$breakpoint}-#{$i} {
+                width: #{$i}px;
+            }
+
+            .hc-#{$breakpoint}-#{$i} {
+                height: #{$i}#{'%'};
+            }
+
+            .wc-#{$breakpoint}-#{$i} {
+                width: #{$i}#{'%'};
+            }
+
+            .pxc-#{$breakpoint}-#{$i} {
+                padding-left: #{$i}px;
+                padding-right: #{$i}px;
+            }
+
+            .pyc-#{$breakpoint}-#{$i} {
+                padding-top: #{$i}px;
+                padding-bottom: #{$i}px;
+            }
+
+            .pc-#{$breakpoint}-#{$i} {
+                padding: #{$i}px;
+            }
+
+            .ptc-#{$breakpoint}-#{$i} {
+                padding-top: #{$i}px;
+            }
+
+            .pbc-#{$breakpoint}-#{$i} {
+                padding-bottom: #{$i}px;
+            }
+
+            .psc-#{$breakpoint}-#{$i} {
+                padding-left: #{$i}px;
+            }
+
+            .pec-#{$breakpoint}-#{$i} {
+                padding-right: #{$i}px;
+            }
+
+            .fsc-#{$breakpoint}-#{$i} {
+                font-size: #{$i}px;
+            }
+        }
+    }
+}
+
 
 [data-sidebar-size="sm"] {
     .avatar-block {

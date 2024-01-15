@@ -16,7 +16,7 @@ Route::group([
     'as' => 'landing.',
     'controller' => LandingController::class
 ], function () {
-    Route::get('/', 'index')->name('landing.index');
+    Route::get('/', 'index')->name('index');
 });
 
 

@@ -13,6 +13,7 @@ const messages = { ar, ch, en, fr, gr, it, ru, sp }
 const locale = sessionStorage.getItem("locale");
 
 export default createI18n({
+    legacy: false,
     locale: locale || "en",
     fallbackLocale: "en",
     messages: messages

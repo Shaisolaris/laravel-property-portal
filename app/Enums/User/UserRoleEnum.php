@@ -7,6 +7,7 @@ use Spatie\Enum\Laravel\Enum;
 
 /**
  * @method static self Admin()
+ * @method static self Organizer()
  * @method static self StudentSchool()
  * @method static self StudentAcademy()
  * @method static self InstructorSchool()
