@@ -20,7 +20,9 @@ Route::group([
 });
 
 
-Route::group([], function () {
+Route::group([
+    'middleware' => ['auth:sanctum']
+], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Welcome');
     })->name('dashboard');
