@@ -105,7 +105,7 @@ onMounted(() => {
                 :type="type_"
                 :value="modelValue"
                 :placeholder="placeholder_"
-                :class="[{ 'is-invalid': error && error.length > 0 }, classMap, 'form-control']"
+                :class="[{ 'is-invalid': error && error.length > 0 }, classMap, 'form-control ']"
                 @input="(event) => handleInput(event)"
             >
 
@@ -133,6 +133,10 @@ onMounted(() => {
     </div>
 </template>
 
+<!--На формах auth там 10 пикселей и белый фон, глобально пока не ставлю нужно обсудить...-->
 <style scoped>
-
+input {
+    background: #fff;
+    border-radius: 10px;
+}
 </style>

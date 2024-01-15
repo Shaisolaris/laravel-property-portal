@@ -8,8 +8,8 @@ defineProps({
     cols: {
         type: Object,
         default: {
-            left: 'col-6 col-lg-4 col-xl-6 col-xxl-4',
-            right: 'col-6 col-lg-8 col-xl-6 col-xxl-8',
+            // left: 'col-6 col-lg-4 col-xl-6 col-xxl-4',
+            // right: 'col-7 col-lg-6 col-xl-6 col-xxl-6',
         }
     }
 });
@@ -22,8 +22,8 @@ defineProps({
         <NavBar />
 
         <slot name="main-content">
-            <b-row class="align-items-center ptc-67">
-                <b-col :class="cols.left">
+            <b-row class="align-items-center ptc-67" :no-gutters="true">
+                <b-col cols="12" lg="5" class="d-none d-lg-block">
                     <div class="block-bg text-center">
                         <div class="d-flex justify-content-center">
                             <div class="wc-70">
@@ -32,7 +32,7 @@ defineProps({
                         </div>
                     </div>
                 </b-col>
-                <b-col :class="cols.right">
+                <b-col cols="12" lg="7" class="pt-lg-0 pt-5">
                     <slot name="right-content" />
                 </b-col>
             </b-row>
@@ -42,8 +42,9 @@ defineProps({
 
 <style scoped>
 .block-bg {
-    background: url('@/images/page/auth/img-1.svg') no-repeat;
-    width: 672px;
+    background: url('@/images/page/auth/img-1.svg') no-repeat center;
+    background-size: cover;
+    width: 100%;
     height: 920px;
 }
 </style>

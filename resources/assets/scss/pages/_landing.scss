@@ -4,7 +4,10 @@
 
 .layout-wrapper {
     &.landing {
-        background-color: var(--#{$prefix}secondary-bg);
+        background-color: #FCFCFC; // Там не белый цвет а вот такой TODO:: #FCFCFC
+        // ставлю тут коммент, глобально не меняю, бо вижу что secondary-bg много где
+
+        //background-color: var(--#{$prefix}secondary-bg);
         font-size: 15px;
     }
 }
@@ -87,7 +90,7 @@
         .card-logo-dark {
             display: none;
         }
-    
+
         .card-logo-light {
             display: block;
         }
@@ -111,7 +114,7 @@
             .card-logo-dark {
                 display: block;
             }
-        
+
             .card-logo-light {
                 display: none;
             }
@@ -252,12 +255,12 @@
 
     //navbar-light
     .navbar-light{
-        &.is-sticky { 
+        &.is-sticky {
             .navbar-brand {
                 .card-logo-dark {
                     display: none;
                 }
-        
+
                 .card-logo-light {
                     display: block;
                 }

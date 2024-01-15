@@ -25,8 +25,9 @@ const submit = () => {
 <template>
     <AuthLayout title="login">
         <template #right-content>
-            <b-row class="justify-content-center">
-                <b-col cols="12" sm="6" lg="8" xl="10" xxl="7">
+            <b-row class="justify-content-center" :no-gutters="true">
+<!--                <b-col cols="12" sm="12" lg="9" xl="10" xxl="10">-->
+                <b-col cols="10" lg="8">
                     <div class="text-center">
                         <Icon name="logo-logo" width="102" height="40" />
 

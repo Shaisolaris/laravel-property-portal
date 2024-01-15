@@ -7,17 +7,37 @@
         "login": {
             "text-1": "Empowering Afghan Dreams: Education for Everyone",
             "text-2": "Welcome back! You have been missed!"
+        },
+        "register": {
+            "text-1": "Become a iNoura Instructor",
+            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
+            "text-3": "I want to get the most out of my experience, by receiving emails with insider tips, motivation, special updates and promotions reserved for instructors."
         }
     },
     "title": {
         "login": "Login"
     },
     "label": {
+        "first-name": "First name",
+        "last-name": "Last name",
+        "mobile-on": "Mobile on.",
+        "address-line": "Address line",
+        "country": "Country",
+        "state": "State",
+        "city": "City",
+        "zip-code": "Zip code",
         "email": "Email",
         "password": "Password",
         "remember-me": "Remember Me"
     },
     "placeholder": {
+        "select": "Select",
+        "enter-first-name": "Enter first name",
+        "enter-last-name": "Enter last name",
+        "enter-mobile-on": "Enter mobile on.",
+        "enter-address-line": "Enter address line",
+        "enter-city": "Enter city",
+        "enter-zip-code": "Enter zip code",
         "enter-email": "Enter email",
         "enter-password": "Enter password"
     },
