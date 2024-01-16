@@ -2,13 +2,20 @@
 
 namespace App\Models;
 
+use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
+use App\Enums\User\UserStatusEnum;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Models\Permission;
+use Laravel\Sanctum\PersonalAccessToken;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\Notification\Entities\Notification;
@@ -16,6 +23,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
  * App\Models\User
@@ -24,7 +33,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $uuid
  * @property string $email
  * @property string $password
- * @property string $status
+ * @property Enum|null $status
  * @property string $first_name
  * @property string $last_name
  * @property string|null $profile_photo_path
@@ -32,27 +41,27 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $country
  * @property string $state
  * @property string $city
- * @property string $timezone
+ * @property string|null $timezone
  * @property string|null $phone
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string|null $birth_at
- * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property Carbon|null $email_verified_at
  * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Notification> $notifications
+ * @property-read Collection<int, Notification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
+ * @property-read Collection<int, Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read string $profile_photo_url
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+ * @property-read Collection<int, Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
+ * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Notification> $unreadNotifications
+ * @property-read Collection<int, Notification> $unreadNotifications
  * @property-read int|null $unread_notifications_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
@@ -97,11 +106,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use InteractsWithMedia;
     use TwoFactorAuthenticatable;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
     protected $hidden = [
         'password',
@@ -110,10 +114,32 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'two_factor_secret',
     ];
 
+    protected $fillable = [
+        'uuid',
+        'email',
+        'state',
+        'city',
+        'phone',
+        'status',
+        'address',
+        'country',
+        'password',
+        'birth_at',
+        'timezone',
+        'last_name',
+        'first_name',
+        'remember_token',
+        'two_factor_secret',
+        'email_verified_at',
+        'profile_photo_path',
+        'two_factor_recovery_codes',
+    ];
+
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'email_verified_at' => 'datetime',
+        'status' => UserStatusEnum::class
     ];
 
 

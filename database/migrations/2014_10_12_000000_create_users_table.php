@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('timezone')->nullable();
             $table->string('phone')->nullable();
 
+            $table->text('bio')->nullable();
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();
 
