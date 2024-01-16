@@ -100,7 +100,7 @@ onMounted(() => {
                 :type="type_"
                 :value="modelValue"
                 :placeholder="placeholder_"
-                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control ']"
+                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control']"
                 @input="(event) => handleInput(event)"
             >
 

@@ -4,7 +4,6 @@ import { useI18n } from "vue-i18n";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 
-
 const { label, placeholder } = defineProps({
     placeholder: {
         type: String,
@@ -36,13 +35,12 @@ let currentOption = reactive(placeholder);
 
 const selected = (option) => {
     currentOption = option.name;
-
     emit('update:modelValue', option.value);
 }
 </script>
 
 <template>
-    <div :id="$attrs.id">
+    <div :id="$attrs.id" class="test">
         <TagLabel :label="label_" :required="$attrs.required" />
         <b-dropdown variant="outline-secondary" :text="currentOption" class="custom-select">
             <b-dropdown-item
@@ -65,16 +63,28 @@ const selected = (option) => {
     width: 100%;
     background: var(--in-secondary-bg);
 
-    &.btn {
+    & .btn {
+        max-width: inherit;
+        overflow: hidden;
         border: var(--in-border-width) solid var(--in-input-border-custom);
         display: flex;
         justify-content: space-between;
         align-items: baseline;
 
-        &:hover {
+        &:hover, &:focus-visible, &:first-child:active, &.show {
             background: #f4f4f4;
             color: var(--in-secondary)
         }
+    }
+
+    & .dropdown-toggle::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-top: 13px;
+        width: 20px;
+        height: 100%;
+        background: white;
     }
 }
 </style>

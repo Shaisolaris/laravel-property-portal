@@ -2,5 +2,6 @@
     "School": true,
     "Academy": true,
     "Chat": true,
-    "Blog": true
+    "Blog": true,
+    "Auth": true
 }

@@ -1,24 +1,21 @@
 <script setup>
 import AuthLayout from "~/Layouts/AuthLayout.vue";
 import { useForm } from "@inertiajs/vue3";
-import { VueTelInput } from 'vue-tel-input';
 import PasswordMeter from "vue-simple-password-meter";
-import 'vue-tel-input/vue-tel-input.css';
-
 
 const form = useForm({
-    first_name: '',
-    last_name: '',
-    email: '',
+    first_name: 'test',
+    last_name: 'test',
+    email: 'gogem23600@ikuromi.com',
     phone: '',
-    address: '',
+    address: 'test',
     country: '',
     state: '',
-    city: '',
-    zip_code: '',
-    password: '',
-    role: null,
-    educational_level: null,
+    city: 'test',
+    zip_code: '123',
+    password: '123123123',
+    role: '',
+    educational_level: '',
     is_agreement: false
 });
 
@@ -43,6 +40,7 @@ const list = reactive([
         active: false
     }
 ])
+const phoneNumberValidated = ref(false);
 let scorePassword = ref('');
 
 
@@ -62,6 +60,24 @@ const dropScore = (e) => {
         scorePassword.value = '';
     }
 }
+
+const disabledSubmit = computed(
+    () => !form.email ||
+        !form.educational_level ||
+        !form.role ||
+        !form.first_name ||
+        !form.last_name ||
+        !form.phone ||
+        !form.address ||
+        !form.country ||
+        !form.state ||
+        !form.city ||
+        !form.zip_code ||
+        !form.password ||
+        !phoneNumberValidated.value ||
+        !form.is_agreement,
+);
+
 </script>
 
 <template>
@@ -160,8 +176,8 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="6">
-                                <!--<vue-tel-input v-model="form.number_phone" mode="international"></vue-tel-input>-->
-                                <BaseInput
+                                <MaskInput
+                                    @validate="(validate) => phoneNumberValidated = validate"
                                     v-model="form.phone"
                                     :error="form.errors.phone"
                                     placeholder="enter-mobile-on"
@@ -236,7 +252,7 @@ const dropScore = (e) => {
                                     t-key="sign-up"
                                     type="submit"
                                     class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
-                                    :disabled="!form.is_agreement"
+                                    :disabled="disabledSubmit"
                                 />
                             </div>
 

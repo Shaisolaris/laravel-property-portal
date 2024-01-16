@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\Models\Functions\UserFunctionsTrait;
+use App\Traits\MustVerifyOtpCode;
 use Eloquent;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
 use Illuminate\Support\Carbon;
@@ -21,7 +24,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\Notification\Entities\Notification;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Traits\Models\Attributes\UserAttributesTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -105,7 +107,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
     use HasRoles;
-    use HasRoles;
     use HasFactory;
     use Notifiable;
     use HasApiTokens;
@@ -114,7 +115,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use InteractsWithMedia;
     use UserAttributesTrait;
     use UserRelationshipsTrait;
+    use UserFunctionsTrait;
     use TwoFactorAuthenticatable;
+    use MustVerifyOtpCode;
 
 
     protected $hidden = [
@@ -158,7 +161,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'profile_photo_url',
         'full_name',
     ];
-
 
     public function notifications(): HasMany
     {
