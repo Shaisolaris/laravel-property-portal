@@ -1,0 +1,31 @@
+.tabs {
+    .nav-item {
+        .nav-link {
+            border-radius: 100px;
+            padding: 16px 24px;
+            color: $dim-gray;
+            background: white;
+            border: 1px solid transparent;
+            font-size: 14px;
+            font-weight: 500;
+
+            &.active {
+                background: $beige;
+                color: #000000;
+                border-color: $gainsboro;
+            }
+        }
+    }
+}
+
+[data-role-auth="teacher"] {
+    .nav-item {
+        .nav-link {
+            &.active {
+                background: $beige-blue;
+                color: $royal-blue;
+                border-color: $beige-blue;
+            }
+        }
+    }
+}

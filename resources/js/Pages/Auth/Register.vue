@@ -71,7 +71,9 @@ const dropScore = (e) => {
                 <b-col cols="10" lg="8">
                     <div class="mb-5">
                         <h1 class="text-black">
-                            <Text t-key="page.register.text-1" />
+                            <Text t-key="page.register.text-1" tag="span" />
+                            <Text v-if="form.role" :t-key="`label.${form.role}`" tag="span" />
+                            <template v-if="form.educational_level"> (<Text :t-key="`label.${form.educational_level}`" tag="span" />)</template>
                         </h1>
                         <p class="text-dim-gray fs-14 mt-3">
                             <Text t-key="page.register.text-2" />

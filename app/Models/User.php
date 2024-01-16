@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
 use Illuminate\Support\Carbon;
@@ -9,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\User\UserStatusEnum;
 use Spatie\Permission\Models\Role;
+use App\Enums\User\UserGenderEnum;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -19,11 +21,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\Notification\Entities\Notification;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\Models\Attributes\UserAttributesTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\Models\Relationships\UserRelationshipsTrait;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
@@ -36,6 +39,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property Enum|null $status
  * @property string $first_name
  * @property string $last_name
+ * @property string|null $gender
  * @property string|null $profile_photo_path
  * @property string $address
  * @property string $country
@@ -43,6 +47,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string $city
  * @property string|null $timezone
  * @property string|null $phone
+ * @property string|null $bio
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string|null $birth_at
@@ -59,6 +64,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read string $profile_photo_url
  * @property-read Collection<int, Role> $roles
  * @property-read int|null $roles_count
+ * @property-read UserSetting|null $settings
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read Collection<int, Notification> $unreadNotifications
@@ -70,6 +76,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCountry($value)
@@ -77,6 +84,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
@@ -92,7 +100,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole($roles, $guard = null)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
@@ -104,6 +112,8 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasUuidTrait;
     use HasProfilePhoto;
     use InteractsWithMedia;
+    use UserAttributesTrait;
+    use UserRelationshipsTrait;
     use TwoFactorAuthenticatable;
 
 
@@ -120,6 +130,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'state',
         'city',
         'phone',
+        'gender',
         'status',
         'address',
         'country',
@@ -139,27 +150,24 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'email_verified_at' => 'datetime',
-        'status' => UserStatusEnum::class
+        'status' => UserStatusEnum::class,
+        'gender' => UserGenderEnum::class
     ];
-
 
     protected $appends = [
         'profile_photo_url',
         'full_name',
     ];
 
-    public function fullName(): Attribute
-    {
-        return Attribute::get(fn () => "$this->first_name $this->last_name");
-    }
 
     public function notifications(): HasMany
     {
-        return $this->hasMany(Notification::class)->orderByDesc('created_at');
+        return $this->hasMany(Notification::class)->latest();
     }
+
 
     public function unreadNotifications(): HasMany
     {
-        return $this->notifications()->whereIsSeen(false);
+        return $this->notifications()->whereNull('read_at');
     }
 }

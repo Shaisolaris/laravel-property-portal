@@ -11,11 +11,15 @@ defineProps({
     <BTabs nav-class="nav-primary mb-3 tabs" pills>
         <BTab
             v-for="(item, index) in $tm(`tabs.${tKey}`)"
-            :title="item"
             :active="index === 0"
             :key="index"
         >
-            <slot :name="`tab-${item.toLowerCase()}-body`" />
+            <template #title>
+                <i v-if="item.icon" :class="`${item.icon} align-bottom fs-16 me-2`"></i>
+                <Text :t-key="item?.name ? item.name : item" tag="span" />
+            </template>
+
+            <slot :name="item?.name ? `tab-${item.name.toLowerCase()}-body` : `tab-${item.toLowerCase()}-body`" />
         </BTab>
     </BTabs>
 </template>

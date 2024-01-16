@@ -27,7 +27,6 @@ class CreateNewUser implements CreatesNewUsers
             'country' => 'required|max:255',
             'state' => 'required|max:255',
             'role' => 'required',
-            'timezone' => 'required',
             'educational_level' => 'required',
             'city' => 'required|string|max:255',
             'zip_code' => 'required|string|max:255',
@@ -45,6 +44,8 @@ class CreateNewUser implements CreatesNewUsers
 
         $user = User::create($input);
         $user->assignRole($role);
+
+        $user->settings()->updateOrCreate(['user_id' => $user->id]);
 
         return $user;
     }

@@ -11,13 +11,22 @@ return new class extends Migration {
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+
             $table->uuid()->unique()->index();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('sender_user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->nullableUuidMorphs('model');
-            $table->enum('type', NotificationType::getValues());
-            $table->string('text');
-            $table->boolean('is_seen')->default(false);
+
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->string('type');
+
+            $table->morphs('model');
+
+            $table->text('text');
+
+            $table->timestamp('read_at')->nullable();
+
             $table->timestamps();
         });
     }

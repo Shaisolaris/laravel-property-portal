@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('gender')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
 
             $table->string('address');

@@ -2,6 +2,7 @@
 import simplebar from "simplebar-vue";
 import NavBar from "./Partials/AppLayout/NavBar.vue";
 import Menu from "./Partials/AppLayout/Menu.vue";
+import Breadcrumbs from "~/Layouts/Partials/AppLayout/Breadcrumbs.vue";
 
 
 localStorage.setItem('hoverd', false);
@@ -133,9 +134,8 @@ onBeforeMount(() => {
             <div class="page-content">
                 <b-container fluid>
                     <slot name="breadcrumbs">
-
+                        <Breadcrumbs :title="title" page-title="page-title" />
                     </slot>
-<!--                    <Breadcrumbs title="title" page-title="page-title" />-->
                     <slot />
                 </b-container>
             </div>

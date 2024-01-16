@@ -33,76 +33,76 @@ class HandleInertiaRequests extends Middleware
     {
         $navigations = collect([
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-layout-left-line',
-                'tKey' => 'dashboards'
+                'tKey' => 'dashboard'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-add-circle-line',
-                'tKey' => 'Add New Course'
+                'tKey' => 'add-new-course'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-computer-line',
-                'tKey' => 'My Courses'
+                'tKey' => 'courses'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => ' ri-file-text-line',
-                'tKey' => 'Assignments'
+                'tKey' => 'assignments'
             ],
             [
-                'routeName' => 'dashboard',
-                'active' => request()->routeIs('dashboard'),
-                'icon' => 'bx bx-message-rounded',
-                'tKey' => 'Messages'
-            ],
-            [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-question-line',
-                'tKey' => 'Quizzes'
+                'tKey' => 'quizzes'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-calendar-check-line',
-                'tKey' => 'Grades'
+                'tKey' => 'grades'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard') || request()->routeIs('dashboard'),
                 'icon' => 'ri-group-line',
-                'tKey' => 'Mentoring'
+                'tKey' => 'mentoring'
             ],
+//            [
+//                'route' =>route( 'dashboard',)
+//                'active' => request()->routeIs('dashboard'),
+//                'icon' => 'bx bx-message-rounded',
+//                'tKey' => 'Messages'
+//            ],
+//            [
+//                'route' =>route( 'dashboard',)
+//                'active' => request()->routeIs('dashboard'),
+//                'icon' => 'ri-file-list-2-line',
+//                'tKey' => 'Forum'
+//            ],
             [
-                'routeName' => 'dashboard',
-                'active' => request()->routeIs('dashboard'),
-                'icon' => 'ri-file-list-2-line',
-                'tKey' => 'Forum'
-            ],
-            [
-                'routeName' => 'dashboard',
+                'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),
                 'icon' => 'ri-bank-card-line',
-                'tKey' => 'Payments'
+                'tKey' => 'payments'
             ],
             [
-                'routeName' => 'dashboard',
-                'active' => request()->routeIs('dashboard'),
+                'route' => route('settings.index'),
+                'active' => request()->routeIs('settings.index'),
                 'icon' => ' ri-settings-2-line',
-                'tKey' => 'Settings'
+                'tKey' => 'settings'
             ],
             [
-                'routeName' => 'dashboard',
+                'route' => route('logout'),
                 'active' => false,
                 'icon' => 'ri-logout-box-r-line',
-                'tKey' => 'Logout'
+                'tKey' => 'logout'
             ]
         ]);
 

@@ -20,12 +20,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $user = auth()->user();
-
-            if ($user) {
-                $this->user = $user;
-            }
-
+            $this->user = auth()->user();
             return $next($request);
         });
     }

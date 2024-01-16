@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use DateTimeZone;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -21,17 +20,12 @@ use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
+
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
@@ -42,7 +36,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->get('email'))->first();
 
-            if ($user && Hash::check($request->get('password'), $user->password) && $user->status === UserStatusEnum::Active()->value) {
+            if ($user && Hash::check($request->get('password'), $user->password) && $user->status->value === UserStatusEnum::Active()->value) {
                 return $user;
             }
 

@@ -8,7 +8,7 @@
 
     .content {
         padding: 0 15px 10px 15px;
-        margin-top: $header-height;
+        margin-top: $header-height-custom;
     }
 }
 
@@ -21,7 +21,7 @@
 }
 
 .page-content {
-    padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
+    padding: calc(#{$header-height-custom} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
 }
 
 .navbar-menu {
@@ -34,7 +34,7 @@
     position: fixed;
     top: 0;
     box-shadow: var(--#{$prefix}vertical-menu-box-shadow);
-    padding: 0 0 calc(#{$header-height} + 25px) 0;
+    padding: 0 0 calc(#{$header-height-custom} + 25px) 0;
     transition: all .1s ease-out;
 
     .navbar-nav {
@@ -278,7 +278,7 @@
 }
 
 .logo {
-    line-height: $header-height;
+    line-height: $header-height-custom;
 
     .logo-sm {
         display: none;
@@ -973,25 +973,25 @@
 
 [data-sidebar-image="img-1"] {
     .sidebar-background {
-        background-image: url('../../../images/sidebar/img-1.jpg');
+        background-image: url('@/images/sidebar/img-1.jpg');
     }
 }
 
 [data-sidebar-image="img-2"] {
     .sidebar-background {
-        background-image: url('../../../images/sidebar/img-2.jpg');
+        background-image: url('@/images/sidebar/img-2.jpg');
     }
 }
 
 [data-sidebar-image="img-3"] {
     .sidebar-background {
-        background-image: url('../../../images/sidebar/img-3.jpg');
+        background-image: url('@/images/sidebar/img-3.jpg');
     }
 }
 
 [data-sidebar-image="img-4"] {
     .sidebar-background {
-        background-image: url('../../../images/sidebar/img-4.jpg');
+        background-image: url('@/images/sidebar/img-4.jpg');
     }
 }
 }
