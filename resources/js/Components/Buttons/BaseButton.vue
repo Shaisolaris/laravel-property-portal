@@ -7,7 +7,7 @@ defineProps({
     tKey: {
         type: String,
     },
-    variable: {
+    variant: {
         type: String,
         default: 'light-blue'
     }
@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-    <button :type="type" :class="`btn btn-${variable} w-100 text-black`" :data-key="tKey">
+    <button :type="type" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>

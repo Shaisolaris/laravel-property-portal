@@ -2,7 +2,6 @@
 import { useI18n } from "vue-i18n";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
-import { computed } from "vue";
 
 
 defineOptions({
@@ -10,7 +9,7 @@ defineOptions({
 });
 
 
-const props = defineProps({
+const { label, type, icon, viewType, maxCounter } = defineProps({
     type: {
         type: String,
         default: 'text',
@@ -31,10 +30,6 @@ const props = defineProps({
         type: [ String, Number ],
         default: null,
     },
-    classMap: {
-        type: String,
-        default: '',
-    },
     showError: {
         type: Boolean,
         default: true,
@@ -53,17 +48,17 @@ const attrs = useAttrs();
 const { t } = useI18n();
 
 const togglePassword = ref(false);
-const iconLength = computed(() => props.icon.length > 0);
+const iconLength = computed(() => icon.length > 0);
 const placeholder_ = computed(() => attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
-const label_ = computed(() => props.label.length > 0 ? t(`label.${props.label}`) : '');
-const type_ = computed(() => props.type === 'password' ? togglePassword.value ? 'text': props.type : props.type);
+const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
+const type_ = computed(() => type === 'password' ? togglePassword.value ? 'text': type : type);
 
 
 const handleInput = (event) => {
     let inputValue = event.target.value;
 
-    if (props.viewType === 'counter' && inputValue.length >= Number(props.maxCounter)) {
-        inputValue = inputValue.substring(0, Number(props.maxCounter));
+    if (viewType === 'counter' && inputValue.length >= Number(maxCounter)) {
+        inputValue = inputValue.substring(0, Number(maxCounter));
         event.target.value = inputValue;
     }
 
@@ -76,7 +71,7 @@ const containsPrefix = (str, prefixes = [ 'ri-', 'bx bx-', 'mdi-', 'lab la-', 'l
 
 
 onMounted(() => {
-    if (props.type === 'number') {
+    if (type === 'number') {
         const elements = document.querySelectorAll('input[type="number"]');
 
         for (let i = 0; i < elements.length; i++) {
@@ -105,7 +100,7 @@ onMounted(() => {
                 :type="type_"
                 :value="modelValue"
                 :placeholder="placeholder_"
-                :class="[{ 'is-invalid': error && error.length > 0 }, classMap, 'form-control ']"
+                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control ']"
                 @input="(event) => handleInput(event)"
             >
 
@@ -133,10 +128,7 @@ onMounted(() => {
     </div>
 </template>
 
-<!--На формах auth там 10 пикселей и белый фон, глобально пока не ставлю нужно обсудить...-->
+
 <style scoped>
-input {
-    background: #fff;
-    border-radius: 10px;
-}
+
 </style>

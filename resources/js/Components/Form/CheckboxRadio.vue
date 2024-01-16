@@ -1,7 +1,7 @@
 <script setup>
+import { useI18n } from "vue-i18n";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
-import { useI18n } from "vue-i18n";
 
 
 const props = defineProps({
@@ -53,8 +53,9 @@ const label_ = computed(() => props.label.length > 0 ? t(`label.${props.label}`)
         v-bind="$attrs"
         :type="type"
         :class="['form-check-input me-2', { 'is-invalid': error && error.length > 0 }]"
-        :checked="modelValue"
-        @input="(event) => emit('update:modelValue', event.target.checked)"
+        :value="$attrs.value"
+        :checked="modelValue === $attrs.value"
+        @input="(event) => emit('update:modelValue', event.target.value)"
     >
 
     <TagLabel :label="label_" class-name="form-check-label text-dim-gray" :required="$attrs.required ?? false" />

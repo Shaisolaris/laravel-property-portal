@@ -3,6 +3,7 @@
     "sign-in": "Sign In",
     "sign-up": "Sign Up",
     "already-have-account": "Already have an account?",
+    "dont-have-account": "Don't have an account yet?",
     "page": {
         "login": {
             "text-1": "Empowering Afghan Dreams: Education for Everyone",
@@ -10,12 +11,12 @@
         },
         "register": {
             "text-1": "Become a iNoura Instructor",
-            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
-            "text-3": "I want to get the most out of my experience, by receiving emails with insider tips, motivation, special updates and promotions reserved for instructors."
+            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources."
         }
     },
     "title": {
-        "login": "Login"
+        "login": "Login",
+        "register": "Register"
     },
     "label": {
         "first-name": "First name",
@@ -28,7 +29,16 @@
         "zip-code": "Zip code",
         "email": "Email",
         "password": "Password",
-        "remember-me": "Remember Me"
+        "remember-me": "Remember Me",
+        "want-get": "I want to get the most out of my experience, by receiving emails with insider tips, motivation, special updates and promotions reserved for instructors.",
+        "organizer": "Organizer",
+        "student": "Student",
+        "instructor": "Instructor",
+        "school": "School",
+        "academy": "Academy",
+        "role": "Role",
+        "educational-type": "Educational Type",
+        "timezone": "Timezone"
     },
     "placeholder": {
         "select": "Select",
@@ -55,5 +65,22 @@
     "lang": {
         "en": "English",
         "es": "Spanish"
+    },
+    "table": {
+        "header": {
+            "test": ["ID", "Date", "Value", "Action"],
+            "test2": {
+                "ID": "3",
+                "Date":  "2",
+                "Value": "1",
+                "Action": ""
+            }
+        }
+    },
+    "tabs": {
+        "test": ["Header", "All", "Active", "Favorite"]
+    },
+    "accordion": {
+        "test": ["Header", "All", "Active", "Favorite"]
     }
 }

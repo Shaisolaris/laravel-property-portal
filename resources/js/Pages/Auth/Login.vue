@@ -26,7 +26,6 @@ const submit = () => {
     <AuthLayout title="login">
         <template #right-content>
             <b-row class="justify-content-center" :no-gutters="true">
-<!--                <b-col cols="12" sm="12" lg="9" xl="10" xxl="10">-->
                 <b-col cols="10" lg="8">
                     <div class="text-center">
                         <Icon name="logo-logo" width="102" height="40" />
@@ -51,6 +50,7 @@ const submit = () => {
                             placeholder="enter-password"
                             label="password"
                         />
+
                         <div>
                             <CheckboxRadio v-model="form.remember" label="remember-me" />
 
@@ -69,7 +69,7 @@ const submit = () => {
                     </form>
 
                     <div class="text-center">
-                        <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
+                        <Text t-key="dont-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
                         <BaseLink :href="route('register')" t-key="sign-up" class="fs-16 fw-bold" />
                     </div>
                 </b-col>
@@ -78,6 +78,9 @@ const submit = () => {
     </AuthLayout>
 </template>
 
-<style scoped>
-
+<style>
+.form-control {
+    border-radius: 10px !important;
+}
 </style>
+

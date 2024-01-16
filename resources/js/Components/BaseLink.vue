@@ -3,7 +3,7 @@ defineProps({
     tKey: {
         type: String,
     },
-    variable: {
+    variant: {
         type: String,
         default: 'royal-blue'
     },
@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-    <BLink :href="href" :class="`link-${variable}`" :data-key="tKey">
+    <BLink :href="href" :class="`link-${variant}`" :data-key="tKey">
         <slot name="text">
             {{ $t(`link.${tKey}`) }}
         </slot>

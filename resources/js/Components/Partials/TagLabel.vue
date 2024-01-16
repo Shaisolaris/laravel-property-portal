@@ -10,7 +10,7 @@ defineProps({
     },
     className: {
         type: String,
-        default: 'form-label'
+        default: 'form-label fw-medium'
     }
 });
 </script>

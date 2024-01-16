@@ -1,5 +1,5 @@
 <script setup>
-import CardBase from "~/Components/Cards/Base.vue";
+import CardBase from "~/Components/Cards/Card.vue";
 import CardInfo from "~/Components/Cards/Partials/Info.vue";
 import CardPrice from "~/Components/Cards/Partials/Price.vue";
 import Starts from "~/Components/Elements/Starts.vue";

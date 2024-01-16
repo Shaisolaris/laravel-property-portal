@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Enums\User\UserRoleEnum;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\UserResource;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -16,13 +17,9 @@ class HandleInertiaRequests extends Middleware
 
     public function share(Request $request): array
     {
-//        app()->setLocale('es');
-//
-//        dd(app()->getLocale());
-        //TODO Need Resource for user
         return [
             ...parent::share($request),
-            'auth' => $request->user() ? $request->user() : null,
+            'auth' => $request->user() ? (new UserResource($request->user())) : null,
             'navigations' => $this->setNavigations(),
             'flash' => $this->setFlush($request),
             'ziggy' => fn () => [

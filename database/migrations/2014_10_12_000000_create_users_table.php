@@ -26,14 +26,11 @@ return new class extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('city');
-            $table->string('timezone');
+            $table->string('timezone')->nullable();
             $table->string('phone')->nullable();
 
-            $table->text('two_factor_secret')
-                ->nullable();
-
-            $table->text('two_factor_recovery_codes')
-                ->nullable();
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
 
             $table->timestamp('birth_at')->nullable();
 

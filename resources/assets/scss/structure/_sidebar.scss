@@ -32,35 +32,3 @@
 .sidebar-name-block {
     color: black;
 }
-
-[data-role-auth="teacher"] {
-    .sidebar-name-block {
-        color: $royal-blue;
-    }
-
-    .sidebar-nav-item:hover {
-        .sidebar-item {
-            background: rgba($light-blue, .12);
-        }
-
-        .sidebar-item {
-            .btn {
-                background: transparent;
-            }
-        }
-    }
-
-    .sidebar-item {
-        color: $royal-blue;
-
-        &:not(.active) {
-            .btn {
-                background: rgba($light-blue, .12);
-            }
-        }
-
-        &.active {
-            background: rgba($light-blue, .12);
-        }
-    }
-}

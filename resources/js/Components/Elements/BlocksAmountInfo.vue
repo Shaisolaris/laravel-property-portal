@@ -1,5 +1,5 @@
 <script setup>
-import CardBase from "~/Components/Cards/Base.vue";
+import CardBase from "~/Components/Cards/Card.vue";
 import IconBorder from "~/Components/Icons/IconBorder.vue";
 
 defineProps({

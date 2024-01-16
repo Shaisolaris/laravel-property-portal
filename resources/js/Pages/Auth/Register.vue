@@ -1,9 +1,10 @@
 <script setup>
 import AuthLayout from "~/Layouts/AuthLayout.vue";
-import {useForm} from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import { VueTelInput } from 'vue-tel-input';
 import PasswordMeter from "vue-simple-password-meter";
 import 'vue-tel-input/vue-tel-input.css';
+
 
 const form = useForm({
     first_name: '',
@@ -16,6 +17,9 @@ const form = useForm({
     city: '',
     zip_code: '',
     password: '',
+    role: null,
+    educational_type: null,
+    is_agreement: false
 });
 
 // For test
@@ -39,12 +43,14 @@ const list = reactive([
         active: false
     }
 ])
-let scorePassword = ref('')
+let scorePassword = ref('');
+
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password'),
-    });
+    form
+        .post(route('register'), {
+            onFinish: () => form.reset('password'),
+        });
 };
 
 const onScore = (payload) => {
@@ -52,29 +58,87 @@ const onScore = (payload) => {
 }
 
 const dropScore = (e) => {
-    if(e.target.value.length <= 0) {
+    if (e.target.value.length <= 0) {
         scorePassword.value = '';
     }
 }
-
 </script>
 
 <template>
-    <AuthLayout>
+    <AuthLayout title="register">
         <template #right-content>
-            <b-row class="justify-content-center" :no-gutters="true">
+            <b-row :no-gutters="true" class="justify-content-center">
                 <b-col cols="10" lg="8">
                     <div class="mb-5">
                         <h1 class="text-black">
-                            <Text t-key="page.register.text-1"/>
+                            <Text t-key="page.register.text-1" />
                         </h1>
                         <p class="text-dim-gray fs-14 mt-3">
-                            <Text t-key="page.register.text-2"/>
+                            <Text t-key="page.register.text-2" />
                         </p>
                     </div>
-                    <form @submit.prevent="submit" class="row gy-3">
-                        <b-row>
-                            <b-col cols="6" class="mb-3">
+                    <form @submit.prevent="submit">
+                        <b-row class="gy-3">
+                            <b-col cols="12">
+                                <b-row class="gy-3" :no-gutters="true">
+                                    <b-col cols="12">
+                                        <TagLabel label="label.role" />
+                                        <b-row class="g-3" :no-gutters="true">
+                                            <b-col cols="2">
+                                                <CheckboxRadio
+                                                    v-model="form.role"
+                                                    type="radio"
+                                                    value="student"
+                                                    label="student"
+                                                />
+                                            </b-col>
+                                            <b-col cols="2">
+                                                <CheckboxRadio
+                                                    v-model="form.role"
+                                                    type="radio"
+                                                    value="instructor"
+                                                    label="instructor"
+                                                />
+                                            </b-col>
+                                            <b-col cols="2">
+                                                <CheckboxRadio
+                                                    v-model="form.role"
+                                                    value="organizer"
+                                                    type="radio"
+                                                    label="organizer"
+                                                />
+                                            </b-col>
+                                        </b-row>
+                                        <ErrorMessage :error="form.errors.role" />
+                                    </b-col>
+                                    <b-col cols="12">
+                                        <TagLabel label="label.educational-type" />
+
+                                        <b-row class="g-3" :no-gutters="true">
+                                            <b-col cols="2">
+                                                <CheckboxRadio
+                                                    v-model="form.educational_type"
+                                                    type="radio"
+                                                    value="school"
+                                                    label="school"
+                                                />
+                                            </b-col>
+                                            <b-col cols="2">
+                                                <CheckboxRadio
+                                                    v-model="form.educational_type"
+                                                    type="radio"
+                                                    value="academy"
+                                                    label="academy"
+                                                />
+                                            </b-col>
+                                        </b-row>
+
+                                        <ErrorMessage :error="form.errors.educational_type" />
+                                    </b-col>
+                                </b-row>
+                            </b-col>
+
+                            <b-col cols="6">
                                 <InputBase
                                     v-model="form.first_name"
                                     :error="form.errors.first_name"
@@ -82,7 +146,7 @@ const dropScore = (e) => {
                                     label="first-name"
                                 />
                             </b-col>
-                            <b-col cols="6" class="mb-3">
+                            <b-col cols="6">
                                 <InputBase
                                     v-model="form.last_name"
                                     :error="form.errors.last_name"
@@ -90,7 +154,7 @@ const dropScore = (e) => {
                                     label="last-name"
                                 />
                             </b-col>
-                            <b-col cols="6" class="mb-3">
+                            <b-col cols="6">
                                 <InputBase
                                     v-model="form.email"
                                     :error="form.errors.email"
@@ -98,8 +162,8 @@ const dropScore = (e) => {
                                     label="email"
                                 />
                             </b-col>
-                            <b-col cols="6" class="mb-3">
-<!--                                <vue-tel-input v-model="form.number_phone" mode="international"></vue-tel-input>-->
+                            <b-col cols="6">
+                                <!--<vue-tel-input v-model="form.number_phone" mode="international"></vue-tel-input>-->
                                 <InputBase
                                     v-model="form.phone"
                                     :error="form.errors.phone"
@@ -107,7 +171,7 @@ const dropScore = (e) => {
                                     label="mobile-on"
                                 />
                             </b-col>
-                            <b-col cols="12" class="mb-3">
+                            <b-col cols="12">
                                 <InputBase
                                     v-model="form.address"
                                     :error="form.errors.address"
@@ -115,25 +179,25 @@ const dropScore = (e) => {
                                     label="address-line"
                                 />
                             </b-col>
-                            <b-col cols="3" class="mb-3">
+                            <b-col cols="3">
                                 <SelectBase
-                                    :options="list"
                                     v-model="form.country"
                                     :error="form.errors.country"
+                                    :options="list"
                                     placeholder="select"
                                     label="country"
                                 />
                             </b-col>
-                            <b-col cols="3" class="mb-3">
+                            <b-col cols="3">
                                 <SelectBase
-                                    :options="list"
                                     v-model="form.state"
                                     :error="form.errors.state"
+                                    :options="list"
                                     placeholder="select"
                                     label="state"
                                 />
                             </b-col>
-                            <b-col cols="3" class="mb-3">
+                            <b-col cols="3">
                                 <InputBase
                                     v-model="form.city"
                                     :error="form.errors.city"
@@ -141,7 +205,7 @@ const dropScore = (e) => {
                                     label="city"
                                 />
                             </b-col>
-                            <b-col cols="3" class="mb-3">
+                            <b-col cols="3">
                                 <InputBase
                                     v-model="form.zip_code"
                                     :error="form.errors.zip_code"
@@ -150,26 +214,24 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <div class="generator-pass">
-                                <b-col cols="12" class="mb-3">
+                                <b-col cols="12">
                                     <InputBase
                                         v-model="form.password"
                                         :error="form.errors.password"
                                         placeholder="enter-password"
                                         label="password"
-                                        @input="dropScore"
                                         type="password"
+                                        @input="dropScore"
                                     />
                                     <div class="d-flex justify-content-between">
                                         <PasswordMeter :password="form.password" @score="onScore" />
-                                        <div class="ms-4">{{scorePassword.toLocaleString().capitalize()}}</div>
+                                        <div class="ms-4">{{ scorePassword.toLocaleString().capitalize() }}</div>
                                     </div>
                                 </b-col>
                             </div>
+
                             <div class="i-agree-box d-flex gap-2">
-                                <BFormCheckbox/>
-                                <p class="text-dim-gray fs-12">
-                                    <Text t-key="page.register.text-3"/>
-                                </p>
+                                <CheckboxRadio v-model="form.is_agreement" label="want-get" />
                             </div>
 
                             <div class="pyc-40">
@@ -177,14 +239,14 @@ const dropScore = (e) => {
                                     t-key="sign-up"
                                     type="submit"
                                     class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
+                                    :disabled="!form.is_agreement"
                                 />
                             </div>
 
                             <div class="text-center">
                                 <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
-                                <BaseLink :href="route('login')" t-key="sign-up" class="fs-16 fw-bold" />
+                                <BaseLink :href="route('login')" t-key="sign-in" class="fs-16 fw-bold" />
                             </div>
-
                         </b-row>
                     </form>
                 </b-col>
@@ -193,6 +255,8 @@ const dropScore = (e) => {
     </AuthLayout>
 </template>
 
-<style scoped>
-
+<style>
+.form-control {
+    border-radius: 10px !important;
+}
 </style>
