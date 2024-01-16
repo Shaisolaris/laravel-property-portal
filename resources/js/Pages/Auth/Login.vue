@@ -36,14 +36,14 @@ const submit = () => {
                         </div>
                     </div>
                     <form @submit.prevent="submit" class="row gy-3">
-                        <InputBase
+                        <BaseInput
                             v-model="form.email"
                             :error="form.errors.email"
                             placeholder="enter-email"
                             label="email"
                         />
 
-                        <InputBase
+                        <BaseInput
                             v-model="form.password"
                             :error="form.errors.password"
                             type="password"

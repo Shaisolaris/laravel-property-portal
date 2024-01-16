@@ -622,3 +622,9 @@
         }
     }
 }
+
+.hover-element {
+    &:hover {
+        cursor: pointer;
+    }
+}

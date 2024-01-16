@@ -18,7 +18,7 @@ const form = useForm({
     zip_code: '',
     password: '',
     role: null,
-    educational_type: null,
+    educational_level: null,
     is_agreement: false
 });
 
@@ -77,69 +77,64 @@ const dropScore = (e) => {
                             <Text t-key="page.register.text-2" />
                         </p>
                     </div>
+
                     <form @submit.prevent="submit">
-                        <b-row class="gy-3">
+                        <b-row class="g-3">
                             <b-col cols="12">
-                                <b-row class="gy-3" :no-gutters="true">
-                                    <b-col cols="12">
+                                <b-row class="g-3" :no-gutters="true">
+                                    <b-col>
                                         <TagLabel label="label.role" />
-                                        <b-row class="g-3" :no-gutters="true">
-                                            <b-col cols="2">
-                                                <CheckboxRadio
-                                                    v-model="form.role"
-                                                    type="radio"
-                                                    value="student"
-                                                    label="student"
-                                                />
-                                            </b-col>
-                                            <b-col cols="2">
-                                                <CheckboxRadio
-                                                    v-model="form.role"
-                                                    type="radio"
-                                                    value="instructor"
-                                                    label="instructor"
-                                                />
-                                            </b-col>
-                                            <b-col cols="2">
-                                                <CheckboxRadio
-                                                    v-model="form.role"
-                                                    value="organizer"
-                                                    type="radio"
-                                                    label="organizer"
-                                                />
-                                            </b-col>
-                                        </b-row>
+
+                                        <List>
+                                            <template #body>
+                                                <BListGroupItem
+                                                    :class="[{'bg-light-blue text-white': form.role === 'student'}, 'hover-element text-dim-gray w-50']"
+                                                    tag="li"
+                                                    @click="form.role = 'student'"
+                                                >
+                                                    <Text t-key="label.student" />
+                                                </BListGroupItem>
+                                                <BListGroupItem
+                                                    :class="[{'bg-light-blue text-white': form.role === 'instructor'}, 'hover-element text-dim-gray w-50']"
+                                                    tag="li"
+                                                    @click="form.role = 'instructor'"
+                                                >
+                                                    <Text t-key="label.instructor" />
+                                                </BListGroupItem>
+                                            </template>
+                                        </List>
+
                                         <ErrorMessage :error="form.errors.role" />
                                     </b-col>
-                                    <b-col cols="12">
-                                        <TagLabel label="label.educational-type" />
+                                    <b-col>
+                                        <TagLabel label="label.educational-level" />
 
-                                        <b-row class="g-3" :no-gutters="true">
-                                            <b-col cols="2">
-                                                <CheckboxRadio
-                                                    v-model="form.educational_type"
-                                                    type="radio"
-                                                    value="school"
-                                                    label="school"
-                                                />
-                                            </b-col>
-                                            <b-col cols="2">
-                                                <CheckboxRadio
-                                                    v-model="form.educational_type"
-                                                    type="radio"
-                                                    value="academy"
-                                                    label="academy"
-                                                />
-                                            </b-col>
-                                        </b-row>
+                                        <List>
+                                            <template #body>
+                                                <BListGroupItem
+                                                    :class="[{'bg-light-blue text-white': form.educational_level === 'school'}, 'hover-element text-dim-gray w-50']"
+                                                    tag="li"
+                                                    @click="form.educational_level = 'school'"
+                                                >
+                                                    <Text t-key="label.school" />
+                                                </BListGroupItem>
+                                                <BListGroupItem
+                                                    :class="[{'bg-light-blue text-white': form.educational_level === 'academy'}, 'hover-element text-dim-gray w-50']"
+                                                    tag="li"
+                                                    @click="form.educational_level = 'academy'"
+                                                >
+                                                    <Text t-key="label.academy" />
+                                                </BListGroupItem>
+                                            </template>
+                                        </List>
 
-                                        <ErrorMessage :error="form.errors.educational_type" />
+                                        <ErrorMessage :error="form.errors.educational_level" />
                                     </b-col>
                                 </b-row>
                             </b-col>
 
                             <b-col cols="6">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.first_name"
                                     :error="form.errors.first_name"
                                     placeholder="enter-first-name"
@@ -147,7 +142,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="6">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.last_name"
                                     :error="form.errors.last_name"
                                     placeholder="enter-last-name"
@@ -155,7 +150,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="6">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.email"
                                     :error="form.errors.email"
                                     placeholder="enter-email"
@@ -164,7 +159,7 @@ const dropScore = (e) => {
                             </b-col>
                             <b-col cols="6">
                                 <!--<vue-tel-input v-model="form.number_phone" mode="international"></vue-tel-input>-->
-                                <InputBase
+                                <BaseInput
                                     v-model="form.phone"
                                     :error="form.errors.phone"
                                     placeholder="enter-mobile-on"
@@ -172,7 +167,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="12">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.address"
                                     :error="form.errors.address"
                                     placeholder="enter-address-line"
@@ -180,7 +175,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="3">
-                                <SelectBase
+                                <BaseSelect
                                     v-model="form.country"
                                     :error="form.errors.country"
                                     :options="list"
@@ -189,7 +184,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="3">
-                                <SelectBase
+                                <BaseSelect
                                     v-model="form.state"
                                     :error="form.errors.state"
                                     :options="list"
@@ -198,7 +193,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="3">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.city"
                                     :error="form.errors.city"
                                     placeholder="enter-city"
@@ -206,7 +201,7 @@ const dropScore = (e) => {
                                 />
                             </b-col>
                             <b-col cols="3">
-                                <InputBase
+                                <BaseInput
                                     v-model="form.zip_code"
                                     :error="form.errors.zip_code"
                                     placeholder="enter-zip-code"
@@ -215,7 +210,7 @@ const dropScore = (e) => {
                             </b-col>
                             <div class="generator-pass">
                                 <b-col cols="12">
-                                    <InputBase
+                                    <BaseInput
                                         v-model="form.password"
                                         :error="form.errors.password"
                                         placeholder="enter-password"

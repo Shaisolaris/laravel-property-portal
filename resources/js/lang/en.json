@@ -37,7 +37,7 @@
         "school": "School",
         "academy": "Academy",
         "role": "Role",
-        "educational-type": "Educational Type",
+        "educational-level": "Educational Level",
         "timezone": "Timezone"
     },
     "placeholder": {

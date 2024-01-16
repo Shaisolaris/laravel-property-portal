@@ -28,7 +28,7 @@ class CreateNewUser implements CreatesNewUsers
             'state' => 'required|max:255',
             'role' => 'required',
             'timezone' => 'required',
-            'educational_type' => 'required',
+            'educational_level' => 'required',
             'city' => 'required|string|max:255',
             'zip_code' => 'required|string|max:255',
             'phone' => [$input['phone'] ? 'max:16' : 'nullable'],
@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
         )->first();
 
         $input['password'] = Hash::make($input['password']);
-dd($input);
+
         $user = User::create($input);
         $user->assignRole($role);
 
