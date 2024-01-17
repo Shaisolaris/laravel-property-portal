@@ -1,69 +1,99 @@
-<script>
+<script setup>
 import { Link, Head } from '@inertiajs/vue3';
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/vue";
-
 import "swiper/css";
 import "swiper/css/autoplay";
 import NavBar from "~/Layouts/Partials/AppLayout/NavBar.vue";
 
+defineProps({
+    title: {
+        type: String,
+        default: ''
+    }
+});
 
-export default {
-    data() {
-        return {
-            Autoplay,
+
+const topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+onMounted(() => {
+    let backToTop = document.getElementById("back-to-top");
+
+    if (backToTop) {
+        backToTop = document.getElementById("back-to-top");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
         };
-    },
-    components: {
-        NavBar,
-        Swiper, SwiperSlide, Link, Head
-    },
-    methods: {
-        topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        },
-        scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', function (e) {
+        e.preventDefault();
+        const navbar = document.getElementById("navbar");
+
+        if (navbar) {
+            if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
+                navbar.classList.add("is-sticky");
+            } else {
+                navbar.classList.remove("is-sticky");
             }
         }
-    },
-    mounted() {
-        let backtoTop = document.getElementById("back-to-top");
-
-        if (backtoTop) {
-            backtoTop = document.getElementById("back-to-top");
-            window.onscroll = function () {
-                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                    backtoTop.style.display = "block";
-                } else {
-                    backtoTop.style.display = "none";
-                }
-            };
-        }
-
-        window.addEventListener('scroll', function (ev) {
-            ev.preventDefault();
-            var navbar = document.getElementById("navbar");
-            if (navbar) {
-                if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
-                    navbar.classList.add("is-sticky");
-                } else {
-                    navbar.classList.remove("is-sticky");
-                }
-            }
-        });
-    },
-};
+    });
+});
 </script>
 
 <template>
     <Head :title="`${$t(`title.${title}`)}`" />
 
     <div class="layout-wrapper landing">
-        <NavBar />
+        <NavBar>
+            <template #bottom-header>
+                <div>
+                    <span class="me-2">School of Inoura</span>
+                    <span class="me-2">Blog</span>
+                    <span class="me-2">All Courses</span>
+                    <span class="me-2">Search</span>
+                </div>
+
+                <div class="d-flex w-25 align-items-center gap-3">
+                    <i class="ri-shopping-bag-line align-bottom fs-3" />
+                    <BaseButton t-key="create-account" variant="light-yellow" route-name="register" />
+                    <BaseButton t-key="login" route="register" route-name="login" />
+                </div>
+<!--                <b-row>-->
+<!--                    <b-col>-->
+<!--                        <div>School of Inoura</div>-->
+<!--                        <div>Blog</div>-->
+<!--                        <div>All Courses</div>-->
+<!--                        <div>Search</div>-->
+<!--                    </b-col>-->
+<!--                    <b-col class="d-flex">-->
+<!--                        <div><BaseButton t-key="create-account" variant="light-yellow" route-name="register" /></div>-->
+<!--                        <div><BaseButton t-key="login" route="register" route-name="login" /></div>-->
+<!--                    </b-col>-->
+<!--                </b-row>-->
+            </template>
+<!--            <template #bottom-left-nav-bar-block>-->
+<!--                a-->
+<!--            </template>-->
+<!--            <template #bottom-right-nav-bar-block>-->
+<!--                <BaseButton t-key="create-account" variant="light-yellow" route-name="register"  />-->
+<!--                <BaseButton t-key="login" route="register" route-name="login" />-->
+<!--            </template>-->
+        </NavBar>
 
         <section class="section job-hero-section bg-light pb-0" id="hero">
             <BContainer>

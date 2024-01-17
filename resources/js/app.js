@@ -17,6 +17,7 @@ import VueTheMask from 'vue-the-mask';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import  "vue3-toastify/dist/index.css";
 import 'virtual:svg-icons-register';
 
 import store from "./state/store";

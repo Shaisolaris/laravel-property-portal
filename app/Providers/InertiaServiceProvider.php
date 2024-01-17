@@ -10,20 +10,13 @@ class InertiaServiceProvider extends ServiceProvider
     public function register(): void
     {
         RedirectResponse::macro('flash', function ($type, string $text) {
-            session()->flash($type, [
-                'text' => $text,
-                'options' => [
-                    'position' => 'top-right',
-                    'hideProgressBar' => true,
-                    'className' => "bg-$type text-white",
-                ]
-            ]);
+            session()->flash($type, ['type' => $type, 'text' => $text]);
 
             return $this;
         });
 
         RedirectResponse::macro('info', function (string $text) {
-            return $this->flash('primary', $text);
+            return $this->flash('info', $text);
         });
 
         RedirectResponse::macro('success', function (string $text) {
@@ -35,7 +28,7 @@ class InertiaServiceProvider extends ServiceProvider
         });
 
         RedirectResponse::macro('error', function (string $text) {
-            return $this->flash('danger', $text);
+            return $this->flash('error', $text);
         });
     }
 

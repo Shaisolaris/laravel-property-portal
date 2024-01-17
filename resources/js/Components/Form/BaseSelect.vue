@@ -46,8 +46,8 @@ const selected = (option) => {
             <b-dropdown-item
                 v-for="(option,index) in options"
                 :key="index"
-                :disabled="option.disabled"
-                :action="option.action"
+                :disabled="option.disabled ?? false"
+                :action="option.action ?? true"
                 @click="selected(option)"
             >
                 {{ option.name }}

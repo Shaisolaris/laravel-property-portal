@@ -9,7 +9,7 @@ defineOptions({
 });
 
 
-const { label, type, icon, viewType, maxCounter } = defineProps({
+const { label, type, icon, viewType, maxCounter, showPasswordToggle } = defineProps({
     type: {
         type: String,
         default: 'text',
@@ -41,6 +41,10 @@ const { label, type, icon, viewType, maxCounter } = defineProps({
     maxCounter: {
         type: Number,
         default: 0
+    },
+    showPasswordToggle: {
+        type: Boolean,
+        default: false
     }
 });
 const emit = defineEmits([ 'update:modelValue' ]);
@@ -49,9 +53,10 @@ const { t } = useI18n();
 
 const togglePassword = ref(false);
 const iconLength = computed(() => icon.length > 0);
-const placeholder_ = computed(() => attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
+const placeholder_ = computed(() => attrs?.placeholder && attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
 const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
 const type_ = computed(() => type === 'password' ? togglePassword.value ? 'text': type : type);
+const showTogglePassword = computed(() => type === 'password' && showPasswordToggle);
 
 
 const handleInput = (event) => {
@@ -83,7 +88,6 @@ onMounted(() => {
 
 <template>
     <TagLabel v-if="iconLength || viewType === 'counter'" :label="label_" :required="$attrs.required" />
-
     <div :class="[{'input-group': iconLength || viewType === 'counter'}]">
         <TagLabel v-if="!iconLength && viewType !== 'counter'" :label="label_" :required="$attrs.required" />
 
@@ -94,7 +98,7 @@ onMounted(() => {
             </slot>
         </span>
 
-        <span :class="type === 'password' ? 'd-block position-relative auth-pass-inputgroup': ''">
+        <span :class="showTogglePassword ? 'd-block position-relative auth-pass-inputgroup': ''">
             <input
                 v-bind="$attrs"
                 :type="type_"
@@ -105,7 +109,7 @@ onMounted(() => {
             >
 
             <BButton
-                v-if="type === 'password'"
+                v-if="showTogglePassword"
                 variant="link"
                 class="position-absolute end-0 top-0 text-decoration-none text-muted"
                 type="button"

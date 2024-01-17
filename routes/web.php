@@ -5,6 +5,8 @@ use Tightenco\Ziggy\Ziggy;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserSettingController;
+use Modules\Auth\app\Http\Controllers\LogoutController;
+use Modules\Auth\app\Http\Controllers\AuthenticatedSessionController;
 
 
 Route::middleware([
@@ -37,6 +39,9 @@ Route::group([
         Route::get('/', 'index')->name('index');
         Route::put('profile', 'updateProfile')->name('profile');
         Route::put('notification', 'updateNotification')->name('notification');
-        Route::put('password', 'updatePassword')->name('password');
+        Route::put('email-password', 'updateEmailPassword')->name('email-password');
     });
 });
+
+
+Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('auth.logout');

@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'auth' => $request->user() ? (new UserResource($request->user())) : null,
+            'auth' => $request->user() ? (new UserResource($request->user()->load(['settings']))) : null,
             'navigations' => $this->setNavigations(),
             'flash' => $this->setFlush($request),
             'ziggy' => fn () => [
@@ -99,7 +99,7 @@ class HandleInertiaRequests extends Middleware
                 'tKey' => 'settings'
             ],
             [
-                'route' => route('logout'),
+                'route' => route('auth.logout'),
                 'active' => false,
                 'icon' => 'ri-logout-box-r-line',
                 'tKey' => 'logout'
@@ -125,29 +125,17 @@ class HandleInertiaRequests extends Middleware
     private function setFlush($request): array
     {
         $sessions = $request->session();
+        $types = ['success', 'warning', 'error', 'info'];
         $flashMessage = [];
 
-        if ($sessions->has('success')) {
-            $flashMessage = [
-                'text' => $sessions->get('success'),
-                'type' => 'success'
-            ];
-        } else if ($sessions->has('warning')) {
-            $flashMessage = [
-                'text' => $sessions->get('warning'),
-                'type' => 'warning'
-            ];
-        } else if ($sessions->has('error')) {
-            $flashMessage = [
-                'text' => $sessions->get('error'),
-                'type' => 'danger'
-            ];
-        } else if ($sessions->has('info')) {
-            $flashMessage = [
-                'text' => $sessions->get('info'),
-                'type' => 'danger'
-            ];
+        foreach ($types as $type) {
+            if ($sessions->has($type)) {
+                $flashMessage = $sessions->get($type);
+                break;
+            }
         }
+
+        \Log::info('setFlush', $flashMessage);
 
         return $flashMessage;
     }

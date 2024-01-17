@@ -31,6 +31,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\Models\Relationships\UserRelationshipsTrait;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
+
 /**
  * App\Models\User
  *
@@ -57,6 +58,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property array|null $languages
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read Collection<int, Notification> $notifications
@@ -88,6 +90,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLanguages($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
@@ -112,12 +115,12 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasApiTokens;
     use HasUuidTrait;
     use HasProfilePhoto;
+    use MustVerifyOtpCode;
     use InteractsWithMedia;
+    use UserFunctionsTrait;
     use UserAttributesTrait;
     use UserRelationshipsTrait;
-    use UserFunctionsTrait;
     use TwoFactorAuthenticatable;
-    use MustVerifyOtpCode;
 
 
     protected $hidden = [
@@ -141,6 +144,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'birth_at',
         'timezone',
         'last_name',
+        'languages',
         'first_name',
         'remember_token',
         'two_factor_secret',
@@ -153,8 +157,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'email_verified_at' => 'datetime',
-        'status' => UserStatusEnum::class,
-        'gender' => UserGenderEnum::class
+        'birth_at' => 'date',
+        'languages' => 'array',
+        'status' => UserStatusEnum::class
     ];
 
     protected $appends = [

@@ -19,10 +19,18 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'fullName' => "$this->first_name $this->last_name",
             'avatar' => $this->profile_photo_url,
+            'birthAt' => $this->birth_at?->format('d M, Y'),
+            'gender' => $this->gender,
+            'timezone' => $this->timezone,
+            'bio' => $this->bio,
+            'languages' => $this->languages && is_array($this->languages) ? implode(', ', $this->languages) : $this->languages,
             'notifications' => NotificationResource::collection($this->whenLoaded('unreadNotifications')),
             'media' => MediaResource::collection($this->whenLoaded('media')),
             'role' => $this->whenLoaded('roles', function () {
                 return new UserRoleResource($this->roles()->with('permissions')->first());
+            }),
+            'settings' => $this->whenLoaded('settings', function () {
+                return new UserSettingResource($this->whenLoaded('settings')->first());
             }),
         ];
     }

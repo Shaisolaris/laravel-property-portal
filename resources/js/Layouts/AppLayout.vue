@@ -1,8 +1,11 @@
 <script setup>
+import { isEmpty } from "lodash";
+import { usePage } from "@inertiajs/vue3";
 import simplebar from "simplebar-vue";
-import NavBar from "./Partials/AppLayout/NavBar.vue";
 import Menu from "./Partials/AppLayout/Menu.vue";
+import NavBar from "./Partials/AppLayout/NavBar.vue";
 import Breadcrumbs from "~/Layouts/Partials/AppLayout/Breadcrumbs.vue";
+import { useToast } from "~/scripts/helpers/useToast.js";
 
 
 localStorage.setItem('hoverd', false);
@@ -40,20 +43,15 @@ const toggleMenu = () => {
     isMenuCondensed.value = !isMenuCondensed.value;
 }
 
-const toggleRightSidebar = () => {
-    document.body.classList.toggle("right-bar-enabled");
-}
-
-const hideRightSidebar = () => {
-    document.body.classList.remove("right-bar-enabled");
-}
-
 
 watch(
     () => usePage().props.flash,
     (flashMessage) => {
         if (!isEmpty(flashMessage) && flashMessage.type !== undefined) {
-            // proxy.$toast(flashMessage);
+            const { toast } = useToast();
+
+            console.log(flashMessage);
+            toast(flashMessage.type, flashMessage.text);
         }
     }
 );
@@ -115,11 +113,11 @@ onBeforeMount(() => {
 
                 <div class="d-flex align-items-center pxc-20 avatar-block">
                     <div class="me-4">
-                        <img src="@/images/users/avatar-1.jpg" alt="" class="rounded-circle avatar-lg">
+                        <Avatar rounded="circle" size="lg" />
                     </div>
                     <div class="d-block d-lg-none d-xl-block text-start">
-                        <div class="fs-14 text-dim-gray">User</div>
-                        <div class="sidebar-name-block fs-4 fw-medium">Alex</div>
+                        <div class="fs-14 text-dim-gray">{{ $page.props.auth.data.role.displayName }}</div>
+                        <div class="sidebar-name-block fs-5 fw-medium">{{ $page.props.auth?.data?.fullName }}</div>
                     </div>
                 </div>
                 <simplebar id="scrollbar" style="height: 90%" ref="scrollbar">

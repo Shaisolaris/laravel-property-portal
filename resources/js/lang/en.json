@@ -23,6 +23,23 @@
         "register": {
             "text-1": "Become a iNoura ",
             "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources."
+        },
+        "settings": {
+            "profile": {
+                "profile-photo": "Profile Photo",
+                "basic-information": {
+                    "title": "Basic Information",
+                    "items": ["Display Name", "Date of Birth", "Gender", "Timezone", "Languages"]
+                }
+            },
+            "notification": {
+                "message": {
+                    "title": "Messages",
+                    "desc": "Messages from other users"
+                }
+            },
+            "password": {
+            }
         }
     },
     "title": {
@@ -61,11 +78,16 @@
         "enter-city": "Enter city",
         "enter-zip-code": "Enter zip code",
         "enter-email": "Enter email",
-        "enter-password": "Enter password"
+        "enter-password": "Enter password",
+        "current_password": "Enter old password",
+        "new_password": "Enter new password",
+        "new_password_confirmation": "Re-enter new password"
     },
     "button": {
         "sign-in": "Sign In",
-        "sign-up": "Sign Up"
+        "sign-up": "Sign Up",
+        "create-account": "Create an account",
+        "login": "Login"
     },
     "link": {
         "sign-in": "Sign In",
@@ -80,10 +102,15 @@
     },
     "table": {
         "header": {
-            "test": ["ID", "Date", "Value", "Action"],
+            "test": [
+                "ID",
+                "Date",
+                "Value",
+                "Action"
+            ],
             "test2": {
                 "ID": "3",
-                "Date":  "2",
+                "Date": "2",
                 "Value": "1",
                 "Action": ""
             }
@@ -91,12 +118,33 @@
     },
     "tabs": {
         "settings": [
-            { "name": "Profile", "icon": "ri-account-box-fillsettings" },
-            { "name": "Notification", "icon": "ri-notification-4-line" },
-            { "name": "Password", "icon": "ri-shield-keyhole-line" }
+            {
+                "name": "Profile",
+                "icon": "ri-account-box-fill"
+            },
+            {
+                "name": "Notification",
+                "icon": "ri-notification-4-line"
+            },
+            {
+                "name": "Password",
+                "icon": "ri-shield-keyhole-line"
+            }
         ]
     },
     "accordion": {
-        "test": ["Header", "All", "Active", "Favorite"]
+        "test": [
+            "Header",
+            "All",
+            "Active",
+            "Favorite"
+        ]
+    },
+    "action": {
+        "change": "Change",
+        "update": "Update",
+        "create": "Create",
+        "delete": "Delete",
+        "edit": "Edit"
     }
 }

@@ -12,4 +12,19 @@ use Spatie\Enum\Laravel\Enum;
 class UserGenderEnum extends Enum
 {
     use EnumTrait;
+
+
+    public static function getGenders(): array
+    {
+        return [
+            [
+                "name" => self::Male()->label,
+                "value" => self::Male()->value,
+            ],
+            [
+                "name" => self::Female()->label,
+                "value" => self::Female()->value,
+            ]
+        ];
+    }
 }

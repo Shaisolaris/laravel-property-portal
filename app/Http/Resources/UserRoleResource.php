@@ -18,7 +18,7 @@ class UserRoleResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'displayName' => Str::ucfirst($this->name),
+            'displayName' => Str::title(str_replace('_', ' ', $this->name)),
             'permissions' => $this->getCanAttribute(),
         ];
     }

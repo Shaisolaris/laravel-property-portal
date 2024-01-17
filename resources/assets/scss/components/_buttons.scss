@@ -267,7 +267,7 @@ $buttons: (
 );
 
 @each $buttonName, $buttonColor in $buttons {
-    .btn-#{$buttonName}:hover {
+    .btn-#{$buttonName}:hover, .btn-#{$buttonName}:active {
         background-color: $buttonColor;
         border-color: $buttonColor;
         color: #ffffff;

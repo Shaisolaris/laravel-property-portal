@@ -2,8 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use Throwable;
 use App\Models\Role;
 use App\Models\User;
+use App\Services\AuthService;
 use App\Enums\User\UserRoleEnum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -12,14 +14,20 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
+    public function __construct(protected AuthService $authService)
+    {
+    }
+
+
     /**
      * @throws ValidationException
+     * @throws Throwable
      */
     public function create(array $input): ?User
     {
         DB::beginTransaction();
-        try {
 
+        try {
             $input['password'] = Hash::make($input['password']);
 
             $user = User::create($input);
@@ -36,9 +44,8 @@ class CreateNewUser implements CreatesNewUsers
         }
     }
 
-    protected function initialUserRole($input)
+    protected function initialUserRole($input): \Spatie\Permission\Models\Role
     {
-        // TODO:: я думаю можно найти пример по лучше под запрос из Spatie
         return Role::whereName(
             $input['role'] !== UserRoleEnum::Organizer()->value
                 ? $input['role'] . "_" . $input['educational_level']

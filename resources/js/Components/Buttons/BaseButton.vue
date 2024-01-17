@@ -10,12 +10,22 @@ defineProps({
     variant: {
         type: String,
         default: 'light-blue'
+    },
+    routeName: {
+        type: String,
+        default: ''
     }
 });
 </script>
 
 <template>
-    <button :type="type" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
+    <Link v-if="routeName.length > 0" type="button" :href="route(routeName)" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
+        <slot name="text">
+            {{ $t(`button.${tKey}`) }}
+        </slot>
+    </Link>
+
+    <button v-else :type="type" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>

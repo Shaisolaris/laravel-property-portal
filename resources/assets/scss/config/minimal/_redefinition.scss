@@ -29,7 +29,7 @@
 
 i {
     &:not(.fs-) {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 }
 
@@ -158,4 +158,13 @@ $shadows: (
     }
 }
 
+.button-without-all {
+    border: none;
+    outline: none;
+    background: transparent;
+}
 
+.default-text {
+    font-size: 14px;
+    font-weight: 500;
+}

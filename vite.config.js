@@ -20,6 +20,17 @@ export default defineConfig({
             ssr: 'resources/js/ssr.js',
             refresh: true,
         }),
+        // {
+        //     name: 'phpFiles',
+        //     handleHotUpdate({ file, server }) {
+        //         if (file.endsWith('.php')) {
+        //             server.ws.send({
+        //                 type: 'full-reload',
+        //                 path: '*',
+        //             });
+        //         }
+        //     },
+        // },
         vue({
             template: {
                 transformAssetUrls: {

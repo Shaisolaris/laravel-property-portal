@@ -16,7 +16,7 @@ const classes = ['form-check', props.size.length > 0 ? `form-switch form-switch-
 <template>
     <div :class="classes" dir="ltr">
         <label v-if="label.length > 0" class="form-check-label">{{$t(label)}}</label>
-        <input type="checkbox" class="form-check-input" checked="">
+        <input type="checkbox" class="form-check-input">
     </div>
 </template>
 
