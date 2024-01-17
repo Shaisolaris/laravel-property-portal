@@ -34,10 +34,11 @@ class HandlerSendOtpCode extends Notification
 
     protected function generateOtpCode(): int
     {
-        $code = rand(1000, 9999);
+        $code = rand(100000, 999999);
 
         Session::put(auth()->user()->uuid, [
-            'otp_code' => Hash::make($code),
+//            'otp_code' => Hash::make($code),
+            'otp_code' => $code,
         ]);
 
         return $code;

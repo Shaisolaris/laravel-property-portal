@@ -26,12 +26,10 @@ trait UserFunctionsTrait
 
     }
 
-    public function validateOtp($otp): bool
+    public function validateOtp(int $otp): bool
     {
-        if (Hash::check($this->getOtpCode(), $otp)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $otp === $this->getOtpCode();
+//        return Hash::check((string)$otp, (string)$this->getOtpCode()); // I don`t understand, it`s method can`t be working form me, why?
+
     }
 }

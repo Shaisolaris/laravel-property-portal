@@ -42,15 +42,13 @@ Route::middleware('guest')->group(function () {
 });
 
 // Verify otp code
-Route::middleware('auth')->name('registration.')->controller(ValidateOtpCodeController::class)->group(function () {
-    Route::get('otp-form', 'create')->name('otp-form');
-    Route::post('otp-form/{uuid}', 'verify')->name('verification.verify');
-    Route::post('otp-form/{uuid}/resend', 'resend')->name('verification.resend');
+Route::middleware(['auth'])->name('registration.')->controller(ValidateOtpCodeController::class)->group(function () {
+    Route::middleware('user.data')->get('otp-form', 'create')->name('otp-form');
+    Route::post('otp-form/verify', 'verify')->name('verify');
+    Route::post('otp-form/resend', 'resend')->name('resend');
+    Route::post('otp-form/cancel', 'cancel')->name('cancel');
 
-
-    Route::middleware('user.data')->group(function () {
-        Route::resource('occupations', OccupationsController::class)->names('occupations');
-        Route::resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');
-        Route::resource('user-detail', UserDetailController::class)->names('user-detail');
-    });
+    Route::middleware('user.data:2')->resource('occupations', OccupationsController::class)->names('occupations');
+    Route::middleware('user.data:3')->resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');
+    Route::middleware('user.data:4')->resource('user-detail', UserDetailController::class)->names('user-detail');
 });

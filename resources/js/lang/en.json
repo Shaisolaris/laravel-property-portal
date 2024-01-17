@@ -22,7 +22,16 @@
         },
         "register": {
             "text-1": "Become a iNoura ",
-            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources."
+            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
+            "text-3": "Verify your email address",
+            "text-4": "We send 6-Digit code at:",
+            "text-5": "Resend Code",
+            "text-6": "Send Again",
+            "text-7": "Back to Sign Up",
+            "text-8": "Clear",
+            "text-10": "Share your knowledge",
+            "text-11": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
+            "text-12": "Select Occupations"
         },
         "settings": {
             "profile": {
@@ -87,7 +96,10 @@
         "sign-in": "Sign In",
         "sign-up": "Sign Up",
         "create-account": "Create an account",
-        "login": "Login"
+        "login": "Login",
+        "sign-up": "Sign Up",
+        "confirm": "Confirm",
+        "continue": "Continue"
     },
     "link": {
         "sign-in": "Sign In",

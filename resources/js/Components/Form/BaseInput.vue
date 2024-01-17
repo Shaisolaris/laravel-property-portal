@@ -103,7 +103,7 @@ onMounted(() => {
                 v-bind="$attrs"
                 :type="type_"
                 :value="modelValue"
-                :placeholder="placeholder_"
+                :placeholder="placeholder_ !== 'placeholder._' ? placeholder_ : '_'"
                 :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control']"
                 @input="(event) => handleInput(event)"
             >

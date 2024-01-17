@@ -9,7 +9,7 @@ class VerifyOtpCode extends FormRequest
     public function rules(): array
     {
         return [
-            'otp' => ['required', 'numeric', 'digits:4']
+            'otp' => ['required', 'numeric', 'digits:6']
         ];
     }
 

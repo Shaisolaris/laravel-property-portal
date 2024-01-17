@@ -2,14 +2,11 @@
 
 namespace Modules\Auth\app\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class VerifyUserData
 {
@@ -18,11 +15,21 @@ class VerifyUserData
      *
      * @param Request $request
      * @param Closure $next
-     * @return Response|RedirectResponse|JsonResponse|BinaryFileResponse|StreamedResponse
+     * @param int $step
+     * @return Response|RedirectResponse|JsonResponse
      */
-    public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse|BinaryFileResponse|StreamedResponse
+    public function handle(Request $request, Closure $next, int $step = 1): Response|RedirectResponse|JsonResponse
     {
-        // TODO:: нужно настроить перенаправления если какие то данные не были установлены - какие имеменно, в роутах посредник user.data
+        $user = $request->user();
+
+        if($step == 1) {
+            if ($user->hasVerifiedEmail()) {
+                return to_route('registration.occupations.index');
+            }
+        }
+
+
         return $next($request);
+
     }
 }

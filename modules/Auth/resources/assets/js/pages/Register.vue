@@ -1,7 +1,7 @@
 <script setup>
-import AuthLayout from "~/Layouts/AuthLayout.vue";
 import { useForm } from "@inertiajs/vue3";
 import PasswordMeter from "vue-simple-password-meter";
+import AuthLayout from "../layouts/AuthLayout.vue";
 
 const form = useForm({
     first_name: 'test',
@@ -81,7 +81,7 @@ const disabledSubmit = computed(
 </script>
 
 <template>
-    <AuthLayout title="register">
+    <AuthLayout title="register" :withoutLEftContent="true">
         <template #right-content>
             <b-row :no-gutters="true" class="justify-content-center">
                 <b-col cols="10" lg="8">

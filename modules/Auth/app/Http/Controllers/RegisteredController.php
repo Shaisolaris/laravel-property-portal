@@ -50,6 +50,4 @@ class RegisteredController extends Controller
 
         return redirect()->back();
     }
-
-
 }

@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'auth' => $request->user() ? (new UserResource($request->user()->load(['settings']))) : null,
+            'auth' => $this->userResponse($request),
             'navigations' => $this->setNavigations(),
             'flash' => $this->setFlush($request),
             'ziggy' => fn () => [
@@ -27,6 +27,11 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
         ];
+    }
+
+    protected function userResponse($request)
+    {
+        return $request->user() ? UserResource::make($request->user()->load(['settings']))->response()->getData(true) : null;
     }
 
     private function setNavigations(): Collection

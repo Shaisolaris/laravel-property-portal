@@ -1,29 +1,23 @@
 <script setup>
-import NavBar from "~/Layouts/Partials/AuthLayout/NavBar.vue";
+import NavBar from "./prtials/NavBar.vue";
 
 defineProps({
     title: {
         type: String
     },
-    cols: {
-        type: Object,
-        default: {
-            // left: 'col-6 col-lg-4 col-xl-6 col-xxl-4',
-            // right: 'col-7 col-lg-6 col-xl-6 col-xxl-6',
-        }
+    withoutRightContent: {
+        default: () => false,
     }
 });
 </script>
 
 <template>
     <Head :title="`${$t(`title.${title}`)}`" />
-
     <div class="layout-wrapper landing overflow-x-hidden">
         <NavBar />
-
         <slot name="main-content">
             <b-row class="align-items-center ptc-67" :no-gutters="true">
-                <b-col cols="12" lg="5" class="d-none d-lg-block">
+                <b-col v-if="!withoutRightContent" cols="12" lg="5" class="d-none d-lg-block">
                     <div class="block-bg text-center">
                         <div class="d-flex justify-content-center">
                             <div class="wc-70">
@@ -32,7 +26,7 @@ defineProps({
                         </div>
                     </div>
                 </b-col>
-                <b-col cols="12" lg="7" class="pt-lg-0 pt-5">
+                <b-col cols="12" :lg="!withoutRightContent ? '7' : '12'" class="pt-lg-0 pt-5">
                     <slot name="right-content" />
                 </b-col>
             </b-row>

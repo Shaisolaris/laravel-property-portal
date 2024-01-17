@@ -1,7 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import AuthLayout from "~/Layouts/AuthLayout.vue";
-
+import AuthLayout from "../layouts/AuthLayout.vue";
 
 const form = useForm({
     email: '',

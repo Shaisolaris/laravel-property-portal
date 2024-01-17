@@ -4,6 +4,8 @@ namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Modules\Auth\app\Http\Requests\VerifyOtpCode;
 
 class ValidateOtpCodeController extends Controller
@@ -15,25 +17,34 @@ class ValidateOtpCodeController extends Controller
         ]);
     }
 
-    public function verify(VerifyOtpCode $request): \Illuminate\Http\RedirectResponse
+    /**
+     * @throws ValidationException
+     */
+    public function verify(VerifyOtpCode $request)
     {
         $data = $request->validated();
-
-        if($request->user()->validateOtp($data['otp'])) {
-
-            $request->user()->update('email_verified_at', time()); // TODO:: не проверял
-
-            return to_route('registration.select-occupations');
+        // 543612
+        if ($request->user()->validateOtp($data['otp'])) {
+            $request->user()->markEmailAsVerified();
+        } else {
+            throw ValidationException::withMessages(['otp' => 'The code was entered incorrectly']);
         }
 
-        return redirect()->back();
+        return response()->json(true);
     }
 
-    public function resend(Request $request): \Illuminate\Http\RedirectResponse
+    public function resend(Request $request)
     {
-        if($request->user()->getOtpCode()) {
-            $request->user()->sendSendOtpCodeNotification();
-        }
-        return redirect()->back();
+        $request->user()->sendSendOtpCodeNotification();
+
+        return response()->json(true);
+    }
+
+    public function cancel(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 }

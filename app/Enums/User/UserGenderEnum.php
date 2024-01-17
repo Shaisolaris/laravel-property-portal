@@ -6,8 +6,7 @@ use App\Traits\EnumTrait;
 use Spatie\Enum\Laravel\Enum;
 
 /**
- * @method static self Male()
- * @method static self Female()
+ * @method static self levels()
  */
 class UserGenderEnum extends Enum
 {

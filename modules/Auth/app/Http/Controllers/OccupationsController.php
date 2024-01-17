@@ -2,7 +2,9 @@
 
 namespace Modules\Auth\app\Http\Controllers;
 
+use App\Enums\User\UserTeachingLevel;
 use App\Http\Controllers\Controller;
+use App\Models\Occupation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,11 +14,11 @@ class OccupationsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function create()
+    public function index(): \Inertia\Response
     {
         return Inertia::render('Auth::steps/Occupation', [
-            'occupations' => [],
-            'experience_levels' => [],
+            'occupations' => Occupation::pluck('name', 'id'),
+            'experience_levels' => UserTeachingLevel::toValues(),
         ]);
     }
 
