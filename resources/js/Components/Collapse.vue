@@ -15,16 +15,21 @@ defineProps({
     variant: {
         type: String,
         default: 'light-blue'
+    },
+    showButton: {
+        type: Boolean,
+        default: true
     }
 });
 </script>
 
 <template>
-    <div class="hstack gap-2 flex-wrap mb-3">
+    <div v-if="showButton" class="hstack gap-2 flex-wrap mb-3">
         <BButton v-b-toggle="`${id}`" :variant="variant">
             <Text :t-key="`button.${tKey}`" />
         </BButton>
     </div>
+
     <BCollapse :id="id" :visible="visible">
         <slot name="body" />
     </BCollapse>
