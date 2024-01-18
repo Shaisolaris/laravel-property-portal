@@ -13,8 +13,8 @@ class CreateUserRequest extends FormRequest
             'first_name' => 'required|string|min:2|max:255',
             'last_name' => 'required|string|min:2|max:255',
             'address' => 'required|string|min:2|max:255',
-            'country' => 'required|min:2|max:255',
-            'state' => 'required|min:2|max:255',
+            'country' => 'required|max:255',
+            'state' => 'required|max:255',
             'role' => 'required', // Нужно задать типы чере IN:
             'educational_level' => 'required', // Нужно задать типы чере IN:
             'city' => 'required|string|max:255',

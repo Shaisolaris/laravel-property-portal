@@ -4,7 +4,11 @@ import { useI18n } from "vue-i18n";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 
-const { label, placeholder } = defineProps({
+const { options, label, placeholder, modelValue } = defineProps({
+    modelValue: {
+        type: [ String, Number ],
+        default: null,
+    },
     placeholder: {
         type: String,
         default: () => 'Select',
@@ -28,26 +32,30 @@ const { label, placeholder } = defineProps({
     },
 });
 const emit = defineEmits([ 'update:modelValue' ]);
-const { t } = useI18n();
-const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
-let currentOption = reactive(placeholder);
+const currentOption_ = computed(() => {
+    const option = options.find(option => modelValue && modelValue === option.value);
+    return option ? option.name : placeholder;
+});
+let currentOption = reactive(currentOption_.value);
 
 
 const selected = (option) => {
     currentOption = option.name;
+
     emit('update:modelValue', option.value);
 }
 </script>
 
 <template>
     <div :id="$attrs.id" class="test">
-        <TagLabel :label="label_" :required="$attrs.required" />
+        <TagLabel :label="label" :required="$attrs.required" />
+
         <b-dropdown variant="outline-secondary" :text="currentOption" class="custom-select">
             <b-dropdown-item
-                v-for="(option,index) in options"
+                v-for="(option, index) in options"
                 :key="index"
                 :disabled="option.disabled ?? false"
-                :action="option.action ?? true"
+                :active="option.value == modelValue"
                 @click="selected(option)"
             >
                 {{ option.name }}

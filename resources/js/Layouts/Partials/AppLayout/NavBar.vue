@@ -103,7 +103,7 @@ onMounted(() => {
             <div class="navbar-header">
                 <div class="d-flex">
                     <div class="navbar-brand-box horizontal-logo">
-                        <Link :href="route('dashboard')" class="logo logo-dark">
+                        <Link :href="route('landing.index')" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
@@ -112,7 +112,7 @@ onMounted(() => {
                             </span>
                         </Link>
 
-                        <Link :href="route('dashboard')" class="logo logo-light">
+                        <Link :href="route('landing.index')" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
@@ -322,7 +322,7 @@ onMounted(() => {
                                     id="page-header-user-dropdown"
                                 >
                             <span class="d-flex align-items-center">
-                                <img v-if="$page.props.auth" :src="$page.props.auth" class="rounded-circle header-profile-user" alt>
+                                <img v-if="$page.props.auth?.avatar" :src="$page.props.auth?.avatar" class="rounded-circle header-profile-user" alt>
                                 <span v-else class="bg-light-blue rounded-circle header-profile-user" />
                             </span>
                                 </button>

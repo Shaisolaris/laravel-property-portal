@@ -1,14 +1,11 @@
 <script setup>
 import { isEmpty } from "lodash";
-import { usePage } from "@inertiajs/vue3";
+import { useToast } from "~/scripts/helpers/useToast.js";
 import simplebar from "simplebar-vue";
 import Menu from "./Partials/AppLayout/Menu.vue";
 import NavBar from "./Partials/AppLayout/NavBar.vue";
 import Breadcrumbs from "~/Layouts/Partials/AppLayout/Breadcrumbs.vue";
-import { useToast } from "~/scripts/helpers/useToast.js";
 
-
-localStorage.setItem('hoverd', false);
 
 defineProps({
     title: {
@@ -16,8 +13,9 @@ defineProps({
         default: ''
     }
 });
-
 const isMenuCondensed = ref(false);
+
+localStorage.setItem('hoverd', false);
 
 
 const initActiveMenu = () => {
@@ -49,8 +47,6 @@ watch(
     (flashMessage) => {
         if (!isEmpty(flashMessage) && flashMessage.type !== undefined) {
             const { toast } = useToast();
-
-            console.log(flashMessage);
             toast(flashMessage.type, flashMessage.text);
         }
     }
@@ -85,7 +81,7 @@ onBeforeMount(() => {
         <div>
             <div class="app-menu navbar-menu">
                 <div class="navbar-brand-box">
-                    <Link href="/" class="logo logo-dark">
+                    <Link :href="route('landing.index')" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                         </span>
@@ -93,7 +89,7 @@ onBeforeMount(() => {
                             <img src="@/images/logo/logo.svg" alt="" height="35" />
                         </span>
                     </Link>
-                    <Link href="/" class="logo logo-light">
+                    <Link :href="route('landing.index')" class="logo logo-light">
                         <span class="logo-sm">
                           <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                         </span>
@@ -113,11 +109,11 @@ onBeforeMount(() => {
 
                 <div class="d-flex align-items-center pxc-20 avatar-block">
                     <div class="me-4">
-                        <Avatar rounded="circle" size="lg" />
+                        <Avatar :path="$page.props.auth?.avatar" rounded="circle" size="lg" />
                     </div>
                     <div class="d-block d-lg-none d-xl-block text-start">
-                        <div class="fs-14 text-dim-gray">{{ $page.props.auth.data.role.displayName }}</div>
-                        <div class="sidebar-name-block fs-5 fw-medium">{{ $page.props.auth?.data?.fullName }}</div>
+                        <div class="fs-14 text-dim-gray">{{ $page.props.auth.role?.displayName }}</div>
+                        <div class="sidebar-name-block fs-5 fw-medium">{{ $page.props.auth?.fullName }}</div>
                     </div>
                 </div>
                 <simplebar id="scrollbar" style="height: 90%" ref="scrollbar">

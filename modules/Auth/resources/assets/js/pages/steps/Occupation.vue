@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "../../layouts/AuthLayout.vue";
-import {useForm} from "@inertiajs/vue3";
+
 
 defineProps({
     occupations: Object,

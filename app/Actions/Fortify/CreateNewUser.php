@@ -25,31 +25,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): ?User
     {
-        DB::beginTransaction();
-
-        try {
-            $input['password'] = Hash::make($input['password']);
-
-            $user = User::create($input);
-            $user->assignRole($this->initialUserRole($input));
-            //            $user->detail()->updateOrCreate(['user_id' => $user->id]); // TODO:: Нужно добавить таблицу в базу
-            $user->settings()->updateOrCreate(['user_id' => $user->id]);
-
-            DB::commit();
-
-            return $user;
-        } catch (\Exception $exception) {
-            DB::rollBack();
-            return null;
-        }
-    }
-
-    protected function initialUserRole($input): \Spatie\Permission\Models\Role
-    {
-        return Role::whereName(
-            $input['role'] !== UserRoleEnum::Organizer()->value
-                ? $input['role'] . "_" . $input['educational_level']
-                : $input['role']
-        )->first();
+        return $this->authService->createUser($input);
     }
 }

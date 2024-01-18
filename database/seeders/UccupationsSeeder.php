@@ -17,6 +17,7 @@ class UccupationsSeeder extends Seeder
 
     protected function base(): \Illuminate\Support\Collection
     {
+        //TODO:: Вроде хотел все статусы, типы и т.д string делать а не int?
         return collect([
             ['name' => 'Design', 'slug' => 'design', 'status' => 1],
             ['name' => 'Math', 'slug' => 'math', 'status' => 1],

@@ -2,13 +2,18 @@
 import { useI18n } from "vue-i18n";
 import { computed } from "vue";
 
-const { t, locale } = useI18n();
 
+const { t, locale } = useI18n();
 const languages = ref(['en', 'es']);
 const lang = computed(() => t(`lang.${locale.value}`));
 
+
 const setLanguage = (newLocale) =>  {
     locale.value = newLocale;
+
+    axios.post(route('set-language', {
+        lang: newLocale
+    }));
 }
 
 </script>
@@ -20,7 +25,7 @@ const setLanguage = (newLocale) =>  {
         </template>
         <template v-for="lang in languages">
             <BDropdownItem
-                v-if="lang != locale"
+                v-if="lang !== locale"
                 :data-lang="lang"
                 href="javascript:void(0);"
                 @click="setLanguage(lang)"

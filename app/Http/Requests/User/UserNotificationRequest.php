@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserProfileRequest extends FormRequest
+class UserNotificationRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-
+            
         ];
     }
 

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Notification\Http\Resources\NotificationResource;
 
-/** @mixin User */
+/** @mixin User
+ * @property mixed $fullName
+ */
 class UserResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -18,7 +20,7 @@ class UserResource extends JsonResource
             'lastName' => $this->last_name,
             'email' => $this->email,
             'avatar' => $this->profile_photo_url,
-            'fullName' => $this->fullName(),
+            'fullName' => $this->fullName,
             'birthAt' => $this->birth_at?->format('d M, Y'),
             'gender' => $this->gender,
             'timezone' => $this->timezone,
@@ -30,7 +32,7 @@ class UserResource extends JsonResource
                 return new UserRoleResource($this->roles()->with('permissions')->first());
             }),
             'settings' => $this->whenLoaded('settings', function () {
-                return new UserSettingResource($this->whenLoaded('settings')->first());
+                return new UserSettingResource($this->whenLoaded('settings'));
             }),
         ];
     }

@@ -1,12 +1,5 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
-
-
-const { user } = defineProps({
-    user: {
-        type: Object,
-        required: true
-    },
+defineProps({
     timezones: {
         type: Array,
         required: true
@@ -21,6 +14,8 @@ const { user } = defineProps({
     }
 });
 
+const user = computed(() => usePage().props.auth);
+
 const stateEdit = ref({
     name: false,
     birth: false,
@@ -32,14 +27,41 @@ const stateEdit = ref({
 });
 
 const formProfile = useForm({
-    first_name: user?.firstName,
-    last_name: user?.lastName,
-    gender: user?.gender ?? null,
-    timezone: user?.timezone ?? null,
-    birth_at: user?.birthAt ?? null,
-    languages: user?.languages ?? null,
+    first_name: user.value?.firstName,
+    last_name: user.value?.lastName,
+    gender: user.value?.gender ?? null,
+    timezone: user.value?.timezone ?? null,
+    birth_at: user.value?.birthAt ?? null,
+    languages: user.value?.languages ?? null,
 });
 
+const formImage = useForm({
+    photo: null,
+});
+
+
+const changeStateEdit = (key) => {
+    stateEdit.value = {
+        name: false,
+        birth: false,
+        gender: false,
+        timezone: false,
+        langs: false,
+        password: false,
+        email: false,
+    };
+
+    stateEdit.value[key] = !stateEdit.value[key];
+}
+
+
+const submitUpload = () => {
+    formImage.post(route('upload.profile-photo'), {
+        onFinish: () => {
+            formImage.reset();
+        }
+    });
+}
 
 const submitProfile = () => {
     formProfile.put(route('settings.profile'), {
@@ -52,20 +74,34 @@ const submitProfile = () => {
         }
     });
 }
+
+
+watch(
+    () => formImage.photo,
+    () => {
+        submitUpload();
+    }
+);
 </script>
 
 <template>
-    <b-col cols="12" md="8">
-        <Card>
+    <Card>
             <Text t-key="page.settings.profile.profile-photo" class="fw-medium pb-3" />
 
             <div class="d-flex gap-4">
-                <Avatar size="xl" rounded="circle" />
+                <Avatar :path="user?.avatar" rounded="circle" size="xl" />
 
-                <div class="pt-3 w-75 h-auto d-flex flex-column">
+                <div class="pt-3 w-100 h-auto d-flex flex-column">
                     <div class="text-dim-gray fs-14">{{ user?.bio }}</div>
                     <div class="text-end mt-auto">
-                        Upload
+                        <UploadImage v-model="formImage.photo">
+                            <template #body>
+                                <span class="text-royal-blue fw-medium">
+                                    <i class="ri-upload-2-line me-2" />
+                                    <Text t-key="action.upload" tag="span" />
+                                </span>
+                            </template>
+                        </UploadImage>
                     </div>
                 </div>
             </div>
@@ -97,21 +133,13 @@ const submitProfile = () => {
                                 <i
                                     v-if="!stateEdit.name"
                                     class="ri-edit-box-line text-royal-blue hover-element"
-                                    @click="stateEdit.name = !stateEdit.name"
+                                    @click="changeStateEdit('name')"
                                 />
 
-                                <template v-else>
-                                    <button type="submit" class="button-without-all">
-                                        <i class="ri-check-line text-success fs-18"></i>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="button-without-all"
-                                        @click="stateEdit.name = false"
-                                    >
-                                        <i class="ri-close-fill text-danger fs-18"></i>
-                                    </button>
-                                </template>
+                                <div v-else class="d-flex justify-content-end gap-2">
+                                    <BaseButton t-key="save" size="md" type="submit" />
+                                    <BaseButton t-key="cancel-save" size="md" variant="light-yellow" @click="stateEdit.name = false" />
+                                </div>
 
                             </b-col>
                         </b-row>
@@ -137,21 +165,13 @@ const submitProfile = () => {
                                 <i
                                     v-if="!stateEdit.birth"
                                     class="ri-edit-box-line text-royal-blue hover-element"
-                                    @click="stateEdit.birth = !stateEdit.birth"
+                                    @click="changeStateEdit('birth')"
                                 />
 
-                                <template v-else>
-                                    <button type="submit" class="button-without-all">
-                                        <i class="ri-check-line text-success fs-18"></i>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="button-without-all"
-                                        @click="stateEdit.birth = false"
-                                    >
-                                        <i class="ri-close-fill text-danger fs-18"></i>
-                                    </button>
-                                </template>
+                                <div v-else class="d-flex justify-content-end gap-2">
+                                    <BaseButton t-key="save" size="md" type="submit" />
+                                    <BaseButton t-key="cancel-save" size="md" variant="light-yellow" @click="stateEdit.birth = false" />
+                                </div>
                             </b-col>
                         </b-row>
                     </b-col>
@@ -181,21 +201,13 @@ const submitProfile = () => {
                                 <i
                                     v-if="!stateEdit.gender"
                                     class="ri-edit-box-line text-royal-blue hover-element"
-                                    @click="stateEdit.gender = !stateEdit.gender"
+                                    @click="changeStateEdit('gender')"
                                 />
 
-                                <template v-else>
-                                    <button type="submit" class="button-without-all">
-                                        <i class="ri-check-line text-success fs-18"></i>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="button-without-all"
-                                        @click="stateEdit.gender = false"
-                                    >
-                                        <i class="ri-close-fill text-danger fs-18"></i>
-                                    </button>
-                                </template>
+                                <div v-else class="d-flex justify-content-end gap-2">
+                                    <BaseButton t-key="save" size="md" type="submit" />
+                                    <BaseButton t-key="cancel-save" size="md" variant="light-yellow" @click="stateEdit.gender = false" />
+                                </div>
                             </b-col>
                         </b-row>
                     </b-col>
@@ -218,28 +230,20 @@ const submitProfile = () => {
                                 <BaseSelect
                                     v-else
                                     v-model="formProfile.timezone"
-                                    :options="timezones.data"
+                                    :options="timezones"
                                 />
                             </b-col>
                             <b-col cols="3" class="text-end">
                                 <i
                                     v-if="!stateEdit.timezone"
                                     class="ri-edit-box-line text-royal-blue hover-element"
-                                    @click="stateEdit.timezone = !stateEdit.timezone"
+                                    @click="changeStateEdit('timezone')"
                                 />
 
-                                <template v-else>
-                                    <button type="submit" class="button-without-all">
-                                        <i class="ri-check-line text-success fs-18"></i>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="button-without-all"
-                                        @click="stateEdit.timezone = false"
-                                    >
-                                        <i class="ri-close-fill text-danger fs-18"></i>
-                                    </button>
-                                </template>
+                                <div v-else class="d-flex justify-content-end gap-2">
+                                    <BaseButton t-key="save" size="md" type="submit" />
+                                    <BaseButton t-key="cancel-save" size="md" variant="light-yellow" @click="stateEdit.timezone = false" />
+                                </div>
                             </b-col>
                         </b-row>
                     </b-col>
@@ -269,28 +273,19 @@ const submitProfile = () => {
                                 <i
                                     v-if="!stateEdit.langs"
                                     class="ri-edit-box-line text-royal-blue hover-element"
-                                    @click="stateEdit.langs = !stateEdit.langs"
+                                    @click="changeStateEdit('langs')"
                                 />
 
-                                <template v-else>
-                                    <button type="submit" class="button-without-all">
-                                        <i class="ri-check-line text-success fs-18"></i>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="button-without-all"
-                                        @click="stateEdit.langs = false"
-                                    >
-                                        <i class="ri-close-fill text-danger fs-18"></i>
-                                    </button>
-                                </template>
+                                <div v-else class="d-flex justify-content-end gap-2">
+                                    <BaseButton t-key="save" size="md" type="submit" />
+                                    <BaseButton t-key="cancel-save" size="md" variant="light-yellow" @click="stateEdit.langs = false" />
+                                </div>
                             </b-col>
                         </b-row>
                     </b-col>
                 </b-row>
             </form>
         </Card>
-    </b-col>
 </template>
 
 <style scoped>

@@ -54,7 +54,6 @@ const { t } = useI18n();
 const togglePassword = ref(false);
 const iconLength = computed(() => icon.length > 0);
 const placeholder_ = computed(() => attrs?.placeholder && attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
-const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
 const type_ = computed(() => type === 'password' ? togglePassword.value ? 'text': type : type);
 const showTogglePassword = computed(() => type === 'password' && showPasswordToggle);
 
@@ -87,9 +86,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <TagLabel v-if="iconLength || viewType === 'counter'" :label="label_" :required="$attrs.required" />
+    <TagLabel v-if="iconLength || viewType === 'counter'" :label="label" :required="$attrs.required" />
     <div :class="[{'input-group': iconLength || viewType === 'counter'}]">
-        <TagLabel v-if="!iconLength && viewType !== 'counter'" :label="label_" :required="$attrs.required" />
+        <TagLabel v-if="!iconLength && viewType !== 'counter'" :label="label" :required="$attrs.required" />
 
         <span v-if="iconLength" class="input-group-text">
             <slot name="group-text">

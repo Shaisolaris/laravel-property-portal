@@ -1,5 +1,5 @@
+import { useForm } from "@inertiajs/vue3";
 import moment from "moment/moment";
-import {useForm} from "@inertiajs/vue3";
 import _ from "lodash";
 
 const helpers = {
@@ -42,7 +42,8 @@ const helpers = {
         return end;
     },
 
-    sendForm: ({ form = useForm(), url, method = "post", toObject = false }, callback = function () {}) => {
+    sendForm: ({ form = useForm(), url, method = "post", toObject = false }, callback = function () {
+    }) => {
         const processingForm = (form, status = true) => (form.processing = status);
 
         const request = (data) => {
@@ -66,7 +67,7 @@ const helpers = {
         if (toObject) {
             formData = form.data();
         } else {
-            for (const [key, value] of Object.entries(form.data())) {
+            for (const [ key, value ] of Object.entries(form.data())) {
                 formData.set(key, value !== "" && value !== null ? value : "");
             }
         }
@@ -108,7 +109,7 @@ const helpers = {
             return blob;
         }
 
-        return new File([blob], fileName, { type: "image/png" });
+        return new File([ blob ], fileName, { type: "image/png" });
     },
 
     randomString: (length = 10, uppercase = false, withNumber = true) => {
@@ -134,6 +135,11 @@ const helpers = {
             counter += 1;
         }
         return result;
+    },
+
+    //TODO: нужно завести методы и вызывать их в компоненте
+    setPlaceholder: () => {
+
     }
 };
 

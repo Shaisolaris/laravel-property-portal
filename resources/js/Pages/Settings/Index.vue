@@ -1,5 +1,4 @@
 <script setup>
-import { useForm, usePage } from "@inertiajs/vue3";
 import AppLayout from "~/Layouts/AppLayout.vue";
 import Profile from "~/Pages/Settings/Tabs/Profile.vue";
 import Password from "~/Pages/Settings/Tabs/Password.vue";
@@ -20,20 +19,25 @@ const props = defineProps({
         required: true
     }
 });
-const user = computed(() => usePage().props.auth.data);
 </script>
 
 <template>
     <AppLayout title="settings">
         <Tabs t-key="settings">
             <template v-slot:tab-profile-body>
-                <Profile :user="user" :genders="genders" :languages="languages" :timezones="timezones" />
+                <b-col cols="12" xl="8">
+                    <Profile :genders="genders" :languages="languages" :timezones="timezones" />
+                </b-col>
             </template>
             <template v-slot:tab-notification-body>
-                <Notification :user="user" />
+                <b-col cols="12" xl="8">
+                    <Notification />
+                </b-col>
             </template>
             <template v-slot:tab-password-body>
-                <Password :user="user" />
+                <b-col cols="12" xl="8">
+                    <Password />
+                </b-col>
             </template>
         </Tabs>
     </AppLayout>

@@ -45,6 +45,7 @@ export default defineConfig({
         }),
         autoImport({
             vueTemplate: true,
+            dts: "resources/ts/auto-imports.d.ts",
             imports: [
                 'vue',
                 { "@inertiajs/vue3": [ 'router', 'useForm', 'usePage' ] },
@@ -54,11 +55,12 @@ export default defineConfig({
             ]
         }),
         components({
-            dirs: [ "resources/js/Components" ],
-            dts: [ "resources/ts/BootstrapVue", "resources/ts/SelfComponents" ],
+            dirs: [ "resources/js/Components", "resources/ts/BootstrapVue" ],
+            dts: "resources/ts/components.d.ts",
             resolvers: [
                 (name) => {
                     const components = [ "Link", "Head" ]
+
                     if (components.includes(name)) {
                         return { name, from: "@inertiajs/vue3" }
                     }

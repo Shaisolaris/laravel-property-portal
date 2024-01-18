@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const { label } = defineProps({
     label: {
         type: String,
         default: ''
@@ -13,11 +13,13 @@ defineProps({
         default: 'form-label fw-medium'
     }
 });
+const { t } = useI18n();
+const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
 </script>
 
 <template>
-    <label v-if="label.length > 0" :class="className">
-        {{ $t(label) }}
+    <label v-if="label_.length > 0" :class="className">
+        {{ $t(label_) }}
         <span v-if="required" class="text-danger">*</span>
     </label>
 </template>

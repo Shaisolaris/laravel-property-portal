@@ -19,10 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('set-lang', function (Request $request) {
+Route::post('set-language', function (Request $request) {
     $lang = $request->get('lang');
+    $cookieLang = Cookie::get('lang');
 
-    \Illuminate\Support\Facades\Session::put(['lang', $lang]);
+    if (!Cookie::has('lang') || $cookieLang !== $lang) {
+        Cookie::forever('lang', $lang);
+    }
 
     App::setLocale($lang);
-});
+})->name('set-language');

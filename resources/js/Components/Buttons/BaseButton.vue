@@ -14,18 +14,28 @@ defineProps({
     routeName: {
         type: String,
         default: ''
+    },
+    size: {
+        type: String,
+        default: ''
     }
 });
 </script>
 
 <template>
-    <Link v-if="routeName.length > 0" type="button" :href="route(routeName)" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
+    <Link
+        v-if="routeName.length > 0"
+        type="button"
+        :href="route(routeName)"
+        :class="`btn btn-${variant} ${size.length > 0 ? `btn-${size}` : ''} w-100 text-black`"
+        :data-key="tKey"
+    >
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>
     </Link>
 
-    <button v-else :type="type" :class="`btn btn-${variant} w-100 text-black`" :data-key="tKey">
+    <button v-else :type="type" :class="`btn btn-${variant} ${size.length > 0 ? `btn-${size}` : ''} w-100 text-black`" :data-key="tKey">
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>

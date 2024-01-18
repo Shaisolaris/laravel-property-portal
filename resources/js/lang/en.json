@@ -44,10 +44,44 @@
             "notification": {
                 "message": {
                     "title": "Messages",
-                    "desc": "Messages from other users"
+                    "desc": "Messages from other users",
+                    "icon": "ri-chat-3-line"
+                },
+                "classes": {
+                    "title": "Classes",
+                    "desc": "Classes",
+                    "icon": "ri-computer-line"
+                },
+                "courses": {
+                    "title": "Courses",
+                    "desc": "Courses",
+                    "icon": "ri-computer-line"
+                },
+                "schedule": {
+                    "title": "Schedule",
+                    "desc": "Schedule",
+                    "icon": "ri-calendar-line"
+                },
+                "assignments": {
+                    "title": "Assignments",
+                    "desc": "Assignments",
+                    "icon": "ri-file-text-line"
+                },
+                "mentors": {
+                    "title": "Mentors",
+                    "desc": "Mentors",
+                    "icon": "ri-group-line"
+                },
+                "payments": {
+                    "title": "Payments",
+                    "desc": "Payments",
+                    "icon": "ri-bank-card-line"
+                },
+                "quizzes": {
+                    "title": "Quizzes",
+                    "desc": "Quizzes",
+                    "icon": "ri-question-line"
                 }
-            },
-            "password": {
             }
         }
     },
@@ -94,12 +128,13 @@
     },
     "button": {
         "sign-in": "Sign In",
-        "sign-up": "Sign Up",
         "create-account": "Create an account",
         "login": "Login",
         "sign-up": "Sign Up",
         "confirm": "Confirm",
-        "continue": "Continue"
+        "continue": "Continue",
+        "cancel-save": "Cancel",
+        "save": "Save"
     },
     "link": {
         "sign-in": "Sign In",
@@ -157,6 +192,8 @@
         "update": "Update",
         "create": "Create",
         "delete": "Delete",
-        "edit": "Edit"
+        "edit": "Edit",
+        "upload": "Upload",
+        "load": "Load"
     }
 }

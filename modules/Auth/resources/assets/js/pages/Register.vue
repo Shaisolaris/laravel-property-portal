@@ -1,7 +1,7 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
 import PasswordMeter from "vue-simple-password-meter";
 import AuthLayout from "../layouts/AuthLayout.vue";
+
 
 const form = useForm({
     first_name: 'test',
@@ -62,20 +62,7 @@ const dropScore = (e) => {
 }
 
 const disabledSubmit = computed(
-    () => !form.email ||
-        !form.educational_level ||
-        !form.role ||
-        !form.first_name ||
-        !form.last_name ||
-        !form.phone ||
-        !form.address ||
-        !form.country ||
-        !form.state ||
-        !form.city ||
-        !form.zip_code ||
-        !form.password ||
-        !phoneNumberValidated.value ||
-        !form.is_agreement,
+    () => false
 );
 
 </script>

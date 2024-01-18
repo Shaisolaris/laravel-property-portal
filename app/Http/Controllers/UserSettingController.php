@@ -8,9 +8,9 @@ use App\Enums\User\UserGenderEnum;
 use Illuminate\Support\Facades\Hash;
 use App\Enums\User\UserLanguageEnum;
 use App\Http\Resources\TimezoneResource;
-use App\Http\Requests\UserProfileRequest;
-use App\Http\Requests\UserSetting\UserNotificationRequest;
-use App\Http\Requests\UserSetting\UserEmailPasswordRequest;
+use App\Http\Requests\User\UserProfileRequest;
+use App\Http\Requests\User\UserNotificationRequest;
+use App\Http\Requests\User\UserEmailPasswordRequest;
 
 class UserSettingController extends Controller
 {
