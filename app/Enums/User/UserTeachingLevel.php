@@ -10,10 +10,9 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self knowledge()
  * @method static self video_learning()
  */
-
 class UserTeachingLevel extends Enum
 {
-    protected static function values(): array
+    protected static function labels(): array
     {
         return [
             'beginner' => "I'm a beginner",
@@ -21,5 +20,10 @@ class UserTeachingLevel extends Enum
             'experienced' => "I'm experienced",
             'video_learning' => "I have videos ready to upload",
         ];
+    }
+
+    public static function implode(): string
+    {
+        return collect(self::toValues())->implode(',');
     }
 }

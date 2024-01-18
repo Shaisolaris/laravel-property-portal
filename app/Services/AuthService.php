@@ -27,9 +27,6 @@ class AuthService
 
             $this->updateOrCreateNotificationSettings($user);
 
-            // TODO:: Нужно добавить таблицу в базу
-            //$user->detail()->updateOrCreate(['user_id' => $user->id]);
-
             DB::commit();
 
             return $user;

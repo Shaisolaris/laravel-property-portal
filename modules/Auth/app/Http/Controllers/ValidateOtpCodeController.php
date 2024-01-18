@@ -23,7 +23,7 @@ class ValidateOtpCodeController extends Controller
     public function verify(VerifyOtpCode $request)
     {
         $data = $request->validated();
-        // 543612
+
         if ($request->user()->validateOtp($data['otp'])) {
             $request->user()->markEmailAsVerified();
         } else {

@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('timezone')->nullable();
             $table->string('phone')->nullable();
+            $table->string('teaching_level')->nullable();
 
             $table->text('bio')->nullable();
             $table->text('two_factor_secret')->nullable();

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\User\UserTeachingLevel;
+use App\Traits\HasFileUploads;
 use App\Traits\Models\Functions\UserFunctionsTrait;
 use App\Traits\MustVerifyOtpCode;
 use Eloquent;
@@ -13,13 +15,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\User\UserStatusEnum;
 use Spatie\Permission\Models\Role;
-use App\Enums\User\UserGenderEnum;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Models\Permission;
 use Laravel\Sanctum\PersonalAccessToken;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -114,9 +114,9 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use Notifiable;
     use HasApiTokens;
     use HasUuidTrait;
+    use HasFileUploads;
     use HasProfilePhoto;
     use MustVerifyOtpCode;
-    use InteractsWithMedia;
     use UserFunctionsTrait;
     use UserAttributesTrait;
     use UserRelationshipsTrait;
@@ -131,6 +131,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     ];
 
     protected $fillable = [
+        'bio',
         'uuid',
         'email',
         'state',
@@ -146,6 +147,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'last_name',
         'languages',
         'first_name',
+        'teaching_level',
         'remember_token',
         'two_factor_secret',
         'email_verified_at',
@@ -159,13 +161,16 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'email_verified_at' => 'datetime',
         'birth_at' => 'date',
         'languages' => 'array',
-        'status' => UserStatusEnum::class
+        'status' => UserStatusEnum::class,
+        'teaching_level' => UserTeachingLevel::class,
     ];
 
     protected $appends = [
         'profile_photo_url',
         'full_name',
     ];
+
+    protected $with = ['detail'];
 
     public function notifications(): HasMany
     {

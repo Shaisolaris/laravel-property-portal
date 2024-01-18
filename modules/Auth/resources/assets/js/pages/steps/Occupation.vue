@@ -1,6 +1,9 @@
 <script setup>
 import AuthLayout from "../../layouts/AuthLayout.vue";
+import helpers from "~/scripts/utils/helpers.js";
+import FooterSteps from "./Partials/FooterSteps.vue";
 
+let {sendForm} = helpers;
 
 defineProps({
     occupations: Object,
@@ -23,6 +26,10 @@ const selectOccupation = (name, id) => {
 }
 
 const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupation.id === id)
+
+const send = () => sendForm({form, url: route("occupations.store"), toObject: true},
+    () => window.location.reload()
+)
 </script>
 
 <template>
@@ -37,7 +44,7 @@ const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupat
                             </h1>
                             <b-col cols="5">
                                 <p class="text-dim-gray fs-14 mt-3">
-                                    <Text t-key="page.register.text-11" tag="span"/>
+                                    <Text t-key="page.register.text-2" tag="span"/>
                                 </p>
                             </b-col>
                         </div>
@@ -55,13 +62,13 @@ const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupat
                                      ]">
                                     <span><img src="/images/experience.svg"></span>
                                     <span class="mx-2">{{ name }}</span>
-                                    <span><img src="/images/check.svg"></span>
+                                    <span class="box-checker"><i class="ri-checkbox-circle-line"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-5">
                             <h4 class="text-black mb-4">
-                                <Text t-key="page.register.text-12" tag="span"/>
+                                <Text t-key="page.register.text-13" tag="span"/>
                             </h4>
                             <div>
                                 <div v-for="(value, level) in experience_levels"
@@ -83,19 +90,12 @@ const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupat
                     </b-col>
                 </b-row>
             </div>
-            <div class="container-fluid custom-container justify-content-end d-flex mt-5 occupation-footer w-100 p-3">
-                <BaseButton
-                    t-key="continue"
-                    type="submit"
-                    class="fs-20 fw-bold shadow-dark-blue border-2 border-black occupation-done"
-                    :disabled="!disabledSubmit"
-                />
-            </div>
+            <FooterSteps :disabledSubmit="disabledSubmit" @send="send"/>
         </template>
     </AuthLayout>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .occupation-btn, .experience_level-btn {
     border-radius: 20px;
     padding: 20px;
@@ -124,13 +124,9 @@ const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupat
 
         border: 1px solid rgba(var(--in-black-rgb), var(--in-border-opacity));
     }
-}
 
-.occupation-done {
-    width: 150px !important;
-}
-
-.occupation-footer {
-    border-top: 1px solid rgb(0, 0, 0);
+    & .box-checker {
+        color: #F7F6F2
+    }
 }
 </style>

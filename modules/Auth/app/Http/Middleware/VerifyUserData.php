@@ -22,12 +22,22 @@ class VerifyUserData
     {
         $user = $request->user();
 
-        if($step == 1) {
+        if ($step == 1) {
             if ($user->hasVerifiedEmail()) {
-                return to_route('registration.occupations.index');
+                return to_route('occupations.index');
+            }
+        }
+        if ($step == 2) {
+            if ($user->occupations()->get()->isNotEmpty()) {
+                return to_route('profile-avatar.index');
             }
         }
 
+        if ($step == 3) {
+            if ($user->profile_photo_path && $user->bio) {
+                return to_route('user-detail.index');
+            }
+        }
 
         return $next($request);
 

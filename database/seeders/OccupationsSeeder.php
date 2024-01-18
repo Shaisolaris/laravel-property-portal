@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Occupation;
 use Illuminate\Database\Seeder;
 
-class UccupationsSeeder extends Seeder
+class OccupationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.

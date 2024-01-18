@@ -47,8 +47,13 @@ Route::middleware(['auth'])->name('registration.')->controller(ValidateOtpCodeCo
     Route::post('otp-form/verify', 'verify')->name('verify');
     Route::post('otp-form/resend', 'resend')->name('resend');
     Route::post('otp-form/cancel', 'cancel')->name('cancel');
+});
 
+
+Route::middleware('auth')->group(function () {
+    // User data
     Route::middleware('user.data:2')->resource('occupations', OccupationsController::class)->names('occupations');
     Route::middleware('user.data:3')->resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');
     Route::middleware('user.data:4')->resource('user-detail', UserDetailController::class)->names('user-detail');
+
 });

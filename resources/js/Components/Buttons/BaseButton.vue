@@ -7,6 +7,9 @@ defineProps({
     tKey: {
         type: String,
     },
+    icon:{
+        type: String,
+    },
     variant: {
         type: String,
         default: 'light-blue'
@@ -36,6 +39,7 @@ defineProps({
     </Link>
 
     <button v-else :type="type" :class="`btn btn-${variant} ${size.length > 0 ? `btn-${size}` : ''} w-100 text-black`" :data-key="tKey">
+        <i v-if="icon" :class="[icon,'me-2']"></i>
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>
