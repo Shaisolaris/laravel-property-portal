@@ -17,14 +17,6 @@ Route::middleware([
 
 
 Route::group([
-    'as' => 'landing.',
-    'controller' => LandingController::class
-], function () {
-    Route::get('/', 'index')->name('index');
-});
-
-
-Route::group([
     'middleware' => ['auth:sanctum', 'verified']
 ], function () {
     Route::get('/dashboard', function () {

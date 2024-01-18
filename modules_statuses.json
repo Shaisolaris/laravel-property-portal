@@ -3,5 +3,6 @@
     "Academy": true,
     "Chat": true,
     "Blog": true,
-    "Auth": true
+    "Auth": true,
+    "Landing": true
 }

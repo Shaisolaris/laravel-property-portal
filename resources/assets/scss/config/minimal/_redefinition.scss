@@ -27,15 +27,31 @@
     font-family: "McLaren";
 }
 
+.hover-element {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.box-shadow-none {
+    box-shadow: none !important;
+}
+
+.border-none {
+    border: none !important;
+}
+
 i {
     &:not(.fs-) {
-        font-size: 16px !important;
+        font-size: 16px;
     }
 }
 
 $shadows: (
     light-black: 0 2px 8px 0 rgba(0, 0, 0, 0.08),
     dark-blue: 0 4px 0 0 #001427,
+    white: 0 4px 40px 0 rgba(0, 0, 0, 0.08),
+    light-blue: 4px 4px 0 0 #9BB8ED,
 );
 
 @each $shadowName, $shadow in $shadows {
@@ -151,6 +167,12 @@ $shadows: (
     }
 }
 
+.text-decoration-wavy {
+    text-underline-offset: auto;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #9BB8ED;;
+}
 
 [data-sidebar-size="sm"] {
     .avatar-block {

@@ -62,7 +62,20 @@ const dropScore = (e) => {
 }
 
 const disabledSubmit = computed(
-    () => false
+    () => !form.email ||
+        !form.educational_level ||
+        !form.role ||
+        !form.first_name ||
+        !form.last_name ||
+        !form.phone ||
+        !form.address ||
+        !form.country ||
+        !form.state ||
+        !form.city ||
+        !form.zip_code ||
+        !form.password ||
+        // !phoneNumberValidated.value ||
+        !form.is_agreement,
 );
 
 </script>

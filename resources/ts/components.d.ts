@@ -18,6 +18,7 @@ declare module 'vue' {
     BlocksAmountInfo: typeof import('./../js/Components/Elements/BlocksAmountInfo.vue')['default']
     Card: typeof import('./../js/Components/Cards/Card.vue')['default']
     CardAdvance: typeof import('./../js/Components/Cards/CardAdvance.vue')['default']
+    CardExploreBox: typeof import('./../js/Components/Cards/CardExploreBox.vue')['default']
     CardSimple: typeof import('./../js/Components/Cards/CardSimple.vue')['default']
     CheckboxRadio: typeof import('./../js/Components/Form/CheckboxRadio.vue')['default']
     Collapse: typeof import('./../js/Components/Collapse.vue')['default']

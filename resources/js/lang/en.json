@@ -3,6 +3,7 @@
     "sign-up": "Sign Up",
     "already-have-account": "Already have an account?",
     "dont-have-account": "Don't have an account yet?",
+    "reviews": "Reviews",
     "menu": {
         "dashboard": "Dashboard",
         "add-new-course": "Add New Course",
@@ -14,6 +15,42 @@
         "payments": "Payments",
         "settings": "Settings",
         "logout": "Logout"
+    },
+    "landing": {
+        "blog": "Blog",
+        "all-courses": "All Courses",
+        "school": {
+            "under-header-section": {
+                "text-1": "Start learning from best platform.",
+                "text-2": "Study any topic, anytime. explore thousands of courses for the lowest price ever!",
+                "items": ["happy students", "experienced instructors", "happy students", "experienced instructors"]
+            },
+            "section-1": {},
+            "section-2": {
+                "title": "Top courses",
+                "subtitle": "These are the most popular courses among listen courses learners worldwide",
+                "button": "All courses"
+            },
+            "section-3": {
+                "title": "Top categories",
+                "subtitle": "These are the most popular courses among listen courses learners worldwide"
+            },
+            "section-4": {
+                "title": "Top 10 Latest courses",
+                "subtitle": "These are the most latest courses among listen courses learners worldwide",
+                "button": "All courses"
+            },
+            "section-5": {
+                "title": "Top instructors",
+                "subtitle": "They efficiently serve large number of students on our platform",
+                "button": "All instructors"
+            },
+            "section-6": {},
+            "section-7": {},
+            "section-8": {},
+            "section-9": {},
+            "section-10": {}
+        }
     },
     "page": {
         "login": {
@@ -124,7 +161,8 @@
         "enter-password": "Enter password",
         "current_password": "Enter old password",
         "new_password": "Enter new password",
-        "new_password_confirmation": "Re-enter new password"
+        "new_password_confirmation": "Re-enter new password",
+        "what-do-you-want": "What do you want to learn?"
     },
     "button": {
         "sign-in": "Sign In",
@@ -134,7 +172,9 @@
         "confirm": "Confirm",
         "continue": "Continue",
         "cancel-save": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "dashboard": "Dashboard",
+        "search": "Search"
     },
     "link": {
         "sign-in": "Sign In",

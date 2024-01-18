@@ -11,7 +11,6 @@ const { value } = defineProps({
     },
     item: {
         type: Object,
-        // required: true,
         default: () => false,
     }
 })
