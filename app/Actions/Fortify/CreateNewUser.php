@@ -5,7 +5,7 @@ namespace App\Actions\Fortify;
 use Throwable;
 use App\Models\Role;
 use App\Models\User;
-use App\Services\AuthService;
+use Illuminate\Support\Arr;
 use App\Enums\User\UserRoleEnum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,17 +14,67 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    public function __construct(protected AuthService $authService)
-    {
-    }
-
-
     /**
      * @throws ValidationException
      * @throws Throwable
      */
     public function create(array $input): ?User
     {
-        return $this->authService->createUser($input);
+        DB::beginTransaction();
+
+        try {
+            $input['password'] = Hash::make($input['password']);
+
+            $user = User::create($input);
+            $user->assignRole($this->initialUserRole($input));
+
+            $this->updateOrCreateNotificationSettings($user);
+
+            // TODO:: Нужно добавить таблицу в базу
+            //$user->detail()->updateOrCreate(['user_id' => $user->id]);
+
+            DB::commit();
+
+            return $user;
+        } catch (\Exception $exception) {
+            DB::rollBack();
+
+            return null;
+        }
+    }
+
+    private function initialUserRole($input): \Spatie\Permission\Models\Role
+    {
+        return Role::whereName(
+            $input['role'] !== UserRoleEnum::Organizer()->value
+                ? $input['role'] . "_" . $input['educational_level']
+                : $input['role']
+        )->first();
+    }
+
+
+    private function updateOrCreateNotificationSettings(User $user): void
+    {
+        $data = [
+            'notification_settings' => ["classes" => false, "schedule" => false, "assignments" => false, "mentors" => false]
+        ];
+
+        if ($user->hasRole([UserRoleEnum::StudentAcademy()->value])) {
+            $data['notification_settings'] = Arr::renameKey($data['notification_settings'], 'classes', 'courses');
+        }
+
+        if ($user->hasRole([UserRoleEnum::InstructorAcademy()->value])) {
+            $data = [
+                'notification_settings' => ["payments" => false, "courses" => false, "schedule" => false, "assignments" => false]
+            ];
+        }
+
+        if ($user->hasRole([UserRoleEnum::InstructorSchool()->value])) {
+            $data = [
+                'notification_settings' => ["payments" => false, "classes" => false, "schedule" => false, "quizzes" => false, "assignments" => false]
+            ];
+        }
+
+        $user->settings()->updateOrCreate(['user_id' => $user->id], $data);
     }
 }
