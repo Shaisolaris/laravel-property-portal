@@ -71,8 +71,7 @@ class Kernel extends HttpKernel
         'permission' => PermissionMiddleware::class,
         'role_or_permission' => RoleOrPermissionMiddleware::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'auth-state' => \App\Http\Middleware\AuthStateMiddleware::class,
-        'user.data' => \Modules\Auth\app\Http\Middleware\VerifyUserData::class,
+        'verified' => \App\Http\Middleware\ValidateUser::class,
+//        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }

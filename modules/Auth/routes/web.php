@@ -19,7 +19,6 @@ use Modules\Auth\app\Http\Controllers\ValidateOtpCodeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::middleware('guest')->group(function () {
 
     // Authentication...
@@ -32,7 +31,6 @@ Route::middleware('guest')->group(function () {
             config('fortify.limiters.login') ? 'throttle:' . config('fortify.limiters.login') : null,
         ]));
 
-
     // Registration...
     Route::get(RoutePath::for('register', '/register'), [RegisteredController::class, 'create'])
         ->middleware(['guest:' . config('fortify.guard')])
@@ -41,19 +39,17 @@ Route::middleware('guest')->group(function () {
         ->middleware(['guest:' . config('fortify.guard')]);
 });
 
-// Verify otp code
-Route::middleware(['auth'])->name('registration.')->controller(ValidateOtpCodeController::class)->group(function () {
-    Route::middleware('user.data')->get('otp-form', 'create')->name('otp-form');
-    Route::post('otp-form/verify', 'verify')->name('verify');
-    Route::post('otp-form/resend', 'resend')->name('resend');
-    Route::post('otp-form/cancel', 'cancel')->name('cancel');
-});
+Route::middleware(['auth'])->group(function () {
 
+    // Verify otp code
+    Route::name('registration.')->controller(ValidateOtpCodeController::class)->group(function () {
+        Route::get('otp-form', 'create')->name('otp-form');
+        Route::post('otp-form/verify', 'verify')->name('verify');
+        Route::post('otp-form/resend', 'resend')->name('resend');
+        Route::post('otp-form/cancel', 'cancel')->name('cancel');
 
-Route::middleware('auth')->group(function () {
-    // User data
-    Route::middleware('user.data:2')->resource('occupations', OccupationsController::class)->names('occupations');
-    Route::middleware('user.data:3')->resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');
-    Route::middleware('user.data:4')->resource('user-detail', UserDetailController::class)->names('user-detail');
-
+        Route::resource('occupations', OccupationsController::class)->names('occupations');
+        Route::resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');
+        Route::resource('user-detail', UserDetailController::class)->names('user-detail');
+    });
 });

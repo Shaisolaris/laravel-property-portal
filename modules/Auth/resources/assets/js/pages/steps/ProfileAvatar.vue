@@ -14,8 +14,8 @@ const form = useForm({
 const disabledSubmit = computed(() => form.avatar != null && form.bio.length > 0);
 
 const send = () => {
-    sendForm({form, url: route("profile-avatar.store")},
-        () => ''
+    sendForm({form, url: route("registration.profile-avatar.store")},
+        () => window.location.reload()
     )
 }
 </script>
@@ -38,7 +38,7 @@ const send = () => {
                         </div>
                         <div>
                             <FileUploads :simple="false" v-model="form.avatar"/>
-                            <div>
+                            <div class="mt-5">
                                 <Editor v-model="form.bio" title="Add Your Bio"/>
                             </div>
                         </div>

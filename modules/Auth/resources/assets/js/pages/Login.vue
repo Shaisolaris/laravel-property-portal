@@ -54,7 +54,7 @@ const submit = () => {
                             <CheckboxRadio v-model="form.remember" label="remember-me" />
 
                             <div class="float-end">
-                                <BaseLink :href="route('password.request')" t-key="forgot-password" />
+                                <BaseLink href="#" t-key="forgot-password" />
                             </div>
                         </div>
 

@@ -111,7 +111,7 @@ const blobToFile = (theBlob, fileName) => {
     >
         <template v-if="!simple">
             <div class="rounded-circle avatar-preview">
-                <img v-if="select != null" src="/images/person.svg" alt="">
+                <img class="stock-image" v-if="!select" src="/images/person.svg" alt="">
                 <img
                     v-else
                     :alt="select.name"
@@ -178,6 +178,10 @@ const blobToFile = (theBlob, fileName) => {
     & img {
         width: 200px;
         object-fit: cover;
+
+        &.stock-image {
+            width: auto;
+        }
     }
 }
 </style>

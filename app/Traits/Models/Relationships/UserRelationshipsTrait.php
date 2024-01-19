@@ -8,14 +8,14 @@ use App\Models\UserSetting;
 
 trait UserRelationshipsTrait
 {
-    public function settings(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function settings(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(UserSetting::class, 'user_id');
+        return $this->hasOne(UserSetting::class, 'user_id');
     }
 
-    public function detail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function detail(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(UserDetail::class, 'user_id');
+        return $this->hasOne(UserDetail::class, 'user_id');
     }
 
     public function occupations(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

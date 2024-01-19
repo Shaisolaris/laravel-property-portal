@@ -5,14 +5,12 @@ use Tightenco\Ziggy\Ziggy;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserSettingController;
-use Modules\Auth\app\Http\Controllers\LogoutController;
 use Modules\Auth\app\Http\Controllers\AuthenticatedSessionController;
-
 
 Route::middleware([
     'universal',
 ])->group(function () {
-    Route::get('/ziggy', fn() => response()->json(new Ziggy));
+    Route::get('/ziggy', fn () => response()->json(new Ziggy()));
 });
 
 

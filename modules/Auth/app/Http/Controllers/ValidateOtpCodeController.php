@@ -10,8 +10,12 @@ use Modules\Auth\app\Http\Requests\VerifyOtpCode;
 
 class ValidateOtpCodeController extends Controller
 {
-    public function create(Request $request): \Inertia\Response|\Inertia\ResponseFactory
+    public function create(Request $request): \Illuminate\Http\RedirectResponse|\Inertia\Response|\Inertia\ResponseFactory
     {
+        if($request->user() && $request->user()->hasVerifiedEmail()) {
+            return to_route('registration.occupations.index');
+        }
+
         return inertia('Auth::VerifyOtpCode', [
             'otp_code' => $request->user()->getOtpCode(),
         ]);
@@ -26,6 +30,7 @@ class ValidateOtpCodeController extends Controller
 
         if ($request->user()->validateOtp($data['otp'])) {
             $request->user()->markEmailAsVerified();
+            $request->user()->update('status', 'active'); // TODO::
         } else {
             throw ValidationException::withMessages(['otp' => 'The code was entered incorrectly']);
         }

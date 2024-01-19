@@ -27,7 +27,7 @@ const selectOccupation = (name, id) => {
 
 const checkIsSetOccupation = (id) => form.occupations.find(occupation => occupation.id === id)
 
-const send = () => sendForm({form, url: route("occupations.store"), toObject: true},
+const send = () => sendForm({form, url: route("registration.occupations.store"), toObject: true},
     () => window.location.reload()
 )
 </script>

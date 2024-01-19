@@ -3,6 +3,8 @@
 namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\ValidateUser;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Auth\app\Http\Requests\UserDetailRequest;
 
@@ -11,9 +13,13 @@ class UserDetailController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, ValidateUser $validateUser): \Inertia\Response|\Illuminate\Http\RedirectResponse
     {
-        return Inertia::render('Auth::steps/UserDetail');
+        if (!$validateUser->isDetailData($request->user())) {
+            return Inertia::render('Auth::steps/UserDetail');
+        } else {
+            return to_route('dashboard');
+        }
     }
 
     /**
@@ -43,6 +49,7 @@ class UserDetailController extends Controller
 
             return response()->json(true);
         } catch (\Exception $exception) {
+            dd($exception);
             return response()->json(false);
         }
 

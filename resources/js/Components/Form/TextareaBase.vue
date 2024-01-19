@@ -1,12 +1,17 @@
 <script setup>
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
+import {useI18n} from "vue-i18n";
 
 
-const props = defineProps({
+const {placeholder} = defineProps({
     type: {
         type: String,
         default: 'text',
+    },
+    placeholder: {
+        type: String,
+        default: '',
     },
     label: {
         type: String,
@@ -26,6 +31,9 @@ const props = defineProps({
     },
 });
 const emit = defineEmits(['update:modelValue']);
+const { t } = useI18n();
+
+const placeholder_ = computed(() => placeholder && placeholder.length > 0 ? t(`placeholder.${placeholder}`) : '');
 </script>
 
 <template>
@@ -33,6 +41,7 @@ const emit = defineEmits(['update:modelValue']);
 
     <textarea
         :value="modelValue"
+        :placeholder="placeholder_ !== 'placeholder._' ? placeholder_ : '_'"
         :class="['form-control', classMap, error && error.length > 0  ? 'is-invalid' : '']"
         @input="(event) => emit('update:modelValue', event.target.value)"
     />

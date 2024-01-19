@@ -3,6 +3,7 @@ import 'vue-tel-input/vue-tel-input.css';
 import { VueTelInput } from 'vue-tel-input';
 import {useI18n} from "vue-i18n";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
+import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
 
 let value = ref('');
 
@@ -17,7 +18,15 @@ const {label} = defineProps({
     type: {
         type: String,
         default: 'tel' // card_number
-    }
+    },
+    showError: {
+        type: Boolean,
+        default: true,
+    },
+    error: {
+        type: String,
+        default: '',
+    },
 })
 
 const validated = ref(false);
@@ -59,8 +68,14 @@ onUpdated(() => {
             />
         </template>
         <template v-else>
-            <input v-model="value" type="text" class="form-control" id="cleave-ccard" placeholder="xxxx xxxx xxxx xxxx">
+            <input v-model="value"
+                   type="text"
+                   class="form-control"
+                   id="cleave-ccard"
+                   :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control', $attrs.class]"
+                   placeholder="xxxx xxxx xxxx xxxx">
         </template>
+        <ErrorMessage :error="error" :show-error="showError" />
     </div>
 </template>
 

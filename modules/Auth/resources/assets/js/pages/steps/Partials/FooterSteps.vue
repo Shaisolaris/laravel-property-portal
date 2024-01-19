@@ -31,6 +31,6 @@ defineEmits(['send'])
     position: fixed;
     bottom: 0;
     padding: 16px 77px;
-    border-top: 1px solid rgb(0, 0, 0);
+    border-top: 1px solid #E3E3E3;
 }
 </style>

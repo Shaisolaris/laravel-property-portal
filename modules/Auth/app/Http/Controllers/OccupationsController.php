@@ -4,15 +4,21 @@ namespace Modules\Auth\app\Http\Controllers;
 
 use App\Enums\User\UserTeachingLevel;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\ValidateUser;
 use App\Models\Occupation;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Auth\app\Http\Requests\OccupationRequest;
 
 class OccupationsController extends Controller
 {
-    public function index(): \Inertia\Response
+    public function index(Request $request, ValidateUser $validateUser): \Inertia\Response|\Illuminate\Http\RedirectResponse
     {
+        if($validateUser->isOccupations($request->user())) {
+            return to_route('registration.profile-avatar.index');
+        }
+
         return Inertia::render('Auth::steps/Occupation', [
             'occupations' => Occupation::pluck('name', 'id'),
             'experience_levels' => UserTeachingLevel::toArray(),

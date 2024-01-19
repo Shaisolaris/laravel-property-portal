@@ -83,7 +83,9 @@
             "text-14": "Add your Information",
             "text-16": "Upload Your Profile photo",
             "text-17": "Max size:",
-            "text-18": "Add your Account Details"
+            "text-18": "Add your Account Details",
+            "text-19": "Congratulations!",
+            "text-20": "Your instructor account has been successfully created!\nThank you for registering."
         },
         "settings": {
             "profile": {
@@ -168,7 +170,8 @@
         "account-holder-name": "Account Holder Name",
         "account-no": "Account No.",
         "business-document": "Business Documents",
-        "registration-scan": "Registration Scan"
+        "registration-scan": "Registration Scan",
+        "extra-information": "Extra Information"
     },
     "placeholder": {
         "select": "Select",
@@ -186,7 +189,8 @@
         "what-do-you-want": "What do you want to learn?",
         "organization": "Organization",
         "enter-account-name": "5455 4585 4558 4552",
-        "search-course": "Search Course..."
+        "search-course": "Search Course...",
+        "start-writing-something": "Start writing something..."
     },
     "button": {
         "sign-in": "Sign In",
@@ -199,7 +203,9 @@
         "cancel-save": "Cancel",
         "save": "Save",
         "dashboard": "Dashboard",
-        "search": "Search"
+        "search": "Search",
+        "go-to-dashboard": "Go to Dashbord",
+        "upload-course": "Upload Course"
     },
     "link": {
         "sign-in": "Sign In",
