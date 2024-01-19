@@ -62,18 +62,6 @@ class HandleInertiaRequestService
                 'icon' => 'ri-group-line',
                 'tKey' => 'mentoring'
             ],
-//            [
-//                'route' =>route( 'dashboard',)
-//                'active' => request()->routeIs('dashboard'),
-//                'icon' => 'bx bx-message-rounded',
-//                'tKey' => 'Messages'
-//            ],
-//            [
-//                'route' =>route( 'dashboard',)
-//                'active' => request()->routeIs('dashboard'),
-//                'icon' => 'ri-file-list-2-line',
-//                'tKey' => 'Forum'
-//            ],
             [
                 'route' => route('dashboard'),
                 'active' => request()->routeIs('dashboard'),

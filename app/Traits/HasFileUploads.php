@@ -31,12 +31,12 @@ trait HasFileUploads
     public function singleFileUpload(UploadedFile $file, string $collection = 'files', array $customProperties = [])
     {
         try {
-            Image::load($file->getRealPath())->save();
+//            Image::load($file->getRealPath())->save();
 
             $this->addMedia($file)
                 ->setFileName($file->hashName())
                 ->withCustomProperties($customProperties)
-                ->toMediaCollection($collection/*, app()->isLocal() ? 'public' : 's3'*/ );
+                ->toMediaCollection($collection, app()->isLocal() ? 'public' : 's3');
         } catch (\Exception $e) {
             Log::debug("HasFileUploads(singleFileUpload) - " . $e->getMessage());
 
@@ -58,7 +58,7 @@ trait HasFileUploads
                 ->sanitizingFileName(fn (string $filename) => strtolower(str_replace(['#', '/', '\\', ' '], '-', $filename)))
                 ->toMediaCollection($collection, app()->isLocal() ? 'public' : 's3'));
         } catch (FileCannotBeAdded $e) {
-            Logging::createDefaultLog("HasFileUploads (saveMediaFromUrls) - " . $e->getMessage());
+            Log::debug("HasFileUploads (saveMediaFromUrls) - " . $e->getMessage());
         }
     }
 }

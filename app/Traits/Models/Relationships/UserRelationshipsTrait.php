@@ -2,13 +2,24 @@
 
 namespace App\Traits\Models\Relationships;
 
+use App\Models\Occupation;
+use App\Models\UserDetail;
 use App\Models\UserSetting;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait UserRelationshipsTrait
 {
-    public function settings(): HasOne
+    public function settings(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(UserSetting::class, 'user_id', 'id');
+        return $this->belongsTo(UserSetting::class, 'user_id');
+    }
+
+    public function detail(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(UserDetail::class, 'user_id');
+    }
+
+    public function occupations(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Occupation::class);
     }
 }

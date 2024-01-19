@@ -67,8 +67,12 @@
             "text-7": "Back to Sign Up",
             "text-8": "Clear",
             "text-10": "Share your knowledge",
-            "text-11": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
-            "text-12": "Select Occupations"
+            "text-12": "Select Occupations",
+            "text-13": "What kind of teaching have you done before?",
+            "text-14": "Add your Information",
+            "text-16": "Upload Your Profile photo",
+            "text-17": "Max size:",
+            "text-18": "Add your Account Details"
         },
         "settings": {
             "profile": {
@@ -147,7 +151,13 @@
         "academy": "Academy",
         "role": "Role",
         "educational-level": "Educational Level",
-        "timezone": "Timezone"
+        "timezone": "Timezone",
+        "bio": "Add Your Bio",
+        "account-type": "Add Your Bio",
+        "account-holder-name": "Account Holder Name",
+        "account-no": "Account No.",
+        "business-document": "Business Documents",
+        "registration-scan": "Registration Scan"
     },
     "placeholder": {
         "select": "Select",
@@ -163,11 +173,14 @@
         "new_password": "Enter new password",
         "new_password_confirmation": "Re-enter new password",
         "what-do-you-want": "What do you want to learn?"
+        "organization": "Organization",
+        "enter-account-name": "5455 4585 4558 4552"
     },
     "button": {
         "sign-in": "Sign In",
         "create-account": "Create an account",
         "login": "Login",
+        "upload": "Upload",
         "sign-up": "Sign Up",
         "confirm": "Confirm",
         "continue": "Continue",

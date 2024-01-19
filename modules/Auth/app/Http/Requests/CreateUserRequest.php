@@ -15,8 +15,8 @@ class CreateUserRequest extends FormRequest
             'address' => 'required|string|min:2|max:255',
             'country' => 'required|max:255',
             'state' => 'required|max:255',
-            'role' => 'required', // Нужно задать типы чере IN:
-            'educational_level' => 'required', // Нужно задать типы чере IN:
+            'role' => 'required',
+            'educational_level' => 'required',
             'city' => 'required|string|max:255',
             'zip_code' => 'required|numeric|digits_between:2,15',
             'phone' => [$this->get('phone') ? 'max:16' : 'nullable'],

@@ -10,6 +10,7 @@ defineProps({
 
 const { props: { auth: user } } = usePage()
 
+let showMessageResent = ref(false);
 let chunks = reactive(new Array(6).fill(""))
 let disabledSubmit = computed(() => !chunks.every(elem => elem !== ""))
 let form = useForm({ otp: "" })
@@ -48,7 +49,15 @@ const verify = () => {
         });
 }
 
-const resend = () => sendForm({ form, url: route("registration.resend") });
+const resend = () => {
+    sendForm({form, url: route("registration.resend")},() => {
+        showMessageResent.value = true
+        setTimeout(function() {
+            showMessageResent.value = false;
+        },5000)
+    })
+};
+
 
 </script>
 
@@ -91,14 +100,19 @@ const resend = () => sendForm({ form, url: route("registration.resend") });
                         <Text class="text-dim-gray" t-key="page.register.text-5" tag="span" />
                         :
                         <Text
-                            class="text-royal-blue ms-2 cursor-pointer" @click="resend" t-key="page.register.text-6"
+                            class="text-royal-blue ms-2 cursor-pointer"
+                            @click="resend"
+                            t-key="page.register.text-6"
+                            :class="[form.processing ? 'opacity-75' : '']"
                             tag="span"
                         />
+                        <span class="ms-3 text-success" v-if="showMessageResent">Code resent</span>
                     </div>
                     <BaseButton
                         @click="verify"
                         t-key="confirm"
                         type="submit"
+                        :disabled="form.processing || disabledSubmit"
                         class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
                     />
                 </b-col>

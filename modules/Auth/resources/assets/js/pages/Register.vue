@@ -4,16 +4,16 @@ import AuthLayout from "../layouts/AuthLayout.vue";
 
 
 const form = useForm({
-    first_name: 'test',
-    last_name: 'test',
-    email: 'gogem23600@ikuromi.com',
+    first_name: '',
+    last_name: '',
+    email: '',
     phone: '',
-    address: 'test',
+    address: '',
     country: '',
     state: '',
-    city: 'test',
-    zip_code: '123',
-    password: '123123123',
+    city: '',
+    zip_code: '',
+    password: '',
     role: '',
     educational_level: '',
     is_agreement: false
@@ -23,19 +23,19 @@ const form = useForm({
 const list = reactive([
     {
         name: 'First Action',
-        value: 1,
+        value: '10',
         disabled: false,
         active: true
     },
     {
         name: 'Second Action',
-        value: 2,
+        value: '20',
         disabled: false,
         active: false
     },
     {
         name: 'Third Action',
-        value: 3,
+        value: '30',
         disabled: false,
         active: false
     }
@@ -74,7 +74,7 @@ const disabledSubmit = computed(
         !form.city ||
         !form.zip_code ||
         !form.password ||
-        // !phoneNumberValidated.value ||
+        !phoneNumberValidated.value ||
         !form.is_agreement,
 );
 

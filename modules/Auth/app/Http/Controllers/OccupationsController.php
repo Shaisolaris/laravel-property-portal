@@ -6,27 +6,26 @@ use App\Enums\User\UserTeachingLevel;
 use App\Http\Controllers\Controller;
 use App\Models\Occupation;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Auth\app\Http\Requests\OccupationRequest;
 
 class OccupationsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): \Inertia\Response
     {
         return Inertia::render('Auth::steps/Occupation', [
             'occupations' => Occupation::pluck('name', 'id'),
-            'experience_levels' => UserTeachingLevel::toValues(),
+            'experience_levels' => UserTeachingLevel::toArray(),
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(OccupationRequest $request): \Illuminate\Http\JsonResponse
     {
-        //
+        $data = $request->validated();
+
+        $request->user()->occupations()->attach(collect($data['occupations'])->pluck('id'));
+        $request->user()->update('teaching_level', $data['experience_level']);
+
+        return response()->json(true);
     }
 }

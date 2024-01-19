@@ -4,7 +4,7 @@ import { VueTelInput } from 'vue-tel-input';
 import {useI18n} from "vue-i18n";
 import TagLabel from "~/Components/Partials/TagLabel.vue";
 
-let phone = ref('');
+let value = ref('');
 
 const emit = defineEmits([ 'update:modelValue' , 'validate']);
 
@@ -14,32 +14,36 @@ const {label} = defineProps({
         type: String,
         default: '',
     },
+    type: {
+        type: String,
+        default: 'tel' // card_number
+    }
 })
 
 const validated = ref(false);
-const label_ = computed(() => label.length > 0 ? t(`label.${label}`) : '');
 
 const validate = (phoneObject) => {
     emit('validate', validated.value = !!phoneObject.valid)
 };
 
 onUpdated(() => {
-    emit('update:modelValue', phone.value)
+    emit('update:modelValue', value.value)
 });
 </script>
 
 <template>
     <div class="wrapper-mask-input">
-        <TagLabel :label="label_" :required="$attrs.required" />
-        <vue-tel-input
-            mode="auto"
-            v-model="phone"
-            auto-default-country
-            auto-format
-            valid-characters-only
-            style-classes="mask-input form-control p-0"
-            @validate="validate"
-            :dropdown-options="{
+        <TagLabel :label="label" :required="$attrs.required" />
+        <template v-if="type === 'tel'">
+            <vue-tel-input
+                mode="auto"
+                v-model="value"
+                auto-default-country
+                auto-format
+                valid-characters-only
+                style-classes="mask-input form-control p-0"
+                @validate="validate"
+                :dropdown-options="{
                 disabled: false,
                 showDialCodeInList: false,
                 showDialCodeInSelection: true,
@@ -47,12 +51,16 @@ onUpdated(() => {
                 showSearchBox: true,
                 tabindex: 0,
             }"
-            :inputOptions="{
+                :inputOptions="{
                 placeholder: 'Phone number',
                 styleClasses: 'form-control',
                 showDialCode: false,
             }"
-        />
+            />
+        </template>
+        <template v-else>
+            <input v-model="value" type="text" class="form-control" id="cleave-ccard" placeholder="xxxx xxxx xxxx xxxx">
+        </template>
     </div>
 </template>
 
