@@ -103,7 +103,7 @@ onMounted(() => {
             <div class="navbar-header">
                 <div class="d-flex">
                     <div class="navbar-brand-box horizontal-logo">
-                        <Link :href="route('landing.index')" class="logo logo-dark">
+                        <Link :href="route('landing.academy')" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
@@ -112,7 +112,7 @@ onMounted(() => {
                             </span>
                         </Link>
 
-                        <Link :href="route('landing.index')" class="logo logo-light">
+                        <Link :href="route('landing.academy')" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>

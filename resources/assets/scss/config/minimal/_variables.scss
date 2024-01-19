@@ -82,6 +82,7 @@ $beige-blue: #F3F6FD;
 $light-yellow: #FFF3C8;
 $dim-gray: #676A6C;
 $beige: #F7F6F2;
+$light-beige: #F2F2F2;
 $gainsboro: #E3E3E3;
 $thistle: rgba(222, 179, 224, 0.40);
 $crimson: rgba(231, 134, 139, 0.40);
@@ -114,6 +115,7 @@ $colors: (
     "royal-blue": $royal-blue,
     "dim-gray": $dim-gray,
     "beige": $beige,
+    "light-beige": $light-beige,
     "gainsboro": $gainsboro,
     "thistle": $thistle,
     "light-steel-blue": $light-steel-blue,
@@ -284,6 +286,16 @@ $beige-600: shade-color($beige, 20%);
 $beige-700: shade-color($beige, 40%);
 $beige-800: shade-color($beige, 60%);
 $beige-900: shade-color($beige, 80%);
+
+$light-beige-100: tint-color($light-beige, 80%);
+$light-beige-200: tint-color($light-beige, 60%);
+$light-beige-300: tint-color($light-beige, 40%);
+$light-beige-400: tint-color($light-beige, 20%);
+$light-beige-500: $light-beige;
+$light-beige-600: shade-color($light-beige, 20%);
+$light-beige-700: shade-color($light-beige, 40%);
+$light-beige-800: shade-color($light-beige, 60%);
+$light-beige-900: shade-color($light-beige, 80%);
 
 $gainsboro-100: tint-color($gainsboro, 80%);
 $gainsboro-200: tint-color($gainsboro, 60%);
@@ -526,6 +538,18 @@ $beiges: (
     "beige-900": $beige-900
 );
 
+$light-beiges: (
+    "light-beige-100": $light-beige-100,
+    "light-beige-200": $light-beige-200,
+    "light-beige-300": $light-beige-300,
+    "light-beige-400": $light-beige-400,
+    "light-beige-500": $light-beige-500,
+    "light-beige-600": $light-beige-600,
+    "light-beige-700": $light-beige-700,
+    "light-beige-800": $light-beige-800,
+    "light-beige-900": $light-beige-900
+);
+
 $gainsboros: (
     "gainsboro-100": $gainsboro-100,
     "gainsboro-200": $gainsboro-200,
@@ -618,6 +642,7 @@ $royal-blue: #154BD8;
 $beige-blue: #F3F6FD;
 $dim-gray: #676A6C;
 $beige: #F7F6F2;
+$light-beige: #F2F2F2;
 $gainsboro: #E3E3E3;
 $thistle: rgba(222, 179, 224, 0.40);
 $crimson: rgba(231, 134, 139, 0.40);
@@ -642,12 +667,12 @@ $theme-colors: (
     "danger": $danger,
     "light": $light,
     "dark": $dark,
-
     "light-blue": $light-blue,
     "light-yellow": $light-yellow,
     "royal-blue": $royal-blue,
     "dim-gray": $dim-gray,
     "beige": $beige,
+    "light-beige": $light-beige,
     "gainsboro": $gainsboro,
     "thistle": $thistle,
     "light-steel-blue": $light-steel-blue,
@@ -672,6 +697,7 @@ $light-yellow-text-emphasis:            shade-color($light-yellow, 15%);
 $royal-blue-text-emphasis:              shade-color($royal-blue, 15%);
 $dim-gray-text-emphasis:                shade-color($dim-gray, 15%);
 $beige-text-emphasis:                   shade-color($beige, 15%);
+$light-beige-text-emphasis:             shade-color($light-beige, 15%);
 $gainsboro-text-emphasis:               shade-color($gainsboro, 15%);
 $thistle-text-emphasis:                 shade-color($thistle, 15%);
 $light-steel-blue-text-emphasis:        shade-color($light-steel-blue, 15%);
@@ -694,6 +720,7 @@ $light-yellow-bg-subtle:     tint-color($light-yellow, 85%);
 $royal-blue-bg-subtle:       tint-color($royal-blue, 85%);
 $dim-gray-bg-subtle:         tint-color($dim-gray, 85%);
 $beige-bg-subtle:            tint-color($beige, 85%);
+$light-beige-bg-subtle:      tint-color($light-beige, 85%);
 $gainsboro-bg-subtle:        tint-color($gainsboro, 85%);
 $thistle-bg-subtle:          tint-color($thistle, 85%);
 $light-steel-blue-bg-subtle: tint-color($light-steel-blue, 85%);
@@ -716,6 +743,7 @@ $light-yellow-border-subtle:     tint-color($light-yellow, 60%);
 $royal-blue-border-subtle:       tint-color($royal-blue, 60%);
 $dim-gray-border-subtle:         tint-color($dim-gray, 60%);
 $beige-border-subtle:            tint-color($beige, 60%);
+$light-beige-border-subtle:      tint-color($light-beige, 60%);
 $gainsboro-border-subtle:        tint-color($gainsboro, 60%);
 $thistle-border-subtle:          tint-color($thistle, 60%);
 $light-steel-blue-border-subtle: tint-color($light-steel-blue, 60%);

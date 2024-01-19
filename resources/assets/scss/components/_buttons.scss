@@ -264,6 +264,7 @@ $buttons: (
     "light-steel-blue": $light-steel-blue-text-emphasis,
     "crimson": $crimson-text-emphasis,
     "cosmic-sapphire": $cosmic-sapphire-text-emphasis,
+    "light-beige": $light-beige,
 );
 
 @each $buttonName, $buttonColor in $buttons {

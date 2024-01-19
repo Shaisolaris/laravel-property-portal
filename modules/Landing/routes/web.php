@@ -7,5 +7,7 @@ Route::group([
     'as' => 'landing.',
     'controller' => LandingController::class
 ], function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/', 'indexAcademy')->name('academy');
+    Route::get('school', 'indexSchool')->name('school');
+    Route::get('all-courses', 'courses')->name('all-courses');
 });

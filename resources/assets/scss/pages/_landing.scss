@@ -268,3 +268,48 @@
         }
     }
 }
+
+.searchCourse {
+    width: 0;
+    transition: width .15s ease-in-out, background-color .15s ease-in-out;
+
+    .searchCourseInput {
+        background-color: transparent !important;
+    }
+
+    &.show {
+        width: 250px;
+        transition: width .35s ease-in-out, background-color .35s ease-in-out;
+
+        .searchCourseInput {
+            background-color: white !important
+        }
+    }
+}
+
+
+.background-under-header-section {
+    background: url("@/images/page/landing/academy/bg-beige.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-academy-section-1 {
+    background: url("@/images/page/landing/academy/bg-blue.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-academy-section-5 {
+    background: url("@/images/page/landing/academy/bg-blue-2.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-academy-section-7 {
+    background: url("@/images/page/landing/academy/bg-pink.svg") no-repeat center;
+    background-size: cover;
+}
+
+
+.background-footer {
+    background: url("@/images/page/landing/bg-footer.svg") no-repeat center;
+    background-size: 100% 100%;
+}

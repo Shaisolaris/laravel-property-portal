@@ -5,9 +5,27 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite"
+import fs from 'fs';
 
 
 const __dirname = path.dirname(__filename);
+
+
+function generateModuleAliases() {
+    const moduleDir = path.resolve(__dirname, 'modules');
+    const aliases = {};
+
+    fs.readdirSync(moduleDir).forEach((moduleName) => {
+        const modulePath = `modules/${moduleName}/resources/assets/js`;
+
+        if (fs.existsSync(path.resolve(__dirname, modulePath))) {
+            aliases[`@${moduleName}`] = path.resolve(__dirname, modulePath);
+        }
+    });
+
+    return aliases;
+}
+
 
 export default defineConfig({
     server: { host: process.env.VITE_APP_URL },
@@ -20,17 +38,6 @@ export default defineConfig({
             ssr: 'resources/js/ssr.js',
             refresh: true,
         }),
-        // {
-        //     name: 'phpFiles',
-        //     handleHotUpdate({ file, server }) {
-        //         if (file.endsWith('.php')) {
-        //             server.ws.send({
-        //                 type: 'full-reload',
-        //                 path: '*',
-        //             });
-        //         }
-        //     },
-        // },
         vue({
             template: {
                 transformAssetUrls: {
@@ -72,6 +79,7 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, 'resources/assets'),
             '~': path.resolve(__dirname, 'resources/js'),
+            // ...generateModuleAliases()
         },
     },
 });

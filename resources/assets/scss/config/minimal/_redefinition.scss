@@ -27,6 +27,10 @@
     font-family: "McLaren";
 }
 
+.fontf-HelveticaNeue {
+    font-family: "Helvetica Neue";
+}
+
 .hover-element {
     &:hover {
         cursor: pointer;
@@ -52,7 +56,10 @@ $shadows: (
     dark-blue: 0 4px 0 0 #001427,
     white: 0 4px 40px 0 rgba(0, 0, 0, 0.08),
     light-blue: 4px 4px 0 0 #9BB8ED,
+    light-white: 0 4px 12px 0 rgba(0, 0, 0, 0.04),
+    pink: 4px 4px 0 0 #DEB3E0,
 );
+
 
 @each $shadowName, $shadow in $shadows {
     .shadow-#{$shadowName} {
@@ -189,4 +196,8 @@ $shadows: (
 .default-text {
     font-size: 14px;
     font-weight: 500;
+}
+
+.text-underline-hover:hover {
+    text-decoration: underline;
 }

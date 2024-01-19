@@ -81,7 +81,7 @@ onBeforeMount(() => {
         <div>
             <div class="app-menu navbar-menu">
                 <div class="navbar-brand-box">
-                    <Link :href="route('landing.index')" class="logo logo-dark">
+                    <Link :href="route('landing.academy')" class="logo logo-dark">
                         <span class="logo-sm">
                             <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                         </span>
@@ -89,7 +89,7 @@ onBeforeMount(() => {
                             <img src="@/images/logo/logo.svg" alt="" height="35" />
                         </span>
                     </Link>
-                    <Link :href="route('landing.index')" class="logo logo-light">
+                    <Link :href="route('landing.academy')" class="logo logo-light">
                         <span class="logo-sm">
                           <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                         </span>

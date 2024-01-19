@@ -9,10 +9,14 @@ defineOptions({
 });
 
 
-const { label, type, icon, viewType, maxCounter, showPasswordToggle } = defineProps({
+const { label, type, icon, viewType, maxCounter, showPasswordToggle, placeholder } = defineProps({
     type: {
         type: String,
         default: 'text',
+    },
+    placeholder: {
+        type: String,
+        default: '',
     },
     label: {
         type: String,
@@ -53,7 +57,7 @@ const { t } = useI18n();
 
 const togglePassword = ref(false);
 const iconLength = computed(() => icon.length > 0);
-const placeholder_ = computed(() => attrs?.placeholder && attrs?.placeholder.length > 0 ? t(`placeholder.${attrs.placeholder}`) : '');
+const placeholder_ = computed(() => placeholder && placeholder.length > 0 ? t(`placeholder.${placeholder}`) : '');
 const type_ = computed(() => type === 'password' ? togglePassword.value ? 'text': type : type);
 const showTogglePassword = computed(() => type === 'password' && showPasswordToggle);
 
@@ -99,11 +103,11 @@ onMounted(() => {
 
         <span :class="showTogglePassword ? 'd-block position-relative auth-pass-inputgroup': ''">
             <input
-                v-bind="$attrs"
+                v-bind="Object.assign({}, $attrs, {class: undefined})"
                 :type="type_"
                 :value="modelValue"
                 :placeholder="placeholder_ !== 'placeholder._' ? placeholder_ : '_'"
-                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control']"
+                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control', $attrs.class]"
                 @input="(event) => handleInput(event)"
             >
 

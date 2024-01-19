@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <footer class="custom-footer bg-dark py-5 position-relative">
+    <footer class="custom-footer background-footer py-5 position-relative">
         <BContainer>
             <BRow>
                 <BCol lg="4" class="mt-4">

@@ -19,7 +19,9 @@
     "landing": {
         "blog": "Blog",
         "all-courses": "All Courses",
-        "school": {
+        "school-inoura": "School of Inoura",
+        "academy-inoura": "Academy of Inoura",
+        "academy": {
             "under-header-section": {
                 "text-1": "Start learning from best platform.",
                 "text-2": "Study any topic, anytime. explore thousands of courses for the lowest price ever!",
@@ -46,10 +48,19 @@
                 "button": "All instructors"
             },
             "section-6": {},
-            "section-7": {},
-            "section-8": {},
-            "section-9": {},
-            "section-10": {}
+            "section-7": {
+                "title": "Frequently asked questions",
+                "subtitle": "Have something to know? Check here if you have any questions about us.",
+                "button": "All questions"
+            },
+            "section-8": {
+                "title": "Visit our latest blogs",
+                "subtitle": "Visit our valuable articles to get more information."
+            },
+            "section-9": {
+                "text-1": "Join now to start learning",
+                "text-2": "Or Become a new instructor"
+            }
         }
     },
     "page": {
@@ -172,9 +183,10 @@
         "current_password": "Enter old password",
         "new_password": "Enter new password",
         "new_password_confirmation": "Re-enter new password",
-        "what-do-you-want": "What do you want to learn?"
+        "what-do-you-want": "What do you want to learn?",
         "organization": "Organization",
-        "enter-account-name": "5455 4585 4558 4552"
+        "enter-account-name": "5455 4585 4558 4552",
+        "search-course": "Search Course..."
     },
     "button": {
         "sign-in": "Sign In",

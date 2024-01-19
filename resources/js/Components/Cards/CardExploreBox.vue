@@ -29,6 +29,7 @@ defineProps({
                 <slot name="place-bid-btn" />
             </div>
         </div>
+
         <BCardBody>
             <slot name="body" />
         </BCardBody>

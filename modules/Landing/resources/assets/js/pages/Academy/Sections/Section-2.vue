@@ -7,12 +7,12 @@ import CourseCard from "../../Partials/CourseCard.vue";
         <b-container>
             <b-row class="justify-content-between align-items-center">
                 <b-col>
-                    <Text t-key="landing.school.section-2.title" class="fsc-40 fontf-McLaren lh-1" />
-                    <Text t-key="landing.school.section-2.subtitle" class="fs-16 w-75" />
+                    <Text t-key="landing.academy.section-2.title" class="fsc-40 fontf-McLaren lh-1" />
+                    <Text t-key="landing.academy.section-2.subtitle" class="fs-16 w-75 pt-3" />
                 </b-col>
                 <b-col class="text-end">
-                    <Link :href="route('landing.index')" class="text-black fs-3 lh-1 fontf-McLaren">
-                        <Text tag="span" t-key="landing.school.section-2.button" class="me-2" />
+                    <Link :href="route('landing.academy')" class="text-black fs-3 lh-1 fontf-McLaren">
+                        <Text tag="span" t-key="landing.academy.section-2.button" class="me-2" />
                         <Icon name="svg-arrow-right" width="29" height="19" />
                     </Link>
                 </b-col>
