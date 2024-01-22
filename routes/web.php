@@ -3,7 +3,6 @@
 use Inertia\Inertia;
 use Tightenco\Ziggy\Ziggy;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\UserSettingController;
 use Modules\Auth\app\Http\Controllers\AuthenticatedSessionController;
 

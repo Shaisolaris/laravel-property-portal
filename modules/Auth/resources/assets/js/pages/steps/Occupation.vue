@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "../../layouts/AuthLayout.vue";
-import helpers from "~/scripts/utils/helpers.js";
+import helpers from "~/scripts/helpers/helpers.js";
 import FooterSteps from "./Partials/FooterSteps.vue";
 
 let {sendForm} = helpers;

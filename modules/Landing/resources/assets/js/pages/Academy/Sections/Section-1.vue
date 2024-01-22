@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 </script>
 
 <template>
-    <section class="section background-academy-section-1 mt-5">
+    <section class="section background-blue mt-5">
         <b-container>
             need information
         </b-container>

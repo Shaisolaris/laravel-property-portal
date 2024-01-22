@@ -60,7 +60,54 @@
             "section-9": {
                 "text-1": "Join now to start learning",
                 "text-2": "Or Become a new instructor"
+            },
+            "categories-page": {
+
+            },
+            "help-support-page": {
+
+            },
+            "courses-page": {
+
             }
+        },
+        "school": {
+            "under-header-section": {
+                "text-1": "Empowering Afghan Dreams: Education for Everyone",
+                "text-2": "Unlocking Potential, One Classroom at a Time"
+            },
+            "section-1": {
+                "title": "Different Grades",
+                "subtitle": "These are the most popular grades among listen grades learners worldwide",
+                "button": "All grades"
+            },
+            "section-2": {
+                "title": "Top teachers",
+                "subtitle": "They efficiently serve large number of students on our platform",
+                "button": "All teachers"
+            },
+            "section-3": {
+                "title-part-1": "Join",
+                "title-part-2": " live sessions ",
+                "title-part-3": "or watch",
+                "title-part-4": " recorded video ",
+                "title-part-5": "lessons",
+                "subtitle": "Discover a world of learning opportunities through our upcoming courses, where industry experts and thought leaders will guide you in acquiring new expertise, expanding your horizons, and reaching your full potential."
+            },
+            "section-4": {},
+            "section-5": {
+                "title": "Visit our latest blogs",
+                "subtitle": "Visit our valuable articles to get more information."
+            },
+            "short-casual-courses-page": {},
+            "classes": {}
+        },
+        "footer": {
+            "text-1": "Explore thousands of courses for the lowest price ever!",
+            "text-2": "Subscribe to our newsletter",
+            "links": ["Blog", "All Courses", "Sign Up"],
+            "help": ["About Us", "Privacy Policy", "Terms and condition", "FAQ", "Refund Policy"],
+            "columns": ["Top categories", "Useful links", "Help"]
         }
     },
     "page": {
@@ -142,7 +189,9 @@
     "title": {
         "login": "Login",
         "register": "Register",
-        "settings": "Settings"
+        "settings": "Settings",
+        "academy-landing": "Academy Landing",
+        "school-landing": "School Landing"
     },
     "label": {
         "first-name": "First name",
@@ -190,7 +239,8 @@
         "organization": "Organization",
         "enter-account-name": "5455 4585 4558 4552",
         "search-course": "Search Course...",
-        "start-writing-something": "Start writing something..."
+        "start-writing-something": "Start writing something...",
+        "enter-email-address": "Enter your email address"
     },
     "button": {
         "sign-in": "Sign In",
@@ -204,8 +254,10 @@
         "save": "Save",
         "dashboard": "Dashboard",
         "search": "Search",
-        "go-to-dashboard": "Go to Dashbord",
-        "upload-course": "Upload Course"
+        "go-to-dashboard": "Go to Dashboard",
+        "upload-course": "Upload Course",
+        "subscribe": "Subscribe",
+        "enroll": "Enroll now"
     },
     "link": {
         "sign-in": "Sign In",

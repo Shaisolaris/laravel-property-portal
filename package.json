@@ -46,6 +46,7 @@
         "click-outside-vue3": "^4.0.1",
         "echarts": "^5.4.3",
         "fast-glob": "^3.3.2",
+        "fs-extra": "^11.2.0",
         "heic2any": "^0.0.4",
         "laravel-echo": "^1.15.3",
         "leaflet": "^1.9.4",

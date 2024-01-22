@@ -18,7 +18,7 @@ const topFunction = () => {
 
 const links = ref([
     {
-        route: 'landing.school',
+        route: 'landing.school.index',
         key: 'landing.school-inoura'
     },
     {
@@ -26,7 +26,7 @@ const links = ref([
         key: 'landing.blog'
     },
     {
-        route: 'landing.all-courses',
+        route: 'landing.academy.courses',
         key: 'landing.all-courses'
     },
 ]);
