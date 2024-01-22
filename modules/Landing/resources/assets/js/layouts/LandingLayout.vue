@@ -1,5 +1,5 @@
 <script setup>
-import BaseFooter from "../pages/Partials/BaseFooter.vue";
+import BaseFooter from "../partials/BaseFooter.vue";
 import NavBar from "~/Layouts/Partials/AppLayout/NavBar.vue";
 
 
@@ -26,7 +26,7 @@ const links = ref([
         key: 'landing.blog'
     },
     {
-        route: 'landing.academy.courses',
+        route: 'landing.academy.course.index',
         key: 'landing.all-courses'
     },
 ]);

@@ -4,7 +4,7 @@ import Search from "$module@landing/partials/Search.vue";
 </script>
 
 <template>
-    <section class="section job-hero-section background-under-header-section" id="start-learning">
+    <section class="section job-hero-section background-under-header-section" >
         <b-container class="position-relative pb-5">
             <b-row class="justify-content-between align-items-center">
                 <b-col>

@@ -1,5 +1,5 @@
 <script setup>
-import CourseCard from "$module@landing/pages/Partials/CourseCard.vue";
+import CourseCard from "$module@landing/partials/CourseCard.vue";
 </script>
 
 <template>

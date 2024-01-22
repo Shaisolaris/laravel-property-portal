@@ -62,10 +62,23 @@
                 "text-2": "Or Become a new instructor"
             },
             "categories-page": {
-
+                "title": "Looking for something specific?",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "section-1": {
+                    "title": "Explore Categories if you're not sure what to search for",
+                    "items": [
+                        { "title": "STEAM", "text": "Explore the realms of Science, Technology, Engineering, Arts, and Mathematics."},
+                        { "title": "Wellbeing", "text": "Prioritize your physical and mental health with our Wellbeing courses." },
+                        { "title": "Business", "text": "Master the fundamentals and strategies of successful business." }
+                    ]
+                }
             },
             "help-support-page": {
-
+                "title": "Help & Support",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "items": ["My profile", "Reset Password", "Payment Options", "My Courses", "Address", "My Quizzes", "My LMS", "See More"]
             },
             "courses-page": {
 
@@ -99,7 +112,14 @@
                 "title": "Visit our latest blogs",
                 "subtitle": "Visit our valuable articles to get more information."
             },
-            "short-casual-courses-page": {},
+            "short-casual-courses-page": {
+                "title": "Choose your direction",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "section-1": {
+                    "title": "Explore Categories if you're not sure what to search for"
+                }
+            },
             "classes": {}
         },
         "footer": {

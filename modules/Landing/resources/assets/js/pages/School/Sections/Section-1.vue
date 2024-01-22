@@ -1,5 +1,6 @@
 <script setup>
 import LinkArrow from "$module@landing/partials/LinkArrow.vue";
+import BeigeCard from "$module@landing/partials/BeigeCard.vue";
 </script>
 
 <template>
@@ -17,19 +18,7 @@ import LinkArrow from "$module@landing/partials/LinkArrow.vue";
 
             <b-row>
                 <b-col v-for="item in [...Array(4).keys()]">
-                    <Card class="bg-beige shadow-black text-center text-black border border-2 border-black">
-                        <div class="fs-3 fontf-HelveticaNeue fw-medium">
-                            Math: Pre-K - 8th grade
-                        </div>
-
-                        <div class="fs-16 fontf-HelveticaNeue py-3">
-                            Pre-K through grade 2, Early math review, 2nd grade - 8th grade, See Pre-K - 8th Math
-                        </div>
-
-                        <div>
-                            icon
-                        </div>
-                    </Card>
+                    <BeigeCard />
                 </b-col>
             </b-row>
         </b-container>
