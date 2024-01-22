@@ -23,24 +23,34 @@ class CreateNewUser implements CreatesNewUsers
         DB::beginTransaction();
 
         try {
-            $input['password'] = Hash::make($input['password']);
+            $input['password'] = $this->hashedPassword($input);
 
             $user = User::create($input);
+
+            $user->update(['status' => 'active']);
             $user->assignRole($this->initialUserRole($input));
 
             $this->updateOrCreateNotificationSettings($user);
-
-            // TODO:: Нужно добавить таблицу в базу
-            //$user->detail()->updateOrCreate(['user_id' => $user->id]);
+            $this->createInstitution($user);
 
             DB::commit();
 
             return $user;
         } catch (\Exception $exception) {
             DB::rollBack();
-
             return null;
         }
+    }
+
+    public function recreated($user, $data): void
+    {
+        $data['password'] = $this->hashedPassword($data);
+        $user->update($data);
+    }
+
+    protected function createInstitution($user)
+    {
+
     }
 
     private function initialUserRole($input): \Spatie\Permission\Models\Role
@@ -76,5 +86,10 @@ class CreateNewUser implements CreatesNewUsers
         }
 
         $user->settings()->updateOrCreate(['user_id' => $user->id], $data);
+    }
+
+    private function hashedPassword($input): string
+    {
+        return Hash::make($input['password']);
     }
 }

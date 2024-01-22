@@ -4,18 +4,16 @@ namespace Modules\Auth\app\Http\Controllers;
 
 use App\Enums\User\UserTeachingLevel;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\ValidateUser;
 use App\Models\Occupation;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Auth\app\Http\Requests\OccupationRequest;
 
 class OccupationsController extends Controller
 {
-    public function index(Request $request, ValidateUser $validateUser): \Inertia\Response|\Illuminate\Http\RedirectResponse
+    public function index(Request $request): \Inertia\Response|\Illuminate\Http\RedirectResponse
     {
-        if($validateUser->isOccupations($request->user())) {
+        if($request->user()->isOccupations()) {
             return to_route('registration.profile-avatar.index');
         }
 

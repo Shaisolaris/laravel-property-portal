@@ -4,7 +4,7 @@ import FooterSteps from "./Partials/FooterSteps.vue";
 import helpers from "~/scripts/utils/helpers.js";
 
 let {sendForm} = helpers;
-let isComplete = ref(true);
+let isComplete = ref(false);
 
 const form = useForm({
     account_type: "",
@@ -24,7 +24,14 @@ const disabledSubmit = computed(() =>
     !form.registration_scan_path
 );
 
-const send = () => sendForm({form, url: route("registration.user-detail.store")})
+const send = () => sendForm({form, url: route("registration.user-detail.store")},
+    () => {
+        isComplete.value = true;
+        // setTimeout(function() {
+        //     window.location.reload()
+        // },10000)
+    }
+)
 
 const list = reactive([
     {
@@ -118,9 +125,9 @@ const list = reactive([
                         </b-col>
                     </b-row>
                 </div>
-                <FooterSteps :disabledSubmit="!disabledSubmit" @send="send"/>
+                <FooterSteps :disabledSubmit="!disabledSubmit || form.processing" @send="send"/>
             </div>
-            <div v-else class="container-fluid h-100 custom-container d-flex justify-content-center align-items-center mt-5">
+            <div v-else class="container-fluid h-100 custom-container d-flex justify-content-center align-items-center mt-5 pb-4 success-screen">
                 <div>
                     <div class="mb-4 text-center">
                         <div class="mb-4">
@@ -142,8 +149,9 @@ const list = reactive([
                         />
                         <BaseButton
                             t-key="upload-course"
+                            routeName="academy.courses.create"
                             type="submit"
-                            class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
+                            class="fs-20 fw-bold shadow-dark-blue border-2 border-black second bg-gainsboro"
                         />
                     </div>
                 </div>
@@ -151,3 +159,8 @@ const list = reactive([
         </template>
     </AuthLayout>
 </template>
+<style>
+.success-screen {
+    height: calc(100vh - 170px) !important;
+}
+</style>

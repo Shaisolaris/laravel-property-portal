@@ -26,13 +26,13 @@ class UserResource extends JsonResource
             'timezone' => $this->timezone,
             'bio' => $this->bio,
             'languages' => $this->languages && is_array($this->languages) ? implode(', ', $this->languages) : $this->languages,
+
             'notifications' => NotificationResource::collection($this->whenLoaded('unreadNotifications')),
             'media' => MediaResource::collection($this->whenLoaded('media')),
+            'settings' => UserSettingResource::make($this->whenLoaded('settings')),
+            'detail' => UserDetail::make($this->whenLoaded('detail')),
             'role' => $this->whenLoaded('roles', function () {
-                return new UserRoleResource($this->roles()->with('permissions')->first());
-            }),
-            'settings' => $this->whenLoaded('settings', function () {
-                return new UserSettingResource($this->whenLoaded('settings'));
+                return UserRoleResource::make($this->roles()->with('permissions')->first());
             }),
         ];
     }

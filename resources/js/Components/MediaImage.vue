@@ -1,7 +1,7 @@
 <script setup>
-import { ProgressiveImage } from 'vue-progressive-image';
-import { onMounted, reactive } from 'vue';
-import { useHelpers } from '@/composables/helpers';
+import {ProgressiveImage} from 'vue-progressive-image';
+import {onMounted, reactive} from 'vue';
+import helpers from "~/scripts/utils/helpers.js";
 
 const props = defineProps({
     media: {
@@ -37,7 +37,8 @@ const props = defineProps({
         default: true,
     },
 });
-const { randomString } = useHelpers();
+
+const {randomString} = helpers;
 
 const image = reactive({
     src: '',
@@ -81,10 +82,10 @@ const generateImagePreview = async (media) => {
         canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
         const image = canvas.toDataURL('image/png');
 
-        return { src: image, placeholder: image };
+        return {src: image, placeholder: image};
     }
 
-    return { src: media.url, placeholder: media.conversion_url };
+    return {src: media.url, placeholder: media.conversion_url};
 };
 
 const avatarName = () => {
@@ -100,22 +101,28 @@ const avatarName = () => {
 </script>
 
 <template>
-    <progressive-image
-        v-if="image.src"
-        :class="['select-none', props.class]"
-        :src="image.src"
-        :placeholder-src="image.placeholder ?? image.src"
-        :blur="blur"
-        :lazy-placeholder="lazyPlaceholder"
-        :object-cover="objectCover"
-    />
-    <div
-        v-else
-        class="bg-urctrl-light-gray"
-        :class="{
-            'flex h-10 w-full max-w-[40px] items-center justify-center rounded-full sm:h-12 sm:max-w-[48px]': name,
-        }"
-    >
-        <span v-if="name" class="opacity-75">{{ avatarName() }}</span>
+    <div v-if="image.src" class="avatar-user rounded-circle header-profile-user overflow-hidden">
+        <progressive-image
+            :src="image.src"
+            :placeholder-src="image.placeholder ?? image.src"
+            :blur="blur"
+            :lazy-placeholder="lazyPlaceholder"
+            :object-cover="objectCover"
+        />
+    </div>
+    <div v-else class="d-flex align-items-center">
+        <span class="bg-light-blue rounded-circle header-profile-user d-flex align-items-center justify-content-center text-white">{{avatarName()}}</span>
     </div>
 </template>
+
+<style>
+ .avatar-user {
+     width: 32px;
+     height: 32px;
+
+     img {
+         width: 100%;
+         object-fit: cover;
+     }
+ }
+</style>

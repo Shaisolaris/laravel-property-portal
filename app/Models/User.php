@@ -170,7 +170,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'full_name',
     ];
 
-    protected $with = ['detail'];
+    protected $with = ['detail','settings'];
 
     public function notifications(): HasMany
     {

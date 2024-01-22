@@ -32,33 +32,18 @@ class ValidateUser
             return Redirect::guest(URL::route('registration.otp-form'));
         }
 
-        if(!$this->isOccupations($user)) {
+        if(!$user->isOccupations()) {
             return to_route('registration.occupations.index');
         }
 
-        if(!$this->isUserHaveAvatarBio($user)) {
+        if(!$user->isUserHaveAvatarBio()) {
             return to_route('registration.profile-avatar.index');
         }
 
-        if(!$this->isDetailData($user)) {
+        if(!$user->isDetailData()) {
             return to_route('registration.user-detail.index');
         }
 
         return $next($request);
-    }
-
-    public function isOccupations($user): bool
-    {
-        return $user->occupations() && $user->occupations()->get()->isNotEmpty();
-    }
-
-    public function isUserHaveAvatarBio($user): bool
-    {
-        return $user->bio && $user->profile_photo_url;
-    }
-
-    public function isDetailData($user): bool
-    {
-        return $user->detail && $user->detail()->get()->isNotEmpty();
     }
 }
