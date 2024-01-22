@@ -60,6 +60,7 @@ const submit = () => {
 
                         <div class="pyc-40">
                             <BaseButton
+                                :disabled="form.processing"
                                 t-key="sign-in"
                                 type="submit"
                                 class="fs-20 fw-bold shadow-dark-blue border-2 border-black"

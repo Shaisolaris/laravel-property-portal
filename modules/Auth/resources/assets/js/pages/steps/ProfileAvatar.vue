@@ -45,7 +45,7 @@ const send = () => {
                     </b-col>
                 </b-row>
             </div>
-            <FooterSteps :disabledSubmit="disabledSubmit" @send="send"/>
+            <FooterSteps :disabledSubmit="disabledSubmit || form.processing" @send="send"/>
         </template>
     </AuthLayout>
 </template>

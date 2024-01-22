@@ -30,7 +30,6 @@ class ValidateOtpCodeController extends Controller
 
         if ($request->user()->validateOtp($data['otp'])) {
             $request->user()->markEmailAsVerified();
-            $request->user()->update('status', 'active'); // TODO::
         } else {
             throw ValidationException::withMessages(['otp' => 'The code was entered incorrectly']);
         }
@@ -51,5 +50,7 @@ class ValidateOtpCodeController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        return response()->json(true);
     }
 }

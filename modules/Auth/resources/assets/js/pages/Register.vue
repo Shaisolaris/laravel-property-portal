@@ -1,7 +1,15 @@
 <script setup>
 import PasswordMeter from "vue-simple-password-meter";
 import AuthLayout from "../layouts/AuthLayout.vue";
+import helpers from "~/scripts/utils/helpers.js";
 
+let {sendForm} = helpers;
+
+defineProps({
+    institutions: {
+        type: Array
+    }
+})
 
 const form = useForm({
     first_name: '',
@@ -43,17 +51,13 @@ const list = reactive([
 const phoneNumberValidated = ref(false);
 let scorePassword = ref('');
 
+const submit = () => sendForm({form, url: route("register"), toObject: true},
+    (response) => {
+        if(response.data) window.location.reload();
+    }
+)
 
-const submit = () => {
-    form
-        .post(route('register'), {
-            onFinish: () => form.reset('password'),
-        });
-};
-
-const onScore = (payload) => {
-    scorePassword.value = payload.strength;
-}
+const onScore = (payload) => scorePassword.value = payload.strength;
 
 const dropScore = (e) => {
     if (e.target.value.length <= 0) {
@@ -95,7 +99,6 @@ const disabledSubmit = computed(
                             <Text t-key="page.register.text-2" />
                         </p>
                     </div>
-
                     <form @submit.prevent="submit">
                         <b-row class="g-3">
                             <b-col cols="12">
@@ -126,22 +129,15 @@ const disabledSubmit = computed(
                                     </b-col>
                                     <b-col>
                                         <TagLabel label="label.educational-level" />
-
                                         <List>
                                             <template #body>
                                                 <BListGroupItem
-                                                    :class="[{'bg-light-blue text-white': form.educational_level === 'school'}, 'hover-element text-dim-gray w-50']"
+                                                    v-for="(institution) in institutions"
+                                                    :class="[{'bg-light-blue text-white': form.educational_level === institution.toLowerCase()}, 'hover-element text-dim-gray w-50']"
                                                     tag="li"
-                                                    @click="form.educational_level = 'school'"
+                                                    @click="form.educational_level = institution.toLowerCase()"
                                                 >
-                                                    <Text t-key="label.school" />
-                                                </BListGroupItem>
-                                                <BListGroupItem
-                                                    :class="[{'bg-light-blue text-white': form.educational_level === 'academy'}, 'hover-element text-dim-gray w-50']"
-                                                    tag="li"
-                                                    @click="form.educational_level = 'academy'"
-                                                >
-                                                    <Text t-key="label.academy" />
+                                                    <Text :t-key="'label.'+institution.toLowerCase()" />
                                                 </BListGroupItem>
                                             </template>
                                         </List>
@@ -241,6 +237,9 @@ const disabledSubmit = computed(
                                         <div class="ms-4">{{ scorePassword.toLocaleString().capitalize() }}</div>
                                     </div>
                                 </b-col>
+                                <div>
+                                    <ErrorMessage :error="form.errors?.need_verify" />
+                                </div>
                             </div>
 
                             <div class="i-agree-box d-flex gap-2">
@@ -252,7 +251,7 @@ const disabledSubmit = computed(
                                     t-key="sign-up"
                                     type="submit"
                                     class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
-                                    :disabled="disabledSubmit"
+                                    :disabled="disabledSubmit || form.processing"
                                 />
                             </div>
 

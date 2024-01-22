@@ -2,18 +2,18 @@
 import AuthLayout from "../layouts/AuthLayout.vue";
 import helpers from "~/scripts/helpers/helpers.js";
 
-let { sendForm } = helpers;
+let {sendForm} = helpers;
 
 defineProps({
     otp_code: Number,
 })
 
-const { props: { auth: user } } = usePage()
+const {props: {auth: user}} = usePage()
 
 let showMessageResent = ref(false);
 let chunks = reactive(new Array(6).fill(""))
 let disabledSubmit = computed(() => !chunks.every(elem => elem !== ""))
-let form = useForm({ otp: "" })
+let form = useForm({otp: ""})
 
 const limiter = (e, index) => {
     let value = parseInt(e.target.value);
@@ -41,7 +41,7 @@ const dropCode = () => {
 const verify = () => {
     form.otp = chunks.join(' ').replace(/\s/g, '');
 
-    sendForm({ form, url: route("registration.verify") },
+    sendForm({form, url: route("registration.verify")},
         (response, errors) => {
             if (!errors && response.data) {
                 window.location.reload()
@@ -50,14 +50,22 @@ const verify = () => {
 }
 
 const resend = () => {
-    sendForm({form, url: route("registration.resend")},() => {
+    sendForm({form, url: route("registration.resend")}, () => {
         showMessageResent.value = true
-        setTimeout(function() {
+        setTimeout(function () {
             showMessageResent.value = false;
-        },5000)
+        }, 5000)
     })
 };
 
+const cancel = () => {
+    sendForm({form, url: route("registration.cancel")},
+        (response, errors) => {
+            if (!errors && response.data) {
+                window.location.reload()
+            }
+        })
+}
 
 </script>
 
@@ -68,10 +76,10 @@ const resend = () => {
                 <b-col cols="10" lg="9">
                     <div class="mb-5">
                         <h1 class="text-black">
-                            <Text t-key="page.register.text-3" tag="span" />
+                            <Text t-key="page.register.text-3" tag="span"/>
                         </h1>
                         <p class="text-dim-gray fs-14 mt-3">
-                            <Text t-key="page.register.text-4" tag="span" />
+                            <Text t-key="page.register.text-4" tag="span"/>
                             <span class="ms-2 text-royal-blue">{{ user.email }}</span>
                         </p>
                     </div>
@@ -97,7 +105,7 @@ const resend = () => {
                         />
                     </div>
                     <div class="mb-5 fs-14">
-                        <Text class="text-dim-gray" t-key="page.register.text-5" tag="span" />
+                        <Text class="text-dim-gray" t-key="page.register.text-5" tag="span"/>
                         :
                         <Text
                             class="text-royal-blue ms-2 cursor-pointer"
@@ -115,6 +123,9 @@ const resend = () => {
                         :disabled="form.processing || disabledSubmit"
                         class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
                     />
+                    <div class="text-dim-gray mt-5 fs-16 cursor-pointer" @click="cancel">
+                        <i class="ri-arrow-left-line"></i> Back to Sign Up
+                    </div>
                 </b-col>
             </b-row>
         </template>

@@ -29,7 +29,21 @@ trait UserFunctionsTrait
     public function validateOtp(int $otp): bool
     {
         return $otp === $this->getOtpCode();
-//        return Hash::check((string)$otp, (string)$this->getOtpCode()); // I don`t understand, it`s method can`t be working form me, why?
 
+    }
+
+    public function isOccupations(): bool
+    {
+        return $this->occupations() && $this->occupations()->get()->isNotEmpty();
+    }
+
+    public function isUserHaveAvatarBio(): bool
+    {
+        return $this->bio && $this->profile_photo_url;
+    }
+
+    public function isDetailData(): bool
+    {
+        return $this->detail && $this->detail()->get()->isNotEmpty();
     }
 }

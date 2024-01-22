@@ -3,9 +3,9 @@
 namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\EducationInstitution;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Modules\Auth\app\Http\Requests\CreateUserRequest;
 
@@ -26,28 +26,35 @@ class RegisteredController extends Controller
 
     public function create(): \Inertia\Response|\Inertia\ResponseFactory
     {
-        return inertia('Auth::Register');
+        $institutions = EducationInstitution::pluck('type');
+
+        return inertia('Auth::Register', compact('institutions'));
     }
 
-    public function store(CreateUserRequest $request, CreatesNewUsers $creator): \Illuminate\Http\RedirectResponse
+    /**
+     * @throws ValidationException
+     */
+    public function store(CreateUserRequest $request, CreatesNewUsers $creator)
     {
-        try {
-            $data = $request->validated();
+        $data = $request->validated();
 
-            if ($user = $creator->create($data)) {
+        if ($user = $request->checkSecurity()) {
 
-                $this->guard->login($user);
+            $creator->recreated($user, $data);
 
-                if ($user->hasVerifiedOtpCode()) {
-                    $user->sendSendOtpCodeNotification();
-                }
-
-                return to_route('registration.otp-form');
-            }
-        } catch (\Exception $exception) {
-            dd($exception);
+            $this->guard->login($user);
+            return response()->json(true);
         }
 
-        return redirect()->back();
+        if ($user = $creator->create($data)) {
+
+            $this->guard->login($user);
+
+            if ($user->hasVerifiedEmail()) {
+                $user->sendSendOtpCodeNotification();
+            }
+        }
+
+        return response()->json(true);
     }
 }
