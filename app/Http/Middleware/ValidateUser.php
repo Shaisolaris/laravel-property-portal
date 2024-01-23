@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\User\UserRoleEnum;
 use Closure;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -32,8 +33,13 @@ class ValidateUser
             return Redirect::guest(URL::route('registration.otp-form'));
         }
 
-        if(!$user->isOccupations()) {
-            return to_route('registration.occupations.index');
+        if(
+            $user->hasRole(UserRoleEnum::get('InstructorSchool')) ||
+            $user->hasRole(UserRoleEnum::get('InstructorAcademy'))
+        ) {
+            if(!$user->isOccupations()) {
+                return to_route('registration.occupations.index');
+            }
         }
 
         if(!$user->isUserHaveAvatarBio()) {

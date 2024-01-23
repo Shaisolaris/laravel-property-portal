@@ -2,6 +2,7 @@
 
 namespace App\Traits\Models\Functions;
 
+use App\Enums\User\UserRoleEnum;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 

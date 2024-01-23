@@ -16,4 +16,9 @@ trait EnumTrait
     {
         return fn (string $value) => Str::ucfirst($value);
     }
+
+    public static function get($name): int|string
+    {
+        return self::from($name)->value;
+    }
 }
