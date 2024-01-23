@@ -1,6 +1,6 @@
 <script setup>
 import LandingLayout from "$module@landing/layouts/LandingLayout.vue";
-import Filter from "$module@landing/pages/components/Filter.vue";
+import Filter from "$module@landing/components/Filter.vue";
 
 const pages = ref([]);
 const page = ref(1);

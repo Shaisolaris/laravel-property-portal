@@ -12,7 +12,8 @@ const value = ref(null);
                   { value: 'Javascript', label: 'Javascript' },
                   { value: 'C#', label: 'C#' },
                   { value: 'Nodejs', label: 'Nodejs' },
-                ]" />
+                ]"
+    />
 </template>
 
 <style scoped>
