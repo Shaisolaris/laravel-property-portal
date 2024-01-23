@@ -288,48 +288,96 @@
     .container-sm, .container {
         max-width: 540px;
     }
+
+    .layout-width {
+        max-width: 540px !important;
+    }
 }
 @media (min-width: 768px) {
     .container-md, .container-sm, .container {
         max-width: 720px;
+    }
+
+    .layout-width {
+        max-width: 720px !important;
     }
 }
 @media (min-width: 992px) {
     .container-lg, .container-md, .container-sm, .container {
         max-width: 960px;
     }
+
+    .layout-width {
+        max-width: 960px !important;
+    }
 }
 @media (min-width: 1200px) {
     .container-xl, .container-lg, .container-md, .container-sm, .container {
         max-width: 1140px;
+    }
+
+    .layout-width {
+        max-width: 1140px !important;
     }
 }
 @media (min-width: 1400px) {
     .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
         max-width: 1320px;
     }
+
+    .layout-width {
+        max-width: 1320px !important;
+    }
 }
 
 @media (min-width: 1800px) {
-    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container, .layout-width {
         max-width: 1740px;
+    }
+
+    .layout-width {
+        max-width: 1740px !important;
+    }
+}
+
+@media (min-width: 1024.1px) {
+    :is([data-layout=vertical], [data-layout=semibox])[data-layout-style=detached] .navbar-header {
+        padding-left: 1rem !important;
     }
 }
 
 .searchCourse {
     width: 0;
-    transition: width .15s ease-in-out, background-color .15s ease-in-out;
+    transition: width .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-bottom-color .15s ease-in-out,
+    border-left-color .15s ease-in-out,
+    border-right-color .15s ease-in-out,
+    border-top-color .15s ease-in-out;
 
     .searchCourseInput {
         background-color: transparent !important;
+
+        &.bg-white {
+            border-color: transparent !important;
+        }
     }
 
     &.show {
         width: 250px;
-        transition: width .35s ease-in-out, background-color .35s ease-in-out;
+        transition: width .35s ease-in-out,
+        background-color .35s ease-in-out,
+        border-bottom-color .35s ease-in-out,
+        border-left-color .35s ease-in-out,
+        border-right-color .35s ease-in-out,
+        border-top-color .35s ease-in-out;
 
         .searchCourseInput {
-            background-color: white !important
+            background-color: white !important;
+
+            &.bg-white {
+                border-color: $border-base-color !important;
+            }
         }
     }
 }

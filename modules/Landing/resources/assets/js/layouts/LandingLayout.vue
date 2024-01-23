@@ -7,6 +7,14 @@ defineProps({
     title: {
         type: String,
         default: ''
+    },
+    color: {
+        type: String,
+        default: 'beige'
+    },
+    showFooter: {
+        type: Boolean,
+        default: true
     }
 });
 
@@ -66,7 +74,7 @@ onMounted(() => {
     <Head :title="`${$t(`title.${title}`)}`" />
 
     <div class="layout-wrapper landing">
-        <NavBar class="bg-beige box-shadow-none border-none">
+        <NavBar :class="`bg-${color} box-shadow-none border-none`">
             <template #bottom-header>
                 <div class="d-flex align-items-center gap-3">
                     <template v-for="(link, index) in links">
@@ -89,7 +97,7 @@ onMounted(() => {
                     <i class="ri-search-2-line fs-4 hover-element" @click="showSearch = !showSearch" />
 
                     <div :class="['searchCourse', {'show': showSearch}]" >
-                        <BaseInput class="searchCourseInput rounded" placeholder="search-course" />
+                        <BaseInput :class="`searchCourseInput bg-${color} rounded`" placeholder="search-course" />
                     </div>
                 </div>
 
@@ -110,11 +118,11 @@ onMounted(() => {
 
         <slot />
 
-        <BaseFooter />
+        <BaseFooter v-if="showFooter" />
 
-        <BButton variant="light-blue" @click="topFunction" class="btn-icon" id="back-to-top">
+        <b-button variant="light-blue" @click="topFunction" class="btn-icon" id="back-to-top">
             <i class="ri-arrow-up-line"></i>
-        </BButton>
+        </b-button>
     </div>
 </template>
 

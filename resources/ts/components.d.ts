@@ -50,6 +50,7 @@ declare module 'vue' {
     Switch: typeof import('./../js/Components/Form/Switch.vue')['default']
     Tabs: typeof import('./../js/Components/Tabs.vue')['default']
     TagLabel: typeof import('./../js/Components/Partials/TagLabel.vue')['default']
+    Test: typeof import('./../js/Components/SweetAlert/Test.vue')['default']
     Text: typeof import('./../js/Components/Text.vue')['default']
     TextareaBase: typeof import('./../js/Components/Form/TextareaBase.vue')['default']
     TimeBar: typeof import('./../js/Components/Widgets/TimeBar.vue')['default']

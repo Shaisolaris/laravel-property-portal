@@ -128,6 +128,13 @@
             "links": ["Blog", "All Courses", "Sign Up"],
             "help": ["About Us", "Privacy Policy", "Terms and condition", "FAQ", "Refund Policy"],
             "columns": ["Top categories", "Useful links", "Help"]
+        },
+        "filter": {
+            "categories": "Categories",
+            "price": "Price",
+            "level": "Level",
+            "language": "Language",
+            "ratings": "Ratings"
         }
     },
     "page": {
@@ -211,7 +218,12 @@
         "register": "Register",
         "settings": "Settings",
         "academy-landing": "Academy Landing",
-        "school-landing": "School Landing"
+        "school-landing": "School Landing",
+        "academy-category": "Categories",
+        "academy-help-support": "Help & Support",
+        "academy-courses": "Courses",
+        "school-classes": "Classes",
+        "school-short-casual-courses": "Short Courses and Casual Courses"
     },
     "label": {
         "first-name": "First name",

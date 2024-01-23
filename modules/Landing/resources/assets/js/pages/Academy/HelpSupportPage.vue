@@ -5,13 +5,17 @@ import CourseCard from "$module@landing/partials/CourseCard.vue";
 </script>
 
 <template>
-    <LandingLayout>
+    <LandingLayout :show-footer="false" title="academy-help-support">
         <Card class="bg-beige radius-60">
             <section class="section job-hero-section">
                 <b-container class="text-center background-school-short-casual-courses-page">
                     <Text t-key="landing.academy.help-support-page.title" class="fsc-40 fontf-McLaren lh-1" />
 
-                    <Search />
+                    <div class="d-flex justify-content-center py-3">
+                        <div class="w-50">
+                            <Search />
+                        </div>
+                    </div>
 
                     <Text
                         tag="span"

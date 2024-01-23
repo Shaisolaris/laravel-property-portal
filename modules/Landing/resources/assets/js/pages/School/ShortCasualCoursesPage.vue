@@ -5,7 +5,7 @@ import BeigeCard from "$module@landing/partials/BeigeCard.vue";
 </script>
 
 <template>
-    <LandingLayout>
+    <LandingLayout :show-footer="false" title="school-short-casual-courses">
         <section class="section job-hero-section">
             <b-container class="text-center background-school-short-casual-courses-page">
                 <Text t-key="landing.school.short-casual-courses-page.title" class="fsc-40 fontf-McLaren lh-1" />

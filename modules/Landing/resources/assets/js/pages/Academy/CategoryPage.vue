@@ -5,12 +5,16 @@ import LandingLayout from "$module@landing/layouts/LandingLayout.vue";
 </script>
 
 <template>
-    <LandingLayout>
+    <LandingLayout :show-footer="false" title="academy-category">
         <section class="section job-hero-section">
             <b-container class="text-center background-school-short-casual-courses-page">
                 <Text t-key="landing.academy.categories-page.title" class="fsc-40 fontf-McLaren lh-1" />
 
-                <Search />
+                <div class="d-flex justify-content-center py-3">
+                    <div class="w-50">
+                        <Search />
+                    </div>
+                </div>
 
                 <Text tag="span" t-key="landing.academy.categories-page.text-1" class="fs-16 fontf-HelveticaNeue text-dim-gray" />
                 <Text tag="span" t-key="landing.academy.categories-page.text-2" class="fs-16 fw-medium fontf-HelveticaNeue" />
