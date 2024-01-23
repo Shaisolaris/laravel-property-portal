@@ -4,5 +4,6 @@
     "Chat": true,
     "Blog": true,
     "Auth": true,
-    "Landing": true
+    "Landing": true,
+    "PaymentOperations": true
 }
