@@ -3,7 +3,8 @@
 namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\EducationInstitution;
+use App\Http\Resources\EducationInstitutionsResource;
+use App\Models\EducationInstitutionList;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Illuminate\Contracts\Auth\StatefulGuard;
@@ -26,7 +27,7 @@ class RegisteredController extends Controller
 
     public function create(): \Inertia\Response|\Inertia\ResponseFactory
     {
-        $institutions = EducationInstitution::pluck('type');
+        $institutions = EducationInstitutionsResource::collection(EducationInstitutionList::available()->limit(10)->get());
 
         return inertia('Auth::Register', compact('institutions'));
     }
@@ -40,7 +41,7 @@ class RegisteredController extends Controller
 
         if ($user = $request->checkSecurity()) {
 
-            $creator->recreated($user, $data);
+            $creator->continue($user, $data);
 
             $this->guard->login($user);
             return response()->json(true);
@@ -50,7 +51,7 @@ class RegisteredController extends Controller
 
             $this->guard->login($user);
 
-            if ($user->hasVerifiedEmail()) {
+            if (!$user->hasVerifiedEmail()) {
                 $user->sendSendOtpCodeNotification();
             }
         }

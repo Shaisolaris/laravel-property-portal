@@ -2,6 +2,8 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\EducationInstitutionList;
+use Illuminate\Support\Str;
 use Throwable;
 use App\Models\Role;
 use App\Models\User;
@@ -24,40 +26,39 @@ class CreateNewUser implements CreatesNewUsers
 
         try {
             $input['password'] = $this->hashedPassword($input);
+            $input['status'] = 'active'; // TODO::
 
             $user = User::create($input);
 
-            $user->update(['status' => 'active']);
-            $user->assignRole($this->initialUserRole($input));
+            $institution = EducationInstitutionList::find($input['institution_id']);
+
+            $user->assignRole($this->initialUserRole($input, $institution));
+
+            $institution->peoples()->attach($user->id);
 
             $this->updateOrCreateNotificationSettings($user);
-            $this->createInstitution($user);
 
             DB::commit();
 
             return $user;
         } catch (\Exception $exception) {
+            dd($exception);
             DB::rollBack();
             return null;
         }
     }
 
-    public function recreated($user, $data): void
+    public function continue($user, $data): void
     {
         $data['password'] = $this->hashedPassword($data);
         $user->update($data);
     }
 
-    protected function createInstitution($user)
-    {
-
-    }
-
-    private function initialUserRole($input): \Spatie\Permission\Models\Role
+    private function initialUserRole($input, $item): \Spatie\Permission\Models\Role
     {
         return Role::whereName(
             $input['role'] !== UserRoleEnum::Organizer()->value
-                ? $input['role'] . "_" . $input['educational_level']
+                ? $input['role'] . "_" . Str::lower($item->institution()->value('name'))
                 : $input['role']
         )->first();
     }

@@ -13,6 +13,7 @@ declare module 'vue' {
     BaseButton: typeof import('./../js/Components/Buttons/BaseButton.vue')['default']
     BaseInput: typeof import('./../js/Components/Form/BaseInput.vue')['default']
     BaseLink: typeof import('./../js/Components/BaseLink.vue')['default']
+    BaseMultiselect: typeof import('./../js/Components/Form/BaseMultiselect.vue')['default']
     BaseSelect: typeof import('./../js/Components/Form/BaseSelect.vue')['default']
     BaseTable: typeof import('./../js/Components/Table/BaseTable.vue')['default']
     BlocksAmountInfo: typeof import('./../js/Components/Elements/BlocksAmountInfo.vue')['default']

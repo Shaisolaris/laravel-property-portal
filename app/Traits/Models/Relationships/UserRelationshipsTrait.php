@@ -2,6 +2,7 @@
 
 namespace App\Traits\Models\Relationships;
 
+use App\Models\EducationInstitutionList;
 use App\Models\Occupation;
 use App\Models\UserDetail;
 use App\Models\UserSetting;

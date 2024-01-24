@@ -252,7 +252,8 @@
         "account-no": "Account No.",
         "business-document": "Business Documents",
         "registration-scan": "Registration Scan",
-        "extra-information": "Extra Information"
+        "extra-information": "Extra Information",
+        "institution": "Institution"
     },
     "placeholder": {
         "select": "Select",

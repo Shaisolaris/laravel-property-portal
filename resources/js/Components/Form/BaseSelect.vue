@@ -47,7 +47,7 @@ const selected = (option) => {
 </script>
 
 <template>
-    <div :id="$attrs.id" class="test">
+    <div :id="$attrs.id">
         <TagLabel :label="label" :required="$attrs.required" />
 
         <b-dropdown variant="outline-secondary" :text="currentOption" class="custom-select">

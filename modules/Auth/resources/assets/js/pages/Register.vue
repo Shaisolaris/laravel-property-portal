@@ -5,7 +5,7 @@ import helpers from "~/scripts/utils/helpers.js";
 
 let {sendForm} = helpers;
 
-defineProps({
+const {institutions} = defineProps({
     institutions: {
         type: Array
     }
@@ -23,7 +23,7 @@ const form = useForm({
     zip_code: '',
     password: '',
     role: '',
-    educational_level: '',
+    institution_id: '',
     is_agreement: false
 });
 
@@ -51,9 +51,17 @@ const list = reactive([
 const phoneNumberValidated = ref(false);
 let scorePassword = ref('');
 
+const institutions_options = computed(() =>
+    institutions.map(institution => {
+        return {
+            value: institution.id,
+            label: institution.type + " - " + institution.name
+        }
+    }))
+
 const submit = () => sendForm({form, url: route("register"), toObject: true},
-    (response) => {
-        if(response.data) window.location.reload();
+    (response,error) => {
+        if (!error && response.data) window.location.reload();
     }
 )
 
@@ -65,9 +73,14 @@ const dropScore = (e) => {
     }
 }
 
+const nameInstitution = () => {
+    let institution = institutions.find((institution) => institution.id === form.institution_id)
+    return institution.type + " - " + institution.name
+}
+
 const disabledSubmit = computed(
     () => !form.email ||
-        !form.educational_level ||
+        !form.institution_id ||
         !form.role ||
         !form.first_name ||
         !form.last_name ||
@@ -91,12 +104,11 @@ const disabledSubmit = computed(
                 <b-col cols="10" lg="8">
                     <div class="mb-5">
                         <h1 class="text-black">
-                            <Text t-key="page.register.text-1" tag="span" />
-                            <Text v-if="form.role" :t-key="`label.${form.role}`" tag="span" />
-                            <template v-if="form.educational_level"> (<Text :t-key="`label.${form.educational_level}`" tag="span" />)</template>
+                            <Text t-key="page.register.text-1" tag="span"/>
+                            <template v-if="form.institution_id"><p>{{ nameInstitution() }}</p></template>
                         </h1>
                         <p class="text-dim-gray fs-14 mt-3">
-                            <Text t-key="page.register.text-2" />
+                            <Text t-key="page.register.text-2"/>
                         </p>
                     </div>
                     <form @submit.prevent="submit">
@@ -104,7 +116,7 @@ const disabledSubmit = computed(
                             <b-col cols="12">
                                 <b-row class="g-3" :no-gutters="true">
                                     <b-col>
-                                        <TagLabel label="label.role" />
+                                        <TagLabel label="role"/>
 
                                         <List>
                                             <template #body>
@@ -113,36 +125,30 @@ const disabledSubmit = computed(
                                                     tag="li"
                                                     @click="form.role = 'student'"
                                                 >
-                                                    <Text t-key="label.student" />
+                                                    <Text t-key="label.student"/>
                                                 </BListGroupItem>
                                                 <BListGroupItem
                                                     :class="[{'bg-light-blue text-white': form.role === 'instructor'}, 'hover-element text-dim-gray w-50']"
                                                     tag="li"
                                                     @click="form.role = 'instructor'"
                                                 >
-                                                    <Text t-key="label.instructor" />
+                                                    <Text t-key="label.instructor"/>
                                                 </BListGroupItem>
                                             </template>
                                         </List>
 
-                                        <ErrorMessage :error="form.errors.role" />
+                                        <ErrorMessage :error="form.errors.role"/>
                                     </b-col>
                                     <b-col>
-                                        <TagLabel label="label.educational-level" />
-                                        <List>
-                                            <template #body>
-                                                <BListGroupItem
-                                                    v-for="(institution) in institutions"
-                                                    :class="[{'bg-light-blue text-white': form.educational_level === institution.toLowerCase()}, 'hover-element text-dim-gray w-50']"
-                                                    tag="li"
-                                                    @click="form.educational_level = institution.toLowerCase()"
-                                                >
-                                                    <Text :t-key="'label.'+institution.toLowerCase()" />
-                                                </BListGroupItem>
-                                            </template>
-                                        </List>
-
-                                        <ErrorMessage :error="form.errors.educational_level" />
+                                        <BaseMultiselect
+                                            mode="single"
+                                            :searchable="true"
+                                            v-model="form.institution_id"
+                                            :error="form.errors.institution_id"
+                                            :options="institutions_options"
+                                            label="institution"
+                                        />
+                                        <ErrorMessage :error="form.errors.institution_id"/>
                                     </b-col>
                                 </b-row>
                             </b-col>
@@ -233,17 +239,17 @@ const disabledSubmit = computed(
                                         @input="dropScore"
                                     />
                                     <div class="d-flex justify-content-between">
-                                        <PasswordMeter :password="form.password" @score="onScore" />
+                                        <PasswordMeter :password="form.password" @score="onScore"/>
                                         <div class="ms-4">{{ scorePassword.toLocaleString().capitalize() }}</div>
                                     </div>
                                 </b-col>
                                 <div>
-                                    <ErrorMessage :error="form.errors?.need_verify" />
+                                    <ErrorMessage :error="form.errors?.need_verify"/>
                                 </div>
                             </div>
 
                             <div class="i-agree-box d-flex gap-2">
-                                <CheckboxRadio v-model="form.is_agreement" label="want-get" />
+                                <CheckboxRadio v-model="form.is_agreement" label="want-get"/>
                             </div>
 
                             <div class="pyc-40">
@@ -256,8 +262,8 @@ const disabledSubmit = computed(
                             </div>
 
                             <div class="text-center">
-                                <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
-                                <BaseLink :href="route('login')" t-key="sign-in" class="fs-16 fw-bold" />
+                                <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2"/>
+                                <BaseLink :href="route('login')" t-key="sign-in" class="fs-16 fw-bold"/>
                             </div>
                         </b-row>
                     </form>

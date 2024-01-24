@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\app\Http\Controllers;
 
+use App\Enums\User\UserRoleEnum;
 use App\Enums\User\UserTeachingLevel;
 use App\Http\Controllers\Controller;
 use App\Models\Occupation;
@@ -13,14 +14,23 @@ class OccupationsController extends Controller
 {
     public function index(Request $request): \Inertia\Response|\Illuminate\Http\RedirectResponse
     {
-        if($request->user()->isOccupations()) {
+        $user = $request->user();
+
+        if(
+            $user->hasRole(UserRoleEnum::get('InstructorSchool')) ||
+            $user->hasRole(UserRoleEnum::get('InstructorAcademy'))
+        ) {
+            if($user->isOccupations()) {
+                return to_route('registration.profile-avatar.index');
+            }
+
+            return Inertia::render('Auth::steps/Occupation', [
+                'occupations' => Occupation::pluck('name', 'id'),
+                'experience_levels' => UserTeachingLevel::toArray(),
+            ]);
+        } else {
             return to_route('registration.profile-avatar.index');
         }
-
-        return Inertia::render('Auth::steps/Occupation', [
-            'occupations' => Occupation::pluck('name', 'id'),
-            'experience_levels' => UserTeachingLevel::toArray(),
-        ]);
     }
 
     public function store(OccupationRequest $request): \Illuminate\Http\JsonResponse
