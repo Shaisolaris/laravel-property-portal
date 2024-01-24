@@ -6,6 +6,7 @@ use App\Enums\EducationInstitutions\EducationInstitutionsEnum;
 use App\Models\EducationInstitution;
 use App\Models\EducationInstitutionList;
 use Illuminate\Database\Seeder;
+use Modules\Academy\app\Models\EducationInstitutionCourse;
 
 class EducationsSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class EducationsSeeder extends Seeder
         });
 
         EducationInstitutionList::factory()->count(10)->create();
+        EducationInstitutionCourse::factory()->count(40)->create();
 
     }
 }
