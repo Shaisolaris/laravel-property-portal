@@ -13,7 +13,7 @@ import UnderHeaderSection from "$module@landing/pages/Academy/Sections/UnderHead
 </script>
 
 <template>
-    <LandingLayout title="academy-landing">
+    <LandingLayout color="beige" title="academy-landing">
         <UnderHeaderSection />
         <Section1 />
         <Section2 />

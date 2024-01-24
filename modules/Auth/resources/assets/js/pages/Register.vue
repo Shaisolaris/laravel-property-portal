@@ -1,15 +1,15 @@
 <script setup>
 import PasswordMeter from "vue-simple-password-meter";
-import AuthLayout from "../layouts/AuthLayout.vue";
-import helpers from "~/scripts/utils/helpers.js";
+import AuthLayout from "$module@auth/layouts/AuthLayout.vue";
+import helpers from "~/scripts/helpers/helpers.js";
 
-let {sendForm} = helpers;
 
-const {institutions} = defineProps({
+const { institutions } = defineProps({
     institutions: {
         type: Array
     }
-})
+});
+let { sendForm } = helpers;
 
 const form = useForm({
     first_name: '',
@@ -28,6 +28,7 @@ const form = useForm({
 });
 
 // For test
+//Need dynamic data!
 const list = reactive([
     {
         name: 'First Action',
@@ -59,8 +60,8 @@ const institutions_options = computed(() =>
         }
     }))
 
-const submit = () => sendForm({form, url: route("register"), toObject: true},
-    (response,error) => {
+const submit = () => sendForm({ form, url: route("register"), toObject: true },
+    (response, error) => {
         if (!error && response.data) window.location.reload();
     }
 )
@@ -104,11 +105,11 @@ const disabledSubmit = computed(
                 <b-col cols="10" lg="8">
                     <div class="mb-5">
                         <h1 class="text-black">
-                            <Text t-key="page.register.text-1" tag="span"/>
+                            <Text t-key="page.register.text-1" tag="span" />
                             <template v-if="form.institution_id"><p>{{ nameInstitution() }}</p></template>
                         </h1>
                         <p class="text-dim-gray fs-14 mt-3">
-                            <Text t-key="page.register.text-2"/>
+                            <Text t-key="page.register.text-2" />
                         </p>
                     </div>
                     <form @submit.prevent="submit">
@@ -116,7 +117,7 @@ const disabledSubmit = computed(
                             <b-col cols="12">
                                 <b-row class="g-3" :no-gutters="true">
                                     <b-col>
-                                        <TagLabel label="role"/>
+                                        <TagLabel label="role" />
 
                                         <List>
                                             <template #body>
@@ -125,30 +126,30 @@ const disabledSubmit = computed(
                                                     tag="li"
                                                     @click="form.role = 'student'"
                                                 >
-                                                    <Text t-key="label.student"/>
+                                                    <Text t-key="label.student" />
                                                 </BListGroupItem>
                                                 <BListGroupItem
                                                     :class="[{'bg-light-blue text-white': form.role === 'instructor'}, 'hover-element text-dim-gray w-50']"
                                                     tag="li"
                                                     @click="form.role = 'instructor'"
                                                 >
-                                                    <Text t-key="label.instructor"/>
+                                                    <Text t-key="label.instructor" />
                                                 </BListGroupItem>
                                             </template>
                                         </List>
 
-                                        <ErrorMessage :error="form.errors.role"/>
+                                        <ErrorMessage :error="form.errors.role" />
                                     </b-col>
                                     <b-col>
                                         <BaseMultiselect
-                                            mode="single"
-                                            :searchable="true"
                                             v-model="form.institution_id"
                                             :error="form.errors.institution_id"
+                                            :searchable="true"
                                             :options="institutions_options"
+                                            mode="single"
                                             label="institution"
                                         />
-                                        <ErrorMessage :error="form.errors.institution_id"/>
+                                        <ErrorMessage :error="form.errors.institution_id" />
                                     </b-col>
                                 </b-row>
                             </b-col>
@@ -179,11 +180,11 @@ const disabledSubmit = computed(
                             </b-col>
                             <b-col cols="6">
                                 <MaskInput
-                                    @validate="(validate) => phoneNumberValidated = validate"
                                     v-model="form.phone"
                                     :error="form.errors.phone"
                                     placeholder="enter-mobile-on"
                                     label="mobile-on"
+                                    @validate="(validate) => phoneNumberValidated = validate"
                                 />
                             </b-col>
                             <b-col cols="12">
@@ -239,17 +240,17 @@ const disabledSubmit = computed(
                                         @input="dropScore"
                                     />
                                     <div class="d-flex justify-content-between">
-                                        <PasswordMeter :password="form.password" @score="onScore"/>
+                                        <PasswordMeter :password="form.password" @score="onScore" />
                                         <div class="ms-4">{{ scorePassword.toLocaleString().capitalize() }}</div>
                                     </div>
                                 </b-col>
                                 <div>
-                                    <ErrorMessage :error="form.errors?.need_verify"/>
+                                    <ErrorMessage :error="form.errors?.need_verify" />
                                 </div>
                             </div>
 
                             <div class="i-agree-box d-flex gap-2">
-                                <CheckboxRadio v-model="form.is_agreement" label="want-get"/>
+                                <CheckboxRadio v-model="form.is_agreement" label="want-get" />
                             </div>
 
                             <div class="pyc-40">
@@ -262,8 +263,8 @@ const disabledSubmit = computed(
                             </div>
 
                             <div class="text-center">
-                                <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2"/>
-                                <BaseLink :href="route('login')" t-key="sign-in" class="fs-16 fw-bold"/>
+                                <Text t-key="already-have-account" tag="span" class="text-dim-gray fs-16 me-2" />
+                                <BaseLink :href="route('login')" t-key="sign-in" class="fs-16 fw-bold" />
                             </div>
                         </b-row>
                     </form>

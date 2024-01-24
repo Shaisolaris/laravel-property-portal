@@ -1,6 +1,7 @@
 <script setup>
 import LinkArrow from "$module@landing/partials/LinkArrow.vue";
 import BeigeCard from "$module@landing/partials/BeigeCard.vue";
+import { SwiperSlide } from "swiper/vue";
 </script>
 
 <template>
@@ -17,9 +18,13 @@ import BeigeCard from "$module@landing/partials/BeigeCard.vue";
             </b-row>
 
             <b-row>
-                <b-col v-for="item in [...Array(4).keys()]">
-                    <BeigeCard />
-                </b-col>
+                <Swiper :use-pagination="false" :slides-per-view="4" swiper-pagination-type="blue" >
+                    <template #sliders>
+                        <swiper-slide v-for="(item, index) in [...Array(15).keys()]">
+                            <BeigeCard />
+                        </swiper-slide>
+                    </template>
+                </Swiper>
             </b-row>
         </b-container>
     </section>

@@ -10,11 +10,28 @@ defineProps({
     },
     color: {
         type: String,
-        default: 'beige'
+        default: 'white'
     },
     showFooter: {
         type: Boolean,
         default: true
+    },
+    links: {
+        type: Array,
+        default: [
+            {
+                route: 'landing.school.index',
+                key: 'landing.school-inoura'
+            },
+            {
+                route: 'blog.index',
+                key: 'landing.blog'
+            },
+            {
+                route: 'landing.academy.course.index',
+                key: 'landing.all-courses'
+            },
+        ]
     }
 });
 
@@ -24,20 +41,6 @@ const topFunction = () => {
     document.documentElement.scrollTop = 0;
 }
 
-const links = ref([
-    {
-        route: 'landing.school.index',
-        key: 'landing.school-inoura'
-    },
-    {
-        route: 'blog.index',
-        key: 'landing.blog'
-    },
-    {
-        route: 'landing.academy.course.index',
-        key: 'landing.all-courses'
-    },
-]);
 
 const showSearch = ref(false);
 
@@ -77,26 +80,19 @@ onMounted(() => {
         <NavBar :class="`bg-${color} box-shadow-none border-none`">
             <template #bottom-header>
                 <div class="d-flex align-items-center gap-3">
-                    <template v-for="(link, index) in links">
-                        <template v-if="index === 0">
-                            <slot name="link-landing">
-                                <BaseLink :href="route(link.route)">
-                                    <template #text>
-                                        <Text :t-key="link.key" class="text-black fs-14 fw-medium text-underline-hover" />
-                                    </template>
-                                </BaseLink>
-                            </slot>
-                        </template>
-                        <BaseLink  v-else :href="route(link.route)">
-                            <template #text>
-                                <Text :t-key="link.key" class="text-black fs-14 fw-medium text-underline-hover" />
-                            </template>
-                        </BaseLink>
+                    <template v-for="link in links">
+                        <slot name="link-landing">
+                            <BaseLink :href="route(link.route)">
+                                <template #text>
+                                    <Text :t-key="link.key" class="text-black fs-14 fw-medium text-underline-hover" />
+                                </template>
+                            </BaseLink>
+                        </slot>
                     </template>
 
                     <i class="ri-search-2-line fs-4 hover-element" @click="showSearch = !showSearch" />
 
-                    <div :class="['searchCourse', {'show': showSearch}]" >
+                    <div :class="['searchCourse', {'show': showSearch}]">
                         <BaseInput :class="`searchCourseInput bg-${color} rounded`" placeholder="search-course" />
                     </div>
                 </div>

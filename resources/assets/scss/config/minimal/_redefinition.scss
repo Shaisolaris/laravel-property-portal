@@ -15,11 +15,11 @@
 
 @for $i from 1 through 300 {
     .radius-#{$i} {
-        border-radius: #{$i}px;
+        border-radius: #{$i}px !important;
     }
 
     .scale-#{$i} {
-        scale: #{1 + $i / 10};
+        scale: #{1 + $i / 10} !important;
     }
 }
 

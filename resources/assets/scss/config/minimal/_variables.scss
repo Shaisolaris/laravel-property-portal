@@ -1815,8 +1815,8 @@ $placeholder-opacity-min: .2;
 // Cards
 
 // scss-docs-start card-variables
-$card-spacer-y: $spacer;
-$card-spacer-x: $spacer;
+$card-spacer-y: $spacer + .25;
+$card-spacer-x: $spacer + .25;
 $card-title-spacer-y: $spacer * .5;
 $card-title-color: var(--#{$prefix}heading-color);
 $card-subtitle-color: null;
@@ -1962,9 +1962,9 @@ $toast-header-border-color: $toast-border-color;
 $badge-font-size: .75em;
 $badge-font-weight: $font-weight-semibold;
 $badge-color: $white;
-$badge-padding-y: .35em;
-$badge-padding-x: .65em;
-$badge-border-radius: $border-radius;
+$badge-padding-y: .5em;
+$badge-padding-x: .75em;
+$badge-border-radius: 100px;
 // scss-docs-end badge-variables
 
 

@@ -36,13 +36,12 @@ class CreateNewUser implements CreatesNewUsers
 
             $institution->peoples()->attach($user->id);
 
-            $this->updateOrCreateNotificationSettings($user);
+//            $this->updateOrCreateNotificationSettings($user);
 
             DB::commit();
 
             return $user;
         } catch (\Exception $exception) {
-            dd($exception);
             DB::rollBack();
             return null;
         }
@@ -70,17 +69,17 @@ class CreateNewUser implements CreatesNewUsers
             'notification_settings' => ["classes" => false, "schedule" => false, "assignments" => false, "mentors" => false]
         ];
 
-        if ($user->hasRole([UserRoleEnum::StudentAcademy()->value])) {
+        if ($user->hasRole([UserRoleEnum::Student()->value])) {
             $data['notification_settings'] = Arr::renameKey($data['notification_settings'], 'classes', 'courses');
         }
 
-        if ($user->hasRole([UserRoleEnum::InstructorAcademy()->value])) {
+        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {
             $data = [
                 'notification_settings' => ["payments" => false, "courses" => false, "schedule" => false, "assignments" => false]
             ];
         }
 
-        if ($user->hasRole([UserRoleEnum::InstructorSchool()->value])) {
+        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {
             $data = [
                 'notification_settings' => ["payments" => false, "classes" => false, "schedule" => false, "quizzes" => false, "assignments" => false]
             ];
@@ -88,6 +87,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $user->settings()->updateOrCreate(['user_id' => $user->id], $data);
     }
+
 
     private function hashedPassword($input): string
     {
