@@ -10,4 +10,10 @@ trait UserAttributesTrait
     {
         return Attribute::get(fn () => "$this->first_name $this->last_name");
     }
+
+
+    public function roleName(): Attribute
+    {
+        return Attribute::get(fn() => $this->roles->first()->name);
+    }
 }
