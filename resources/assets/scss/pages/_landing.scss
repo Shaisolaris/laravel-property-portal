@@ -4,9 +4,7 @@
 
 .layout-wrapper {
     &.landing {
-        background-color: #FCFCFC; // Там не белый цвет а вот такой TODO:: #FCFCFC
-        // ставлю тут коммент, глобально не меняю, бо вижу что secondary-bg много где
-
+        background-color: $body-bg;
         //background-color: var(--#{$prefix}secondary-bg);
         font-size: 15px;
     }
@@ -269,47 +267,166 @@
     }
 }
 
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 576px) {
+    .container-sm, .container {
+        max-width: 540px;
+    }
+
+    .layout-width {
+        max-width: 540px !important;
+    }
+}
+@media (min-width: 768px) {
+    .container-md, .container-sm, .container {
+        max-width: 720px;
+    }
+
+    .layout-width {
+        max-width: 720px !important;
+    }
+}
+@media (min-width: 992px) {
+    .container-lg, .container-md, .container-sm, .container {
+        max-width: 960px;
+    }
+
+    .layout-width {
+        max-width: 960px !important;
+    }
+}
+@media (min-width: 1200px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1140px;
+    }
+
+    .layout-width {
+        max-width: 1140px !important;
+    }
+}
+@media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1320px;
+    }
+
+    .layout-width {
+        max-width: 1320px !important;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container, .layout-width {
+        max-width: 1740px;
+    }
+
+    .layout-width {
+        max-width: 1740px !important;
+    }
+}
+
+@media (min-width: 1024.1px) {
+    :is([data-layout=vertical], [data-layout=semibox])[data-layout-style=detached] .navbar-header {
+        padding-left: 1rem !important;
+    }
+}
+
 .searchCourse {
     width: 0;
-    transition: width .15s ease-in-out, background-color .15s ease-in-out;
+    transition: width .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-bottom-color .15s ease-in-out,
+    border-left-color .15s ease-in-out,
+    border-right-color .15s ease-in-out,
+    border-top-color .15s ease-in-out;
 
     .searchCourseInput {
         background-color: transparent !important;
+
+        &.bg-white {
+            border-color: transparent !important;
+        }
     }
 
     &.show {
         width: 250px;
-        transition: width .35s ease-in-out, background-color .35s ease-in-out;
+        transition: width .35s ease-in-out,
+        background-color .35s ease-in-out,
+        border-bottom-color .35s ease-in-out,
+        border-left-color .35s ease-in-out,
+        border-right-color .35s ease-in-out,
+        border-top-color .35s ease-in-out;
 
         .searchCourseInput {
-            background-color: white !important
+            background-color: white !important;
+
+            &.bg-white {
+                border-color: $border-base-color !important;
+            }
         }
     }
 }
 
-
-.background-under-header-section {
-    background: url("@/images/page/landing/academy/bg-beige.svg") no-repeat center;
-    background-size: cover;
-}
-
-.background-academy-section-1 {
-    background: url("@/images/page/landing/academy/bg-blue.svg") no-repeat center;
-    background-size: cover;
-}
-
-.background-academy-section-5 {
-    background: url("@/images/page/landing/academy/bg-blue-2.svg") no-repeat center;
-    background-size: cover;
-}
-
-.background-academy-section-7 {
-    background: url("@/images/page/landing/academy/bg-pink.svg") no-repeat center;
-    background-size: cover;
-}
-
-
+/* custom BG */
 .background-footer {
     background: url("@/images/page/landing/bg-footer.svg") no-repeat center;
     background-size: 100% 100%;
 }
+
+
+/*********ACADEMY***************/
+
+.background-under-header-section {
+    background: url("@/images/page/landing/academy/bg-under-header-section.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-blue {
+    background: url("@/images/page/landing/bg-blue.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-blue-2 {
+    background: url("@/images/page/landing/bg-blue-2.svg") no-repeat center;
+    background-size: cover;
+}
+
+.background-pink {
+    background: url("@/images/page/landing/bg-pink.svg") no-repeat center;
+    background-size: cover;
+}
+
+/*********SCHOOL***************/
+
+.background-school-under-header-section {
+    background: url("@/images/page/landing/school/bg-under-header-section.svg") no-repeat center;
+    background-size: cover;
+    height: 919px;
+}
+
+.background-school-short-casual-courses-page {
+    background: url("@/images/page/landing/school/short-casual-courses-page/bg.svg") no-repeat center;
+    background-size: cover;
+    height: 250px;
+}
+
+.background-section-1-academy {
+    background: url("@/images/page/landing/academy/section-1/bg-section-1.svg") no-repeat center;
+    background-size: cover;
+}
+/*  */

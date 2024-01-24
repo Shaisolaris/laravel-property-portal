@@ -1,19 +1,45 @@
 {
-    "compilerOptions": {
-        "target": "es2016",
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true,
-        "paths": {
-            "~/*": ["./resources/js/*", "./dist/*"],
-            "@assets/*": ["./resources/assets/*"]
-        },
-        "include": [
-            "components.d.ts",
-            "resources/ts/BootstrapVue.ts",
-            "resources/ts/SelfComponents.ts",
-        ]
-    }
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "~/*": [
+        "./resources/js/*",
+        "./dist/*"
+      ],
+      "@assets/*": [
+        "./resources/assets/*"
+      ],
+      "$module@academy/*": [
+        "./modules/Academy/resources/assets/js/*"
+      ],
+      "$module@auth/*": [
+        "./modules/Auth/resources/assets/js/*"
+      ],
+      "$module@blog/*": [
+        "./modules/Blog/resources/assets/js/*"
+      ],
+      "$module@chat/*": [
+        "./modules/Chat/resources/assets/js/*"
+      ],
+      "$module@landing/*": [
+        "./modules/Landing/resources/assets/js/*"
+      ],
+      "$module@school/*": [
+        "./modules/School/resources/assets/js/*"
+      ],
+      "$module@dashboard/*": [
+        "./modules/Dashboard/resources/assets/js/*"
+      ]
+    },
+    "include": [
+      "resources/ts/components.d.ts",
+      "resources/ts/BootstrapVue.ts",
+      "resources/ts/SelfComponents.ts"
+    ]
+  }
 }

@@ -1,4 +1,7 @@
 <script setup>
+import LinkArrow from "$module@landing/partials/LinkArrow.vue";
+
+
 const instructors = ref([
     { name: 'Mathew Anderson', icon: 'page-landing-academy-section-5-img-1' },
     { name: 'Mathew Anderson', icon: 'page-landing-academy-section-5-img-2' },
@@ -8,7 +11,7 @@ const instructors = ref([
 </script>
 
 <template>
-    <section class="section background-academy-section-5">
+    <section class="section background-blue-2">
         <b-container class="text-center">
             <Text t-key="landing.academy.section-5.title" class="fsc-40 fontf-McLaren lh-1" />
             <Text t-key="landing.academy.section-5.subtitle" class="fs-16 pt-3" />
@@ -20,10 +23,7 @@ const instructors = ref([
                 </b-col>
             </b-row>
 
-            <Link :href="route('landing.academy')" class="text-black fs-3 lh-1 fontf-McLaren text-center">
-                <Text tag="span" t-key="landing.academy.section-5.button" class="me-2" />
-                <Icon name="svg-arrow-right" width="29" height="19" />
-            </Link>
+            <LinkArrow text-t-key="academy.section-5" />
         </b-container>
     </section>
 </template>

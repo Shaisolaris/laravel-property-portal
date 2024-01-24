@@ -19,26 +19,28 @@ defineProps({
 <!--                <i class="mdi mdi-cards-heart fs-16"></i>-->
 <!--            </button>-->
 <!--        </div>-->
-        <div class="explore-place-bid-img">
-            <slot name="image">
-                <img src="@/images/nft/img-03.jpg" class="card-img-top explore-img" alt>
-            </slot>
-            <div class="bg-overlay"></div>
+        <slot name="header">
+            <div class="explore-place-bid-img">
+                <slot name="image">
+                    <img src="@/images/nft/img-03.jpg" class="card-img-top explore-img" alt>
+                </slot>
+                <div class="bg-overlay"></div>
 
-            <div class="place-bid-btn">
-                <slot name="place-bid-btn" />
+                <div class="place-bid-btn">
+                    <slot name="place-bid-btn" />
+                </div>
             </div>
-        </div>
+        </slot>
 
-        <BCardBody>
+        <b-card-body>
             <slot name="body" />
-        </BCardBody>
+        </b-card-body>
 
-        <BCardFooter class="border-0">
+        <b-card-footer class="border-0">
             <div class="border-top">
                 <slot name="footer" />
             </div>
-        </BCardFooter>
+        </b-card-footer>
     </BCard>
 </template>
 

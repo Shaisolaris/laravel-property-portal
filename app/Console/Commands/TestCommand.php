@@ -2,12 +2,7 @@
 
 namespace App\Console\Commands;
 
-use DateTimeZone;
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 use Illuminate\Console\Command;
-use App\Enums\User\UserRoleEnum;
 
 class TestCommand extends Command
 {

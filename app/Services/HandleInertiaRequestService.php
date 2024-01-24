@@ -88,12 +88,9 @@ class HandleInertiaRequestService
             return $navigations;
         }
 
-        $user = Auth::user();
-
-        if ($user->hasRole([UserRoleEnum::StudentSchool()->value])) {}
-        if ($user->hasRole([UserRoleEnum::StudentAcademy()->value])) {}
-        if ($user->hasRole([UserRoleEnum::InstructorAcademy()->value])) {}
-        if ($user->hasRole([UserRoleEnum::InstructorSchool()->value])) {}
+//        $user = Auth::user();
+//        if ($user->hasRole([UserRoleEnum::Student()->value])) {}
+//        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {}
 
         return $navigations;
     }

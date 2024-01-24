@@ -84,7 +84,7 @@ onMounted(() => {
 
 <template>
     <nav class="navbar navbar-expand-lg navbar-landing fixed-top job-navbar" style="border-bottom: 1px solid #E3DED6" id="navbar">
-        <BContainer fluid class="custom-container justify-content-between align-items-center">
+        <b-container fluid class="custom-container justify-content-between align-items-center">
             <Link class="navbar-brand" href="/">
                 <img src="@/images/logo/logo.svg" class="card-logo card-logo-dark" alt="logo dark" height="35">
                 <img src="@/images/logo/logo.svg" class="card-logo card-logo-light" alt="logo light" height="35">
@@ -107,6 +107,6 @@ onMounted(() => {
             <div>
                 <LangDropdown />
             </div>
-        </BContainer>
+        </b-container>
     </nav>
 </template>

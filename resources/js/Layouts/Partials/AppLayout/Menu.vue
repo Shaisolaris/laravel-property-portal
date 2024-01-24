@@ -3,7 +3,7 @@ import MenuItem from "~/Layouts/Partials/AppLayout/MenuItem.vue";
 </script>
 
 <template>
-    <BContainer fluid>
+    <b-container fluid>
         <div id="two-column-menu"></div>
         <ul class="navbar-nav h-100" id="navbar-nav">
             <template v-for="(navigation, index) in $page.props.navigations">
@@ -14,7 +14,7 @@ import MenuItem from "~/Layouts/Partials/AppLayout/MenuItem.vue";
                 <MenuItem :navigation="navigation" />
             </template>
         </ul>
-    </BContainer>
+    </b-container>
 </template>
 
 <style scoped>

@@ -33,10 +33,7 @@ class ValidateUser
             return Redirect::guest(URL::route('registration.otp-form'));
         }
 
-        if(
-            $user->hasRole(UserRoleEnum::get('InstructorSchool')) ||
-            $user->hasRole(UserRoleEnum::get('InstructorAcademy'))
-        ) {
+        if($user->hasRole(UserRoleEnum::Instructor()->value)) {
             if(!$user->isOccupations()) {
                 return to_route('registration.occupations.index');
             }

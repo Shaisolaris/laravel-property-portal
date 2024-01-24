@@ -5,26 +5,47 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite"
-import fs from 'fs';
+import fsExtra from 'fs-extra';
 
 
 const __dirname = path.dirname(__filename);
 
 
-function generateModuleAliases() {
+const generateModuleAliases = () => {
+    const tsConfigPath = path.join(__dirname, 'tsconfig.json');
     const moduleDir = path.resolve(__dirname, 'modules');
     const aliases = {};
+    const paths_ = {}
 
-    fs.readdirSync(moduleDir).forEach((moduleName) => {
+
+    fsExtra.readdirSync(moduleDir).forEach((moduleName) => {
         const modulePath = `modules/${moduleName}/resources/assets/js`;
 
-        if (fs.existsSync(path.resolve(__dirname, modulePath))) {
-            aliases[`@${moduleName}`] = path.resolve(__dirname, modulePath);
+        if (fsExtra.existsSync(path.resolve(__dirname, modulePath))) {
+            aliases[`$module@${moduleName.toLowerCase()}`] = path.resolve(__dirname, modulePath);
+            paths_[`$module@${moduleName.toLowerCase()}/*`] = [`./${modulePath}/*`];
         }
+    });
+
+    fsExtra.readFile(tsConfigPath, (err, data) => {
+        const tsConfig = JSON.parse(data);
+        const paths = { ...tsConfig.compilerOptions.paths, ...paths_ };
+
+        tsConfig.compilerOptions = tsConfig.compilerOptions || {};
+        tsConfig.compilerOptions.paths = paths;
+
+        fsExtra.writeFile(tsConfigPath, JSON.stringify(tsConfig, null, 2), err => {
+            if (err) {
+                console.error('Ошибка при записи в файл tsconfig.json:', err);
+            } else {
+                console.log('tsconfig.json успешно обновлен');
+            }
+        });
     });
 
     return aliases;
 }
+
 
 
 export default defineConfig({
@@ -79,7 +100,7 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, 'resources/assets'),
             '~': path.resolve(__dirname, 'resources/js'),
-            // ...generateModuleAliases()
+            ...generateModuleAliases()
         },
     },
 });

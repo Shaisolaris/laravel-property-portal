@@ -15,7 +15,7 @@ defineProps({
             :key="index"
         >
             <template #title>
-                <i v-if="item?.icon" :class="`${item.icon} align-bottom me-2`"></i>
+                <i v-if="item?.icon" :class="`${item.icon} align-middle me-2 fs-18`"></i>
                 <Text :t-key="item?.name ? item.name : item" tag="span" />
             </template>
 

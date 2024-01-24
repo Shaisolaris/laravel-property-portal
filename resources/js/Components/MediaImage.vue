@@ -1,7 +1,8 @@
 <script setup>
-import {ProgressiveImage} from 'vue-progressive-image';
-import helpers from "~/scripts/utils/helpers.js";
-import {onMounted, reactive} from 'vue';
+import { onMounted, reactive } from 'vue';
+import { ProgressiveImage } from 'vue-progressive-image';
+import helpers from "~/scripts/helpers/helpers.js";
+
 
 const props = defineProps({
     media: {
@@ -38,7 +39,7 @@ const props = defineProps({
     },
 });
 
-const {randomString} = helpers;
+const { randomString } = helpers;
 
 const image = reactive({
     src: '',
@@ -48,10 +49,10 @@ const image = reactive({
 onMounted(() => {
     if (props.media.hasOwnProperty('url')) {
         generateImagePreview(props.media).then(
-            (data) => ([image.src, image.placeholder] = [data.src, data.placeholder]),
+            (data) => ([ image.src, image.placeholder ] = [ data.src, data.placeholder ]),
         );
     } else {
-        [image.src, image.placeholder] = [props.src, props.placeholder];
+        [ image.src, image.placeholder ] = [ props.src, props.placeholder ];
     }
 });
 
@@ -82,10 +83,10 @@ const generateImagePreview = async (media) => {
         canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
         const image = canvas.toDataURL('image/png');
 
-        return {src: image, placeholder: image};
+        return { src: image, placeholder: image };
     }
 
-    return {src: media.url, placeholder: media.conversion_url};
+    return { src: media.url, placeholder: media.conversion_url };
 };
 
 const avatarName = () => {
@@ -111,18 +112,18 @@ const avatarName = () => {
         />
     </div>
     <div v-else class="d-flex align-items-center">
-        <span class="bg-light-blue rounded-circle header-profile-user d-flex align-items-center justify-content-center text-white">{{avatarName()}}</span>
+        <span class="bg-light-blue rounded-circle header-profile-user d-flex align-items-center justify-content-center text-white">{{ avatarName() }}</span>
     </div>
 </template>
 
 <style>
- .avatar-user {
-     width: 32px;
-     height: 32px;
+.avatar-user {
+    width: 32px;
+    height: 32px;
 
-     img {
-         width: 100%;
-         object-fit: cover;
-     }
- }
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
 </style>

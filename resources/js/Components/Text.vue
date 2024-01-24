@@ -2,7 +2,7 @@
 defineProps({
     tKey: {
         type: String,
-        required: true
+        required: false
     },
     tag: {
         type: String,
@@ -13,7 +13,9 @@ defineProps({
 
 <template>
     <component :is="tag" :data-key="`${tKey}`">
-        {{ $t(`${tKey}`) }}
+        <slot name="custom-text">
+            {{ $t(`${tKey}`) }}
+        </slot>
     </component>
 </template>
 
