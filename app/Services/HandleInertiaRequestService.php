@@ -33,8 +33,8 @@ class HandleInertiaRequestService
                 'tKey' => 'add-new-course'
             ],
             [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
+                'route' => route('academy.my-courses'),
+                'active' => request()->routeIs('academy.my-courses'),
                 'icon' => 'ri-computer-line',
                 'tKey' => 'courses'
             ],

@@ -1,7 +1,7 @@
 <script setup>
 import {ProgressiveImage} from 'vue-progressive-image';
-import {onMounted, reactive} from 'vue';
 import helpers from "~/scripts/utils/helpers.js";
+import {onMounted, reactive} from 'vue';
 
 const props = defineProps({
     media: {

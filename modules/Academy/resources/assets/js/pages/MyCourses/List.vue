@@ -3,18 +3,18 @@ import AppLayout from "~/Layouts/AppLayout.vue";
 import BlocksAmountInfo from "~/Components/Elements/BlocksAmountInfo.vue";
 import CardAdvance from "~/Components/Cards/CardAdvance.vue";
 
+defineProps({
+    courses:{
+        type: Object,
+    }
+});
+
 const items =  [
     {text: 'course.total', icon: 'mdi mdi-file-chart', amount: 2},
     {text: 'course.hours', icon: 'mdi mdi-file-clock', amount: 23},
     {text: 'course.total-sale', icon: 'mdi mdi-file-check', amount: 3},
     {text: 'course.earned', icon: 'mdi mdi-file-remove', amount: 4}
 ];
-
-const infoItem = [
-    {name: "lecture", icon: "las la-comment"},
-    {name: "section", icon: "las la-list-ol"},
-    {name: "time", icon: "las la-clock"},
-]
 
 </script>
 
@@ -26,23 +26,25 @@ const infoItem = [
                 <div class="listTabing d-flex gap-2">
                     <a class="btn btn-light waves-effect" href="{{ url('/academy/dashboard/courses') }}">
                         <div class="listing">
-                            <img src="/design/img/courseList/list.svg"/>
+<!--                            <img src="/design/img/courseList/list.svg"/>-->
                         </div>
                     </a>
                     <a class="btn btn-light waves-effect" href="{{ url('/academy/dashboard/courses') }}">
                         <div class="categoriesGrid">
-                            <img src="/design/img/courseList/grid.svg"/>
+<!--                            <img src="/design/img/courseList/grid.svg"/>-->
                         </div>
                     </a>
                     <a class="btn btn-light waves-effect" href="{{ url('/academy/dashboard/courses') }}">
                         <div class="categoriesGrid">
-                            <img src="/design/img/courseList/refresh.svg"/>
+<!--                            <img src="/design/img/courseList/refresh.svg"/>-->
                         </div>
                     </a>
                 </div>
             </div>
             <div>
-                <CardAdvance :info="infoItem"/>
+                <template v-for="course in courses">
+                    <CardAdvance :item="course"/>
+                </template>
             </div>
         </div>
     </AppLayout>

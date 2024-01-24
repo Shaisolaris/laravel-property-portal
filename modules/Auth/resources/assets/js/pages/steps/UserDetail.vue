@@ -147,12 +147,12 @@ const list = reactive([
                             type="submit"
                             class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
                         />
-                        <BaseButton
-                            t-key="upload-course"
-                            routeName="academy.courses.create"
-                            type="submit"
-                            class="fs-20 fw-bold shadow-dark-blue border-2 border-black second bg-gainsboro"
-                        />
+<!--                        <BaseButton-->
+<!--                            t-key="upload-course"-->
+<!--                            routeName="academy.courses.create"-->
+<!--                            type="submit"-->
+<!--                            class="fs-20 fw-bold shadow-dark-blue border-2 border-black second bg-gainsboro"-->
+<!--                        />-->
                     </div>
                 </div>
             </div>
