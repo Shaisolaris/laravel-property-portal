@@ -2,7 +2,7 @@
 
 const toggleHamburgerMenu = () => {
     const windowSize = document.documentElement.clientWidth;
-    let layoutType = document.documentElement.getAttribute("data-layout");
+    let layoutType = document.documentElement.getAttribute("data-layouts");
 
     document.documentElement.setAttribute("data-sidebar-visibility", "show");
     let visibilityType = document.documentElement.getAttribute("data-sidebar-visibility");
@@ -11,7 +11,7 @@ const toggleHamburgerMenu = () => {
         document.querySelector(".hamburger-icon").classList.toggle("open");
 
     if (
-        document.documentElement.getAttribute("data-layout") === "horizontal"
+        document.documentElement.getAttribute("data-layouts") === "horizontal"
     ) {
         document.body.classList.contains("menu") ?
             document.body.classList.remove("menu") :
@@ -35,7 +35,7 @@ const toggleHamburgerMenu = () => {
         }
     }
 
-    if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
+    if (document.documentElement.getAttribute("data-layouts") == "twocolumn") {
         document.body.classList.contains("twocolumn-panel") ?
             document.body.classList.remove("twocolumn-panel") :
             document.body.classList.add("twocolumn-panel");

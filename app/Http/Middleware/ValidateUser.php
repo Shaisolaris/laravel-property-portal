@@ -29,14 +29,15 @@ class ValidateUser
     {
         $user = $request->user();
 
+        if($user->hasRole(UserRoleEnum::Admin()->value)) {
+            return $next($request);
+        }
+
         if ($user instanceof MustVerifyEmail && !$user->hasVerifiedEmail()) {
             return Redirect::guest(URL::route('registration.otp-form'));
         }
 
-        if(
-            $user->hasRole(UserRoleEnum::get('InstructorSchool')) ||
-            $user->hasRole(UserRoleEnum::get('InstructorAcademy'))
-        ) {
+        if($user->hasRole(UserRoleEnum::Instructor()->value)) {
             if(!$user->isOccupations()) {
                 return to_route('registration.occupations.index');
             }

@@ -16,10 +16,7 @@ class OccupationsController extends Controller
     {
         $user = $request->user();
 
-        if(
-            $user->hasRole(UserRoleEnum::get('InstructorSchool')) ||
-            $user->hasRole(UserRoleEnum::get('InstructorAcademy'))
-        ) {
+        if($user->hasRole(UserRoleEnum::Instructor()->value)) {
             if($user->isOccupations()) {
                 return to_route('registration.profile-avatar.index');
             }

@@ -6,7 +6,7 @@ import todo from './modules/todo';
 
 const store = new Vuex.Store({
     modules: {
-        layout: layout, // Register the layout module
+        layout: layout, // Register the layouts module
         notification, // Register the notifications module
         todo
 

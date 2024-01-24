@@ -14,7 +14,7 @@ Route::middleware([
 
 
 Route::group([
-    'middleware' => ['auth:sanctum', 'verified']
+    'middleware' => ['auth:sanctum', 'role:organizer|student|instructor']
 ], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Welcome');

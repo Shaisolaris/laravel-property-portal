@@ -12,7 +12,7 @@ defineProps({
 
 const toggleHamburgerMenu = () => {
     const windowSize = document.documentElement.clientWidth;
-    let layoutType = document.documentElement.getAttribute("data-layout");
+    let layoutType = document.documentElement.getAttribute("data-layouts");
 
     document.documentElement.setAttribute("data-sidebar-visibility", "show");
     let visibilityType = document.documentElement.getAttribute("data-sidebar-visibility");
@@ -22,7 +22,7 @@ const toggleHamburgerMenu = () => {
 
     //For collapse horizontal menu
     if (
-        document.documentElement.getAttribute("data-layout") === "horizontal"
+        document.documentElement.getAttribute("data-layouts") === "horizontal"
     ) {
         document.body.classList.contains("menu") ?
             document.body.classList.remove("menu") :
@@ -46,7 +46,7 @@ const toggleHamburgerMenu = () => {
         }
     }
 
-    if (document.documentElement.getAttribute("data-layout") === "twocolumn") {
+    if (document.documentElement.getAttribute("data-layouts") === "twocolumn") {
         document.body.classList.contains("twocolumn-panel") ?
             document.body.classList.remove("twocolumn-panel") :
             document.body.classList.add("twocolumn-panel");
@@ -263,7 +263,7 @@ onMounted(() => {
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
                                                     <img
-                                                        src="../../../../assets/images/users/avatar-3.jpg"
+                                                        src="@/images/users/avatar-3.jpg"
                                                         class="me-3 rounded-circle avatar-xs"
                                                         alt="user-pic"
                                                     />
@@ -301,7 +301,7 @@ onMounted(() => {
                                         <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                                             <div class="w-25 w-sm-50 pt-3 mx-auto">
                                                 <img
-                                                    src="../../../../assets/images/svg/bell.svg"
+                                                    src="@/images/svg/bell.svg"
                                                     class="img-fluid"
                                                     alt="user-pic"
                                                 />

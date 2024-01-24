@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+@php
+    $user = Auth::user();
+@endphp
+
 <html
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
     data-layout="vertical"
@@ -11,7 +15,8 @@
     data-layout-width="fluid"
     data-layout-position="fixed"
     data-sidebar-visibility="show"
-    data-layout-style="detached"
+    data-layout-style="{{$user && $user->hasRole(\App\Enums\User\UserRoleEnum::Admin()->value) ? 'default' : 'detached'}} "
+    data-role-name="{{$user?->roleName}}"
 >
     <head>
         <meta charset="utf-8">

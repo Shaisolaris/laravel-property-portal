@@ -88,9 +88,21 @@ class HandleInertiaRequestService
             return $navigations;
         }
 
-//        $user = Auth::user();
-//        if ($user->hasRole([UserRoleEnum::Student()->value])) {}
-//        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {}
+        $user = Auth::user();
+
+        if ($user->hasRole([UserRoleEnum::Student()->value])) {}
+        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {}
+
+        if ($user->hasRole([UserRoleEnum::Admin()->value])) {
+            $navigations = collect([
+                [
+                    'route' => route('admin.dashboard'),
+                    'active' => request()->routeIs('admin.dashboard'),
+                    'icon' => 'ri-layout-left-line',
+                    'tKey' => 'dashboard'
+                ],
+            ]);
+        }
 
         return $navigations;
     }

@@ -2,7 +2,6 @@
 import { isEmpty } from "lodash";
 import { useToast } from "~/scripts/helpers/useToast.js";
 import simplebar from "simplebar-vue";
-import Menu from "./Partials/AppLayout/Menu.vue";
 import NavBar from "./Partials/AppLayout/NavBar.vue";
 import Breadcrumbs from "~/Layouts/Partials/AppLayout/Breadcrumbs.vue";
 
@@ -13,8 +12,6 @@ defineProps({
         default: ''
     }
 });
-const isMenuCondensed = ref(false);
-
 localStorage.setItem('hoverd', false);
 
 
@@ -30,17 +27,6 @@ const initActiveMenu = () => {
     }
 }
 
-const toggleMenu = () => {
-    document.body.classList.toggle("sidebar-enable");
-
-    if (window.screen.width >= 992) {
-        document.body.classList.toggle("vertical-collpsed");
-    } else {
-        document.body.classList.remove("vertical-collpsed");
-    }
-    isMenuCondensed.value = !isMenuCondensed.value;
-}
-
 
 watch(
     () => usePage().props.flash,
@@ -54,9 +40,9 @@ watch(
 
 
 onBeforeMount(() => {
-    document.body.removeAttribute("data-layout", "horizontal");
+    document.body.removeAttribute("data-layouts", "horizontal");
     document.body.removeAttribute("data-topbar", "dark");
-    document.body.removeAttribute("data-layout-size", "boxed");
+    document.body.removeAttribute("data-layouts-size", "boxed");
 
     if (localStorage.getItem('hoverd') === 'true') {
         document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');

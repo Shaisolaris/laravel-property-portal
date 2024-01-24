@@ -1,6 +1,6 @@
 //
 // _vertical.scss
-// 
+//
 
 .app-content {
     margin-left: var(--#{$prefix}vertical-menu-width);
@@ -1121,5 +1121,25 @@
             padding-left: 0px !important;
             padding-right: 0px !important;
         }
+    }
+}
+
+[data-role-name="admin"] {
+    .app-content {
+        .content {
+            margin-top: $header-height;
+        }
+    }
+
+    .page-content {
+        padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
+    }
+
+    .navbar-menu {
+        padding: 0 0 calc(#{$header-height} + 25px) 0;
+    }
+
+    .logo {
+        line-height: $header-height;
     }
 }
