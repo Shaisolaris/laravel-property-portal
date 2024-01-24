@@ -19,7 +19,7 @@
     }
 
     .scale-#{$i} {
-        scale: #{1 + $i / 10} !important;
+        scale: #{1 + ($i * 0.1)} !important;
     }
 }
 
@@ -63,7 +63,7 @@ $shadows: (
 
 
 @each $shadowName, $shadow in $shadows {
-    .shadow-#{$shadowName} {
+    .shadow-#{"" + $shadowName} {
         box-shadow: $shadow !important;
     }
 }
