@@ -1,9 +1,9 @@
 <script setup>
-import LandingLayout from "../../../layouts/LandingLayout.vue";
+import LandingLayout from "$module@landing/layouts/LandingLayout.vue";
 </script>
 
 <template>
-    <LandingLayout>
+    <LandingLayout :show-footer="false" title="academy-courses">
 
     </LandingLayout>
 </template>

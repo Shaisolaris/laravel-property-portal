@@ -49,10 +49,10 @@ class UserSeeder extends Seeder
 
         $adminRole = Role::updateOrCreate(['name' => UserRoleEnum::Admin()->value], ['name' => UserRoleEnum::Admin()->value]);
         $organizerRole = Role::updateOrCreate(['name' => UserRoleEnum::Organizer()->value], ['name' => UserRoleEnum::Organizer()->value]);
-        $studentSchoolRole = Role::updateOrCreate(['name' => UserRoleEnum::StudentSchool()->value], ['name' => UserRoleEnum::StudentSchool()->value]);
-        $studentAcademyRole = Role::updateOrCreate(['name' => UserRoleEnum::StudentAcademy()->value], ['name' => UserRoleEnum::StudentAcademy()->value]);
-        $instructorSchoolRole = Role::updateOrCreate(['name' => UserRoleEnum::InstructorSchool()->value], ['name' => UserRoleEnum::InstructorSchool()->value]);
-        $instructorAcademyRole = Role::updateOrCreate(['name' => UserRoleEnum::InstructorAcademy()->value], ['name' => UserRoleEnum::InstructorAcademy()->value]);
+        $studentSchoolRole = Role::updateOrCreate(['name' => UserRoleEnum::Student()->value], ['name' => UserRoleEnum::Student()->value]);
+        $studentAcademyRole = Role::updateOrCreate(['name' => UserRoleEnum::Student()->value], ['name' => UserRoleEnum::Student()->value]);
+        $instructorSchoolRole = Role::updateOrCreate(['name' => UserRoleEnum::Instructor()->value], ['name' => UserRoleEnum::Instructor()->value]);
+        $instructorAcademyRole = Role::updateOrCreate(['name' => UserRoleEnum::Instructor()->value], ['name' => UserRoleEnum::Instructor()->value]);
 
         $admin->assignRole($adminRole);
         $organizer->assignRole($organizerRole);

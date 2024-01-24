@@ -15,11 +15,11 @@
 
 @for $i from 1 through 300 {
     .radius-#{$i} {
-        border-radius: #{$i}px;
+        border-radius: #{$i}px !important;
     }
 
     .scale-#{$i} {
-        scale: #{1 + $i / 10};
+        scale: #{1 + ($i * 0.1)} !important;
     }
 }
 
@@ -57,12 +57,13 @@ $shadows: (
     white: 0 4px 40px 0 rgba(0, 0, 0, 0.08),
     light-blue: 4px 4px 0 0 #9BB8ED,
     light-white: 0 4px 12px 0 rgba(0, 0, 0, 0.04),
-    pink: 4px 4px 0 0 #DEB3E0,
+    light-pink: 4px 4px 0 0 #DEB3E0,
+    black: 2px 2px 0 0 #000000,
 );
 
 
 @each $shadowName, $shadow in $shadows {
-    .shadow-#{$shadowName} {
+    .shadow-#{"" + $shadowName} {
         box-shadow: $shadow !important;
     }
 }

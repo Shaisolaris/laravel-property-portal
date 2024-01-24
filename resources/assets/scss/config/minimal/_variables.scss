@@ -88,6 +88,7 @@ $thistle: rgba(222, 179, 224, 0.40);
 $crimson: rgba(231, 134, 139, 0.40);
 $cosmic-sapphire: #122D98;
 $emerald-green: #1B9930;
+$light-pink: #DEB3E0;
 
 $border-base-color: #E3E3E3;
 $card-border-base-color: #F1F3F5;
@@ -114,6 +115,7 @@ $colors: (
     "light-yellow": $light-yellow,
     "royal-blue": $royal-blue,
     "dim-gray": $dim-gray,
+    "light-pink": $light-pink,
     "beige": $beige,
     "light-beige": $light-beige,
     "gainsboro": $gainsboro,
@@ -276,6 +278,16 @@ $dim-gray-600: shade-color($dim-gray, 20%);
 $dim-gray-700: shade-color($dim-gray, 40%);
 $dim-gray-800: shade-color($dim-gray, 60%);
 $dim-gray-900: shade-color($dim-gray, 80%);
+
+$light-pink-100: tint-color($light-pink, 80%);
+$light-pink-200: tint-color($light-pink, 60%);
+$light-pink-300: tint-color($light-pink, 40%);
+$light-pink-400: tint-color($light-pink, 20%);
+$light-pink-500: $light-pink;
+$light-pink-600: shade-color($light-pink, 20%);
+$light-pink-700: shade-color($light-pink, 40%);
+$light-pink-800: shade-color($light-pink, 60%);
+$light-pink-900: shade-color($light-pink, 80%);
 
 $beige-100: tint-color($beige, 80%);
 $beige-200: tint-color($beige, 60%);
@@ -526,6 +538,18 @@ $dim-grays: (
     "dim-gray-900": $dim-gray-900
 );
 
+$light-pinks: (
+    "light-pink-100": $light-pink-100,
+    "light-pink-200": $light-pink-200,
+    "light-pink-300": $light-pink-300,
+    "light-pink-400": $light-pink-400,
+    "light-pink-500": $light-pink-500,
+    "light-pink-600": $light-pink-600,
+    "light-pink-700": $light-pink-700,
+    "light-pink-800": $light-pink-800,
+    "light-pink-900": $light-pink-900
+);
+
 $beiges: (
     "beige-100": $beige-100,
     "beige-200": $beige-200,
@@ -641,6 +665,7 @@ $light-blue-trans: #9BB8ED1a;
 $royal-blue: #154BD8;
 $beige-blue: #F3F6FD;
 $dim-gray: #676A6C;
+$light-pink: #DEB3E0;
 $beige: #F7F6F2;
 $light-beige: #F2F2F2;
 $gainsboro: #E3E3E3;
@@ -671,6 +696,7 @@ $theme-colors: (
     "light-yellow": $light-yellow,
     "royal-blue": $royal-blue,
     "dim-gray": $dim-gray,
+    "light-pink": $light-pink,
     "beige": $beige,
     "light-beige": $light-beige,
     "gainsboro": $gainsboro,
@@ -696,6 +722,7 @@ $light-blue-text-emphasis:              shade-color($light-blue, 15%);
 $light-yellow-text-emphasis:            shade-color($light-yellow, 15%);
 $royal-blue-text-emphasis:              shade-color($royal-blue, 15%);
 $dim-gray-text-emphasis:                shade-color($dim-gray, 15%);
+$light-pink-text-emphasis:              shade-color($light-pink, 15%);
 $beige-text-emphasis:                   shade-color($beige, 15%);
 $light-beige-text-emphasis:             shade-color($light-beige, 15%);
 $gainsboro-text-emphasis:               shade-color($gainsboro, 15%);
@@ -719,6 +746,7 @@ $light-blue-bg-subtle:       tint-color($light-blue, 85%);
 $light-yellow-bg-subtle:     tint-color($light-yellow, 85%);
 $royal-blue-bg-subtle:       tint-color($royal-blue, 85%);
 $dim-gray-bg-subtle:         tint-color($dim-gray, 85%);
+$light-pink:                 tint-color($light-pink, 85%);
 $beige-bg-subtle:            tint-color($beige, 85%);
 $light-beige-bg-subtle:      tint-color($light-beige, 85%);
 $gainsboro-bg-subtle:        tint-color($gainsboro, 85%);
@@ -742,6 +770,7 @@ $light-blue-border-subtle:       tint-color($light-blue, 60%);
 $light-yellow-border-subtle:     tint-color($light-yellow, 60%);
 $royal-blue-border-subtle:       tint-color($royal-blue, 60%);
 $dim-gray-border-subtle:         tint-color($dim-gray, 60%);
+$light-pink-border-subtle:       tint-color($light-pink, 60%);
 $beige-border-subtle:            tint-color($beige, 60%);
 $light-beige-border-subtle:      tint-color($light-beige, 60%);
 $gainsboro-border-subtle:        tint-color($gainsboro, 60%);
@@ -751,6 +780,23 @@ $crimson-border-subtle:          tint-color($crimson, 60%);
 $cosmic-sapphire-border-subtle:  tint-color($cosmic-sapphire, 60%);
 $emerald-green-border-subtle:    tint-color($emerald-green, 60%);
 // scss-docs-end theme-border-subtle-variables
+
+//scss colors for buttons width custom color
+$theme-buttons: (
+    "light-blue": $light-blue-text-emphasis,
+    "light-yellow": $light-yellow-text-emphasis,
+    "royal-blue": $royal-blue-text-emphasis,
+    "dim-gray": $dim-gray-text-emphasis,
+    "beige": $beige-text-emphasis,
+    "gainsboro": $gainsboro-text-emphasis,
+    "thistle": $thistle-text-emphasis,
+    "light-steel-blue": $light-steel-blue-text-emphasis,
+    "crimson": $crimson-text-emphasis,
+    "cosmic-sapphire": $cosmic-sapphire-text-emphasis,
+    "light-pink": $light-pink,
+    "light-beige": $light-beige,
+);
+//
 
 // Characters which are escaped by the escape-svg function
 $escaped-characters: (
@@ -1192,6 +1238,7 @@ $table-variants: (
     "light-yellow":     shift-color($light-yellow, $table-bg-scale),
     "royal-blue":       shift-color($royal-blue, $table-bg-scale),
     "dim-gray":         shift-color($dim-gray, $table-bg-scale),
+    "light-pink":       shift-color($light-pink, $table-bg-scale),
     "beige":            shift-color($beige, $table-bg-scale),
     "gainsboro":        shift-color($gainsboro, $table-bg-scale),
     "thistle":          shift-color($thistle, $table-bg-scale),
@@ -1768,8 +1815,8 @@ $placeholder-opacity-min: .2;
 // Cards
 
 // scss-docs-start card-variables
-$card-spacer-y: $spacer;
-$card-spacer-x: $spacer;
+$card-spacer-y: $spacer + .25;
+$card-spacer-x: $spacer + .25;
 $card-title-spacer-y: $spacer * .5;
 $card-title-color: var(--#{$prefix}heading-color);
 $card-subtitle-color: null;
@@ -1915,9 +1962,9 @@ $toast-header-border-color: $toast-border-color;
 $badge-font-size: .75em;
 $badge-font-weight: $font-weight-semibold;
 $badge-color: $white;
-$badge-padding-y: .35em;
-$badge-padding-x: .65em;
-$badge-border-radius: $border-radius;
+$badge-padding-y: .5em;
+$badge-padding-x: .75em;
+$badge-border-radius: 100px;
 // scss-docs-end badge-variables
 
 

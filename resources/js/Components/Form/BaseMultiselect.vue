@@ -1,11 +1,9 @@
 <script setup>
-import TagLabel from "~/Components/Partials/TagLabel.vue";
-import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
 import Multiselect from "@vueform/multiselect";
 import "@vueform/multiselect/themes/default.css";
 
-const emit = defineEmits([ 'update:modelValue' ]);
-const {options, label, placeholder, modelValue} = defineProps({
+
+const { options, label, placeholder, modelValue } = defineProps({
     label: {
         type: String,
         default: '',
@@ -27,26 +25,28 @@ const {options, label, placeholder, modelValue} = defineProps({
         type: String,
         default: '',
     },
-    mode:{
+    mode: {
         type: String,
         default: "tags",
     }
 });
-
+const emit = defineEmits([ 'update:modelValue' ]);
 </script>
 
 <template>
     <div :id="$attrs.id">
-        <TagLabel :label="label" :required="$attrs.required"/>
+        <TagLabel :label="label" :required="$attrs.required" />
 
-        <Multiselect class="form-control multiselect-inoura"
-                     :mode="mode"
-                     @select="value => emit('update:modelValue', value)"
-                     :close-on-select="true"
-                     :searchable="true"
-                     :options="options"/>
+        <Multiselect
+            :mode="mode"
+            :close-on-select="true"
+            :searchable="true"
+            :options="options"
+            class="form-control multiselect-inoura"
+            @select="value => emit('update:modelValue', value)"
+        />
 
-        <ErrorMessage :error="error" :show-error="showError"/>
+        <ErrorMessage :error="error" :show-error="showError" />
     </div>
 </template>
 

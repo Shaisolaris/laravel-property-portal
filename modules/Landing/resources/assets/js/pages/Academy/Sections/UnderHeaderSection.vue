@@ -1,24 +1,17 @@
 <script setup>
 
+import Search from "$module@landing/partials/Search.vue";
 </script>
 
 <template>
-    <section class="section job-hero-section background-under-header-section" id="start-learning">
+    <section class="section job-hero-section background-under-header-section" >
         <b-container class="position-relative pb-5">
             <b-row class="justify-content-between align-items-center">
                 <b-col>
                     <Text t-key="landing.academy.under-header-section.text-1" class="fontf-McLaren fsc-64 lh-1" />
                     <Text t-key="landing.academy.under-header-section.text-2" class="fs-24 py-3" />
 
-                    <div class="d-flex align-items-center justify-content-between border bg-white border-2 border-black rounded p-2">
-                        <div class="d-flex align-items-center gap-2 ms-3">
-                            <i class="ri-search-2-line align-bottom fs-3" />
-                            <BaseInput placeholder="what-do-you-want" class="border-0 ps-0" />
-                        </div>
-                        <div class="text-end">
-                            <BaseButton t-key="search" />
-                        </div>
-                    </div>
+                    <Search />
                 </b-col>
                 <b-col>
                     <Icon name="page-landing-academy-under-header-section-img-1" width="505" height="539" />

@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use App\Enums\User\UserTeachingLevel;
-use App\Traits\HasFileUploads;
-use App\Traits\Models\Functions\UserFunctionsTrait;
-use App\Traits\MustVerifyOtpCode;
 use Eloquent;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
 use Illuminate\Support\Carbon;
+use App\Traits\HasFileUploads;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
+use App\Traits\MustVerifyOtpCode;
 use App\Enums\User\UserStatusEnum;
 use Spatie\Permission\Models\Role;
+use App\Enums\User\UserTeachingLevel;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -24,13 +22,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\Notification\Entities\Notification;
+use App\Traits\Models\Functions\UserFunctionsTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Traits\Models\Attributes\UserAttributesTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\Models\Relationships\UserRelationshipsTrait;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-
 
 /**
  * App\Models\User
@@ -43,6 +42,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string $first_name
  * @property string $last_name
  * @property string|null $gender
+ * @property array|null $languages
  * @property string|null $profile_photo_path
  * @property string $address
  * @property string $country
@@ -50,6 +50,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string $city
  * @property string|null $timezone
  * @property string|null $phone
+ * @property Enum|null $teaching_level
  * @property string|null $bio
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
@@ -58,11 +59,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property array|null $languages
+ * @property-read UserDetail|null $detail
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read Collection<int, Notification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read Collection<int, Occupation> $occupations
+ * @property-read int|null $occupations_count
  * @property-read Collection<int, Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read string $profile_photo_url
@@ -98,6 +101,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTeachingLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)

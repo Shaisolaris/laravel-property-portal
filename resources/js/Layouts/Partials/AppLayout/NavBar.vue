@@ -103,7 +103,7 @@ onMounted(() => {
             <div class="navbar-header">
                 <div class="d-flex">
                     <div class="navbar-brand-box horizontal-logo">
-                        <Link :href="route('landing.academy')" class="logo logo-dark">
+                        <Link :href="route('landing.academy.index')" class="logo logo-dark">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
@@ -112,7 +112,7 @@ onMounted(() => {
                             </span>
                         </Link>
 
-                        <Link :href="route('landing.academy')" class="logo logo-light">
+                        <Link :href="route('landing.academy.index')" class="logo logo-light">
                             <span class="logo-sm">
                                 <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
                             </span>
@@ -147,7 +147,7 @@ onMounted(() => {
                     </div>
                     <div class="d-flex align-items-center">
                         <slot name="bottom-right-nav-bar-block">
-                            <BDropdown
+                            <b-dropdown
                                 :offset="{ alignmentAxis: 55, crossAxis: 15, mainAxis: 0 }"
                                 class="dropdown d-md-none topbar-head-dropdown header-item"
                                 variant="ghost-secondary"
@@ -158,7 +158,7 @@ onMounted(() => {
                                 <template #button-content>
                                     <i class="bx bx-search fs-22"></i>
                                 </template>
-                                <BDropdownItem aria-labelledby="page-header-search-dropdown">
+                                <b-dropdown-item aria-labelledby="page-header-search-dropdown">
                                     <form class="p-3">
                                         <div class="form-group m-0">
                                             <div class="input-group">
@@ -168,15 +168,15 @@ onMounted(() => {
                                                     placeholder="Search ..."
                                                     aria-label="Recipient's username"
                                                 />
-                                                <BButton variant="primary" type="submit">
+                                                <b-button variant="primary" type="submit">
                                                     <i class="mdi mdi-magnify"></i>
-                                                </BButton>
+                                                </b-button>
                                             </div>
                                         </div>
                                     </form>
-                                </BDropdownItem>
-                            </BDropdown>
-                            <BDropdown
+                                </b-dropdown-item>
+                            </b-dropdown>
+                            <b-dropdown
                                 :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
                                 variant="ghost-dark"
                                 dropstart
@@ -199,22 +199,22 @@ onMounted(() => {
                                 </template>
                                 <div class="dropdown-head bg-primary bg-pattern rounded-top dropdown-menu-lg">
                                     <div class="p-3">
-                                        <BRow class="align-items-center">
-                                            <BCol>
+                                        <b-row class="align-items-center">
+                                            <b-col>
                                                 <h6 class="m-0 fs-16 fw-semibold text-white">
                                                     Notifications
                                                 </h6>
-                                            </BCol>
-                                            <BCol cols="auto" class="dropdown-tabs">
-                                                <BBadge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4
+                                            </b-col>
+                                            <b-col cols="auto" class="dropdown-tabs">
+                                                <b-badge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4
                                                     New
-                                                </BBadge>
-                                            </BCol>
-                                        </BRow>
+                                                </b-badge>
+                                            </b-col>
+                                        </b-row>
                                     </div>
                                 </div>
-                                <BTabs nav-class="dropdown-tabs nav-tab-custom bg-primary px-2 pt-2">
-                                    <BTab
+                                <b-tabs nav-class="dropdown-tabs nav-tab-custom bg-primary px-2 pt-2">
+                                    <b-tab
                                         title="All (4)"
                                         class="tab-pane fade py-2 ps-2 show"
                                         id="all-noti-tab"
@@ -253,7 +253,7 @@ onMounted(() => {
                                                 </BButton>
                                             </div>
                                         </simplebar>
-                                    </BTab>
+                                    </b-tab>
 
                                     <BTab
                                         title="Messages" class="tab-pane fade py-2 ps-2" id="messages-tab" role="tabpanel"
@@ -313,8 +313,8 @@ onMounted(() => {
                                             </div>
                                         </simplebar>
                                     </BTab>
-                                </BTabs>
-                            </BDropdown>
+                                </b-tabs>
+                            </b-dropdown>
                             <div class="dropdown ms-sm-3 header-item topbar-user bg-transparent">
                                 <button
                                     type="button"

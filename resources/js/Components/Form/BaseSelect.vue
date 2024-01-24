@@ -1,8 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { useI18n } from "vue-i18n";
-import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
-import TagLabel from "~/Components/Partials/TagLabel.vue";
+
 
 const { options, label, placeholder, modelValue } = defineProps({
     modelValue: {

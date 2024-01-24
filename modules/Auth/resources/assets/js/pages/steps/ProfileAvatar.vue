@@ -2,7 +2,7 @@
 import AuthLayout from "../../layouts/AuthLayout.vue";
 import FileUploads from "~/Components/Form/FileUploads.vue";
 import FooterSteps from "./Partials/FooterSteps.vue";
-import helpers from "~/scripts/utils/helpers.js";
+import helpers from "~/scripts/helpers/helpers.js";
 
 let {sendForm} = helpers;
 

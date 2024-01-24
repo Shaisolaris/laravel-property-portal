@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+@php
+    $user = Auth::user();
+@endphp
+{{--TODO:: need add type institution - for styles [data-role-name=""]--}}
 <html
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
     data-layout="vertical"
@@ -12,6 +16,7 @@
     data-layout-position="fixed"
     data-sidebar-visibility="show"
     data-layout-style="detached"
+    data-role-name="{{$user?->roleName}}"
 >
     <head>
         <meta charset="utf-8">

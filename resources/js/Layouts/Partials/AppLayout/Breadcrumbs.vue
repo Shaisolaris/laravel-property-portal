@@ -12,8 +12,8 @@ defineProps({
 </script>
 
 <template>
-    <BRow>
-        <BCol cols="12">
+    <b-row>
+        <b-col cols="12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                 <h4 class="mb-sm-0">{{ $t(`title.${title}`) }}</h4>
                 <div class="page-title-right">
@@ -27,8 +27,8 @@ defineProps({
                     </slot>
                 </div>
             </div>
-        </BCol>
-    </BRow>
+        </b-col>
+    </b-row>
 </template>
 
 <style scoped>

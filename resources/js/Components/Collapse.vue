@@ -25,14 +25,14 @@ defineProps({
 
 <template>
     <div v-if="showButton" class="hstack gap-2 flex-wrap mb-3">
-        <BButton v-b-toggle="`${id}`" :variant="variant">
+        <b-button v-b-toggle="`${id}`" :variant="variant">
             <Text :t-key="`button.${tKey}`" />
-        </BButton>
+        </b-button>
     </div>
 
-    <BCollapse :id="id" :visible="visible">
+    <b-collapse :id="id" :visible="visible">
         <slot name="body" />
-    </BCollapse>
+    </b-collapse>
 </template>
 
 <style scoped>
