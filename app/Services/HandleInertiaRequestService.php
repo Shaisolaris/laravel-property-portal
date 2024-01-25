@@ -12,7 +12,7 @@ class HandleInertiaRequestService
     public function userResponse($request)
     {
         return $request->user()
-            ? UserResource::make($request->user()->load(['settings', 'roles']))->response()->getData(true)
+            ? UserResource::make($request->user()->load(['roles']))->response()->getData(true)
             : null;
     }
 

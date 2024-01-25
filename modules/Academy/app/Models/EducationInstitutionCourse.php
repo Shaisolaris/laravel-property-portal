@@ -28,4 +28,9 @@ class EducationInstitutionCourse extends Model
     {
         return $this->hasMany(EducationInstitutionCourseBenefit::class);
     }
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->belongTo(EducationInstitutionCategories::class,'category_id');
+    }
 }

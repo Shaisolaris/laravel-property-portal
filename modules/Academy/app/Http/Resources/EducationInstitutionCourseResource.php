@@ -19,7 +19,7 @@ class EducationInstitutionCourseResource extends JsonResource
             'description' => $this->description,
             'duration_minutes' => $this->duration_minutes,
             'rate' => rand(2, 1000), // TODO::
-            'category' => ucfirst(fake()->word),  // TODO::
+            'category' => $this->category->category // TODO: need resoruce
             'image' => 'https://picsum.photos/800/600?random='.rand(1, 1000),
             'info' => [
                 ['name' => "lecture", 'icon' => "las la-comment"],

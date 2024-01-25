@@ -62,7 +62,6 @@ class CreateNewUser implements CreatesNewUsers
         )->first();
     }
 
-
     private function updateOrCreateNotificationSettings(User $user): void
     {
         $data = [

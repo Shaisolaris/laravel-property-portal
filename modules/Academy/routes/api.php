@@ -1,19 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Academy\app\Http\Controllers\Api\MyCoursesControllerControllerApi;
 
-/*
-    |--------------------------------------------------------------------------
-    | API Routes
-    |--------------------------------------------------------------------------
-    |
-    | Here is where you can register API routes for your application. These
-    | routes are loaded by the RouteServiceProvider within a group which
-    | is assigned the "api" middleware group. Enjoy building your API!
-    |
-*/
-
-Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
-    Route::get('academy', fn (Request $request) => $request->user())->name('academy');
+Route::middleware(['auth:sanctum'])->prefix('academy')->controller(MyCoursesControllerControllerApi::class)->group(function () {
+    Route::get('filter', 'filter')->name('api.academy.filter');
 });

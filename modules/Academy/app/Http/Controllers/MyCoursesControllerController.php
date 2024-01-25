@@ -3,34 +3,20 @@
 namespace Modules\Academy\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Pipeline\Pipeline;
 use Inertia\Inertia;
-use Modules\Academy\app\Http\Resources\EducationInstitutionCourseResource;
-use Modules\Academy\app\Models\EducationInstitutionCourse;
-use Modules\Academy\app\Pipes\ChunkCourses;
-use Modules\Academy\app\Pipes\FilterByKeyWord;
-use Modules\Academy\app\Pipes\FilterByType;
+use Modules\Academy\app\Services\FilterCourse;
 
 class MyCoursesControllerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
+    public function index(FilterCourse $course): \Inertia\Response
     {
-
-        $filter = app(Pipeline::class)
-            ->send(EducationInstitutionCourse::query())
-            ->through([
-                FilterByKeyWord::class,
-                FilterByType::class,
-                ChunkCourses::class,
-            ])
-            ->thenReturn();
-
-        $courses = EducationInstitutionCourseResource::collection($filter->get());
-
-        return Inertia::render('Academy::MyCourses/List', compact('courses'));
+        return Inertia::render('Academy::MyCourses/List', [
+            'courses' => $course->filter(),
+            'limit' => $course->request->get('limit')
+        ]);
     }
 
     /**
