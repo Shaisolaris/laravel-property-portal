@@ -32,20 +32,29 @@ class UserSeeder extends Seeder
         $admin = User::query()->updateOrCreate(['email' => 'admin@gmail.com'], $baseData);
 
         $baseData['email'] = 'studentSchool@gmail.com';
+        $baseData['first_name'] = 'Student';
+        $baseData['last_name'] = 'School';
         $studentSchool = User::query()->updateOrCreate(['email' => 'studentSchool@gmail.com'], $baseData);
 
         $baseData['email'] = 'studentAcademy@gmail.com';
+        $baseData['first_name'] = 'Student';
+        $baseData['last_name'] = 'Academy';
         $studentAcademy = User::query()->updateOrCreate(['email' => 'studentAcademy@gmail.com'], $baseData);
 
         $baseData['email'] = 'instructorSchool@gmail.com';
+        $baseData['first_name'] = 'Instructor';
+        $baseData['last_name'] = 'Academy';
         $instructorSchool = User::query()->updateOrCreate(['email' => 'instructorSchool@gmail.com'], $baseData);
 
         $baseData['email'] = 'instructorAcademy@gmail.com';
+        $baseData['first_name'] = 'Instructor';
+        $baseData['last_name'] = 'Academy';
         $instructorAcademy = User::query()->updateOrCreate(['email' => 'instructorAcademy@gmail.com'], $baseData);
 
         $baseData['email'] = 'organizer@gmail.com';
+        $baseData['first_name'] = 'organizer';
+        $baseData['last_name'] = '-';
         $organizer = User::query()->updateOrCreate(['email' => 'organizer@gmail.com'], $baseData);
-
 
         $adminRole = Role::updateOrCreate(['name' => UserRoleEnum::Admin()->value], ['name' => UserRoleEnum::Admin()->value]);
         $organizerRole = Role::updateOrCreate(['name' => UserRoleEnum::Organizer()->value], ['name' => UserRoleEnum::Organizer()->value]);

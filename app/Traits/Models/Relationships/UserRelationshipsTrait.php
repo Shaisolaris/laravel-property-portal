@@ -2,24 +2,27 @@
 
 namespace App\Traits\Models\Relationships;
 
-use App\Models\EducationInstitutionList;
 use App\Models\Occupation;
 use App\Models\UserDetail;
 use App\Models\UserSetting;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait UserRelationshipsTrait
 {
-    public function settings(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function settings(): HasOne
     {
         return $this->hasOne(UserSetting::class, 'user_id');
     }
 
-    public function detail(): \Illuminate\Database\Eloquent\Relations\HasOne
+
+    public function detail(): HasOne
     {
         return $this->hasOne(UserDetail::class, 'user_id');
     }
 
-    public function occupations(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+
+    public function occupations(): BelongsToMany
     {
         return $this->belongsToMany(Occupation::class);
     }

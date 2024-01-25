@@ -111,8 +111,10 @@
 }
 
 .multiselect {
-    border-color: var(--#{$prefix}border-color) !important;
+    border-color: $border-base-color !important;
     background: $input-bg !important;
+    //padding: $multiselect-padding-x $multiselect-padding-y !important;
+    //border-radius: 100px !important;
 
     .multiselect-option {
         &.is-disabled {
@@ -140,8 +142,6 @@
 
     label {
         padding: 8px 12px;
-        // color: $white;
-        // background-color: $success;
         transition: 0.3s ease all;
     }
 

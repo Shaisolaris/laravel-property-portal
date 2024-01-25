@@ -12,7 +12,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->uuid()->index()->unique();
+            $table->string('stripe_id')->nullable()->index();
 
+            $table->decimal('balance', 20, 4)->default(0);
             $table->string('email')->unique();
             $table->string('password');
 
@@ -36,7 +38,11 @@ return new class extends Migration
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();
 
+            $table->string('pm_type')->nullable();
+            $table->string('pm_last_four', 4)->nullable();
+
             $table->timestamp('birth_at')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
 
             if (Fortify::confirmsTwoFactorAuthentication()) {
                 $table->timestamp('two_factor_confirmed_at')
