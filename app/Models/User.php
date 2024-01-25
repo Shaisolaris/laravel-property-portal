@@ -20,6 +20,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Models\Permission;
 use Laravel\Sanctum\PersonalAccessToken;
+use Modules\Payment\app\Traits\StripeTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -133,6 +134,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use HasRoles;
     use HasFactory;
     use Notifiable;
+    use StripeTrait;
     use HasApiTokens;
     use HasUuidTrait;
     use HasFileUploads;
@@ -160,6 +162,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'phone',
         'gender',
         'status',
+        'balance',
         'address',
         'country',
         'password',

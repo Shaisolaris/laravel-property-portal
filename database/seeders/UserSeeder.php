@@ -46,7 +46,6 @@ class UserSeeder extends Seeder
         $baseData['email'] = 'organizer@gmail.com';
         $organizer = User::query()->updateOrCreate(['email' => 'organizer@gmail.com'], $baseData);
 
-
         $adminRole = Role::updateOrCreate(['name' => UserRoleEnum::Admin()->value], ['name' => UserRoleEnum::Admin()->value]);
         $organizerRole = Role::updateOrCreate(['name' => UserRoleEnum::Organizer()->value], ['name' => UserRoleEnum::Organizer()->value]);
         $studentSchoolRole = Role::updateOrCreate(['name' => UserRoleEnum::Student()->value], ['name' => UserRoleEnum::Student()->value]);

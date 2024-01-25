@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Modules\Payment\app\Services\StripeService;
 
 class SyncStripeJob implements ShouldQueue
 {
@@ -30,22 +31,22 @@ class SyncStripeJob implements ShouldQueue
 
     private function syncCustomers(): void
     {
-//        $server = new StripeService();
-//
-//        try {
-//            $customers = $server->getCustomers();
-//
-//            if (!empty($customers)) {
-//                foreach ($customers as $customer) {
-//                    $user = User::whereEmail($customer['email'])->first();
-//
-//                    if ($user && $user->hasRole([UserRoleEnum::Instructor()->value, UserRoleEnum::Student()->value])) {
-//                        $user->update(['stripe_id' => $customer['id']]);
-//                    }
-//                }
-//            }
-//        } catch (\Exception $e) {
-//            Logging::createStripeLog("StripeSeeder(syncCustomers) - " . $e->getMessage());
-//        }
+        $server = new StripeService();
+
+        try {
+            $customers = $server->getCustomers();
+
+            if (!empty($customers)) {
+                foreach ($customers as $customer) {
+                    $user = User::whereEmail($customer['email'])->first();
+
+                    if ($user && $user->hasRole([UserRoleEnum::Instructor()->value, UserRoleEnum::Student()->value])) {
+                        $user->update(['stripe_id' => $customer['id']]);
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            Logging::createStripeLog("StripeSeeder(syncCustomers) - " . $e->getMessage());
+        }
     }
 }
