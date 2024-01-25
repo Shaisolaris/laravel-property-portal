@@ -136,11 +136,6 @@ const helpers = {
         }
         return result;
     },
-
-    //TODO: нужно завести методы и вызывать их в компоненте
-    setPlaceholder: () => {
-
-    }
 };
 
 export default helpers;

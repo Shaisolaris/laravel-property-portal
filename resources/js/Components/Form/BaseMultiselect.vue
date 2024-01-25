@@ -1,6 +1,7 @@
 <script setup>
 import Multiselect from "@vueform/multiselect";
 import "@vueform/multiselect/themes/default.css";
+import useStructure from "~/scripts/helpers/structure.js";
 
 
 const { options, label, placeholder, modelValue } = defineProps({
@@ -27,10 +28,11 @@ const { options, label, placeholder, modelValue } = defineProps({
     },
     mode: {
         type: String,
-        default: "tags",
+        default: "single",
     }
 });
 const emit = defineEmits([ 'update:modelValue' ]);
+const { setPlaceholder } = useStructure();
 </script>
 
 <template>
@@ -42,7 +44,8 @@ const emit = defineEmits([ 'update:modelValue' ]);
             :close-on-select="true"
             :searchable="true"
             :options="options"
-            class="form-control multiselect-inoura"
+            :placeholder="setPlaceholder($attrs.placeholder)"
+            class="form-control"
             @select="value => emit('update:modelValue', value)"
         />
 
@@ -51,7 +54,5 @@ const emit = defineEmits([ 'update:modelValue' ]);
 </template>
 
 <style scoped>
-.multiselect-inoura {
-    padding: 2.8px;
-}
+
 </style>

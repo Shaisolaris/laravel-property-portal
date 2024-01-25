@@ -40,6 +40,12 @@
       ],
       "$module@payment/*": [
         "./modules/Payment/resources/assets/js/*"
+      ],
+      "$module@general/*": [
+        "./modules/General/resources/assets/js/*"
+      ],
+      "$module@quizze/*": [
+        "./modules/Quizze/resources/assets/js/*"
       ]
     },
     "include": [

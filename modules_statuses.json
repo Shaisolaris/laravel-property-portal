@@ -5,5 +5,7 @@
     "Blog": false,
     "Auth": true,
     "Landing": true,
-    "Payment": true
+    "Payment": true,
+    "General": true,
+    "Quiz": true
 }

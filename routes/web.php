@@ -12,6 +12,7 @@ Route::middleware([
     Route::get('/ziggy', fn () => response()->json(new Ziggy()));
 });
 
+Route::get('welcome', function () {return Inertia::render('Welcome');});
 
 Route::group([
     'middleware' => ['auth:sanctum', 'verified']
