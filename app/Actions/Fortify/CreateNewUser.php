@@ -26,7 +26,6 @@ class CreateNewUser implements CreatesNewUsers
 
         try {
             $input['password'] = $this->hashedPassword($input);
-            $input['status'] = 'active'; // TODO::
 
             $user = User::create($input);
 
@@ -36,6 +35,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $institution->peoples()->attach($user->id);
 
+//            $user->createOrGetStripeCustomer();
 //            $this->updateOrCreateNotificationSettings($user);
 
             DB::commit();

@@ -126,6 +126,30 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'stripe' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/stripe.log'),
+            'level' => 'error',
+        ],
+
+        'charge' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/charge.log'),
+            'level' => 'error',
+        ],
+
+        'error' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/error.log'),
+            'level' => 'error',
+        ],
+
+        'balance' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/balance.log'),
+            'level' => 'error',
+        ],
     ],
 
 ];

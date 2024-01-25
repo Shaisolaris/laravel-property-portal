@@ -42,6 +42,7 @@ declare module 'vue' {
     Mark: typeof import('./../js/Components/Cards/Partials/Mark.vue')['default']
     MaskInput: typeof import('./../js/Components/Form/MaskInput.vue')['default']
     MediaImage: typeof import('./../js/Components/MediaImage.vue')['default']
+    Multiselect: typeof import('./../js/Components/Form/Multiselect.vue')['default']
     Pagination: typeof import('./../js/Components/Pagination.vue')['default']
     Points: typeof import('./../js/Components/Elements/Points.vue')['default']
     Price: typeof import('./../js/Components/Cards/Partials/Price.vue')['default']

@@ -5,11 +5,13 @@ namespace App\Models;
 use Eloquent;
 use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
+use Laravel\Cashier\Billable;
 use Illuminate\Support\Carbon;
 use App\Traits\HasFileUploads;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Traits\MustVerifyOtpCode;
+use Laravel\Cashier\Subscription;
 use App\Enums\User\UserStatusEnum;
 use Spatie\Permission\Models\Role;
 use App\Enums\User\UserTeachingLevel;
@@ -36,6 +38,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  *
  * @property int $id
  * @property string $uuid
+ * @property string|null $stripe_id
+ * @property string $balance
  * @property string $email
  * @property string $password
  * @property Enum|null $status
@@ -54,7 +58,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string|null $bio
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
+ * @property string|null $pm_type
+ * @property string|null $pm_last_four
  * @property Carbon|null $birth_at
+ * @property string|null $trial_ends_at
  * @property Carbon|null $email_verified_at
  * @property string|null $remember_token
  * @property Carbon|null $created_at
@@ -72,17 +79,22 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection<int, Role> $roles
  * @property-read int|null $roles_count
  * @property-read UserSetting|null $settings
+ * @property-read Collection<int, Subscription> $subscriptions
+ * @property-read int|null $subscriptions_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read Collection<int, Notification> $unreadNotifications
  * @property-read int|null $unread_notifications_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|User hasExpiredGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User onGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBalance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereBio($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereBirthAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCity($value)
@@ -97,12 +109,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePmLastFour($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePmType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTeachingLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTimezone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
@@ -113,6 +129,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  */
 class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
+    use Billable;
     use HasRoles;
     use HasFactory;
     use Notifiable;
@@ -148,6 +165,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'password',
         'birth_at',
         'timezone',
+        'stripe_id',
         'last_name',
         'languages',
         'first_name',
@@ -175,6 +193,7 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     ];
 
     protected $with = ['detail','settings'];
+
 
     public function notifications(): HasMany
     {

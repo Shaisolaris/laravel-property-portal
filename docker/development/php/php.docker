@@ -1,7 +1,11 @@
 FROM php:8.2-rc-fpm
 
 USER root
+
 ARG DEBIAN_FRONTEND=noninteractive
+ARG user
+ARG uid
+
 RUN apt-get update \
   && apt-get install -y \
      libpq-dev \
@@ -73,4 +77,11 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
+# Set working directory
 WORKDIR /app
+
+USER $user

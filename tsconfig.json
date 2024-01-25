@@ -37,6 +37,9 @@
       ],
       "$module@paymentoperations/*": [
         "./modules/PaymentOperations/resources/assets/js/*"
+      ],
+      "$module@payment/*": [
+        "./modules/Payment/resources/assets/js/*"
       ]
     },
     "include": [

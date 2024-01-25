@@ -2,7 +2,8 @@
     "School": true,
     "Academy": true,
     "Chat": true,
-    "Blog": true,
+    "Blog": false,
     "Auth": true,
-    "Landing": true
+    "Landing": true,
+    "Payment": true
 }
