@@ -34,6 +34,9 @@
       ],
       "$module@dashboard/*": [
         "./modules/Dashboard/resources/assets/js/*"
+      ],
+      "$module@paymentoperations/*": [
+        "./modules/PaymentOperations/resources/assets/js/*"
       ]
     },
     "include": [
