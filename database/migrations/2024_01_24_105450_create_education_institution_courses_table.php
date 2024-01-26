@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('education_institution_courses', function (Blueprint $table) {
@@ -16,16 +13,21 @@ return new class extends Migration
             $table->string('title');
             $table->string('type');
             $table->string('language');
+            $table->text('description');
             $table->string('duration_minutes');
             $table->string('time');
-            $table->text('description');
+            $table->timestamps();
+        });
+
+        Schema::create('education_institution_course_refers_institutions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('institution_id')->constrained('education_institution_lists')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained('education_institution_courses')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::dropIfExists('education_institution_courses');

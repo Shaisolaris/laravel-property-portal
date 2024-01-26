@@ -3,23 +3,46 @@ import CardBase from "~/Components/Cards/Card.vue";
 import CardInfo from "~/Components/Cards/Partials/Info.vue";
 import CardPrice from "~/Components/Cards/Partials/Price.vue";
 import Starts from "~/Components/Elements/Starts.vue";
+import {v4 as uuidv4} from "uuid";
 
 const { value } = defineProps({
     item: {
         type: Object,
         default: () => false,
+    },
+    view: {
+        type: String,
+        default: 'list',
     }
 })
 
+const classesData = (view) => {
+
+    let classes = reactive({});
+
+    if(view === 'card') {
+        classes.image = "col-md-12"
+        classes.box = "col-md-12"
+        classes.col = "col-lg-4 col-md-6"
+    } else {
+        classes = {
+            image: "col-md-5",
+            box: "col-md-7",
+            col: "col-md-12"
+        }
+    }
+
+    return classes;
+};
 </script>
 
 <template>
-    <CardBase class="card-advance p-0">
-        <div class="row g-0 position-relative h-25">
-            <div class="col-md-5">
-                <img :src="item.image" alt="test" class="rounded-start img-fluid"/>
+    <CardBase :class="['card-advance p-0', classesData(view).col]">
+        <div class="row g-0" :key="view">
+            <div :class="[classesData(view).image,'content-image']">
+                <MediaImage :src="item.image" class="rounded-start img-fluid card-image"/>
             </div>
-            <div class="col-md-7 p-4 d-flex align-items-center">
+            <div :class="[classesData(view).box,'p-4 d-flex align-items-center']">
                 <div class="position-absolute end-0 top-0 me-4 mt-4 cursor-pointer">
                     <i class="las la-ellipsis-h fs-20"></i>
                 </div>
@@ -41,7 +64,7 @@ const { value } = defineProps({
                         </div>
                         <div>
                             <div class="text-dim-gray">Category:</div>
-                            <div class="text-black fw-bold fs-16 mb-3">{{item.category}}</div>
+                            <div class="text-black fw-bold fs-16 mb-3">{{item.category.name}}</div>
                         </div>
                         <div>
                             <div class="text-dim-gray">Sale:</div>
@@ -58,3 +81,13 @@ const { value } = defineProps({
         </div>
     </CardBase>
 </template>
+
+<style lang="scss">
+.content-image {
+    height: 277px;
+
+    .card-image {
+        height: inherit;
+    }
+}
+</style>

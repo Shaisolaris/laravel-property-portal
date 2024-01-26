@@ -7,5 +7,6 @@
     "Landing": true,
     "Payment": true,
     "General": true,
-    "Quiz": true
+    "Quiz": true,
+    "Assignment": true
 }

@@ -2,6 +2,7 @@
 
 namespace App\Traits\Models\Relationships;
 
+use App\Models\EducationInstitutionUser;
 use App\Models\Occupation;
 use App\Models\UserDetail;
 use App\Models\UserSetting;
@@ -25,5 +26,10 @@ trait UserRelationshipsTrait
     public function occupations(): BelongsToMany
     {
         return $this->belongsToMany(Occupation::class);
+    }
+
+    public function institution(): hasOne
+    {
+        return $this->hasOne(EducationInstitutionUser::class,'user_id')->with('institution');
     }
 }

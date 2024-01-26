@@ -11,11 +11,11 @@ return new class extends Migration
         Schema::create('education_institution_lists', function (Blueprint $table) {
             $table->id();
             $table->uuid();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->string('slug')->nullable();
-            $table->string('status')->default(1);
             $table->foreignId('education_institution_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('status')->default(1);
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

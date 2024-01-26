@@ -131,7 +131,7 @@ return [
             'jobs' => ['path' => 'app/Jobs', 'generate' => false],
             'emails' => ['path' => 'app/Emails', 'generate' => false],
             'notifications' => ['path' => 'app/Notifications', 'generate' => false],
-            'resource' => ['path' => 'app/Resources', 'generate' => false],
+            'resource' => ['path' => 'app/Http/Resources', 'generate' => false],
             'component-view' => ['path' => 'resources/views/components', 'generate' => false],
             'component-class' => ['path' => 'app/View/Components', 'generate' => false],
 
@@ -226,6 +226,7 @@ return [
         'enabled' => false,
         'paths' => [
             base_path('vendor/*/*'),
+            'resources' => base_path('app/Http/Resources'),
         ],
     ],
     /*

@@ -321,10 +321,14 @@ onMounted(() => {
                                     class="btn shadow-none"
                                     id="page-header-user-dropdown"
                                 >
-                            <span class="d-flex align-items-center">
-                                <img v-if="$page.props.auth?.avatar" :src="$page.props.auth?.avatar" class="rounded-circle header-profile-user" alt>
-                                <span v-else class="bg-light-blue rounded-circle header-profile-user" />
-                            </span>
+                                    <span class="d-flex align-items-center">
+                                        <MediaImage :src="$page.props.auth.avatar"
+                                                    :name="$page.props.auth.name"
+                                                    classes="rounded-circle header-profile-user"
+                                        />
+        <!--                                <img v-if="!$page.props.auth?.avatar" :src="$page.props.auth?.avatar" class="rounded-circle header-profile-user" alt>-->
+        <!--                                <span v-else class="bg-light-blue rounded-circle header-profile-user" />-->
+                                    </span>
                                 </button>
                             </div>
                         </slot>

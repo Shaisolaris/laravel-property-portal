@@ -35,6 +35,9 @@
       "$module@dashboard/*": [
         "./modules/Dashboard/resources/assets/js/*"
       ],
+      "$module@notification/*": [
+        "./modules/Notification/resources/assets/js/*"
+      ],
       "$module@paymentoperations/*": [
         "./modules/PaymentOperations/resources/assets/js/*"
       ],
@@ -44,8 +47,8 @@
       "$module@general/*": [
         "./modules/General/resources/assets/js/*"
       ],
-      "$module@quizze/*": [
-        "./modules/Quizze/resources/assets/js/*"
+      "$module@quiz/*": [
+        "./modules/Quiz/resources/assets/js/*"
       ]
     },
     "include": [

@@ -3,6 +3,7 @@
 namespace Modules\Academy\database\factories;
 
 use App\Models\EducationInstitution;
+use App\Models\EducationInstitutionCategories;
 use App\Models\EducationInstitutionList;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,6 +28,7 @@ class EducationInstitutionCourseFactory extends Factory
             'duration_minutes' => fake()->time(),
             'time' => fake()->time(),
             'description' => fake()->realText,
+            'category_id' => EducationInstitutionCategories::inRandomOrder()->value('id'),
         ];
     }
 }

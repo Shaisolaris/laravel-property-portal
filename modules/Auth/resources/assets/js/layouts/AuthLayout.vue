@@ -1,5 +1,5 @@
 <script setup>
-import NavBar from "./prtials/NavBar.vue";
+import NavBar from "./partials/NavBar.vue";
 
 defineProps({
     title: {
