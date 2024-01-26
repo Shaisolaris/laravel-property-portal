@@ -31,8 +31,8 @@ return [
         'files' => [
             'routes/web' => 'routes/web.php',
             'routes/api' => 'routes/api.php',
-            'views/index' => 'resources/views/index.blade.php',
-            'views/master' => 'resources/views/layouts/master.blade.php',
+//            'views/index' => 'resources/views/index.blade.php',
+//            'views/master' => 'resources/views/layouts/master.blade.php',
             'scaffold/config' => 'config/config.php',
             'composer' => 'composer.json',
             'assets/js/app' => 'resources/assets/js/app.js',
@@ -45,8 +45,8 @@ return [
             'routes/api' => ['LOWER_NAME', 'STUDLY_NAME'],
             'vite' => ['LOWER_NAME'],
             'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
-            'views/index' => ['LOWER_NAME'],
-            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
+//            'views/index' => ['LOWER_NAME'],
+//            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
             'composer' => [
                 'LOWER_NAME',
@@ -108,7 +108,7 @@ return [
             'seeder' => [
                 'path' => 'database/seeders',
                 'namespace' => 'database/seeders',
-                'generate' => true,
+                'generate' => false,
             ],
             'factory' => ['path' => 'database/factories', 'generate' => false],
             'model' => ['path' => 'app/Models', 'generate' => true],
@@ -120,7 +120,7 @@ return [
             'provider' => ['path' => 'app/Providers', 'generate' => true],
             'assets' => ['path' => 'resources/assets', 'generate' => true],
             'lang' => ['path' => 'lang', 'generate' => false],
-            'views' => ['path' => 'resources/views', 'generate' => true],
+            'views' => ['path' => 'resources/views', 'generate' => false],
             'test' => ['path' => 'tests/Unit', 'generate' => true],
             'test-feature' => ['path' => 'tests/Feature', 'generate' => true],
             'repository' => ['path' => 'app/Repositories', 'generate' => false],
@@ -138,6 +138,11 @@ return [
             'traits' => [
                 'namespace' => 'app/Traits',
                 'path' => 'app/Traits',
+                'generate' => true
+            ],
+            'enums' => [
+                'namespace' => 'app/Enums',
+                'path' => 'app/Enums',
                 'generate' => true
             ],
             'http-resource' => [

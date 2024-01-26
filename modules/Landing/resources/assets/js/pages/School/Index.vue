@@ -13,10 +13,10 @@ const links = ref([
         route: 'landing.academy.index',
         key: 'landing.academy-inoura'
     },
-    {
-        route: 'blog.index',
-        key: 'landing.blog'
-    },
+    // {
+    //     route: 'blog.index',
+    //     key: 'landing.blog'
+    // },
     {
         route: 'landing.school.class.index',
         key: 'landing.classes'

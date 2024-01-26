@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Spatie\Image\Image;
+use App\Facades\Logging;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -38,7 +39,7 @@ trait HasFileUploads
                 ->withCustomProperties($customProperties)
                 ->toMediaCollection($collection, app()->isLocal() ? 'public' : 's3');
         } catch (\Exception $e) {
-            Log::debug("HasFileUploads(singleFileUpload) - " . $e->getMessage());
+            Logging::createDefaultLog("HasFileUploads(singleFileUpload) - " . $e->getMessage());
 
             return null;
         }
@@ -58,7 +59,7 @@ trait HasFileUploads
                 ->sanitizingFileName(fn (string $filename) => strtolower(str_replace(['#', '/', '\\', ' '], '-', $filename)))
                 ->toMediaCollection($collection, app()->isLocal() ? 'public' : 's3'));
         } catch (FileCannotBeAdded $e) {
-            Log::debug("HasFileUploads (saveMediaFromUrls) - " . $e->getMessage());
+            Logging::createDefaultLog("HasFileUploads (saveMediaFromUrls) - " . $e->getMessage());
         }
     }
 }

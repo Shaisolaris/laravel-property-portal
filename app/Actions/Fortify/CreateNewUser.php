@@ -36,7 +36,8 @@ class CreateNewUser implements CreatesNewUsers
 
             $institution->peoples()->attach($user->id);
 
-//            $this->updateOrCreateNotificationSettings($user);
+//            $user->createOrGetStripeCustomer();
+            $this->updateOrCreateNotificationSettings($user, $institution);
 
             DB::commit();
 
@@ -58,26 +59,31 @@ class CreateNewUser implements CreatesNewUsers
         return Role::whereName($input['role'])->first();
     }
 
-    private function updateOrCreateNotificationSettings(User $user): void
+    private function updateOrCreateNotificationSettings(User $user, EducationInstitutionList $institutionList): void
     {
-        $data = [
-            'notification_settings' => ["classes" => false, "schedule" => false, "assignments" => false, "mentors" => false]
-        ];
+        $data = [];
 
-        if ($user->hasRole([UserRoleEnum::Student()->value])) {
-            $data['notification_settings'] = Arr::renameKey($data['notification_settings'], 'classes', 'courses');
+        if ($user->hasRole(UserRoleEnum::Student()->value)) {
+            $data = [
+                'notification_settings' => ["schedule" => false, "assignments" => false, "mentors" => false]
+            ];
         }
 
-        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {
+        if ($user->hasRole(UserRoleEnum::Instructor()->value)) {
             $data = [
                 'notification_settings' => ["payments" => false, "courses" => false, "schedule" => false, "assignments" => false]
             ];
         }
 
-        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {
-            $data = [
-                'notification_settings' => ["payments" => false, "classes" => false, "schedule" => false, "quizzes" => false, "assignments" => false]
-            ];
+        if ($institutionList->institution()->value('name') === 'School') {
+            switch ($user->roleName()) {
+                case UserRoleEnum::Student()->value:
+                    $data['notification_settings'] = Arr::renameKey($data['notification_settings'], 'classes', 'courses');
+                    break;
+                case UserRoleEnum::Instructor()->value:
+                    $data['notification_settings']['quizzes'] = false;
+                    break;
+            }
         }
 
         $user->settings()->updateOrCreate(['user_id' => $user->id], $data);

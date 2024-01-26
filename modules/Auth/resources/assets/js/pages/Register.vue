@@ -146,7 +146,6 @@ const disabledSubmit = computed(
                                             :error="form.errors.institution_id"
                                             :searchable="true"
                                             :options="institutions_options"
-                                            mode="single"
                                             label="institution"
                                         />
                                         <ErrorMessage :error="form.errors.institution_id" />

@@ -250,6 +250,7 @@
         "academy-help-support": "Help & Support",
         "academy-courses": "Courses",
         "school-classes": "Classes",
+        "schedule": "Schedule",
         "school-short-casual-courses": "Short Courses and Casual Courses"
     },
     "label": {
@@ -300,7 +301,10 @@
         "enter-account-name": "5455 4585 4558 4552",
         "search-course": "Search Course...",
         "start-writing-something": "Start writing something...",
-        "enter-email-address": "Enter your email address"
+        "enter-email-address": "Enter your email address",
+        "grade": "Grade",
+        "instructor": "Instructor",
+        "subject": "Subject"
     },
     "button": {
         "sign-in": "Sign In",

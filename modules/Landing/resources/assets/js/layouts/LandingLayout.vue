@@ -23,10 +23,10 @@ defineProps({
                 route: 'landing.school.index',
                 key: 'landing.school-inoura'
             },
-            {
-                route: 'blog.index',
-                key: 'landing.blog'
-            },
+            // {
+            //     route: 'blog.index',
+            //     key: 'landing.blog'
+            // },
             {
                 route: 'landing.academy.course.index',
                 key: 'landing.all-courses'
