@@ -17,15 +17,3 @@
         }
     }
 }
-
-[data-role-auth="teacher"] {
-    .nav-item {
-        .nav-link {
-            &.active {
-                background: $beige-blue;
-                color: $royal-blue;
-                border-color: $beige-blue;
-            }
-        }
-    }
-}

@@ -17,7 +17,7 @@ class UserDetailController extends Controller
         if (!$request->user()->isDetailData()) {
             return Inertia::render('Auth::steps/UserDetail');
         } else {
-            return to_route('dashboard');
+            return to_route('general.dashboard');
         }
     }
 

@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Enums\User\UserRoleEnum;
 use Illuminate\Support\Collection;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\EducationInstitutions\EducationInstitutionsEnum;
 
 class HandleInertiaRequestService
 {
+
     public function userResponse($request)
     {
         return $request->user()
@@ -19,61 +22,97 @@ class HandleInertiaRequestService
 
     public function setNavigations(): Collection
     {
+        $checkAuth = Auth::check();
 
-        $institution = auth()->user()->institution_type;
+        if (!$checkAuth) {
+            return collect();
+        }
+
+        $user = Auth::user();
+        $institution = $user->institution_type;
+
+        if ($user->hasRole(UserRoleEnum::Organizer()->value)) return $this->setMenuOrganizer($user);
 
         $navigations = collect([
             [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
+                'route' => route('general.dashboard'),
+                'active' => request()->routeIs('general.dashboard'),
                 'icon' => 'ri-layout-left-line',
                 'tKey' => 'dashboard'
             ],
+        ]);
+
+        switch ($user->roleName) {
+            case UserRoleEnum::Instructor()->value:
+                if($institution === EducationInstitutionsEnum::Academy()->value) {
+                    $navigations->push(
+                        [
+                            'route' => route($institution . '.add-step'),
+                            'active' => request()->routeIs($institution . '.add-step'),
+                            'icon' => 'ri-add-circle-line',
+                            'tKey' => 'add-new-course'
+                        ]
+                    );
+                }
+
+                $navigations->push(
+                    $institution === EducationInstitutionsEnum::School()->value
+                        ?
+                        [
+                            'route' => route('school.my-classes'),
+                            'active' => request()->routeIs('school.my-classes'),
+                            'icon' => 'ri-computer-line',
+                            'tKey' => 'my-classes'
+                        ]
+                        :
+                        [
+                            'route' => route('academy.my-courses'),
+                            'active' => request()->routeIs('academy.my-courses'),
+                            'icon' => 'ri-computer-line',
+                            'tKey' => 'my-courses'
+                        ],
+                    [
+                        'route' => route('assignment.assignment.index'),
+                        'active' => request()->routeIs('assignment.assignment.index'),
+                        'icon' => ' ri-file-text-line',
+                        'tKey' => 'assignments'
+                    ],
+                );
+
+                if ($institution === EducationInstitutionsEnum::School()->value) {
+                    $navigations->push([
+                        'route' => route('quiz.quiz.index'),
+                        'active' => request()->routeIs('quiz.quiz.index'),
+                        'icon' => 'ri-question-line',
+                        'tKey' => 'quizzes'
+                    ]);
+                }
+
+                $navigations->push([
+                    'route' => route('general.grade'),
+                    'active' => request()->routeIs('general.grade'),
+                    'icon' => 'ri-calendar-check-line',
+                    'tKey' => 'grades'
+                ]);
+
+                break;
+            case UserRoleEnum::Student()->value:
+//                $navigations->push();
+                break;
+            default:
+                break;
+        }
+
+        $navigations->push(
             [
-                'route' => route($institution.'.add-step'),
-                'active' => request()->routeIs($institution.'.add-step'),
-                'icon' => 'ri-add-circle-line',
-                'tKey' => 'add-new-course'
-            ],
-            [
-                'route' => route('academy.my-courses'),
-                'active' => request()->routeIs('academy.my-courses'),
-                'icon' => 'ri-computer-line',
-                'tKey' => 'courses'
-            ],
-            [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
-                'icon' => ' ri-file-text-line',
-                'tKey' => 'assignments'
-            ],
-            [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
-                'icon' => 'ri-question-line',
-                'tKey' => 'quizzes'
-            ],
-            [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
-                'icon' => 'ri-calendar-check-line',
-                'tKey' => 'grades'
-            ],
-            [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard') || request()->routeIs('dashboard'),
-                'icon' => 'ri-group-line',
-                'tKey' => 'mentoring'
-            ],
-            [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
+                'route' => route('general.payment'),
+                'active' => request()->routeIs('general.payment'),
                 'icon' => 'ri-bank-card-line',
                 'tKey' => 'payments'
             ],
             [
-                'route' => route('settings.index'),
-                'active' => request()->routeIs('settings.index'),
+                'route' => route('general.settings.index'),
+                'active' => request()->routeIs('general.settings.index'),
                 'icon' => ' ri-settings-2-line',
                 'tKey' => 'settings'
             ],
@@ -83,17 +122,7 @@ class HandleInertiaRequestService
                 'icon' => 'ri-logout-box-r-line',
                 'tKey' => 'logout'
             ]
-        ]);
-
-        $checkAuth = Auth::check();
-
-        if (!$checkAuth) {
-            return $navigations;
-        }
-
-//        $user = Auth::user();
-//        if ($user->hasRole([UserRoleEnum::Student()->value])) {}
-//        if ($user->hasRole([UserRoleEnum::Instructor()->value])) {}
+        );
 
         return $navigations;
     }
@@ -113,5 +142,16 @@ class HandleInertiaRequestService
         }
 
         return $flashMessage;
+    }
+
+
+    private function setMenuStudent(User $user)
+    {
+
+    }
+
+    private function setMenuOrganizer(User $user): Collection
+    {
+        return collect();
     }
 }

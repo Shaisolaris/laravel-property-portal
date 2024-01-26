@@ -3,8 +3,8 @@ import AppLayout from "~/Layouts/AppLayout.vue"
 </script>
 
 <template>
-    <AppLayout>
-        <Link :href="route('schedule')">dashboard</Link>
+    <AppLayout title="dashboard">
+        <Link :href="route('general.schedule')">schedule</Link>
     </AppLayout>
 </template>
 

@@ -35,7 +35,7 @@ const items = ref([
                         </template>
                         <template #footer>
                             <div class="text-end">
-                                <Link :href="route('dashboard')" type="button">
+                                <Link :href="route('general.dashboard')" type="button">
                                     <div class="btn-light-beige rounded-pill btn btn-icon btn-lg">
                                         <i class=" ri-arrow-right-up-line fs-20"></i>
                                     </div>

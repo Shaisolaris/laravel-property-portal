@@ -8,7 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Accordion: typeof import('./resources/js/Components/Accordion.vue')['default']
-    Actions: typeof import('./resources/js/Components/Table/Partials/Actions.vue')['default']
+    TdActions: typeof import('./resources/js/Components/Table/Partials/TdActions.vue')['default']
     Avatar: typeof import('./resources/js/Components/Avatar/Avatar.vue')['default']
     BaseButton: typeof import('./resources/js/Components/Buttons/BaseButton.vue')['default']
     BaseInput: typeof import('./resources/js/Components/Form/BaseInput.vue')['default']

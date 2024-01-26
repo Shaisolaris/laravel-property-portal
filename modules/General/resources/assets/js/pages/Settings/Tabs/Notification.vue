@@ -5,7 +5,7 @@ const form = useForm(user.value?.settings?.notification);
 
 const submit = () => {
     setTimeout(() => {
-        form.put(route('settings.notification'));
+        form.put(route('general.settings.notification'));
     }, 100);
 }
 </script>

@@ -39,7 +39,7 @@ const submitUpload = () => {
 }
 
 const submitProfile = () => {
-    formProfile.put(route('settings.profile'));
+    formProfile.put(route('general.settings.profile'));
 }
 
 

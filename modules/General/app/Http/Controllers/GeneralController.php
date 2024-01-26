@@ -23,4 +23,15 @@ class GeneralController extends Controller
             'events' => ''
         ]);
     }
+
+
+    public function grade()
+    {
+        return Inertia::render('General::Grade');
+    }
+
+    public function payments()
+    {
+        return Inertia::render('General::Grade');
+    }
 }

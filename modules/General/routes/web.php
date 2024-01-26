@@ -1,19 +1,20 @@
 <?php
 
+use App\Facades\Data;
 use Illuminate\Support\Facades\Route;
-use Modules\General\app\Http\Controllers\CreationStepsController;
 use Modules\General\app\Http\Controllers\GeneralController;
 use Modules\General\app\Http\Controllers\UserSettingController;
+use Modules\General\app\Http\Controllers\CreationStepsController;
 
-//TODO: нужно добавить логику которая прокинет prefix учывая роль и принадлежность к типу учебного заведения
-
-//У юзера есть уже параметр institution_type institution_name
 Route::group([
-    'middleware' => ['auth:sanctum', 'verified'],
-    'controller' => GeneralController::class
+    'middleware' => 'student_instructor',
+    'controller' => GeneralController::class,
+    'as' => 'general.',
 ], function () {
     Route::get('dashboard', 'dashboard')->name('dashboard');
     Route::get('schedule', 'schedule')->name('schedule');
+    Route::get('grades', 'grade')->name('grade');
+    Route::get('payments', 'payments')->name('payment');
 
     Route::group([
         'as' => 'settings.',
@@ -28,6 +29,6 @@ Route::group([
 
 
     // TODO:
-    Route::get('academy/add/course', [CreationStepsController::class,'create'])->name('academy.add-step');
-    Route::get('school/add/class', [CreationStepsController::class,'create'])->name('school.add-step');
+    Route::get('academy/add/course', [CreationStepsController::class, 'create'])->name('academy.add-step');
+    Route::get('school/add/class', [CreationStepsController::class, 'create'])->name('school.add-step');
 });

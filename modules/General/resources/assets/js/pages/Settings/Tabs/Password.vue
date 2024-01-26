@@ -18,7 +18,7 @@ const formEmail = useForm({
 
 
 const submitEmail = () => {
-    formEmail.put(route('settings.email-password'), {
+    formEmail.put(route('general.settings.email-password'), {
         onSuccess: () => {
             stateEdit.value.email = false;
         }

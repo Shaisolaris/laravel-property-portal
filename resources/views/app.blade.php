@@ -2,7 +2,6 @@
 @php
     $user = Auth::user();
 @endphp
-{{--TODO:: need add type institution - for styles [data-institution-name=""]--}}
 <html
     lang="{{ str_replace('_', '-', app()->getLocale()) }}"
     data-layout="vertical"
@@ -17,7 +16,7 @@
     data-sidebar-visibility="show"
     data-layout-style="detached"
     data-role-name="{{$user?->roleName}}"
-    data-institution-name
+    data-institution-name="{{$user?->institution_type}}"
 >
     <head>
         <meta charset="utf-8">

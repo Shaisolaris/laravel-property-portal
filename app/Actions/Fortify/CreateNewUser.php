@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Enums\EducationInstitutions\EducationInstitutionsEnum;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -26,6 +27,7 @@ class CreateNewUser implements CreatesNewUsers
 
         try {
             $input['password'] = $this->hashedPassword($input);
+            //TODO:: почему статус на регистрации становится active, а не pending или review?
             $input['status'] = 'active'; // TODO::
 
             $user = User::create($input);
@@ -75,8 +77,8 @@ class CreateNewUser implements CreatesNewUsers
             ];
         }
 
-        if ($institutionList->institution()->value('name') === 'School') {
-            switch ($user->roleName()) {
+        if (Str::lower($institutionList->institution()->value('name')) === EducationInstitutionsEnum::School()->value) {
+            switch ($user->roleName) {
                 case UserRoleEnum::Student()->value:
                     $data['notification_settings'] = Arr::renameKey($data['notification_settings'], 'classes', 'courses');
                     break;

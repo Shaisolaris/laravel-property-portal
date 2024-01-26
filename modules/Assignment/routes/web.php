@@ -5,7 +5,7 @@ use Modules\Assignment\app\Http\Controllers\AssignmentController;
 
 
 Route::group([
-    'middleware' => ['auth:sanctum', 'verified', roleSI()],
+    'middleware' => 'student_instructor',
     'prefix' => 'assignments',
     'as' => 'assignment.',
 ], function () {

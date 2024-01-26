@@ -4,6 +4,10 @@
     "already-have-account": "Already have an account?",
     "dont-have-account": "Don't have an account yet?",
     "reviews": "Reviews",
+    "balance": "Balance",
+    "to": "to",
+    "of": "of",
+    "pagination-page": "page",
     "menu": {
         "dashboard": "Dashboard",
         "add-new-course": "Add New Course",
@@ -14,7 +18,16 @@
         "mentoring": "Mentoring",
         "payments": "Payments",
         "settings": "Settings",
-        "logout": "Logout"
+        "logout": "Logout",
+        "mentorship": "Mentorship",
+        "mentors": "Mentors",
+        "classes": "Classes",
+        "my-courses": "My Courses",
+        "my-classes": "My Classes",
+        "messages": "Messages",
+        "forum": "Forum",
+        "setting": "Setting",
+        "podcast": "Podcast"
     },
     "landing": {
         "blog": "Blog",
@@ -26,7 +39,12 @@
             "under-header-section": {
                 "text-1": "Start learning from best platform.",
                 "text-2": "Study any topic, anytime. explore thousands of courses for the lowest price ever!",
-                "items": ["happy students", "experienced instructors", "happy students", "experienced instructors"]
+                "items": [
+                    "happy students",
+                    "experienced instructors",
+                    "happy students",
+                    "experienced instructors"
+                ]
             },
             "section-1": {
                 "swiper-slide-1": {
@@ -81,9 +99,18 @@
                 "section-1": {
                     "title": "Explore Categories if you're not sure what to search for",
                     "items": [
-                        { "title": "STEAM", "text": "Explore the realms of Science, Technology, Engineering, Arts, and Mathematics."},
-                        { "title": "Wellbeing", "text": "Prioritize your physical and mental health with our Wellbeing courses." },
-                        { "title": "Business", "text": "Master the fundamentals and strategies of successful business." }
+                        {
+                            "title": "STEAM",
+                            "text": "Explore the realms of Science, Technology, Engineering, Arts, and Mathematics."
+                        },
+                        {
+                            "title": "Wellbeing",
+                            "text": "Prioritize your physical and mental health with our Wellbeing courses."
+                        },
+                        {
+                            "title": "Business",
+                            "text": "Master the fundamentals and strategies of successful business."
+                        }
                     ]
                 }
             },
@@ -91,10 +118,18 @@
                 "title": "Help & Support",
                 "text-1": "Trending: ",
                 "text-2": "Web Design, Marketing, iOS Development",
-                "items": ["My profile", "Reset Password", "Payment Options", "My Courses", "Address", "My Quizzes", "My LMS", "See More"]
+                "items": [
+                    "My profile",
+                    "Reset Password",
+                    "Payment Options",
+                    "My Courses",
+                    "Address",
+                    "My Quizzes",
+                    "My LMS",
+                    "See More"
+                ]
             },
             "courses-page": {
-
             }
         },
         "school": {
@@ -152,9 +187,23 @@
         "footer": {
             "text-1": "Explore thousands of courses for the lowest price ever!",
             "text-2": "Subscribe to our newsletter",
-            "links": ["Blog", "All Courses", "Sign Up"],
-            "help": ["About Us", "Privacy Policy", "Terms and condition", "FAQ", "Refund Policy"],
-            "columns": ["Top categories", "Useful links", "Help"]
+            "links": [
+                "Blog",
+                "All Courses",
+                "Sign Up"
+            ],
+            "help": [
+                "About Us",
+                "Privacy Policy",
+                "Terms and condition",
+                "FAQ",
+                "Refund Policy"
+            ],
+            "columns": [
+                "Top categories",
+                "Useful links",
+                "Help"
+            ]
         },
         "filter": {
             "categories": "Categories",
@@ -193,7 +242,13 @@
                 "profile-photo": "Profile Photo",
                 "basic-information": {
                     "title": "Basic Information",
-                    "items": ["Display Name", "Date of Birth", "Gender", "Timezone", "Languages"]
+                    "items": [
+                        "Display Name",
+                        "Date of Birth",
+                        "Gender",
+                        "Timezone",
+                        "Languages"
+                    ]
                 }
             },
             "notification": {
@@ -248,9 +303,24 @@
         "school-landing": "School Landing",
         "academy-category": "Categories",
         "academy-help-support": "Help & Support",
-        "academy-courses": "Courses",
-        "school-classes": "Classes",
         "schedule": "Schedule",
+        "mentorship": "Mentorship",
+        "mentors": "Mentors",
+        "courses": "Courses",
+        "classes": "Classes",
+        "dashboard": "Dashboard",
+        "add-new-course": "Add New Course",
+        "my-courses": "My Courses",
+        "my-classes": "My Classes",
+        "assignments": "Assignments",
+        "messages": "Messages",
+        "mentoring": "Mentoring",
+        "forum": "Forum",
+        "payments": "Payments",
+        "setting": "Setting",
+        "grades": "Grades",
+        "podcast": "Podcast",
+        "quizzes": "Quizzes",
         "school-short-casual-courses": "Short Courses and Casual Courses"
     },
     "label": {
@@ -337,18 +407,40 @@
     },
     "table": {
         "header": {
-            "test": [
-                "ID",
-                "Date",
-                "Value",
+            "grades": [
+                "Student",
+                "Midterm (20%)",
+                "Homework (20%)",
+                "Final Exam (60%)",
+                "Average Score",
+                ""
+            ],
+            "gradesWithoutAction": [
+                "Subject",
+                "Midterm (20%)",
+                "Homework (20%)",
+                "Final Exam (60%)",
+                "Average Score"
+            ],
+            "assignments": [
+                "Student name",
+                "Deadline",
+                "Score",
+                "Status",
                 "Action"
             ],
-            "test2": {
-                "ID": "3",
-                "Date": "2",
-                "Value": "1",
-                "Action": ""
-            }
+            "quizzes": [
+                "Title",
+                "Questions",
+                "Time (Min)",
+                "Total Mark",
+                "Pass Mark",
+                "Pass Mark",
+                "Students",
+                "Status",
+                "Date Created",
+                "Action"
+            ]
         }
     },
     "tabs": {
@@ -383,6 +475,12 @@
                 "name": "Reviews",
                 "icon": "ri-chat-4-line"
             }
+        ],
+        "assignments":  [
+            { "name": "Reviewed"}, {"name": "Pending Review" }
+        ],
+        "quizzes": [
+            { "name":  "All" }, { "name":  "Active" }
         ]
     },
     "accordion": {

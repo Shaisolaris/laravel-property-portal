@@ -48,6 +48,19 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        /** 'auth:sanctum', 'verified', 'role:student|instructor' */
+        'student_instructor' => [
+            'auth:sanctum',
+            'verified',
+            'role:student|instructor',
+        ],
+
+        'organizer' => [
+            'auth:sanctum',
+            'verified',
+            'role:organizer',
+        ]
     ];
 
     /**

@@ -20,7 +20,6 @@ const toggleHamburgerMenu = () => {
     if (windowSize > 767)
         document.querySelector(".hamburger-icon").classList.toggle("open");
 
-    //For collapse horizontal menu
     if (
         document.documentElement.getAttribute("data-layout") === "horizontal"
     ) {
@@ -143,10 +142,18 @@ onMounted(() => {
                     <div class="d-flex">
                         <slot name="bottom-left-nav-bar-block">
                             Academy of Inoura
+
+                            School of Inoura
                         </slot>
                     </div>
                     <div class="d-flex align-items-center">
                         <slot name="bottom-right-nav-bar-block">
+                            <span v-if="$page.props.auth.isInstructor">
+                                <i class="mdi mdi-wallet text-muted me-1" />
+                                <span class="fs-16">
+                                    <Text tag="span" t-key="balance" />: <b>${{ $page.props.auth.balance }}</b>
+                                </span>
+                            </span>
                             <b-dropdown
                                 :offset="{ alignmentAxis: 55, crossAxis: 15, mainAxis: 0 }"
                                 class="dropdown d-md-none topbar-head-dropdown header-item"
@@ -263,7 +270,7 @@ onMounted(() => {
                                             <div class="text-reset notification-item d-block dropdown-item">
                                                 <div class="d-flex">
                                                     <img
-                                                        src="../../../../assets/images/users/avatar-3.jpg"
+                                                        src="@/images/users/avatar-3.jpg"
                                                         class="me-3 rounded-circle avatar-xs"
                                                         alt="user-pic"
                                                     />
@@ -301,7 +308,7 @@ onMounted(() => {
                                         <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                                             <div class="w-25 w-sm-50 pt-3 mx-auto">
                                                 <img
-                                                    src="../../../../assets/images/svg/bell.svg"
+                                                    src="@/images/svg/bell.svg"
                                                     class="img-fluid"
                                                     alt="user-pic"
                                                 />
@@ -322,12 +329,13 @@ onMounted(() => {
                                     id="page-header-user-dropdown"
                                 >
                                     <span class="d-flex align-items-center">
-                                        <MediaImage :src="$page.props.auth.avatar"
-                                                    :name="$page.props.auth.name"
-                                                    classes="rounded-circle header-profile-user"
+                                        <MediaImage
+                                            v-if="$page.props.auth?.avatar"
+                                            :src="$page.props.auth?.avatar"
+                                            :name="$page.props.auth?.name"
+                                            classes="rounded-circle header-profile-user"
                                         />
-        <!--                                <img v-if="!$page.props.auth?.avatar" :src="$page.props.auth?.avatar" class="rounded-circle header-profile-user" alt>-->
-        <!--                                <span v-else class="bg-light-blue rounded-circle header-profile-user" />-->
+                                        <span v-else class="bg-light-blue rounded-circle header-profile-user" />
                                     </span>
                                 </button>
                             </div>

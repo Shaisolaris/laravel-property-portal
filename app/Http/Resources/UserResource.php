@@ -4,12 +4,16 @@ namespace App\Http\Resources;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\General\app\Http\Resources\UserSettingResource;
 use Modules\Notification\Http\Resources\NotificationResource;
 
 /** @mixin User
  * @property mixed $fullName
+ * @property bool $isOrganizer
+ * @property bool $isInstructor
+ * @property bool $isStudent
  */
 class UserResource extends JsonResource
 {
@@ -26,8 +30,11 @@ class UserResource extends JsonResource
             'gender' => $this->gender,
             'timezone' => $this->timezone,
             'bio' => $this->bio,
+            'balance' => Number::format($this->balance),
+            'isOrganizer' => $this->isOrganizer,
+            'isInstructor' => $this->isInstructor,
+            'isStudent' => $this->isStudent,
             'languages' => $this->languages && is_array($this->languages) ? implode(', ', $this->languages) : $this->languages,
-
             'notifications' => NotificationResource::collection($this->whenLoaded('unreadNotifications')),
             'media' => MediaResource::collection($this->whenLoaded('media')),
             'settings' => UserSettingResource::make($this->whenLoaded('settings')),

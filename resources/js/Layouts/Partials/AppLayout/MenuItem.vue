@@ -49,9 +49,9 @@ onUnmounted(() => {
         >
             <span :class="['sidebar-item', { 'active': navigation.active }]">
                 <span class="btn-beige rounded-pill btn btn-icon btn-md">
-                    <i :class="[navigation.icon, 'text-black fs-16']"></i>
+                    <i :class="[navigation.icon, 'sidebar-name-block fs-16']"></i>
                 </span>
-                <Text class="ms-2 text-black fs-14" tag="span" :t-key="`menu.${navigation.tKey}`" />
+                <Text class="ms-2 sidebar-name-block fs-14" tag="span" :t-key="`menu.${navigation.tKey}`" />
             </span>
         </Link>
     </li>

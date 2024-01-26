@@ -15,7 +15,7 @@ defineProps({
     <b-row>
         <b-col cols="12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">{{ $t(`title.${title}`) }}</h4>
+                <div class="mb-sm-0 fs-18 fw-medium"><b>{{ $t(`title.${title}`) }}</b></div>
                 <div class="page-title-right">
                     <slot name="right">
                         <ol class="breadcrumb m-0">

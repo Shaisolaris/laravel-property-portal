@@ -3,6 +3,7 @@
 namespace App\Enums\EducationInstitutions;
 
 use App\Traits\EnumTrait;
+use Illuminate\Support\Str;
 use Spatie\Enum\Laravel\Enum;
 
 /**
@@ -21,6 +22,8 @@ class EducationInstitutionsEnum extends Enum
     protected static function values(): array
     {
         return [
+            'School' => 'school',
+            'Academy' => 'academy',
             'Available' => 1,
             'Disabled' => 0,
         ];

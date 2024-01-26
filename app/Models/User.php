@@ -68,6 +68,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read UserDetail|null $detail
+ * @property-read mixed $institution_name
+ * @property-read string $institution_type
+ * @property-read EducationInstitutionUser|null $institution
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
  * @property-read Collection<int, Notification> $notifications
@@ -86,6 +89,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read int|null $tokens_count
  * @property-read Collection<int, Notification> $unreadNotifications
  * @property-read int|null $unread_notifications_count
+ * @property mixed $roleName
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User hasExpiredGenericTrial()
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()

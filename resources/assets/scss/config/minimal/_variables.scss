@@ -89,6 +89,8 @@ $crimson: rgba(231, 134, 139, 0.40);
 $cosmic-sapphire: #122D98;
 $emerald-green: #1B9930;
 $light-pink: #DEB3E0;
+$copper: #D88A15;
+$cherry-red: #D81544;
 
 $border-base-color: #E3E3E3;
 $card-border-base-color: #F1F3F5;
@@ -116,7 +118,10 @@ $colors: (
     "royal-blue": $royal-blue,
     "dim-gray": $dim-gray,
     "light-pink": $light-pink,
+    "beige-blue": $beige-blue,
     "beige": $beige,
+    "copper": $copper,
+    "cherry-red": $cherry-red,
     "light-beige": $light-beige,
     "gainsboro": $gainsboro,
     "thistle": $thistle,
@@ -298,6 +303,36 @@ $beige-600: shade-color($beige, 20%);
 $beige-700: shade-color($beige, 40%);
 $beige-800: shade-color($beige, 60%);
 $beige-900: shade-color($beige, 80%);
+
+$beige-blue-100: tint-color($beige-blue, 80%);
+$beige-blue-200: tint-color($beige-blue, 60%);
+$beige-blue-300: tint-color($beige, 40%);
+$beige-blue-400: tint-color($beige-blue, 20%);
+$beige-blue-500: $beige-blue;
+$beige-blue-600: shade-color($beige-blue, 20%);
+$beige-blue-700: shade-color($beige-blue, 40%);
+$beige-blue-800: shade-color($beige-blue, 60%);
+$beige-blue-900: shade-color($beige-blue, 80%);
+
+$copper-100: tint-color($copper, 80%);
+$copper-200: tint-color($copper, 60%);
+$copper-300: tint-color($copper, 40%);
+$copper-400: tint-color($copper, 20%);
+$copper-500: $copper;
+$copper-600: shade-color($copper, 20%);
+$copper-700: shade-color($copper, 40%);
+$copper-800: shade-color($copper, 60%);
+$copper-900: shade-color($copper, 80%);
+
+$cherry-red-100: tint-color($cherry-red, 80%);
+$cherry-red-200: tint-color($cherry-red, 60%);
+$cherry-red-300: tint-color($cherry-red, 40%);
+$cherry-red-400: tint-color($cherry-red, 20%);
+$cherry-red-500: $cherry-red;
+$cherry-red-600: shade-color($cherry-red, 20%);
+$cherry-red-700: shade-color($cherry-red, 40%);
+$cherry-red-800: shade-color($cherry-red, 60%);
+$cherry-red-900: shade-color($cherry-red, 80%);
 
 $light-beige-100: tint-color($light-beige, 80%);
 $light-beige-200: tint-color($light-beige, 60%);
@@ -562,6 +597,42 @@ $beiges: (
     "beige-900": $beige-900
 );
 
+$beige-blues: (
+    "beige-blue-100": $beige-blue-100,
+    "beige-blue-200": $beige-blue-200,
+    "beige-blue-300": $beige-blue-300,
+    "beige-blue-400": $beige-blue-400,
+    "beige-blue-500": $beige-blue-500,
+    "beige-blue-600": $beige-blue-600,
+    "beige-blue-700": $beige-blue-700,
+    "beige-blue-800": $beige-blue-800,
+    "beige-blue-900": $beige-blue-900
+);
+
+$coppers: (
+    "copper-100": $copper-100,
+    "copper-200": $copper-200,
+    "copper-300": $copper-300,
+    "copper-400": $copper-400,
+    "copper-500": $copper-500,
+    "copper-600": $copper-600,
+    "copper-700": $copper-700,
+    "copper-800": $copper-800,
+    "copper-900": $copper-900
+);
+
+$cherry-reds: (
+    "cherry-red-100": $cherry-red-100,
+    "cherry-red-200": $cherry-red-200,
+    "cherry-red-300": $cherry-red-300,
+    "cherry-red-400": $cherry-red-400,
+    "cherry-red-500": $cherry-red-500,
+    "cherry-red-600": $cherry-red-600,
+    "cherry-red-700": $cherry-red-700,
+    "cherry-red-800": $cherry-red-800,
+    "cherry-red-900": $cherry-red-900
+);
+
 $light-beiges: (
     "light-beige-100": $light-beige-100,
     "light-beige-200": $light-beige-200,
@@ -667,6 +738,9 @@ $beige-blue: #F3F6FD;
 $dim-gray: #676A6C;
 $light-pink: #DEB3E0;
 $beige: #F7F6F2;
+$copper: #D88A15;
+$cherry-red: #D81544;
+$beige: #F7F6F2;
 $light-beige: #F2F2F2;
 $gainsboro: #E3E3E3;
 $thistle: rgba(222, 179, 224, 0.40);
@@ -698,6 +772,9 @@ $theme-colors: (
     "dim-gray": $dim-gray,
     "light-pink": $light-pink,
     "beige": $beige,
+    "beige-blue": $beige-blue,
+    "copper": $copper,
+    "cherry-red": $cherry-red,
     "light-beige": $light-beige,
     "gainsboro": $gainsboro,
     "thistle": $thistle,
@@ -724,6 +801,9 @@ $royal-blue-text-emphasis:              shade-color($royal-blue, 15%);
 $dim-gray-text-emphasis:                shade-color($dim-gray, 15%);
 $light-pink-text-emphasis:              shade-color($light-pink, 15%);
 $beige-text-emphasis:                   shade-color($beige, 15%);
+$beige-blue-text-emphasis:              shade-color($beige-blue, 15%);
+$copper-text-emphasis:                  shade-color($copper, 15%);
+$cherry-red-text-emphasis:              shade-color($cherry-red, 15%);
 $light-beige-text-emphasis:             shade-color($light-beige, 15%);
 $gainsboro-text-emphasis:               shade-color($gainsboro, 15%);
 $thistle-text-emphasis:                 shade-color($thistle, 15%);
@@ -748,6 +828,9 @@ $royal-blue-bg-subtle:       tint-color($royal-blue, 85%);
 $dim-gray-bg-subtle:         tint-color($dim-gray, 85%);
 $light-pink:                 tint-color($light-pink, 85%);
 $beige-bg-subtle:            tint-color($beige, 85%);
+$beige-blue-bg-subtle:       tint-color($beige-blue, 85%);
+$copper-bg-subtle:           tint-color($copper, 85%);
+$cherry-red-bg-subtle:       tint-color($cherry-red, 85%);
 $light-beige-bg-subtle:      tint-color($light-beige, 85%);
 $gainsboro-bg-subtle:        tint-color($gainsboro, 85%);
 $thistle-bg-subtle:          tint-color($thistle, 85%);
@@ -772,6 +855,9 @@ $royal-blue-border-subtle:       tint-color($royal-blue, 60%);
 $dim-gray-border-subtle:         tint-color($dim-gray, 60%);
 $light-pink-border-subtle:       tint-color($light-pink, 60%);
 $beige-border-subtle:            tint-color($beige, 60%);
+$beige-blue-border-subtle:       tint-color($beige-blue, 60%);
+$copper-border-subtle:           tint-color($copper, 60%);
+$cherry-red-border-subtle:       tint-color($cherry-red, 60%);
 $light-beige-border-subtle:      tint-color($light-beige, 60%);
 $gainsboro-border-subtle:        tint-color($gainsboro, 60%);
 $thistle-border-subtle:          tint-color($thistle, 60%);
@@ -788,6 +874,9 @@ $theme-buttons: (
     "royal-blue": $royal-blue-text-emphasis,
     "dim-gray": $dim-gray-text-emphasis,
     "beige": $beige-text-emphasis,
+    "beige-blue": $beige-blue-text-emphasis,
+    "copper": $copper-text-emphasis,
+    "cherry-red": $cherry-red-text-emphasis,
     "gainsboro": $gainsboro-text-emphasis,
     "thistle": $thistle-text-emphasis,
     "light-steel-blue": $light-steel-blue-text-emphasis,
@@ -1187,8 +1276,8 @@ $mark-bg: #fcf8e3;
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 // scss-docs-start table-variables
-$table-cell-padding-y: .75rem;
-$table-cell-padding-x: .6rem;
+$table-cell-padding-y: .625rem;
+$table-cell-padding-x: .625rem;
 $table-cell-padding-y-sm: .3rem;
 $table-cell-padding-x-sm: .25rem;
 
@@ -1240,6 +1329,9 @@ $table-variants: (
     "dim-gray":         shift-color($dim-gray, $table-bg-scale),
     "light-pink":       shift-color($light-pink, $table-bg-scale),
     "beige":            shift-color($beige, $table-bg-scale),
+    "beige-blue":       shift-color($beige-blue, $table-bg-scale),
+    "copper":           shift-color($copper, $table-bg-scale),
+    "cherry-red":       shift-color($cherry-red, $table-bg-scale),
     "gainsboro":        shift-color($gainsboro, $table-bg-scale),
     "thistle":          shift-color($thistle, $table-bg-scale),
     "light-steel-blue": shift-color($light-steel-blue, $table-bg-scale),

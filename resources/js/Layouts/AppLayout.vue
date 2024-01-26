@@ -11,8 +11,18 @@ defineProps({
     title: {
         type: String,
         default: ''
+    },
+    pageTitle: {
+        type: String,
+        default: ''
     }
 });
+const slots = useSlots();
+
+const showBreadcrumbsRightSide = computed(() => {
+    return !!slots['breadcrumbs-right']
+});
+
 const isMenuCondensed = ref(false);
 
 localStorage.setItem('hoverd', false);
@@ -113,7 +123,7 @@ onBeforeMount(() => {
                     </div>
                     <div class="d-block d-lg-none d-xl-block text-start">
                         <div class="fs-14 text-dim-gray">{{ $page.props.auth.role?.displayName }}</div>
-                        <div class="sidebar-name-block fs-5 fw-medium">{{ $page.props.auth?.fullName }}</div>
+                        <div class="sidebar-name-block fs-3 fw-medium">{{ $page.props.auth?.fullName }}</div>
                     </div>
                 </div>
                 <simplebar id="scrollbar" style="height: 90%" ref="scrollbar">
@@ -128,7 +138,23 @@ onBeforeMount(() => {
             <div class="page-content">
                 <b-container fluid>
                     <slot name="breadcrumbs">
-                        <Breadcrumbs :title="title" page-title="page-title" />
+                        <b-row>
+                            <b-col cols="12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <div class="mb-sm-0 fs-18 fw-medium"><b>{{ $t(`title.${title}`) }}</b></div>
+                                    <div v-if="pageTitle?.length || showBreadcrumbsRightSide" class="page-title-right">
+                                        <slot name="breadcrumbs-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="javascript: void(0);">{{ $t(`title.${pageTitle}`) }}</a>
+                                                </li>
+                                                <li class="breadcrumb-item active">{{ $t(`title.${title}`) }}</li>
+                                            </ol>
+                                        </slot>
+                                    </div>
+                                </div>
+                            </b-col>
+                        </b-row>
                     </slot>
                     <slot />
                 </b-container>

@@ -3,17 +3,15 @@
 if (! function_exists('prefix')) {
     function prefix(): ?string
     {
-        return '';
-    }
-}
+        $user = Auth::user();
 
+        if(!$user) {
+            return '';
+        }
 
-if (! function_exists('roleSI')) {
-    function roleSI(): ?string
-    {
-        $student = \App\Enums\User\UserRoleEnum::Student()->value;
-        $instructor = \App\Enums\User\UserRoleEnum::Instructor()->value;
+        $roleName = $user->roleName;
+        $institutionType = $user->institution_type;
 
-        return "role:$student|$instructor";
+        return "$institutionType/$roleName/";
     }
 }

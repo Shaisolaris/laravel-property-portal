@@ -164,20 +164,6 @@ const calendarOptions = ref({
     eventClick: editEvent,
     eventsSet: handleEvents,
 });
-
-
-onMounted(() => {
-    new Draggable(document.getElementById("external-events"), {
-        itemSelector: ".external-event",
-        eventData: function (eventEl) {
-            return {
-                title: eventEl.innerText,
-                start: new Date(),
-                className: eventEl.getAttribute("data-class"),
-            };
-        },
-    });
-});
 </script>
 
 <template>

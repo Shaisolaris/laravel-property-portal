@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Arr;
 use Laravel\Cashier\Cashier;
+use Illuminate\Support\Number;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function macros(): void
     {
+        /* ARR */
         Arr::macro('renameKey', function (array $keys, string $oldKey, string $newKey) {
             if (isset($keys[$oldKey])) {
                 $keys[$newKey] = $keys[$oldKey];

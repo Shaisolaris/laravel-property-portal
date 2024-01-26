@@ -30,6 +30,10 @@
         background: $beige;
         width: 100%;
         padding: 8px 0 8px 15px;
+
+        .rounded-pill {
+            box-shadow: none !important;
+        }
     }
 }
 

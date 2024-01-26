@@ -2,19 +2,20 @@
 
 namespace Modules\Assignment\app\Http\Controllers;
 
+use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class AssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        return view('assignment::index');
+        return Inertia::render('Assignment::Index');
     }
 
     /**

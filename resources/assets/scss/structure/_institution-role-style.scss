@@ -1,4 +1,4 @@
-[data-role-auth="teacher"] {
+[data-institution-name="school"] {
     .sidebar-name-block {
         color: $royal-blue;
     }
@@ -27,14 +27,21 @@
         &.active {
             background: rgba($light-blue, .12);
         }
+
+        .btn-beige {
+            background: transparent;
+            border-color: transparent;
+        }
     }
 
-    .nav-item {
-        .nav-link {
-            &.active {
-                background: $beige-blue;
-                color: $royal-blue;
-                border-color: $beige-blue;
+    .tabs {
+        .nav-item {
+            .nav-link {
+                &.active {
+                    background: $beige-blue;
+                    color: $royal-blue;
+                    border-color: $beige-blue;
+                }
             }
         }
     }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Quiz\app\Http\Controllers\QuizController;
 
 Route::group([
-    'middleware' => ['auth:sanctum', 'verified', roleSI()],
+    'middleware' => 'student_instructor',
     'prefix' => 'quizzes',
     'as' => 'quiz.',
 ], function () {

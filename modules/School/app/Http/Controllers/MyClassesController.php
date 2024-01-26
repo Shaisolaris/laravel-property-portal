@@ -1,21 +1,20 @@
 <?php
 
-namespace Modules\Quiz\app\Http\Controllers;
+namespace Modules\School\app\Http\Controllers;
 
-use Inertia\Inertia;
-use Inertia\Response;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class QuizController extends Controller
+class MyClassesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
-        return Inertia::render('Quiz::Index');
+        return view('school::index');
     }
 
     /**
@@ -23,7 +22,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        return view('quiz::create');
+        return view('school::create');
     }
 
     /**
@@ -39,7 +38,7 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        return view('quiz::show');
+        return view('school::show');
     }
 
     /**
@@ -47,7 +46,7 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        return view('quiz::edit');
+        return view('school::edit');
     }
 
     /**
