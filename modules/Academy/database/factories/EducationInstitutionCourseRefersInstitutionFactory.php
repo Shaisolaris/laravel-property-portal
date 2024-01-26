@@ -9,26 +9,22 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Modules\Academy\app\Models\EducationInstitutionCourse;
+use Modules\Academy\app\Models\EducationInstitutionCourseRefersInstitution;
 
-class EducationInstitutionCourseFactory extends Factory
+class EducationInstitutionCourseRefersInstitutionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = EducationInstitutionCourse::class;
+    protected $model = EducationInstitutionCourseRefersInstitution::class;
 
     public function definition(): array
     {
         return [
-            'title' => ucfirst(fake()->name),
-            'type' => 1, // TODO::
-            'language' => fake()->languageCode,
-            'duration_minutes' => fake()->time(),
-            'time' => fake()->time(),
-            'description' => fake()->realText,
-            'category_id' => EducationInstitutionCategories::inRandomOrder()->value('id'),
+            'institution_id' => EducationInstitutionList::inRandomOrder()->value('id'),
+            'course_id' => EducationInstitutionCourse::inRandomOrder()->value('id'),
         ];
     }
 }

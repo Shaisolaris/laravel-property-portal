@@ -9,10 +9,10 @@ class FilterByKeyWord
     public function handle($courses, Closure $next)
     {
         $input = request('query');
-        $courses->when($input,function($query) use ($input) {
-            return $query->where(function($secondQuery) use ($input) {
-                $secondQuery->where('name', 'LIKE', '%' . $input . '%')
-                    ->orwhere('company_name', 'LIKE', '%' . $input . '%');
+        $courses->when($input, function ($query) use ($input) {
+            return $query->where(function ($secondQuery) use ($input) {
+                $secondQuery->where('title', 'LIKE', '%' . $input . '%')
+                    ->orwhere('description', 'LIKE', '%' . $input . '%');
             });
         });
 

@@ -7,6 +7,8 @@ use App\Models\EducationInstitution;
 use App\Models\EducationInstitutionUsers;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Academy\app\Models\EducationInstitutionCourse;
+use Modules\Academy\app\Models\EducationInstitutionCourseRefersInstitution;
 
 trait EducationInstitutionListRelationshipsTrait
 {
@@ -15,6 +17,15 @@ trait EducationInstitutionListRelationshipsTrait
         return $this->belongsTo(EducationInstitution::class, 'education_institution_id');
     }
 
+    public function courses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(
+            EducationInstitutionCourse::class,
+            EducationInstitutionCourseRefersInstitution::class,
+            'institution_id',
+            'id'
+        );
+    }
 
     public function peoples():BelongsToMany
     {

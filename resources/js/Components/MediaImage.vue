@@ -2,7 +2,7 @@
 import { onMounted, reactive } from 'vue';
 import { ProgressiveImage } from 'vue-progressive-image';
 import helpers from "~/scripts/helpers/helpers.js";
-
+import { v4 as uuidv4 } from 'uuid';
 
 const props = defineProps({
     media: {
@@ -13,7 +13,7 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    class: {
+    classes: {
         type: String,
         default: null,
     },
@@ -41,19 +41,11 @@ const props = defineProps({
 
 const { randomString } = helpers;
 
+const uuid = ref(uuidv4());
+
 const image = reactive({
     src: '',
     placeholder: '',
-});
-
-onMounted(() => {
-    if (props.media.hasOwnProperty('url')) {
-        generateImagePreview(props.media).then(
-            (data) => ([ image.src, image.placeholder ] = [ data.src, data.placeholder ]),
-        );
-    } else {
-        [ image.src, image.placeholder ] = [ props.src, props.placeholder ];
-    }
 });
 
 const generateImagePreview = async (media) => {
@@ -99,10 +91,29 @@ const avatarName = () => {
         return randomString(2, true, false);
     }
 };
+
+onMounted(() => {
+    if (props.media.hasOwnProperty('url')) {
+        generateImagePreview(props.media).then(
+            (data) => ([ image.src, image.placeholder ] = [ data.src, data.placeholder ]),
+        );
+    } else {
+        [ image.src, image.placeholder ] = [ props.src, props.placeholder ];
+    }
+});
+
+watch(
+    () => image.src,
+    () => (uuid.value = uuidv4()),
+);
+
 </script>
 
 <template>
-    <div v-if="image.src" class="avatar-user rounded-circle header-profile-user overflow-hidden">
+    <div v-if="image.src"
+         :class="[
+             classes,'content-media overflow-hidden'
+         ]">
         <progressive-image
             :src="image.src"
             :placeholder-src="image.placeholder ?? image.src"
@@ -112,17 +123,23 @@ const avatarName = () => {
         />
     </div>
     <div v-else class="d-flex align-items-center">
-        <span class="bg-light-blue rounded-circle header-profile-user d-flex align-items-center justify-content-center text-white">{{ avatarName() }}</span>
+        <span :class="[
+            classes,'bg-light-blue d-flex align-items-center justify-content-center text-white'
+        ]">{{ avatarName() }}</span>
     </div>
 </template>
 
 <style>
-.avatar-user {
-    width: 32px;
-    height: 32px;
+.content-media {
+
+    & div {
+        height: inherit;
+        padding: 0 !important;
+    }
 
     img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 }
