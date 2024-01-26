@@ -26,4 +26,9 @@ trait UserRelationshipsTrait
     {
         return $this->belongsToMany(Occupation::class);
     }
+
+    public function institution()
+    {
+
+    }
 }

@@ -44,8 +44,8 @@
       "$module@general/*": [
         "./modules/General/resources/assets/js/*"
       ],
-      "$module@quizze/*": [
-        "./modules/Quizze/resources/assets/js/*"
+      "$module@quiz/*": [
+        "./modules/Quiz/resources/assets/js/*"
       ]
     },
     "include": [

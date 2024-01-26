@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UserProfileRequest;
+use Modules\General\app\Http\Requests\User\UserProfileRequest;
 
 class MediaController extends Controller
 {

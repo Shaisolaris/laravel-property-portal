@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\General\app\Http\Resources\UserSettingResource;
 use Modules\Notification\Http\Resources\NotificationResource;
 
 /** @mixin User

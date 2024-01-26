@@ -1,8 +1,8 @@
 <script setup>
 import AppLayout from "~/Layouts/AppLayout.vue";
-import Profile from "~/Pages/Settings/Tabs/Profile.vue";
-import Password from "~/Pages/Settings/Tabs/Password.vue";
-import Notification from "~/Pages/Settings/Tabs/Notification.vue";
+import Profile from "$module@general/pages/Settings/Tabs/Profile.vue";
+import Password from "$module@general/pages/Settings/Tabs/Password.vue";
+import Notification from "$module@general/pages/Settings/Tabs/Notification.vue";
 
 
 const props = defineProps({
