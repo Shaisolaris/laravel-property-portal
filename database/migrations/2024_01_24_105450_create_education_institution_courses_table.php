@@ -21,6 +21,13 @@ return new class extends Migration
             $table->text('description');
             $table->timestamps();
         });
+
+        Schema::create('education_institution_course_refers_institutions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('institution_id')->constrained('education_institution_lists')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained('education_institution_courses')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->timestamps();
+        });
     }
 
     /**

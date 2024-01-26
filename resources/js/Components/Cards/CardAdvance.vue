@@ -40,7 +40,7 @@ const classesData = (view) => {
     <CardBase :class="['card-advance p-0', classesData(view).col]">
         <div class="row g-0" :key="view">
             <div :class="[classesData(view).image,'content-image']">
-                <MediaImage :src="item.image" class="rounded-start img-fluid"/>
+                <MediaImage :src="item.image" class="rounded-start img-fluid card-image"/>
             </div>
             <div :class="[classesData(view).box,'p-4 d-flex align-items-center']">
                 <div class="position-absolute end-0 top-0 me-4 mt-4 cursor-pointer">
@@ -64,7 +64,7 @@ const classesData = (view) => {
                         </div>
                         <div>
                             <div class="text-dim-gray">Category:</div>
-                            <div class="text-black fw-bold fs-16 mb-3">{{item.category}}</div>
+                            <div class="text-black fw-bold fs-16 mb-3">{{item.category.name}}</div>
                         </div>
                         <div>
                             <div class="text-dim-gray">Sale:</div>
@@ -85,5 +85,9 @@ const classesData = (view) => {
 <style lang="scss">
 .content-image {
     height: 277px;
+
+    .card-image {
+        height: inherit;
+    }
 }
 </style>

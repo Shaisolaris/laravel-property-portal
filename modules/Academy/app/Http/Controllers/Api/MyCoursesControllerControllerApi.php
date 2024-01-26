@@ -12,7 +12,7 @@ use Modules\Academy\app\Pipes\FilterByKeyWord;
 use Modules\Academy\app\Pipes\FilterByType;
 use Modules\Academy\app\Services\FilterCourse;
 
-class MyCoursesControllerControllerApi extends Controller
+class MyCoursesControllerApi extends Controller
 {
     public function filter(FilterCourse $course): \Illuminate\Http\JsonResponse
     {

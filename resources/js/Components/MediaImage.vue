@@ -131,14 +131,15 @@ watch(
 
 <style>
 .content-media {
-    height: inherit;
 
     & div {
+        height: inherit;
         padding: 0 !important;
     }
 
     img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 }

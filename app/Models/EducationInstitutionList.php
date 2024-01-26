@@ -7,6 +7,8 @@ use Database\Factories\EducationsInstitutionUserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Academy\app\Models\EducationInstitutionCourse;
+use Modules\Academy\app\Models\EducationInstitutionCourseRefersInstitution;
 
 class EducationInstitutionList extends Model
 {
@@ -30,6 +32,16 @@ class EducationInstitutionList extends Model
     public function peoples(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, EducationInstitutionUsers::class);
+    }
+
+    public function courses(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(
+            EducationInstitutionCourse::class,
+            EducationInstitutionCourseRefersInstitution::class,
+            'institution_id',
+            'id'
+        );
     }
 
 

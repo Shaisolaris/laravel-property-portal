@@ -6,16 +6,16 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Modules\Academy\app\Services\FilterCourse;
 
-class MyCoursesControllerController extends Controller
+class MyCoursesController extends Controllerll
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(FilterCourse $course): \Inertia\Response
+    public function index(FilterCourse $filterCourse): \Inertia\Response
     {
         return Inertia::render('Academy::MyCourses/List', [
-            'courses' => $course->filter(),
-            'limit' => $course->request->get('limit')
+            'courses' => $filterCourse->filter(),
+            'limit' => $filterCourse->request->get('limit')
         ]);
     }
 

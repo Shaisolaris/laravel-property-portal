@@ -20,6 +20,8 @@ class FilterCoursesRequest extends FormRequest
     {
         return [
             'skip' => ['nullable', 'integer'],
+            'query' => ['nullable', 'string'],
+            'type' => ['nullable', 'string'],
             'limit' => ['nullable', 'integer'],
             'sort' => ['nullable', 'string'],
         ];

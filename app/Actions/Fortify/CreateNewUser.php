@@ -32,7 +32,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $institution = EducationInstitutionList::find($input['institution_id']);
 
-            $user->assignRole($this->initialUserRole($input, $institution));
+            $user->assignRole($this->initialUserRole($input));
 
             $institution->peoples()->attach($user->id);
 
@@ -53,13 +53,9 @@ class CreateNewUser implements CreatesNewUsers
         $user->update($data);
     }
 
-    private function initialUserRole($input, $item): \Spatie\Permission\Models\Role
+    private function initialUserRole($input): \Spatie\Permission\Models\Role
     {
-        return Role::whereName(
-            $input['role'] !== UserRoleEnum::Organizer()->value
-                ? $input['role'] . "_" . Str::lower($item->institution()->value('name'))
-                : $input['role']
-        )->first();
+        return Role::whereName($input['role'])->first();
     }
 
     private function updateOrCreateNotificationSettings(User $user): void

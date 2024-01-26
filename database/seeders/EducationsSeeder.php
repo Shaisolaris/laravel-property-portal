@@ -8,6 +8,7 @@ use App\Models\EducationInstitutionCategories;
 use App\Models\EducationInstitutionList;
 use Illuminate\Database\Seeder;
 use Modules\Academy\app\Models\EducationInstitutionCourse;
+use Modules\Academy\app\Models\EducationInstitutionCourseRefersInstitution;
 
 class EducationsSeeder extends Seeder
 {
@@ -43,6 +44,8 @@ class EducationsSeeder extends Seeder
 
         EducationInstitutionList::factory()->count(10)->create();
         EducationInstitutionCourse::factory()->count(500)->create();
+
+        EducationInstitutionCourseRefersInstitution::factory()->count(1000)->create();
 
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Modules\Academy\app\Http\Resources;
 
+use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 
 class EducationInstitutionCourseResource extends JsonResource
 {
@@ -18,14 +18,16 @@ class EducationInstitutionCourseResource extends JsonResource
             'language' => $this->language,
             'description' => $this->description,
             'duration_minutes' => $this->duration_minutes,
-            'rate' => rand(2, 1000), // TODO::
-            'category' => $this->category->category // TODO: need resoruce
+            'rate' => rand(2, 1000), // TODO:: Need make the service class
             'image' => 'https://picsum.photos/800/600?random='.rand(1, 1000),
+            'im_subscription' => '',
             'info' => [
                 ['name' => "lecture", 'icon' => "las la-comment"],
                 ['name' => "section", 'icon' => "las la-list-ol"],
                 ['name' => "time", 'icon' => "las la-clock"],
-            ]
+            ],
+
+            'category' => CategoryResource::make($this->whenLoaded('category')),
         ];
     }
 }

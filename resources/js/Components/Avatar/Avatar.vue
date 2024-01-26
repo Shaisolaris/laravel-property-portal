@@ -23,7 +23,6 @@ defineProps({
 
 <template>
     <MediaImage :src="path" :classes="`avatar-${size} ${ rounded.length > 0 ? `rounded-${rounded}` : 'rounded' } ${$attrs.class}`"/>
-<!--    <img :src="images[`../../../assets/images/${path}`]?.default" :class="`avatar-${size} ${ rounded.length > 0 ? `rounded-${rounded}` : 'rounded' } ${$attrs.class}`" alt>-->
 </template>
 
 <style scoped>

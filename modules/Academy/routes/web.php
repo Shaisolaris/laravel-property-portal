@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Academy\app\Http\Controllers\MyCoursesControllerController;
+use Modules\Academy\app\Http\Controllers\MyCoursesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +15,6 @@ use Modules\Academy\app\Http\Controllers\MyCoursesControllerController;
 */
 
 Route::middleware('auth')->prefix('academy')->name('academy.')->group(function () {
-    Route::get('my-courses', [MyCoursesControllerController::class,'index'])->name('my-courses');
-    Route::get('add-course', [MyCoursesControllerController::class,'create'])->name('add-courses');
+    Route::get('my-courses', [MyCoursesController::class,'index'])->name('my-courses');
+    Route::get('add-course', [MyCoursesController::class,'create'])->name('add-courses');
 });
