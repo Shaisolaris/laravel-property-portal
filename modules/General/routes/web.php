@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\General\app\Http\Controllers\CreationStepsController;
 use Modules\General\app\Http\Controllers\GeneralController;
 
 /*
@@ -14,6 +15,12 @@ use Modules\General\app\Http\Controllers\GeneralController;
 |
 */
 
-Route::group([], function () {
+Route::middleware('auth')->group(function () {
+
+
     Route::resource('general', GeneralController::class)->names('general');
+
+    // TODO:
+    Route::get('academy/add/course', [CreationStepsController::class,'create'])->name('academy.add-step');
+    Route::get('school/add/class', [CreationStepsController::class,'create'])->name('school.add-step');
 });

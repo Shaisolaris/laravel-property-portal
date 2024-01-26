@@ -2,6 +2,7 @@
 
 namespace App\Traits\Models\Relationships;
 
+use App\Models\EducationInstitutionUser;
 use App\Models\Occupation;
 use App\Models\UserDetail;
 use App\Models\UserSetting;
@@ -15,15 +16,18 @@ trait UserRelationshipsTrait
         return $this->hasOne(UserSetting::class, 'user_id');
     }
 
-
     public function detail(): HasOne
     {
         return $this->hasOne(UserDetail::class, 'user_id');
     }
 
-
     public function occupations(): BelongsToMany
     {
         return $this->belongsToMany(Occupation::class);
+    }
+
+    public function institution(): hasOne
+    {
+        return $this->hasOne(EducationInstitutionUser::class,'user_id')->with('institution');
     }
 }

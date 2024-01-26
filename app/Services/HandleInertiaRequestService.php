@@ -19,6 +19,9 @@ class HandleInertiaRequestService
 
     public function setNavigations(): Collection
     {
+
+        $institution = auth()->user()->institution_type;
+
         $navigations = collect([
             [
                 'route' => route('dashboard'),
@@ -27,8 +30,8 @@ class HandleInertiaRequestService
                 'tKey' => 'dashboard'
             ],
             [
-                'route' => route('dashboard'),
-                'active' => request()->routeIs('dashboard'),
+                'route' => route($institution.'.add-step'),
+                'active' => request()->routeIs($institution.'.add-step'),
                 'icon' => 'ri-add-circle-line',
                 'tKey' => 'add-new-course'
             ],

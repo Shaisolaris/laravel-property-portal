@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\Models\Relationships\EducationInstitutionListRelationshipsTrait;
+use App\Traits\Models\Scope\EducationInstitutionListScopeTrait;
 use Database\Factories\EducationsInstitutionUserFactory;
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 

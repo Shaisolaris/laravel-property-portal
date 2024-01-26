@@ -6,24 +6,16 @@ use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 use Modules\Academy\app\Services\FilterCourse;
 
-class MyCoursesController extends Controllerll
+class MyCoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(FilterCourse $filterCourse): \Inertia\Response
     {
-        return Inertia::render('Academy::MyCourses/List', [
+        return Inertia::render('Academy::MyCourses', [
             'courses' => $filterCourse->filter(),
             'limit' => $filterCourse->request->get('limit')
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): \Inertia\Response
-    {
-        return Inertia::render('Academy::MyCourses/Create');
     }
 }

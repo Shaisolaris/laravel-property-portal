@@ -25,14 +25,16 @@ const disabledSubmit = computed(() =>
 );
 
 const send = () => sendForm({form, url: route("registration.user-detail.store")},
-    () => {
-        isComplete.value = true;
-        // setTimeout(function() {
-        //     window.location.reload()
-        // },10000)
+    (response) => {
+        if(response.data) {
+            isComplete.value = true;
+            setTimeout(function() {
+                window.location.reload()
+            },10000)
+        }
     }
 )
-
+2
 const list = reactive([
     {
         name: 'First Action',

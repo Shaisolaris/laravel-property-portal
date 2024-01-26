@@ -16,5 +16,4 @@ use Modules\Academy\app\Http\Controllers\MyCoursesController;
 
 Route::middleware('auth')->prefix('academy')->name('academy.')->group(function () {
     Route::get('my-courses', [MyCoursesController::class,'index'])->name('my-courses');
-    Route::get('add-course', [MyCoursesController::class,'create'])->name('add-courses');
 });
