@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\General\app\Http\Controllers;
 
 use DateTimeZone;
 use Inertia\Inertia;
 use App\Enums\User\UserGenderEnum;
 use Illuminate\Support\Facades\Hash;
 use App\Enums\User\UserLanguageEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\TimezoneResource;
-use App\Http\Requests\User\UserProfileRequest;
-use App\Http\Requests\User\UserNotificationRequest;
-use App\Http\Requests\User\UserEmailPasswordRequest;
+use Modules\General\app\Http\Requests\User\UserProfileRequest;
+use Modules\General\app\Http\Requests\User\UserNotificationRequest;
+use Modules\General\app\Http\Requests\User\UserEmailPasswordRequest;
 
 class UserSettingController extends Controller
 {
     public function index()
     {
-        return Inertia::render("Settings/Index", [
+        return Inertia::render("General::Settings/Index", [
             'timezones' => TimezoneResource::collection(DateTimeZone::listIdentifiers()),
             'genders' => UserGenderEnum::getGenders(),
             'languages' => UserLanguageEnum::getLanguages(),

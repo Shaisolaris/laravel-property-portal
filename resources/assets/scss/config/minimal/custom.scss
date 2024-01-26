@@ -439,6 +439,11 @@
     }
 }
 
+.multiselect-caret {
+    -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABDSURBVHgB7Y/LCQAgDEMzkvsv4yoiKIi/prm2gR4KL48WyMyUMTLflwpO8mQZicn8APrKG+h58Si4y7tEKq8SuRwlDWZCD7WzmmrBAAAAAElFTkSuQmCC') !important;
+    mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABDSURBVHgB7Y/LCQAgDEMzkvsv4yoiKIi/prm2gR4KL48WyMyUMTLflwpO8mQZicn8APrKG+h58Si4y7tEKq8SuRwlDWZCD7WzmmrBAAAAAElFTkSuQmCC') !important;
+}
+
 //range slider
 .slider-base {
     .slider-tooltip {

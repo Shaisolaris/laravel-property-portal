@@ -16,10 +16,12 @@ trait UserRelationshipsTrait
         return $this->hasOne(UserSetting::class, 'user_id');
     }
 
+
     public function detail(): HasOne
     {
         return $this->hasOne(UserDetail::class, 'user_id');
     }
+
 
     public function occupations(): BelongsToMany
     {

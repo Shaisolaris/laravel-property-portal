@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace Modules\General\app\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserProfilePhotoRequest extends FormRequest
+class UserProfileRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'photo' => 'nullable|mimes:jpg,jpeg,png|max:1024'
+
         ];
     }
 
