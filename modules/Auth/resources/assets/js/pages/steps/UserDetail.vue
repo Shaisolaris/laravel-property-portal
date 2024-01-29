@@ -145,16 +145,10 @@ const list = reactive([
                     <div class="d-flex gap-4">
                         <BaseButton
                             t-key="go-to-dashboard"
-                            routeName="dashboard"
+                            routeName="general.dashboard"
                             type="submit"
                             class="fs-20 fw-bold shadow-dark-blue border-2 border-black"
                         />
-<!--                        <BaseButton-->
-<!--                            t-key="upload-course"-->
-<!--                            routeName="academy.courses.create"-->
-<!--                            type="submit"-->
-<!--                            class="fs-20 fw-bold shadow-dark-blue border-2 border-black second bg-gainsboro"-->
-<!--                        />-->
                     </div>
                 </div>
             </div>

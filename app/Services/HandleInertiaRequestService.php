@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\EducationInstitutions\EducationInstitutionsEnum;
+use Illuminate\Support\Facades\URL;
 
 class HandleInertiaRequestService
 {
@@ -35,7 +36,7 @@ class HandleInertiaRequestService
 
         $navigations = collect([
             [
-                'route' => route('general.dashboard'),
+                'route' => '',
                 'active' => request()->routeIs('general.dashboard'),
                 'icon' => 'ri-layout-left-line',
                 'tKey' => 'dashboard'
@@ -44,11 +45,11 @@ class HandleInertiaRequestService
 
         switch ($user->roleName) {
             case UserRoleEnum::Instructor()->value:
-                if($institution === EducationInstitutionsEnum::Academy()->value) {
+                if ($institution === EducationInstitutionsEnum::Academy()->value) {
                     $navigations->push(
                         [
-                            'route' => route($institution . '.add-step'),
-                            'active' => request()->routeIs($institution . '.add-step'),
+                            'route' => route('general.' . $institution . '.add-step', ['program' => $institution == 'academy' ? 'course' : 'classes']),
+                            'active' => request()->routeIs('general.' . $institution . '.add-step'),
                             'icon' => 'ri-add-circle-line',
                             'tKey' => 'add-new-course'
                         ]

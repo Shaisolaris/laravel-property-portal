@@ -29,6 +29,8 @@ Route::group([
 
 
     // TODO:
-    Route::get('academy/add/course', [CreationStepsController::class, 'create'])->name('academy.add-step');
-    Route::get('school/add/class', [CreationStepsController::class, 'create'])->name('school.add-step');
+    Route::get('academy/add/{program}', [CreationStepsController::class, 'create'])->name('academy.add-step');
+    Route::get('school/add/{program}', [CreationStepsController::class, 'store'])->name('school.add-step');
+    Route::post('academy/add/store', [CreationStepsController::class, 'store'])->name('academy.add-step.store');
+    Route::post('school/add/store', [CreationStepsController::class, 'store'])->name('school.add-step.store');
 });

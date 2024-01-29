@@ -10,6 +10,9 @@ defineProps({
     icon:{
         type: String,
     },
+    iconRight:{
+        type: String,
+    },
     variant: {
         type: String,
         default: 'light-blue'
@@ -43,6 +46,7 @@ defineProps({
         <slot name="text">
             {{ $t(`button.${tKey}`) }}
         </slot>
+        <i v-if="iconRight" :class="[icon,'me-2']"></i>
     </button>
 </template>
 

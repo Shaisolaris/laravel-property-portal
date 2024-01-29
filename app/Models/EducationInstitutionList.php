@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Traits\Models\Relationships\EducationInstitutionListRelationshipsTrait;
 use App\Traits\Models\Scope\EducationInstitutionListScopeTrait;
-use Database\Factories\EducationsInstitutionUserFactory;
+use Database\Factories\EducationInstitutionListFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Carbon;
@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read Collection<int, User> $peoples
  * @property-read int|null $peoples_count
  * @method static \Illuminate\Database\Eloquent\Builder|EducationInstitutionList available()
- * @method static \Database\Factories\EducationsInstitutionUserFactory factory($count = null, $state = [])
+ * @method static \Database\Factories\EducationInstitutionListFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|EducationInstitutionList newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EducationInstitutionList newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EducationInstitutionList query()
@@ -56,8 +56,8 @@ class EducationInstitutionList extends Model
     ];
 
 
-    protected static function newFactory(): EducationsInstitutionUserFactory
+    protected static function newFactory(): EducationInstitutionListFactory
     {
-        return EducationsInstitutionUserFactory::new();
+        return EducationInstitutionListFactory::new();
     }
 }

@@ -101,24 +101,21 @@ onMounted(() => {
             </slot>
         </span>
 
-        <span :class="showTogglePassword ? 'd-block position-relative auth-pass-inputgroup': ''">
+        <span :class="showTogglePassword ? 'd-block position-relative auth-pass-inputgroup': 'w-100'">
             <input
                 v-bind="Object.assign({}, $attrs, {class: undefined})"
                 :type="type_"
                 :value="modelValue"
                 :placeholder="placeholder_ !== 'placeholder._' ? placeholder_ : '_'"
-                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control', $attrs.class]"
-                @input="(event) => handleInput(event)"
-            >
-
+                :class="[{ 'is-invalid': error && error.length > 0 }, 'form-control', $attrs.class,{'disable-left-round-border':viewType === 'counter'}]"
+                @input="(event) => handleInput(event)">
             <BButton
                 v-if="showTogglePassword"
                 variant="link"
                 class="position-absolute end-0 top-0 text-decoration-none text-muted"
                 type="button"
                 id="password-addon"
-                @click="togglePassword = !togglePassword"
-            >
+                @click="togglePassword = !togglePassword">
                 <i class="ri-eye-fill align-middle" />
             </BButton>
         </span>
@@ -137,5 +134,11 @@ onMounted(() => {
 
 
 <style scoped>
-
+.input-group {
+    flex-wrap: nowrap;
+    & .disable-left-round-border {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
 </style>

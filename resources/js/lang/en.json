@@ -351,7 +351,17 @@
         "business-document": "Business Documents",
         "registration-scan": "Registration Scan",
         "extra-information": "Extra Information",
-        "institution": "Institution"
+        "institution": "Institution",
+        "title": "Title",
+        "course-type": "Course Type",
+        "language": "Language",
+        "seo-description": "Seo description",
+        "thumbnail": "Thumbnail",
+        "cover-image": "Cover image",
+        "duration-minutes": "Duration minutes",
+        "demo-video": "Demo video",
+        "description": "Description",
+        "course-benefits": "Course benefits"
     },
     "placeholder": {
         "select": "Select",
@@ -373,8 +383,18 @@
         "start-writing-something": "Start writing something...",
         "enter-email-address": "Enter your email address",
         "grade": "Grade",
+        "title": "Title",
         "instructor": "Instructor",
-        "subject": "Subject"
+        "subject": "Subject",
+        "course-type": "Course Type",
+        "seo-description": "Seo description",
+        "thumbnail": "Thumbnail",
+        "cover-image": "Cover image",
+        "duration-minutes": "Duration minutes (hh/mm/ss)",
+        "demo-video": "Demo video",
+        "description": "Description",
+        "language": "Language",
+        "write-benefit": "Write the benefit"
     },
     "button": {
         "sign-in": "Sign In",
@@ -391,7 +411,10 @@
         "go-to-dashboard": "Go to Dashboard",
         "upload-course": "Upload Course",
         "subscribe": "Subscribe",
-        "enroll": "Enroll now"
+        "enroll": "Enroll now",
+        "add-item": "Add item",
+        "delete": "Delete",
+        "preview": "Preview"
     },
     "link": {
         "sign-in": "Sign In",

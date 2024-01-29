@@ -31,6 +31,8 @@ class UserResource extends JsonResource
             'timezone' => $this->timezone,
             'bio' => $this->bio,
             'balance' => Number::format($this->balance),
+            'institution_type' => $this->institution_type,
+            'institution_name' => $this->institution_name,
             'isOrganizer' => $this->isOrganizer,
             'isInstructor' => $this->isInstructor,
             'isStudent' => $this->isStudent,

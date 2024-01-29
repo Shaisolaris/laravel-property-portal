@@ -49,6 +49,9 @@
       ],
       "$module@quiz/*": [
         "./modules/Quiz/resources/assets/js/*"
+      ],
+      "$module@assignment/*": [
+        "./modules/Assignment/resources/assets/js/*"
       ]
     },
     "include": [

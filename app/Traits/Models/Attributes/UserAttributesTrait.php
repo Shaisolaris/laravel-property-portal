@@ -10,13 +10,13 @@ trait UserAttributesTrait
 {
     public function fullName(): Attribute
     {
-        return Attribute::get(fn() => "$this->first_name $this->last_name");
+        return Attribute::get(fn () => "$this->first_name $this->last_name");
     }
 
 
     public function roleName(): Attribute
     {
-        return Attribute::get(fn() => $this->roles->first()->name);
+        return Attribute::get(fn () => $this->roles->first()->name);
     }
 
 
@@ -34,18 +34,18 @@ trait UserAttributesTrait
 
     public function isOrganizer(): Attribute
     {
-        return Attribute::get(fn() => $this->hasRole(UserRoleEnum::Organizer()->value));
+        return Attribute::get(fn () => $this->hasRole(UserRoleEnum::Organizer()->value));
     }
 
 
     public function isInstructor(): Attribute
     {
-        return Attribute::get(fn() => $this->hasRole(UserRoleEnum::Instructor()->value));
+        return Attribute::get(fn () => $this->hasRole(UserRoleEnum::Instructor()->value));
     }
 
 
     public function isStudent(): Attribute
     {
-        return Attribute::get(fn() => $this->hasRole(UserRoleEnum::Student()->value));
+        return Attribute::get(fn () => $this->hasRole(UserRoleEnum::Student()->value));
     }
 }
