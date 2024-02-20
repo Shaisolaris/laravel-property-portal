@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LaravelIdeaPersonalSettings">
+    <option name="generationStringOptionValues">
+      <map>
+        <entry key="createBladeComponent.type" value="Class and blade" />
+        <entry key="createObserver.method_created" value="" />
+        <entry key="createObserver.method_creating" value="1" />
+        <entry key="createObserver.method_deleted" value="" />
+        <entry key="createObserver.method_restored" value="" />
+        <entry key="createObserver.method_updated" value="" />
+        <entry key="postGeneration:controller" value="1" />
+        <entry key="postGeneration:formRequest" value="1" />
+        <entry key="postGeneration:jsonResource" value="1" />
+        <entry key="postGeneration:policy" value="1" />
+      </map>
+    </option>
+  </component>
+</project>

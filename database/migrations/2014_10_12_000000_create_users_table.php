@@ -1,47 +1,74 @@
 <?php
 
+use Laravel\Fortify\Fortify;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+return new class () extends Migration {
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+            $table->id();
+            $table->uuid()->index()->unique();
+            $table->string('stripe_id')->nullable()->index();
 
-            $table->increments('id');
-            $table->string('full_name', 128)->nullable();
-            $table->string('role_name',64);
-            $table->integer('role_id')->unsigned();
-            $table->string('avatar', 64)->nullable();
-            $table->string('mobile')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('google_id')->nullable();
-            $table->string('facebook_id')->nullable();
-            $table->string('remember_token')->nullable();
-            $table->enum('status', ['active','pending', 'inactive'])->default('active');
-            $table->integer('created_at');
-            $table->integer('updated_at')->nullable();
-            $table->integer('deleted_at')->nullable();
 
+            $table->string('status', 50)->default(\App\Enums\User\UserStatusEnum::Pending()->value);
+            $table->string('sub_status', 50)->nullable();
+
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('gender')->nullable();
+            $table->json('languages')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+
+            $table->string('address');
+
+            $table->foreignId('country_id')
+                ->constrained('countries')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->string('state');
+            $table->string('city');
+            $table->string('zip_code')->nullable();
+            $table->string('timezone')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('teaching_level')->nullable();
+            $table->string('ip')->nullable();
+
+            $table->text('bio')->nullable();
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+
+            $table->string('pm_type')->nullable();
+            $table->string('pm_last_four', 4)->nullable();
+
+            $table->rememberToken();
+
+            $table->string('password_set_token', 100)->nullable();
+            $table->timestamp('password_set_until')->nullable();
+
+            $table->timestamp('birth_at')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
+
+            if (Fortify::confirmsTwoFactorAuthentication()) {
+                $table->timestamp('two_factor_confirmed_at')
+                    ->after('two_factor_recovery_codes')
+                    ->nullable();
+            }
+
+            $table->timestamp('email_verified_at')->nullable();
+
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }
-}
+};

@@ -2,106 +2,73 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Modules\Quiz\app\Models\EiQuiz;
 use Illuminate\Support\Facades\Route;
+use Modules\School\app\Models\EiClass;
+use Illuminate\Cache\RateLimiting\Limit;
+use Modules\Schedule\app\Models\Schedule;
+use Modules\Quiz\app\Models\EiQuizQuestion;
+use Modules\School\app\Models\EiClassSubject;
+use Illuminate\Support\Facades\RateLimiter;
+use Modules\Payment\app\Models\PaymentCredential;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to your controller routes.
+     * The path to your application's "home" route.
      *
-     * In addition, it is set as the URL generator's root namespace.
-     *
-     * @var string
-     */
-    protected $namespace = 'App\Http\Controllers';
-    protected $api_namespace = 'App\Http\Controllers\Api';
-
-
-    /**
-     * The path to the "home" route for your application.
+     * Typically, users are redirected here after authentication.
      *
      * @var string
      */
     public const HOME = '/';
 
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-
-        parent::boot();
-    }
 
     /**
-     * Define the routes for the application.
-     *
-     * @return void
+     * Define your route model bindings, pattern filters, and other route configuration.
      */
-    public function map()
+    public function boot(): void
     {
-        $this->mapApiRoutes();
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
 
-        $this->mapWebRoutes();
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('api')
+                ->group(base_path('routes/api.php'));
 
-        $this->mapAdminRoutes();
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
 
-        $this->mapPanelRoutes();
+            $modules = array_diff(scandir(base_path('modules')), ['.', '..']);
+            $available = ['School', 'Schedule', 'Payment', 'Quiz', 'General'];
 
-        //
+            foreach ($modules as $module) {
+                if (in_array($module, $available)) {
+                    Route::middleware(['web', 'default-middlewares'])
+                        ->namespace("Modules\\$module\app\Http\Controllers")
+                        ->prefix('{role?}/{institution?}')
+                        ->group(module_path($module, '/routes/web.php'));
+                }
+            }
+        });
+
+        $this->bindModels();
     }
 
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
+    private function bindModels(): void
     {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
-    }
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->api_namespace)
-            ->group(base_path('routes/api.php'));
-
-    }
-
-    /**
-     * Define the "admin" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapAdminRoutes()
-    {
-        Route::namespace($this->namespace)
-            ->group(base_path('routes/admin.php'));
-    }
-
-    protected function mapPanelRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/panel.php'));
+        Route::model('classSubject', EiClassSubject::class);
+        Route::model('eiClass', EiClass::class);
+        Route::model('schedule', Schedule::class);
+        Route::model('user', User::class);
+        Route::model('student', User::class);
+        Route::model('quiz', EiQuiz::class);
+        Route::model('quizQuestion', EiQuizQuestion::class);
+        Route::model('paymentCredential', PaymentCredential::class);
     }
 }

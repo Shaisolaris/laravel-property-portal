@@ -2,71 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Eloquent;
+use Illuminate\Support\Carbon;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Eloquent\Collection;
 
-class Role extends Model
+/**
+ * App\Models\Role
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $guard_name
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, Permission> $permissions
+ * @property-read int|null $permissions_count
+ * @property-read Collection<int, User> $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role permission($permissions, $without = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereGuardName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role withoutPermission($permissions)
+ * @mixin Eloquent
+ */
+class Role extends \Spatie\Permission\Models\Role
 {
-    public $timestamps = false;
-    static $admin = 'admin';
-    static $user = 'user';
-    static $teacher = 'teacher';
-    static $organization = 'organization';
-
-    protected $guarded = ['id'];
-
-    public function canDelete()
-    {
-        switch ($this->name) {
-            case self::$admin:
-            case self::$user:
-            case self::$organization:
-            case self::$teacher:
-                return false;
-                break;
-            default:
-                return true;
-        }
-    }
-
-    public function users()
-    {
-        return $this->hasMany('App\User', 'role_id', 'id');
-    }
-
-    public function isDefaultRole()
-    {
-        return in_array($this->name, [self::$admin, self::$user, self::$organization, self::$teacher]);
-    }
-
-    public function isMainAdminRole()
-    {
-        return $this->name == self::$admin;
-    }
-
-    public static function getUserRoleId()
-    {
-        $id = 1; // user role id
-
-        $role = self::where('name', self::$user)->first();
-
-        return !empty($role) ? $role->id : $id;
-    }
-
-    public static function getTeacherRoleId()
-    {
-        $id = 4; // teacher role id
-
-        $role = self::where('name', self::$teacher)->first();
-
-        return !empty($role) ? $role->id : $id;
-    }
-
-    public static function getOrganizationRoleId()
-    {
-        $id = 3; // teacher role id
-
-        $role = self::where('name', self::$organization)->first();
-
-        return !empty($role) ? $role->id : $id;
-    }
 }
