@@ -1,0 +1,42 @@
+.tabs {
+    .nav-item {
+        .nav-link {
+            background: transparent;
+            color: $dim-gray;
+            font-weight: 500;
+        }
+    }
+
+    &.active {
+        background: $beige !important;
+        color: black;
+        border-color: $gainsboro;
+    }
+
+    &.default-tabs {
+        .nav-item {
+            .nav-link {
+                border-radius: 100px;
+                padding: 16px 24px;
+                color: $dim-gray;
+                background: transparent;
+                border: 1px solid transparent;
+                font-size: 14px;
+
+                a {
+                    color: $dim-gray;
+                }
+
+                &.active {
+                    background: $beige;
+                    color: #000000 !important;
+                    border-color: $gainsboro;
+
+                    a {
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+}

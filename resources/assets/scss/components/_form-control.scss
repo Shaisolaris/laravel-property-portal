@@ -1,0 +1,56 @@
+//
+// _form-control.scss
+//
+
+
+.form-icon {
+    position: relative;
+
+    .form-control-icon {
+        padding-left: calc(#{$input-padding-x} * 3);
+        position: relative;
+    }
+
+    i {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 18px;
+        display: flex;
+        align-items: center;
+    }
+
+    &.right {
+        .form-control-icon {
+            padding-right: calc(#{$input-padding-x} * 3);
+            padding-left: $input-padding-x;
+            position: relative;
+        }
+
+        i {
+            left: auto;
+            right: 18px;
+        }
+    }
+}
+
+textarea.form-control {
+    border-radius: 13px !important;
+    background-color: $body-bg !important;
+}
+
+.form-control {
+    &[type="time"]::-webkit-calendar-picker-indicator {
+        background: none !important;
+    }
+
+    &.form-control-group-icon {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    &.form-control-group-right {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+}
