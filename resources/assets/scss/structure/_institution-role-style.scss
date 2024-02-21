@@ -1,0 +1,77 @@
+[data-institution-name="school"] {
+    .sidebar-name-block {
+        color: $royal-blue;
+    }
+
+    .sidebar-nav-item:hover {
+        .sidebar-item {
+            background: rgba($light-blue, .12);
+        }
+
+        .sidebar-item {
+            .btn {
+                background: transparent;
+            }
+        }
+    }
+
+    .sidebar-item {
+        color: $royal-blue;
+
+        &:not(.active) {
+            .btn {
+                background: rgba($light-blue, .12);
+            }
+        }
+
+        &.active {
+            background: rgba($light-blue, .12);
+        }
+
+        .btn-beige {
+            background: transparent;
+            border-color: transparent;
+        }
+    }
+
+    .tabs {
+        &.default-tabs {
+            .nav-item {
+                .nav-link {
+                    &.active {
+                        background: $beige-blue;
+                        color: $royal-blue;
+                        border-color: transparent;
+
+                        a {
+                            color: $royal-blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .default-text-color {
+        color: $royal-blue !important;
+    }
+
+    .default-bg-card {
+        background-color: $beige-blue;
+    }
+
+    .multiselect {
+        .multiselect-tag {
+            background: $beige-blue;
+        }
+    }
+
+    .fc-daygrid-day {
+        &.fc-day-today {
+            .fc-daygrid-day-number {
+                color: $royal-blue !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}

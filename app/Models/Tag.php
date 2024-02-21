@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Database\Factories\TagFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Tag extends Model
+class Tag extends \Spatie\Tags\Tag
 {
-    public $timestamps = false;
+    use HasFactory;
 
-    protected $guarded = ['id'];
+    protected static function newFactory(): TagFactory|Factory
+    {
+        return TagFactory::new();
+    }
 }

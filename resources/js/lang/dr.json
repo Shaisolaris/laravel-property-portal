@@ -1,0 +1,571 @@
+{
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "already-have-account": "Already have an account?",
+    "dont-have-account": "Don't have an account yet?",
+    "reviews": "Reviews",
+    "balance": "Balance",
+    "to": "to",
+    "from": "from",
+    "of": "of",
+    "pagination-page": "page",
+    "menu": {
+        "dashboard": "drDashboard",
+        "add-new-course": "Add New Course",
+        "courses": "My Courses",
+        "assignments": "Assignments",
+        "quizzes": "Quizzes",
+        "grades": "Grades",
+        "mentoring": "Mentoring",
+        "payments": "Payments",
+        "settings": "Settings",
+        "logout": "Logout",
+        "mentorship": "Mentorship",
+        "mentors": "Mentors",
+        "classes": "Classes",
+        "my-courses": "My Courses",
+        "my-classes": "My Classes",
+        "messages": "Messages",
+        "forum": "Forum",
+        "setting": "Setting",
+        "podcast": "Podcast"
+    },
+    "landing": {
+        "blog": "Blog",
+        "all-courses": "All Courses",
+        "classes": "All Classes",
+        "school-inoura": "School of Inoura",
+        "academy-inoura": "Academy of Inoura",
+        "academy": {
+            "under-header-section": {
+                "text-1": "Start learning from best platform.",
+                "text-2": "Study any topic, anytime. explore thousands of courses for the lowest price ever!",
+                "items": [
+                    "happy students",
+                    "experienced instructors",
+                    "happy students",
+                    "experienced instructors"
+                ]
+            },
+            "section-1": {
+                "swiper-slide-1": {
+                    "text-1": "Upcoming courses",
+                    "text-2-part-1": "Color Theory",
+                    "text-2-part-2": " for Designers",
+                    "text-3": "Discover a world of learning opportunities through our upcoming courses, where industry experts and thought leaders will guide you in acquiring new expertise, expanding your horizons, and reaching your full potential."
+                }
+            },
+            "section-2": {
+                "title": "Top courses",
+                "subtitle": "These are the most popular courses among listen courses learners worldwide",
+                "button": "All courses"
+            },
+            "section-3": {
+                "title": "Top categories",
+                "subtitle": "These are the most popular courses among listen courses learners worldwide"
+            },
+            "section-4": {
+                "title": "Top 10 Latest courses",
+                "subtitle": "These are the most latest courses among listen courses learners worldwide",
+                "button": "All courses"
+            },
+            "section-5": {
+                "title": "Top instructors",
+                "subtitle": "They efficiently serve large number of students on our platform",
+                "button": "All instructors"
+            },
+            "section-6": {
+                "swiper-slide-1": {
+                    "text-1": "Unleashing Your Inner Champion",
+                    "text-2": "Embrace your untapped potential, push your limits, and unlock the champion within you. This motivational title encourages you to tap into your inner strength, overcome obstacles, and strive for excellence in all areas of your life."
+                }
+            },
+            "section-7": {
+                "title": "Frequently asked questions",
+                "subtitle": "Have something to know? Check here if you have any questions about us.",
+                "button": "All questions"
+            },
+            "section-8": {
+                "title": "Visit our latest blogs",
+                "subtitle": "Visit our valuable articles to get more information."
+            },
+            "section-9": {
+                "text-1": "Join now to start learning",
+                "text-2": "Or Become a new instructor"
+            },
+            "categories-page": {
+                "title": "Looking for something specific?",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "section-1": {
+                    "title": "Explore Categories if you're not sure what to search for",
+                    "items": [
+                        {
+                            "title": "STEAM",
+                            "text": "Explore the realms of Science, Technology, Engineering, Arts, and Mathematics."
+                        },
+                        {
+                            "title": "Wellbeing",
+                            "text": "Prioritize your physical and mental health with our Wellbeing courses."
+                        },
+                        {
+                            "title": "Business",
+                            "text": "Master the fundamentals and strategies of successful business."
+                        }
+                    ]
+                }
+            },
+            "help-support-page": {
+                "title": "Help & Support",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "items": [
+                    "My profile",
+                    "Reset Password",
+                    "Payment Options",
+                    "My Courses",
+                    "Address",
+                    "My Quizzes",
+                    "My LMS",
+                    "See More"
+                ]
+            },
+            "courses-page": {
+            }
+        },
+        "school": {
+            "under-header-section": {
+                "text-1": "Empowering Afghan Dreams: Education for Everyone",
+                "text-2": "Unlocking Potential, One Classroom at a Time"
+            },
+            "section-1": {
+                "title": "Different Grades",
+                "subtitle": "These are the most popular grades among listen grades learners worldwide",
+                "button": "All grades"
+            },
+            "section-2": {
+                "title": "Top teachers",
+                "subtitle": "They efficiently serve large number of students on our platform",
+                "button": "All teachers"
+            },
+            "section-3": {
+                "title-part-1": "Join",
+                "title-part-2": " live sessions ",
+                "title-part-3": "or watch",
+                "title-part-4": " recorded video ",
+                "title-part-5": "lessons",
+                "subtitle": "Discover a world of learning opportunities through our upcoming courses, where industry experts and thought leaders will guide you in acquiring new expertise, expanding your horizons, and reaching your full potential."
+            },
+            "section-4": {
+                "swiper-slide-1": {
+                    "text-1": "We will help you in studying any subject",
+                    "text-2": "Embrace your untapped potential, push your limits, and unlock the champion within you. This motivational title encourages you to tap into your inner strength, overcome obstacles, and strive for excellence in all areas of your life."
+                }
+            },
+            "section-5": {
+                "title": "Visit our latest blogs",
+                "subtitle": "Visit our valuable articles to get more information."
+            },
+            "short-casual-courses-page": {
+                "title": "Choose your direction",
+                "text-1": "Trending: ",
+                "text-2": "Web Design, Marketing, iOS Development",
+                "section-1": {
+                    "title": "Explore Categories if you're not sure what to search for"
+                }
+            },
+            "classes": {},
+            "class-details": {
+                "lectures": "Lectures",
+                "quizzes": "Quizzes",
+                "assignments": "Assignments",
+                "skill-level": "Skill level",
+                "expiry-period": "Expiry period",
+                "beginner": "Beginner",
+                "lifetime": "Lifetime"
+            }
+        },
+        "footer": {
+            "text-1": "Explore thousands of courses for the lowest price ever!",
+            "text-2": "Subscribe to our newsletter",
+            "links": [
+                "Blog",
+                "All Courses",
+                "Sign Up"
+            ],
+            "help": [
+                "About Us",
+                "Privacy Policy",
+                "Terms and condition",
+                "FAQ",
+                "Refund Policy"
+            ],
+            "columns": [
+                "Top categories",
+                "Useful links",
+                "Help"
+            ]
+        },
+        "filter": {
+            "categories": "Categories",
+            "price": "Price",
+            "level": "Level",
+            "language": "Language",
+            "ratings": "Ratings"
+        }
+    },
+    "page": {
+        "login": {
+            "text-1": "Empowering Afghan Dreams: Education for Everyone",
+            "text-2": "Welcome back! You have been missed!"
+        },
+        "register": {
+            "text-1": "Become a iNoura ",
+            "text-2": "Discover a supportive community of online instructors. Get instant access to all course creation resources.",
+            "text-3": "Verify your email address",
+            "text-4": "We send 6-Digit code at:",
+            "text-5": "Resend Code",
+            "text-6": "Send Again",
+            "text-7": "Back to Sign Up",
+            "text-8": "Clear",
+            "text-10": "Share your knowledge",
+            "text-12": "Select Occupations",
+            "text-13": "What kind of teaching have you done before?",
+            "text-14": "Add your Information",
+            "text-16": "Upload Your Profile photo",
+            "text-17": "Max size:",
+            "text-18": "Add your Account Details",
+            "text-19": "Congratulations!",
+            "text-20": "Your instructor account has been successfully created!\nThank you for registering."
+        },
+        "settings": {
+            "profile": {
+                "profile-photo": "Profile Photo",
+                "basic-information": {
+                    "title": "Basic Information",
+                    "items": [
+                        "Display Name",
+                        "Date of Birth",
+                        "Gender",
+                        "Timezone",
+                        "Languages"
+                    ]
+                }
+            },
+            "notification": {
+                "message": {
+                    "title": "Messages",
+                    "desc": "Messages from other users",
+                    "icon": "ri-chat-3-line"
+                },
+                "classes": {
+                    "title": "Classes",
+                    "desc": "Classes",
+                    "icon": "ri-computer-line"
+                },
+                "courses": {
+                    "title": "Courses",
+                    "desc": "Courses",
+                    "icon": "ri-computer-line"
+                },
+                "schedule": {
+                    "title": "Schedule",
+                    "desc": "Schedule",
+                    "icon": "ri-calendar-line"
+                },
+                "assignments": {
+                    "title": "Assignments",
+                    "desc": "Assignments",
+                    "icon": "ri-file-text-line"
+                },
+                "mentors": {
+                    "title": "Mentors",
+                    "desc": "Mentors",
+                    "icon": "ri-group-line"
+                },
+                "payments": {
+                    "title": "Payments",
+                    "desc": "Payments",
+                    "icon": "ri-bank-card-line"
+                },
+                "quizzes": {
+                    "title": "Quizzes",
+                    "desc": "Quizzes",
+                    "icon": "ri-question-line"
+                }
+            }
+        },
+        "add-course": {
+            "level": "Level",
+            "language": "Language",
+            "topic": "Topic"
+        }
+    },
+    "title": {
+        "login": "Login",
+        "register": "Register",
+        "settings": "Settings",
+        "academy-landing": "Academy Landing",
+        "school-landing": "School Landing",
+        "academy-category": "Categories",
+        "academy-help-support": "Help & Support",
+        "schedule": "Schedule",
+        "mentorship": "Mentorship",
+        "mentors": "Mentors",
+        "courses": "Courses",
+        "classes": "Classes",
+        "dashboard": "Dashboard",
+        "add-new-course": "Add New Course",
+        "my-courses": "My Courses",
+        "my-classes": "My Classes",
+        "assignments": "Assignments",
+        "messages": "Messages",
+        "mentoring": "Mentoring",
+        "forum": "Forum",
+        "payments": "Payments",
+        "setting": "Setting",
+        "grades": "Grades",
+        "podcast": "Podcast",
+        "quizzes": "Quizzes",
+        "school-short-casual-courses": "Short Courses and Casual Courses"
+    },
+    "subtitle": {
+        "new-class": "New Class"
+    },
+    "label": {
+        "first-name": "First name",
+        "last-name": "Last name",
+        "mobile-on": "Mobile on.",
+        "address-line": "Address line",
+        "country": "Country",
+        "state": "State",
+        "city": "City",
+        "zip-code": "Zip code",
+        "email": "Email",
+        "password": "Password",
+        "remember-me": "Remember Me",
+        "want-get": "I want to get the most out of my experience, by receiving emails with insider tips, motivation, special updates and promotions reserved for instructors.",
+        "organizer": "Organizer",
+        "student": "Student",
+        "instructor": "Instructor",
+        "school": "School",
+        "academy": "Academy",
+        "role": "Role",
+        "educational-level": "Educational Level",
+        "timezone": "Timezone",
+        "bio": "Add Your Bio",
+        "account-type": "Add Your Bio",
+        "account-holder-name": "Account Holder Name",
+        "account-no": "Account No.",
+        "business-document": "Business Documents",
+        "registration-scan": "Registration Scan",
+        "extra-information": "Extra Information",
+        "institution": "Institution",
+        "title": "Title",
+        "course-type": "Course Type",
+        "language": "Language",
+        "seo-description": "Seo description",
+        "thumbnail": "Thumbnail",
+        "cover-image": "Cover image",
+        "duration-minutes": "Duration minutes",
+        "duration": "Duration (hh/mm/ss)*",
+        "demo-video": "Demo video",
+        "description": "Description",
+        "course-benefits": "Course benefits",
+        "category-filters": "Category Filters",
+        "category": "Category",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "expert": "Expert",
+        "english": "English",
+        "tags": "Tags",
+        "arabian": "Arabian",
+        "portugal": "Portugal",
+        "makeup-artistry": "Makeup Artistry",
+        "hair-styling": "Hair Styling",
+        "skincare": "Skincare",
+        "fashion": "Fashion",
+        "nail-art": "Nail Art",
+        "education-institution-name": "Education Institution Name",
+        "education-institution-description": "Education Institution Description",
+        "name": "Name",
+        "from": "From",
+        "to": "To",
+        "gradation-age": "Gradation Age",
+        "price": "Price",
+        "capacity": "Capacity",
+        "capacity-students": "Capacity Students",
+        "duration-lesson":  "Duration Lesson"
+    },
+    "placeholder": {
+        "select": "Select",
+        "enter-first-name": "Enter first name",
+        "enter-last-name": "Enter last name",
+        "enter-mobile-on": "Enter mobile on.",
+        "enter-address-line": "Enter address line",
+        "enter-city": "Enter city",
+        "enter-zip-code": "Enter zip code",
+        "enter-email": "Enter email",
+        "enter-password": "Enter password",
+        "current_password": "Enter old password",
+        "new_password": "Enter new password",
+        "new_password_confirmation": "Re-enter new password",
+        "what-do-you-want": "What do you want to learn?",
+        "organization": "Organization",
+        "enter-account-name": "5455 4585 4558 4552",
+        "search-course": "Search Course...",
+        "start-writing-something": "Start writing something...",
+        "enter-email-address": "Enter your email address",
+        "grade": "Grade",
+        "title": "Title",
+        "instructor": "Instructor",
+        "subject": "Subject",
+        "course-type": "Course Type",
+        "seo-description": "Seo description",
+        "thumbnail": "Thumbnail",
+        "cover-image": "Cover image",
+        "duration-minutes": "Duration minutes (hh/mm/ss)",
+        "demo-video": "Demo video",
+        "description": "Description",
+        "language": "Language",
+        "write-benefit": "Write the benefit",
+        "tags": "Tags",
+        "education-institution-name": "Enter education institution name",
+        "education-institution-description": "Enter education institution description",
+        "gradation-age-to":  "Enter age to",
+        "gradation-age-from": "Enter age from",
+        "name": "Enter name",
+        "price": "Enter price",
+        "capacity": "Enter capacity",
+        "capacity-students": "Enter capacity students",
+        "duration-lesson":  "Enter duration lesson"
+    },
+    "button": {
+        "sign-in": "Sign In",
+        "create-account": "Create an account",
+        "login": "Login",
+        "upload": "Upload",
+        "sign-up": "Sign Up",
+        "confirm": "Confirm",
+        "continue": "Continue",
+        "cancel-save": "Cancel",
+        "save": "Save",
+        "dashboard": "Dashboard",
+        "search": "Search",
+        "go-to-dashboard": "Go to Dashboard",
+        "upload-course": "Upload Course",
+        "subscribe": "Subscribe",
+        "enroll": "Enroll now",
+        "add-item": "Add item",
+        "delete": "Delete",
+        "preview": "Preview",
+        "send-for-review": "Send for Review",
+        "send-as-draft": "Send as Draft",
+        "create-class": "Create Class",
+        "class-list": "Class List"
+    },
+    "link": {
+        "sign-in": "Sign In",
+        "sign-up": "Sign Up",
+        "forgot-password": "Forgot Password?",
+        "view-details": "View Details"
+    },
+    "badge": {},
+    "status": {},
+    "lang": {
+        "en": "English",
+        "es": "Spanish"
+    },
+    "table": {
+        "header": {
+            "grades": [
+                "Student",
+                "Midterm (20%)",
+                "Homework (20%)",
+                "Final Exam (60%)",
+                "Average Score",
+                ""
+            ],
+            "gradesWithoutAction": [
+                "Subject",
+                "Midterm (20%)",
+                "Homework (20%)",
+                "Final Exam (60%)",
+                "Average Score"
+            ],
+            "assignments": [
+                "Student name",
+                "Deadline",
+                "Score",
+                "Status",
+                "Action"
+            ],
+            "quizzes": [
+                "Title",
+                "Questions",
+                "Time (Min)",
+                "Total Mark",
+                "Pass Mark",
+                "Pass Mark",
+                "Students",
+                "Status",
+                "Date Created",
+                "Action"
+            ]
+        }
+    },
+    "tabs": {
+        "settings": [
+            {
+                "name": "Profile",
+                "icon": "ri-account-box-fill"
+            },
+            {
+                "name": "Notification",
+                "icon": "ri-notification-4-line"
+            },
+            {
+                "name": "Password",
+                "icon": "ri-shield-keyhole-line"
+            }
+        ],
+        "class-details": [
+            {
+                "name": "Overview",
+                "icon": "ri-clipboard-line"
+            },
+            {
+                "name": "Curriculum",
+                "icon": "ri-book-open-line"
+            },
+            {
+                "name": "Instructor",
+                "icon": "ri-user-line"
+            },
+            {
+                "name": "Reviews",
+                "icon": "ri-chat-4-line"
+            }
+        ],
+        "assignments":  [
+            { "name": "Reviewed"}, {"name": "Pending Review" }
+        ],
+        "quizzes": [
+            { "name":  "All" }, { "name":  "Active" }
+        ]
+    },
+    "accordion": {
+        "test": [
+            "Introduction"
+        ]
+    },
+    "action": {
+        "change": "Change",
+        "update": "Update",
+        "create": "Create",
+        "delete": "Delete",
+        "edit": "Edit",
+        "upload": "Upload",
+        "load": "Load"
+    }
+}

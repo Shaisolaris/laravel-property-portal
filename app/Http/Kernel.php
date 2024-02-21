@@ -2,16 +2,10 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AdminAuthenticate;
-use App\Http\Middleware\AdminLocale;
-use App\Http\Middleware\CheckMaintenance;
-use App\Http\Middleware\CheckMobileApp;
-use App\Http\Middleware\Impersonate;
-use App\Http\Middleware\PanelAuthenticate;
-use App\Http\Middleware\Share;
-use App\Http\Middleware\UserNotAccess;
-use App\Http\Middleware\WebAuthenticate;
+use Spatie\Permission\Middleware\RoleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -20,13 +14,13 @@ class Kernel extends HttpKernel
      *
      * These middleware are run during every request to your application.
      *
-     * @var array
+     * @var array<int, class-string|string>
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Fruitcake\Cors\HandleCors::class,
-        \App\Http\Middleware\CheckForMaintenanceMode::class,
+        \Illuminate\Http\Middleware\HandleCors::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -35,62 +29,57 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware groups.
      *
-     * @var array
+     * @var array<string, array<int, class-string|string>>
      */
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\UserLocale::class,
-            \App\Http\Middleware\DebugBar::class
-        ],
-        'api' => [
-            'throttle:60,1',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\Api\CheckApiKey::class,
-            \App\Http\Middleware\Api\SetLocale::class,
+            \App\Http\Middleware\HandleInertiaRequests::class,
+            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            \App\Http\Middleware\SetCookieMiddleware::class,
+//            \App\Http\Middleware\PayMiddleware::class,
         ],
 
+        'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
+        'default-middlewares' => ['auth:sanctum', 'verified'],
+        'student_instructor' => ['role:student|instructor'],
+        'student_instructor_organizer' => ['role:student|instructor|organizer'],
+        'organizer' => ['role:organizer'],
+        'student' => ['role:student'],
+        'instructor' => ['role:instructor'],
     ];
 
     /**
-     * The application's route middleware.
+     * The application's middleware aliases.
      *
-     * These middleware may be assigned to groups or used individually.
+     * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
      *
-     * @var array
+     * @var array<string, class-string|string>
      */
-    protected $routeMiddleware = [
+    protected $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'role' => RoleMiddleware::class,
+        'permission' => PermissionMiddleware::class,
+        'role_or_permission' => RoleOrPermissionMiddleware::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin' => AdminAuthenticate::class,
-        'panel' => PanelAuthenticate::class,
-        'user.not.access' => UserNotAccess::class,
-        'web.auth' => WebAuthenticate::class,
-        'impersonate' => Impersonate::class,
-        'share' => Share::class,
-        'admin_locale' => AdminLocale::class,
-        'check_mobile_app' => CheckMobileApp::class,
-        'check_maintenance' => CheckMaintenance::class,
-        // api
-        'api.auth' => \App\Http\Middleware\Api\Authenticate::class,
-        'api.guest' => \App\Http\Middleware\Api\RedirectIfAuthenticated::class,
-        'api.request.type' => \App\Http\Middleware\Api\RequestType::class,
-        'api.identify' => \App\Http\Middleware\Api\CheckApiKey::class,
-        'api.level-access' => \App\Http\Middleware\Api\LevelAccess::class,
-
+        'verified' => \App\Http\Middleware\ValidateUser::class,
     ];
 }
