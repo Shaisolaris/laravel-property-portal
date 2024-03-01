@@ -1,47 +1,23 @@
 <script setup>
 import AuthLayout from "../layouts/AuthLayout.vue";
 import helpers from "~/scripts/helpers/helpers.js";
+import VOtpInput from "vue3-otp-input";
 
 let {sendForm} = helpers;
 
-defineProps({
-    otp_code: Number,
-})
-
 const {props: {auth: user}} = usePage()
 
+const otpInput = ref("");
+const bindModal = ref("");
+
 let showMessageResent = ref(false);
-let chunks = reactive(new Array(6).fill(""))
-let disabledSubmit = computed(() => !chunks.every(elem => elem !== ""))
+let disabledSubmit = computed(() => otpInput.value?.value?.length < 6)
 let form = useForm({otp: ""})
 
-const limiter = (e, index) => {
-    let value = parseInt(e.target.value);
-
-    form.clearErrors();
-
-    if (index != 5) {
-        document.getElementById('chunk_' + (index + 1)).focus()
-    }
-
-    if (value > 9) {
-        chunks[index] = 9;
-        e.target.value = 9
-    }
-    if (value < 0) {
-        chunks[index] = 0;
-        e.target.value = 0
-    }
-}
-
-const dropCode = () => {
-    chunks.fill("", 0, 6)
-}
 
 const verify = () => {
-    form.otp = chunks.join(' ').replace(/\s/g, '');
-
-    sendForm({form, url: route("registration.verify")},
+    form.otp = otpInput.value.value;
+    sendForm({form, url: route("registration.otp.verify")},
         (response, errors) => {
             if (!errors && response.data) {
                 window.location.reload()
@@ -50,8 +26,9 @@ const verify = () => {
 }
 
 const resend = () => {
-    sendForm({form, url: route("registration.resend")}, () => {
+    sendForm({form, url: route("registration.otp.resend")}, () => {
         showMessageResent.value = true
+        clearInput();
         setTimeout(function () {
             showMessageResent.value = false;
         }, 5000)
@@ -59,13 +36,15 @@ const resend = () => {
 };
 
 const cancel = () => {
-    sendForm({form, url: route("registration.cancel")},
+    sendForm({form, url: route("registration.otp.cancel")},
         (response, errors) => {
             if (!errors && response.data) {
                 window.location.reload()
             }
         })
 }
+
+const clearInput = () => otpInput?.value.clearInput();
 </script>
 
 <template>
@@ -81,26 +60,24 @@ const cancel = () => {
                             <Text t-key="page.register.text-4" tag="span"/>
                             <span class="ms-2 text-royal-blue">{{ user.email }}</span>
                         </p>
-                        <p class="text-dim-gray fs-14 mt-3">
-                            <span>Tmp otp-code for enter to the system: {{otp_code}}</span>
-                        </p>
                     </div>
                     <div class="mb-5 position-relative">
-                        <div class="d-flex gap-3">
-                            <BaseInput
-                                :id="'chunk_'+index"
-                                class="chunk_code_otp"
-                                @input="limiter($event,index)"
-                                v-for="(chunk, index) in chunks"
-                                v-model="chunks[index]"
-                                placeholder="_"
-                                label=""
+                        <div class="otp-input-fields">
+                            <v-otp-input
+                                ref="otpInput"
+                                v-model:value="bindModal"
+                                input-classes="chunk_code_otp form-control"
+                                separator=""
+                                :num-inputs="6"
+                                :should-auto-focus="true"
+                                input-type="number"
+                                :placeholder="['_','_','_','_','_','_']"
                             />
                         </div>
                         <span class="position-absolute text-danger mt-2">{{ form.errors.otp }}</span>
                         <Text
                             v-if="!disabledSubmit"
-                            @click="dropCode"
+                            @click="clearInput()"
                             class="text-royal-blue mt-2 me-3 cursor-pointer position-absolute end-0"
                             t-key="page.register.text-8"
                             tag="div"
@@ -134,12 +111,22 @@ const cancel = () => {
     </AuthLayout>
 </template>
 
-<style>
+<style lang="scss">
+.otp-input-fields {
+    & > div {
+        gap: 1rem;
+    }
+}
 .chunk_code_otp {
     width: 85px;
     height: 85px;
     text-align: center;
     border-radius: 10px;
     font-size: 28px;
+    border: var(--in-border-width) solid var(--in-input-border-custom);
+
+    &::placeholder {
+        text-align: center;
+    }
 }
 </style>

@@ -14,25 +14,7 @@ const props = defineProps({
 
 <template>
     <AdminLayout title="dashboard.title" class="admin-page-dashboard">
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <StatWidget title="Users" :value="widgets.users.value" :diff="widgets.users.diff" diff-text="vs. previous month">
-                    <template #icon>
-                        <UsersIcon class="text-info icon-md" />
-                    </template>
-                </StatWidget>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <StatWidget title="Earnings" :value="widgets.earnings.value" :diff="widgets.earnings.diff" diff-text="vs. previous month">
-                    <template #icon>
-                        <DollarSignIcon class="text-info icon-md" />
-                    </template>
-                </StatWidget>
-            </div>
-        </div>
-<!--        <pre>{{ JSON.stringify($page.props.auth, null, 4) }}</pre>-->
-<!--        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate eaque eligendi esse facilis illum itaque laboriosam magni maxime modi mollitia nam nisi non pariatur, perferendis recusandae. A natus omnis vel?</span>-->
+        <span>Dashboard</span>
     </AdminLayout>
 </template>
 

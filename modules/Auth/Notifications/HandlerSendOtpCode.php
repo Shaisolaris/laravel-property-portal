@@ -22,10 +22,6 @@ class HandlerSendOtpCode extends Notification
 
     protected function buildMailMessage(): MailMessage
     {
-        //        return (new MailMessage)->view(
-        //            'mail.invoice.paid', ['invoice' => $this->invoice]
-        //        );
-
         return (new MailMessage())
             ->subject(Lang::get('Verify Email Address'))
             ->line(Lang::get('Please using the otp code below to verify your email address.'))
@@ -36,10 +32,7 @@ class HandlerSendOtpCode extends Notification
     {
         $code = rand(100000, 999999);
 
-        Session::put(auth()->user()->uuid, [
-//            'otp_code' => Hash::make($code),
-            'otp_code' => $code,
-        ]);
+        Session::put(auth()->user()->uuid, ['otp_code' => $code]);
 
         return $code;
     }

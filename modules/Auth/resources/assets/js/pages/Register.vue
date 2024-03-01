@@ -46,14 +46,14 @@ const phoneError = computed(() => {
 
     if(form.errors.phone) {
         return form.errors.phone;
-    } else if(!phoneNumberValidated.value && phone > 2) {
+    } else if(!phoneNumberValidated.value && phone.length > 3) {
         return 'Phone not valid'
     }
 })
 
 const submit = () => sendForm({ form, url: route("register"), toObject: true },
     (response, error) => {
-        if (!error && response.data) window.location.reload();
+        if (!error && response.data) window.location.href = route('registration.otp.form');
     }
 )
 
@@ -125,7 +125,6 @@ const disabledSubmit = computed(
                                                 </BListGroupItem>
                                             </template>
                                         </List>
-
                                         <ErrorMessage :error="form.errors.role" />
                                     </b-col>
                                     <b-col>
@@ -165,7 +164,7 @@ const disabledSubmit = computed(
                                 />
                             </b-col>
                             <b-col cols="6">
-                                <MaskInput
+                                <BasePhoneInput
                                     v-model="form.phone"
                                     :error="phoneError"
                                     placeholder="enter-mobile-on"

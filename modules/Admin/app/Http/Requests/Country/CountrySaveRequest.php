@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
  * @property-read string  $name
  * @property-read string  $local_name
  * @property-read boolean $is_free
+ * @property-read boolean $is_active
  *
  */
 class CountrySaveRequest extends FormRequest
@@ -31,11 +32,11 @@ class CountrySaveRequest extends FormRequest
         $country = $this->route('country');
 
         return [
-
             'code'       => ['required', 'string', 'max:2', Rule::unique(Country::class, 'code')->ignore($country?->code, 'code')],
             'name'       => ['required', 'string', 'max:255'],
             'local_name' => ['nullable', 'string', 'max:255'],
             'is_free'    => ['nullable', 'boolean'],
+            'is_active'  => ['nullable', 'boolean'],
         ];
     }
 

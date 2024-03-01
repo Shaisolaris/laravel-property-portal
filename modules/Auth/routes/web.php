@@ -39,8 +39,6 @@ Route::middleware('guest')->group(function () {
     Route::post(RoutePath::for('register', '/register'), [RegisteredController::class, 'store'])
         ->middleware(['guest:' . config('fortify.guard')]);
 
-
-
     Route::prefix('/set-password/{uuid}/{token}')
         ->middleware(['guest:' . config('fortify.guard'), 'signed'])
         ->group(function () {
@@ -48,17 +46,21 @@ Route::middleware('guest')->group(function () {
             Route::post('/', [PasswordController::class, 'store'])->name('register.set-password.save');
 
         });
-
 });
 
-Route::middleware(['auth'])->group(function () {
 
+Route::middleware(['auth'])->group(function () {
     // Verify otp code
-    Route::name('registration.')->controller(ValidateOtpCodeController::class)->group(function () {
-        Route::get('otp-form', 'create')->name('otp-form');
-        Route::post('otp-form/verify', 'verify')->name('verify');
-        Route::post('otp-form/resend', 'resend')->name('resend');
-        Route::post('otp-form/cancel', 'cancel')->name('cancel');
+    Route::name('registration.')->group(function () {
+
+        Route::name('otp.')->prefix('otp')->controller(ValidateOtpCodeController::class)
+            ->group(function () {
+                Route::get('form', 'create')->name('form');
+
+                Route::post('verify', 'verify')->name('verify');
+                Route::post('resend', 'resend')->name('resend');
+                Route::post('cancel', 'cancel')->name('cancel');
+            });
 
         Route::resource('occupations', OccupationsController::class)->names('occupations');
         Route::resource('profile-avatar', UploadProfileAvatarController::class)->names('profile-avatar');

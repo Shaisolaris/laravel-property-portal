@@ -49,9 +49,6 @@ return new class () extends Migration {
 
             $table->rememberToken();
 
-            $table->string('password_set_token', 100)->nullable();
-            $table->timestamp('password_set_until')->nullable();
-
             $table->timestamp('birth_at')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
 

@@ -22,11 +22,11 @@ class ProfileResource extends JsonResource
             'gender_label' => $this->gender?->label,
             'bio'          => $this->bio,
 
-            'address' => $this->address,
-            'country' => $this->country,
-            'state'   => $this->state,
-            'city'    => $this->city,
-            'phone'   => $this->phone,
+            'address'    => $this->address,
+            'country_id' => $this->country_id,
+            'state'      => $this->state,
+            'city'       => $this->city,
+            'phone'      => $this->phone,
         ];
     }
 }

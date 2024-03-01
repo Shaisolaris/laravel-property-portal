@@ -3,6 +3,7 @@
 namespace Modules\Admin\app\Notifications;
 
 use App\Models\User;
+use App\Models\UserPasswordToken;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -52,12 +53,16 @@ class UserSetPasswordLinkNotification extends Notification
 
     protected function createLink(User $user)
     {
+
+        /** @var UserPasswordToken $token */
+        $token = $user->passwordToken()->first();
+
         return URL::temporarySignedRoute(
             'register.set-password.form',
-            $user->password_set_until,
+            $token->valid_until,
             [
                 'uuid' => $user->uuid,
-                'token' => $user->password_set_token
+                'token' => $token->token
             ],
         );
     }

@@ -40,9 +40,9 @@ const send = () => sendForm({form, url: route("registration.occupations.store"),
 </script>
 
 <template>
-    <AuthLayout :withoutRightContent="true">
+    <AuthLayout title="user-information-occupations" :withoutRightContent="true">
         <template #right-content>
-            <div class="container-fluid custom-container justify-content-between align-items-center mt-5">
+            <div class="container-fluid custom-container justify-content-between align-items-center mt-5 pb-5">
                 <b-row :no-gutters="true">
                     <b-col cols="12">
                         <div class="mb-5">
@@ -68,7 +68,7 @@ const send = () => sendForm({form, url: route("registration.occupations.store"),
                                          'occupation-btn btn border-2 border-black m-1'
                                      ]">
                                     <span>
-                                        <Icon name="svg-experience" width="24" height="24" />
+                                        <img src="@/images/svg/experience.svg" width="24" height="24" alt>
                                     </span>
                                     <span class="mx-2">{{ occupation.name }}</span>
                                     <span class="box-checker"><i class="ri-checkbox-circle-line"></i></span>

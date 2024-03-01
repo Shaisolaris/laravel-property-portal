@@ -15,14 +15,10 @@ const title = computed(() => {
             return !isEmpty(eiClass) ? 'edit-class' : 'new-class';
         case 'subject':
             return 'class-subject';
-        case 'student':
-            return 'class-student';
         case 'schedule':
             return 'class-schedule';
     }
 });
-
-
 </script>
 
 <template>
@@ -32,7 +28,8 @@ const title = computed(() => {
         </template>
 
         <TabsLink
-            :current-tab="tab" :tabs="[
+            :current-tab="tab"
+            :tabs="[
                 {
                     route: !isEmpty(eiClass) ? route('school.class.edit', { 'eiClass': eiClass }) : route('school.class.create'),
                     tab: 'basic',
@@ -55,7 +52,7 @@ const title = computed(() => {
         >
             <template #tab-basic-body>
                 <b-row>
-                    <b-col cols="12" xl="8">
+                    <b-col cols="12" xxl="8">
                         <slot name="basic" />
                     </b-col>
                 </b-row>

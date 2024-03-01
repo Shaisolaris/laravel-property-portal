@@ -16,7 +16,7 @@ class WithdrawalRequestController extends Controller
 
     public function index(): Response
     {
-        return Inertia::render('Payment::Tabs/WithdrawalRequestsTab', []);
+        return Inertia::render('Payment::QuizTab/WithdrawalRequestsTab', []);
     }
 
     public function create()

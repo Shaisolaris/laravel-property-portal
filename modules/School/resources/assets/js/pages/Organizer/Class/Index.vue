@@ -65,22 +65,6 @@ const getClasses = (page) => {
                                     <Text tag="span" t-key="action.delete" />
                                 </div>
                             </BDropdownItem>
-
-                            <BDropdownItem href="javascript:void(0)">
-                                Preview Class
-                            </BDropdownItem>
-
-                            <BDropdownItem href="javascript:void(0)">
-                                Draft
-                            </BDropdownItem>
-
-                            <BDropdownItem href="javascript:void(0)">
-                                Students
-                            </BDropdownItem>
-
-                            <BDropdownItem href="javascript:void(0)">
-                                Statistics
-                            </BDropdownItem>
                         </template>
                     </TdActions>
                 </tr>

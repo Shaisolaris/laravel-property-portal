@@ -5,6 +5,8 @@ namespace Modules\Admin\app\Services;
 use App\Models\Role;
 use App\Models\User;
 use App\Facades\Settings;
+use App\Models\UserDetail;
+use App\Models\UserPasswordToken;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use App\Enums\User\UserRoleEnum;
@@ -20,9 +22,15 @@ class UserService
 {
     public function getList(UserIndexRequest $request)
     {
-
-
         $query = User::query();
+
+        $query->with([
+            'roles',
+            'detail' => function ($query) {
+            	/** @var Builder|UserDetail $query */
+            	$query->withCount('userDocuments');
+            }
+        ]);
 
         $query->whereDoesntHave('roles', function ($query) {
             /** @var Builder|Role $query */
@@ -38,28 +46,39 @@ class UserService
             });
         }
 
+        if($request->role_name) {
+            $query->whereHas('roles', function ($query) use ($request) {
+                /** @var Builder|Role $query */
+                $query->where('name', $request->role_name);
+            });
+        }
+
+        $query->orderBy('id');
 
         return $query->paginate();
-
     }
 
-    public function getOrganizers()
+    public function getOrganizers(EducationInstitution $institution = null)
     {
-
+        $institutionOrganizer = $institution?->organizers->first();
 
         /** @var Builder|User $query */
         $query = User::query();
 
+        $query->onlyOrganisers();
 
-        $query->whereHas('roles', function ($query) {
-            /** @var Builder|Role $query */
-            $query->where('name', UserRoleEnum::Organizer()->value);
+        $query->where(function ($query) use ($institutionOrganizer) {
+            /** @var Builder|User $query */
+            $query->orWhereDoesntHave('institutions');
+
+            if($institutionOrganizer) {
+                $query->orWhere('id', $institutionOrganizer->id);
+            }
         });
 
         $query->with('roles');
 
         return $query->limit(1000)->get();
-
     }
 
     public function createUser(UserSaveRequest $request)
@@ -111,6 +130,14 @@ class UserService
             $user->institutions()->detach();
         }
 
+        if($user->hasRole([UserRoleEnum::Organizer()->value])) {
+            // Organizer can be assigned only to one institution
+            $user->institutions()->detach();
+
+            // Institution can have only one organizer
+//            $institution->organizers()->detach();
+        }
+
         $user->institutions()->attach($institution);
     }
 
@@ -129,7 +156,7 @@ class UserService
 
     public function sendSetPasswordLink(User $user, bool $onCreate = false): bool
     {
-        if(!(!$user->password && ($user->password_set_token || $onCreate))) {
+        if(!(!$user->password && (!!$user->passwordToken || $onCreate))) {
             // Password already set OR user is not created by admin
             return false;
         }
@@ -141,11 +168,27 @@ class UserService
         return true;
     }
 
-    protected function setPasswordToken(User $user): void
+    protected function setPasswordToken(User $user): UserPasswordToken
     {
-        $user->password_set_token = Str::random(60);
-        $user->password_set_until = Carbon::now()->addHours(Settings::userInviteLifetime());
+        /** @var UserPasswordToken $token */
+        $token = $user->passwordToken()->firstOrCreate();
 
-        $user->save();
+        $token->update([
+            'token' => Str::random(60),
+            'valid_until' => Carbon::now()->addHours(Settings::userInviteLifetime()),
+        ]);
+
+        return $token;
+    }
+
+    public function removePasswordToken(User $user): void
+    {
+        if(!$user->password){
+            // If password was not set for some reason - leave password token
+            return;
+        }
+
+        // Delete all tokens
+        $user->passwordToken()->delete();
     }
 }

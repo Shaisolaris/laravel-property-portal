@@ -52,6 +52,7 @@ const toggleMenu = () => {
     isMenuCondensed.value = !isMenuCondensed.value;
 }
 
+
 watch(
     () => usePage().props.flash,
     (flashMessage) => {
@@ -60,7 +61,6 @@ watch(
         }
     }
 );
-
 
 onBeforeMount(() => {
     document.body.removeAttribute("data-layout", "horizontal");
@@ -93,18 +93,18 @@ onBeforeMount(() => {
                     <div class="navbar-brand-box">
                         <Link :href="route('landing.academy.index')" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
+                                <img src="@/images/logo/logo-mini.svg" height="22" alt>
                             </span>
                             <span class="logo-lg">
-                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                                <img src="@/images/logo/logo.svg" height="35" alt>
                             </span>
                         </Link>
                         <Link :href="route('landing.academy.index')" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
+                                <img src="@/images/logo/logo-mini.svg" height="22" alt>
                             </span>
                             <span class="logo-lg">
-                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                                <img src="@/images/logo/logo.svg" height="35" alt>
                             </span>
                         </Link>
                         <button

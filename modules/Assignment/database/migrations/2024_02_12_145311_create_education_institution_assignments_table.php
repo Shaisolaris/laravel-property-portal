@@ -10,6 +10,14 @@ return new class () extends Migration {
         Schema::create('ei_assignments', function (Blueprint $table) {
             $table->id();
             $table->uuid()->index()->unique();
+
+            $table->foreignId('lecture_id')
+                ->constrained('ei_section_lectures')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->morphs('model');
+
             $table->string('name');
             $table->string('slug');
             $table->string('language');
@@ -17,17 +25,10 @@ return new class () extends Migration {
             $table->string('passing_score');
             $table->text('description');
 
-            $table->foreignId('lecture_id')->nullable()
-                ->constrained('users')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+            $table->json('links_to_video')->default('[]');
 
             $table->timestamp('start_work_datetime');
             $table->timestamp('end_work_datetime');
-
-            $table->json('links_to_video')->default('[]');
-
-            $table->morphs('model');
 
             $table->timestamps();
         });

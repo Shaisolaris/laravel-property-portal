@@ -18,9 +18,9 @@ return new class extends Migration {
                 ->cascadeOnDelete();
 
             $table->morphs('model');
-            $table->string('status')->default(StudentHomeworkStatusEnum::Pending()->value);
+            $table->string('status')->default(StudentHomeworkStatusEnum::Expected()->value);
             $table->string('sub_status')->nullable();
-            $table->tinyInteger('attempts')->default(1);
+            $table->tinyInteger('attempts')->default(0);
 
             $table->timestamp('start_work_datetime');
             $table->timestamp('end_work_datetime');

@@ -3,36 +3,55 @@
 namespace Modules\General\app\Models;
 
 use Eloquent;
+use App\Models\User;
+use Spatie\Enum\Enum;
 use App\Traits\HasUuidTrait;
+use App\Traits\HasFileUploads;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Modules\School\app\Models\EiClass;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Payment\app\Models\Transaction;
 use Illuminate\Database\Eloquent\Collection;
+use App\Enums\EducationInstitutions\EiStatusEnum;
 use Database\Factories\EducationInstitutionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Traits\Models\Relationships\EiRelationshipsTrait;
+use Modules\Academy\app\Models\EducationInstitutionCourse;
 use App\Traits\Models\Scope\EducationInstitutionScopeTrait;
-use App\Enums\EducationInstitutions\EducationInstitutionStatusEnum;
-use App\Traits\Models\Relationships\EducationInstitutionRelationshipsTrait;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
- * App\Models\EducationInstitution
+ * Modules\General\app\Models\EducationInstitution
  *
  * @property int $id
  * @property string $uuid
  * @property string|null $name
  * @property string|null $description
  * @property string|null $slug
- * @property string $status
+ * @property Enum $status
  * @property int $education_institution_type_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Collection<int, User> $activeUsers
+ * @property-read int|null $active_users_count
+ * @property-read Collection<int, EiClass> $classes
+ * @property-read int|null $classes_count
  * @property-read Collection<int, EducationInstitutionCourse> $courses
  * @property-read int|null $courses_count
  * @property-read EducationInstitutionType $institutionType
- * @property-read Collection<int, User> $peoples
+ * @property-read MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
  * @property-read Collection<int, User> $organizers
- * @property-read int|null $peoples_count
+ * @property-read int|null $organizers_count
+ * @property-read Collection<int, Transaction> $transactions
+ * @property-read int|null $transactions_count
+ * @property-read Collection<int, User> $users
+ * @property-read int|null $users_count
  * @method static Builder|EducationInstitution available()
+ * @method static Builder|EducationInstitution availableInstitutionType()
  * @method static EducationInstitutionFactory factory($count = null, $state = [])
  * @method static Builder|EducationInstitution newModelQuery()
  * @method static Builder|EducationInstitution newQuery()
@@ -48,12 +67,13 @@ use App\Traits\Models\Relationships\EducationInstitutionRelationshipsTrait;
  * @method static Builder|EducationInstitution whereUuid($value)
  * @mixin Eloquent
  */
-class EducationInstitution extends Model
+class EducationInstitution extends Model implements HasMedia
 {
     use HasFactory;
     use HasUuidTrait;
+    use HasFileUploads;
     use EducationInstitutionScopeTrait;
-    use EducationInstitutionRelationshipsTrait;
+    use EiRelationshipsTrait;
 
 
     protected $fillable = [
@@ -63,7 +83,7 @@ class EducationInstitution extends Model
     ];
 
     protected $casts = [
-        'status' => EducationInstitutionStatusEnum::class
+        'status' => EiStatusEnum::class
     ];
 
 

@@ -14,7 +14,7 @@ defineProps({
 <template>
     <Link :href="route(routeName)" class="text-black fs-3 lh-1 fontf-McLaren">
         <Text tag="span" :t-key="`landing.${textTKey}.button`" class="me-2" />
-        <Icon name="svg-arrow-right" width="29" height="19" />
+        <img src="@/images/svg/arrow-right.svg" width="29" height="19" alt>
     </Link>
 </template>
 

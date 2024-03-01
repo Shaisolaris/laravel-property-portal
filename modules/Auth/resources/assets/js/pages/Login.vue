@@ -25,7 +25,7 @@ const submit = () => {
             <b-row class="justify-content-center" :no-gutters="true">
                 <b-col cols="10" lg="8">
                     <div class="text-center">
-                        <Icon name="logo-logo" width="102" height="40" />
+                        <img src="@/images/logo/logo.svg" width="102" height="40" alt>
 
                         <div class="pbc-48 ptc-32">
                             <Text t-key="sign-in" class="fw-bold fs-2 pb-2" />

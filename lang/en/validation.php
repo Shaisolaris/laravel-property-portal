@@ -188,23 +188,38 @@ return [
 
     'attributes' => [
 //Quiz
-        'questions.short.*.title' => 'title',
-        'questions.short.*.point' => 'point',
+        'quizzes.*.name' => 'title',
+        'quizzes.*.description' => 'description',
+        'quizzes.*.lecture_id' => 'lecture',
+        'quizzes.*.grade' => 'grade',
+        'quizzes.*.language' => 'language',
+        'quizzes.*.total_score' => 'total score',
+        'quizzes.*.pass_mark' => 'pass mark',
+        'quizzes.*.attempts' => 'number attempts',
+        'quizzes.*.points_no_answer' => 'points no answer',
+        'quizzes.*.points_wrong_answer' => 'points wrong answer',
+        'quizzes.*.duration_minutes' => 'time',
+        'quizzes.*.start_work_datetime' => 'start work datetime',
+        'quizzes.*.end_work_datetime' => 'end work datetime',
+        'quizzes.*.questions' => 'questions',
 
-        'questions.single.*.title' => 'title',
-        'questions.single.*.point' => 'point',
-        'questions.single.*.answers' => 'answers',
-        'questions.single.*.answers.*.answer' => 'answer',
+        'quizzes.*.questions.short.*.title' => 'title',
+        'quizzes.*.questions.short.*.point' => 'point',
 
-        'questions.multiple.*.title' => 'title',
-        'questions.multiple.*.point' => 'point',
-        'questions.multiple.*.answers' => 'answers',
-        'questions.multiple.*.answers.*.answer' => 'answer',
+        'quizzes.*.questions.single.*.title' => 'title',
+        'quizzes.*.questions.single.*.point' => 'point',
+        'quizzes.*.questions.single.*.answers' => 'answers',
+        'quizzes.*.questions.single.*.answers.*.answer' => 'answer',
 
-        'questions.yes_or_no.*.title' => 'title',
-        'questions.yes_or_no.*.point' => 'point',
-        'questions.yes_or_no.*.answer.correct_answer' => 'correct (yes) answer',
-        'questions.yes_or_no.*.answer.incorrect_answer' => 'incorrect (no) answer',
+        'quizzes.*.questions.multiple.*.title' => 'title',
+        'quizzes.*.questions.multiple.*.point' => 'point',
+        'quizzes.*.questions.multiple.*.answers' => 'answers',
+        'quizzes.*.questions.multiple.*.answers.*.answer' => 'answer',
+
+        'quizzes.*.questions.yes_or_no.*.title' => 'title',
+        'quizzes.*.questions.yes_or_no.*.point' => 'point',
+        'quizzes.*.questions.yes_or_no.*.answers' => 'answers',
+        'quizzes.*.questions.yes_or_no.*.answers.*.answer' => 'answer',
 
 //Class Subject
         'subjects.*.language' => 'language',
@@ -226,5 +241,8 @@ return [
         'cards.*.card_holder_name' => 'card holder name',
         'cards.*.expiry_month' => 'expiry month',
         'cards.*.expiry_year' => 'expiry year',
+
+        'education_institution_type_id' => 'type',
+        'organizer_uuid' => 'organizer',
     ],
 ];

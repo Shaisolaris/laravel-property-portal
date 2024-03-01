@@ -22,7 +22,7 @@ class UpdateOrCreateEiClassSubjectRequest extends FormRequest
             'subjects.*.teachers' => 'required|exists:users,id',
         ];
 
-        foreach ($subjects as $index => $subject) {
+        foreach ($subjects as $subject) {
             $uuid = $subject['uuid'] ?? null;
             $subjectRules = ['required', 'string', 'min:2', 'max:40'];
 
@@ -31,7 +31,7 @@ class UpdateOrCreateEiClassSubjectRequest extends FormRequest
                 $subjectRules[] = new UniqueArrayFieldRule($subjects, 'name');
             }
 
-            $rules["subjects.$index.name"] = $subjectRules;
+            $rules["subjects.*.name"] = $subjectRules;
 
             $subjectImageRules = 'nullable';
 
@@ -39,11 +39,11 @@ class UpdateOrCreateEiClassSubjectRequest extends FormRequest
                 $subjectImageRules = 'required';
             }
 
-            if ($subject['image'] instanceof UploadedFile) {
+            if (isset($subject['image']) && $subject['image'] instanceof UploadedFile) {
                 $subjectImageRules = 'file|mimes:png,jpeg,jpg,webp|max:1024';
             }
 
-            $rules["subjects.$index.image"] = $subjectImageRules;
+            $rules["subjects.*.image"] = $subjectImageRules;
         }
 
         return $rules;

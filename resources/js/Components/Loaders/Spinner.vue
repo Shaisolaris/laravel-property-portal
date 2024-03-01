@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<!--<div class="spinner-border text-primary"></div>-->
+<div class="spinner-border text-primary"></div>
 <BSpinner/>
 </template>
 

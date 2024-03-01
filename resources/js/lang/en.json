@@ -16,7 +16,12 @@
     "point": "Point",
     "question": "Question",
     "business-documents": "Business Document",
-    "registration-scan": "Registration Scan",
+    "registration-scan-document": "Registration Scan",
+    "diploma-certificate-document": "Diploma Certificate",
+    "previous-employment-education-document": "Employment Education Document",
+    "teaching-experience-document": "Teaching Experience Document",
+    "transcript-document": "Transcript Document",
+    "additional-licences-permits": "Add Licences Permits Document",
     "of": "of",
     "schedule": "Schedule",
     "pagination-page": "Page",
@@ -39,6 +44,16 @@
     "my-subjects": "My Subjects",
     "time-tracking": "Time Tracking",
     "min": "min",
+    "my-mentors": "My mentors",
+    "total-score": "Total Score",
+    "assigned": "Assigned",
+    "deadline": "Deadline",
+    "time-out": "Time is out",
+    "count-homework": "Homework ({count})",
+    "all-lessons": "All Lessons",
+    "get-in-touch": "Get in touch",
+    "empty-homework": "You have no homework at the moment",
+    "empty-schedule": "There is nothing for this day",
     "menu": {
         "dashboard": "Dashboard",
         "add-new-course": "Add New Course",
@@ -59,7 +74,8 @@
         "forum": "Forum",
         "setting": "Setting",
         "podcast": "Podcast",
-        "manage-users": "Management Users",
+        "manage-teachers": "Management Teachers",
+        "manage-students": "Management Students",
         "my-subjects": "My Subjects",
         "admin": {
             "dashboard": "Dashboard",
@@ -112,7 +128,15 @@
         "payment-credential": "Payment Credential",
         "withdrawal-request": "Withdrawal Request",
         "history": "History",
-        "quiz": "Quiz"
+        "quiz": "Quiz",
+        "curriculum": "Curriculum",
+        "quiz-students": "Quiz Students",
+        "quiz-one": "Quiz One",
+        "user-information-avatar": "User information - Avatar",
+        "user-information-occupations": "User information - Occupations",
+        "user-information-detail": "User information - Detail",
+        "manage-students": "Manage Students",
+        "manage-teachers": "Manage Teachers"
     },
     "subtitle": {
         "new-class": "New Class"
@@ -138,6 +162,9 @@
         "slug": "Slug",
         "password": "Password",
         "confirm-password": "Password confirmation",
+        "current-password": "Current password",
+        "new-password": "New password",
+        "new-confirm-password": "New password confirmation",
         "remember-me": "Remember Me",
         "want-get": "I want to get the most out of my experience, by receiving emails with insider tips, motivation, special updates and promotions reserved for instructors.",
         "organizer": "Organizer",
@@ -153,7 +180,12 @@
         "account-holder-name": "Account Holder Name",
         "account-no": "Account No.",
         "business-document": "Business Documents",
-        "registration-scan": "Registration Scan",
+        "registration-scan": "ID",
+        "diploma-certificate": "Diploma/Certificate",
+        "previous-employment-education": "Proof of previous employment in education",
+        "teaching-experience": "Proof of teaching experience",
+        "additional-licences-permits": "Additional licences/permits",
+        "transcript": "Transcript",
         "extra-information": "Extra Information",
         "institution": "Institution",
         "title": "Title",
@@ -184,7 +216,7 @@
         "education-institution-name": "Education Institution Name",
         "education-institution-description": "Education Institution Description",
         "name": "Name",
-        "local_name": "Local Name",
+        "local-name": "Local Name",
         "from": "From",
         "to": "To",
         "gradation-age": "Gradation Age",
@@ -193,7 +225,7 @@
         "capacity-students": "Capacity Students",
         "duration-lesson": "Duration Lesson",
         "add-your-bio": "Add Your Bio",
-        "select-class": "Select class",
+        "select-class": "Class",
         "start-at": "Start Date",
         "end-at": "End Date",
         "teacher-s": "Teacher(s)",
@@ -212,7 +244,7 @@
         "start-task-execution": "Start of task execution",
         "end-task-execution": "End of task execution",
         "select-grade": "Select Grade",
-        "grade-passing-score": "Grade Passing Score",
+        "grade-passing-score": "Total Score",
         "question-title": "Question Title",
         "question": "Question",
         "point": "Point",
@@ -235,15 +267,25 @@
         "total-score": "Total Score",
         "pass-score": "Pass Score",
         "is-free": "Is free",
+        "is-active": "Is active",
+        "update-status": "Update status",
+        "add-score": "Add score",
         "admin": {
-            "user_invite_lifetime": "User invite link lifetime, hours",
-            "percentage_payment_organization": "Percentage payment organization, %"
+        "user-invite-lifetime": "User invite link lifetime, hours",
+        "percentage-payment-organization": "Percentage payment organization, %",
+        "free-courses": "Free courses, number",
+        "number-payment-credential": "Count of payment credential (credit cards)",
+        "bio": "Bio"
         }
     },
     "placeholder": {
+        "write-message": "Write message",
         "lecture-note": "Lecture note",
         "attach-file": "Attach file",
         "link-to-video": "Link to video",
+        "enter-link-to-video": "Enter link to video",
+        "enter-description": "Enter description",
+        "note": "Enter note",
         "select": "Select",
         "lecture": "Lecture",
         "enter-first-name": "Enter first name",
@@ -281,7 +323,7 @@
         "gradation-age-to": "Enter age to",
         "gradation-age-from": "Enter age from",
         "name": "Enter name",
-        "local_name": "Enter local name",
+        "local-name": "Enter local name",
         "price": "Enter price",
         "capacity": "Enter capacity",
         "capacity-students": "Enter capacity students",
@@ -298,7 +340,7 @@
         "enter-slug": "Enter slug",
         "select-date-of-birth": "Select date of birth",
         "quiz-title": "Enter quiz title",
-        "grade-passing-score": "Enter grade passing score",
+        "grade-passing-score": "Enter total score",
         "question-title": "Enter question title",
         "question": "Enter question",
         "point": "Enter point",
@@ -318,7 +360,9 @@
         "expiry-year": "Enter expiry year",
         "start-task-execution": "Select start of task execution",
         "end-task-execution": "Select end of task execution",
-
+        "video-url": "Enter video url",
+        "total-score": "Enter total score",
+        "pass-score": "Enter pass score",
         "grade": "Grade",
         "subject": "Subject",
         "course-type": "Course Type",
@@ -332,9 +376,16 @@
         "country": "Country",
         "enter-state": "Enter State",
         "status": "Status",
-        "enter-number-hours": "Enter number of hours"
+        "enter-number-hours": "Enter number of hours",
+        "enter-number": "Enter number",
+        "role": "Role",
+        "type": "Type",
+        "organizer": "Organizer",
+        "state": "State",
+        "class": "Class"
     },
     "button": {
+        "send": "Send",
         "sign-in": "Sign In",
         "create-account": "Create an account",
         "login": "Login",
@@ -360,9 +411,10 @@
         "add-new-subject": "Add New Subject",
         "update": "Update",
         "new-event": "New Event",
+        "add-new-assignment": "Add new assignment",
         "new-card": "New Card",
         "cancel": "Cancel",
-        "create":"Create",
+        "create": "Create",
         "logout": "Logout",
         "add-answer": "Add Answer",
         "back": "Back",
@@ -371,7 +423,14 @@
         "new-withdrawal-request": "New Withdrawal Request",
         "start": "Start",
         "submit": "Submit",
-        "ok": "Ok"
+        "ok": "Ok",
+        "add-new-quiz": "Add New Quiz",
+        "accepted": "Accepted",
+        "not-accepted": "Not Accepted",
+        "quiz-list": "Quiz List",
+        "user": "User",
+        "education-institution": "Education Institution",
+        "country": "Country"
     },
     "link": {
         "sign-in": "Sign In",
@@ -379,7 +438,8 @@
         "forgot-password": "Forgot Password?",
         "view-details": "View Details",
         "view-all": "View All",
-        "open-all": "Open All"
+        "open-all": "Open All",
+        "fined-new-mentor": "Fined New Mentor"
     },
     "badge": {},
     "status": {},
@@ -419,9 +479,7 @@
                 "Time (Min)",
                 "Total Mark",
                 "Pass Mark",
-                "Pass Mark",
                 "Students",
-                "Status",
                 "Date Created",
                 "Action"
             ],
@@ -447,8 +505,6 @@
                 "Email",
                 "Phone",
                 "Documents",
-                "Class",
-                "Role",
                 "Status",
                 "Action"
             ],
@@ -456,7 +512,6 @@
                 "Name",
                 "Section(s)",
                 "Lecture(s)",
-                "Hours",
                 "Action"
             ],
             "student-subjects": [
@@ -468,6 +523,11 @@
                 "Status",
                 "Action"
             ],
+            "student-homeworks": [
+                "Student",
+                "Status",
+                "Actions"
+            ],
             "admin": {
                 "user": [
                     "Name",
@@ -478,8 +538,12 @@
                     "Status",
                     "Action"
                 ]
-
             }
+        },
+        "empty-text": {
+            "subjects": "You don't have any subjects for this class.",
+            "classes": "You don't have any class.",
+            "users": "List users is empty"
         }
     },
     "tabs": {
@@ -487,10 +551,6 @@
             {
                 "name": "Profile",
                 "icon": "ri-account-box-fill"
-            },
-            {
-                "name": "Notification",
-                "icon": "ri-notification-4-line"
             },
             {
                 "name": "Password",
@@ -515,7 +575,21 @@
                 "icon": "ri-chat-4-line"
             }
         ],
-        "assignments": [
+        "assignments-student": [
+            {
+                "name": "All"
+            },
+            {
+                "name": "Active"
+            },
+            {
+                "name": "Completed"
+            }
+        ],
+        "assignments-instructor": [
+            {
+                "name": "Assignments"
+            },
             {
                 "name": "Reviewed"
             },
@@ -531,7 +605,19 @@
                 "name": "Active"
             }
         ],
-        "payment": ["Payment Credentials", "History", "Withdrawal Requests"]
+        "payment": [
+            "Payment Credentials",
+            "History",
+            "Withdrawal Requests"
+        ],
+        "assignments-quizzes-steps": [
+            {
+                "name": "Assignments"
+            },
+            {
+                "name": "Quizzes"
+            }
+        ]
     },
     "accordion": {
         "test": [
@@ -549,14 +635,21 @@
         "receipt": "Receipt",
         "approval": "Approval",
         "reject": "Reject",
-        "exclude": "Exclude"
+        "exclude": "Exclude",
+        "answer": "Answers",
+        "check-answers": "Check Answers",
+        "students": "Students",
+        "documents": "Documents",
+        "curriculum": "Curriculum"
     },
     "toast": {
         "error": {
-            "class-not-empty": "Class can not be empty, please fill in 'Basic Information'",
-            "quiz-step-1": "Step-1 (Basic Details) has error(s)",
-            "quiz-step-2": "Step-2 (Questions Basic Details) has error(s)",
-            "quiz-step-3": "Step-3 (Scoring Settings) has error(s)"
+            "class-not-empty": "Class can not be empty, please fill in 'Basic Information'.",
+            "quiz-step-1": "Step-1 (Basic Details) has error(s).",
+            "quiz-step-2": "Step-2 (Questions Basic Details) has error(s).",
+            "quiz-step-3": "Step-3 (Scoring Settings) has error(s).",
+            "assignments": "Errors occurred when trying to save assignments.",
+            "quizzes": "Errors occurred when trying to save quizzes."
         },
         "success": {},
         "info": {},
@@ -578,14 +671,15 @@
         "confirm": "Yes",
         "cancel": "Cancel"
     },
-    "empty-text": {
-        "classes": "You don't have any class"
-    },
     "modal": {
         "add-new-event": "Add New Event(s)",
         "edit-event": "Edit Event",
         "load": "Load",
-        "create-withdrawal-request": "Create Withdrawal Request"
+        "create-withdrawal-request": "Create Withdrawal Request",
+        "edit-section-name": "Edit Section Name",
+        "edit-lecture-name": "Edit Lecture Name",
+        "edit-quiz": "Edit Quiz",
+        "lessons": "Lessons"
     },
     "calendar": {
         "today": "Today",
@@ -803,7 +897,16 @@
             "text-20": "Your account has been successfully created, after checking the data you provided, a manager will contact You",
             "text-21": "Your account has been successfully created, a manager will contact you shortly to clarify the details",
             "text-22": "To speed up the registration process, please upload the following documents:",
-            "text-23": "This stage is not mandatory but if you skip the documents upload, confirming your registration will take longer."
+            "text-23": "This stage is not mandatory but if you skip the documents upload, confirming your registration will take longer.",
+            "text-24": "Please upload the following documents",
+            "text-25": "You were banned from this platform. Contact platform Admin if you have any questions",
+            "text-26": "You were rejected from joining a chosen School. Contact School's Organizer if you have any questions",
+            "text-27": "Oops :("
+        },
+        "set-password": {
+            "title": "Set your password",
+            "sub-title": "to finish registration",
+            "success": "Password set successfully!"
         },
         "settings": {
             "profile": {
@@ -872,18 +975,46 @@
             "hey": "Hey Dear,"
         },
         "quizzes": {
-            "status" : "Status",
+            "student": {
+                "practical-quizzes": "Practical Quizzes",
+                "status": "Status",
+                "due-on": "Due on",
+                "mentor": "Mentor(s)",
+                "quiz-grade": "Quiz Grade",
+                "my-grade": "My Grade"
+            }
+        },
+        "assignment": {
+            "practical-quizzes": "Practical Quizzes",
+            "status": "Status",
             "due-on": "Due on",
-            "mentor" : "Mentor"
+            "mentor": "Mentor(s)",
+            "quiz-grade": "Quiz Grade",
+            "my-grade": "My Grade",
+            "score": "Score",
+            "brief": "Brief",
+            "education-materials": "Education materials",
+            "files": "Files",
+            "videos": "Videos",
+            "accepted": "Accepted",
+            "loading-work": "Loading work",
+            "add-extra-time": "Add extra time",
+            "time-left": "Time left"
         }
     },
     "block-statistics": {
-        "quiz": ["Questions", "Minimum Score", "Attempts", "Remaining Time"]
+        "quiz": [
+            "Questions",
+            "Minimum Score",
+            "Attempts",
+            "Remaining Time"
+        ]
     },
     "admin": {
         "breadcrumb": "Admin",
         "user-menu": {
-            "profile": "Profile"
+            "profile": "Profile",
+            "change-password": "Change password"
         },
         "page": {
             "dashboard": {
@@ -891,13 +1022,16 @@
             },
             "settings": {
                 "title": "Settings",
-                "user_invite_lifetime": "User invite link lifetime, hours",
+                "user-invite-lifetime": "User invite link lifetime, hours",
                 "save-success": "Settings saved successfully"
             },
             "profile": {
                 "title": "Profile",
                 "save-success": "Profile saved successfully"
-
+            },
+            "change-password": {
+                "title": "Change password",
+                "save-success": "Password changed successfully"
             },
             "user": {
                 "unban": "Unban",
@@ -922,6 +1056,20 @@
                     "ban": "Ban"
                 }
             },
+            "user-documents": {
+                "title": "User documents",
+                "user": "User:",
+                "role": "Role:",
+                "types": {
+                    "document": "Document",
+                    "registration-scan": "Registration scan",
+                    "transcript": "Transcript",
+                    "diploma-certificate": "Diploma certificate",
+                    "previous-employment-education": "Previous employment education",
+                    "teaching-experience": "Teaching experience",
+                    "additional-licences-permits": "Additional licences permits"
+                }
+            },
             "institution": {
                 "title-list": "Education Institutions",
                 "title-edit": "Edit: {name}",
@@ -937,7 +1085,7 @@
                     "description": "Description",
                     "slug": "Slug",
                     "status": "Status",
-                    "organizers": "Organizers",
+                    "organizer": "Organizer",
                     "type": "Type"
                 }
             },
@@ -949,6 +1097,8 @@
                 "delete-success": "Country deleted successfully",
                 "set-free": "Set free",
                 "set-paid": "Set paid",
+                "set-active": "Set active",
+                "set-inactive": "Set inactive",
                 "delete": {
                     "title": "Delete Country",
                     "text": "Are you sure you want to delete {name}?"
@@ -956,10 +1106,10 @@
                 "table": {
                     "code": "Code",
                     "name": "Name",
-                    "local_name": "Local Name",
-                    "free": "Free"
+                    "local-name": "Local Name",
+                    "free": "Free",
+                    "active": "Active"
                 }
-
             }
         }
     }

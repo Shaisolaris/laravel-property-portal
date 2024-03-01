@@ -21,6 +21,6 @@ class PaymentController extends Controller
 
     public function history()
     {
-        return Inertia::render('Payment::Tabs/HistoryTab', []);
+        return Inertia::render('Payment::QuizTab/HistoryTab', []);
     }
 }

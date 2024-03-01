@@ -16,6 +16,11 @@ defineProps({
     iconClass: {
         type: String,
         default: ''
+    },
+    params:{
+        type: Object,
+        required: false,
+        default: {}
     }
 });
 </script>
@@ -25,7 +30,7 @@ defineProps({
 
     <component v-bind="$attrs"  :is="tag" :data-key="`${tKey}`">
         <slot name="text">
-            {{ $t(`${tKey}`) }}
+            {{ $t(`${tKey}`, params) }}
         </slot>
     </component>
 </template>

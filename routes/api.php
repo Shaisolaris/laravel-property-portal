@@ -10,7 +10,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('get-languages', function () {
-    return ["languages" => LanguageEnum::getLabelsValues(), 'appLocale' => App::getLocale()];
+    return ["languages" => LanguageEnum::getLanguages(), 'appLocale' => App::getLocale()];
 });
 
 Route::post('set-language', function (Request $request) {

@@ -68,31 +68,36 @@ $shadows: (
     }
 }
 
+.button-without-all {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+}
 
 @each $breakpoint, $dimension in $grid-breakpoints {
     @for $i from 1 through 1500 {
         .hp-#{$i} {
-            height: #{$i}px;
+            height: #{$i}px !important;
         }
 
         .wp-#{$i} {
-            width: #{$i}px;
+            width: #{$i}px !important;
         }
 
         .hc-#{$i} {
-            height: #{$i}#{'%'};
+            height: #{$i}#{'%'} !important;
         }
 
         .wc-#{$i} {
-            width: #{$i}#{'%'};
+            width: #{$i}#{'%'} !important;
         }
 
         .mhp-#{$i} {
-            max-height: #{$i}px;
+            max-height: #{$i}px !important;
         }
 
         .mwp-#{$i} {
-            max-width: #{$i}px;
+            max-width: #{$i}px !important;
         }
 
         .pxc-#{$i} {
@@ -127,6 +132,19 @@ $shadows: (
 
         .fsc-#{$i} {
             font-size: #{$i}px !important;
+        }
+
+        .gutter-#{$i} {
+            --in-gutter-x: #{$i}px !important;
+            --in-gutter-y: #{$i}px !important;
+        }
+
+        .gutterx-#{$i} {
+            --in-gutter-x: #{$i}px !important;
+        }
+
+        .guttery-#{$i} {
+            --in-gutter-y: #{$i}px !important;
         }
 
         @media (min-width: $dimension) {
@@ -196,11 +214,7 @@ $shadows: (
     }
 }
 
-.button-without-all {
-    border: none;
-    outline: none;
-    background: transparent;
-}
+
 
 .default-text {
     font-size: 14px;

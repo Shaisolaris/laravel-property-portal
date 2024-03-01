@@ -12,6 +12,8 @@ class AppSettingService
     protected array $editableSettings = [
         Settings::USER_INVITE_LIFETIME,
         Settings::PERCENTAGE_PAYMENT_ORGANIZATION,
+        Settings::FREE_COURSES,
+        Settings::NUMBER_PAYMENT_CREDENTIAL,
     ];
 
     public function getValues(): Collection
@@ -35,6 +37,10 @@ class AppSettingService
             /** @var AppSetting $setting */
             $setting = $settings->get($key, null);
             if(!$setting) {
+                AppSetting::query()->create([
+                    'key' => $key,
+                    'value' => $value
+                ]);
                 continue;
             }
 
@@ -42,7 +48,6 @@ class AppSettingService
         }
 
     }
-
 
 
 }

@@ -9,7 +9,8 @@ class QuizDatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            QuizTypeSeeder::class
+            QuizTypeSeeder::class,
+            CreateQuizzesSeeder::class
         ]);
     }
 }

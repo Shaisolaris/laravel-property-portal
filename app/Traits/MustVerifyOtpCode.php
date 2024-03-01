@@ -15,7 +15,6 @@ trait MustVerifyOtpCode
 
     public function sendSendOtpCodeNotification(): void
     {
-        Session::put(auth()->user()->uuid, ['otp_code' => rand(100000, 999999)]); // TODO:: on the time
-        //        $this->notify(new HandlerSendOtpCode());
+        $this->notify(new HandlerSendOtpCode());
     }
 }

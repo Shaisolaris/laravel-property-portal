@@ -1,7 +1,8 @@
 const state = {
     languages: [],
     languageCodes: [],
-    locale: ""
+    locale: "",
+    letters: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' ],
 };
 
 const mutations = {
@@ -28,6 +29,7 @@ const getters = {
     getLanguages: state => state.languages,
     getLanguageCodes: state => state.languageCodes,
     getLocale: state => state.locale,
+    getLetters: state => state.letters,
 }
 
 export default {

@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\School\app\Http\Controllers\Organizer\EiClassController;
-use Modules\School\app\Http\Controllers\Organizer\ManageUserController;
-use Modules\School\app\Http\Controllers\Instructor\MyClassController;
 use Modules\School\app\Http\Controllers\Student\MySubjectController;
+use Modules\School\app\Http\Controllers\Instructor\MyClassController;
+use Modules\School\app\Http\Controllers\Organizer\ManageUserController;
 use Modules\School\app\Http\Controllers\Organizer\EiClassSubjectController;
 
 Route::group([
@@ -14,11 +14,11 @@ Route::group([
         'middleware' => 'organizer',
     ], function () {
         Route::group([
-            'prefix' => 'manage-users',
             'as' => 'manage-user.',
             'controller' => ManageUserController::class
         ], function () {
-            Route::get('', 'index')->name('index');
+            Route::get('manage-students', 'manageStudents')->name('student');
+            Route::get('manage-teachers', 'manageInstructors')->name('teacher');
 
             Route::group([
                 'prefix' => '{user:uuid}'
@@ -54,13 +54,13 @@ Route::group([
                 'controller' => EiClassController::class
             ], function () {
                 Route::get('', 'index')->name('list');
-                Route::get('create', 'createOrEdit')->name('create');
+                Route::get('create', 'show')->name('create');
                 Route::post('store', 'store')->name('store');
 
                 Route::group([
                     'prefix' => '{eiClass:uuid}',
                 ], function () {
-                    Route::get('edit', 'createOrEdit')->name('edit');
+                    Route::get('', 'show')->name('edit');
                     Route::get('schedule', 'schedule')->name('schedule');
 
                     Route::put('update', 'update')->name('update');
@@ -74,32 +74,26 @@ Route::group([
         'middleware' => 'instructor',
     ], function () {
         Route::group([
-            'prefix' => 'my-classes',
             'as' => 'my-class.',
             'controller' => MyClassController::class
         ], function () {
-            Route::get('', 'index')->name('index');
+            Route::group([
+                'prefix' => 'my-classes',
+            ], function () {
+                Route::get('', 'index')->name('index');
 
-            Route::group(['prefix' => 'quizzes', 'as' => 'quiz.'], function () {
-                Route::get('', 'quizzes')->name('index');
-                Route::get('create', 'quizCreate')->name('create');
-
-                Route::group([
-                    'prefix' => '{quiz:uuid}'
-                ], function () {
-                    Route::get('edit', 'quizEdit')->name('edit');
+                Route::group(['prefix' => '{eiClass:uuid}'], function () {
+                    Route::group(['prefix' => 'subjects', 'as' => 'subject.'], function () {
+                        Route::get('', 'subjects')->name('index');
+                    });
                 });
             });
 
-            Route::group(['prefix' => '{eiClass:uuid}'], function () {
-                Route::group(['prefix' => 'subjects'], function () {
-                    Route::get('', 'subjects')->name('subject');
-
-                    Route::group([
-                        'prefix' => '{subject:uuid}'
-                    ], function () {
-                        Route::get('edit', 'show')->name('edit');
-                    });
+            Route::group(['prefix' => 'subjects', 'as' => 'subject.'], function () {
+                Route::group([
+                    'prefix' => '{subject:uuid}'
+                ], function () {
+                    Route::get('curriculum', 'curriculum')->name('curriculum');
                 });
             });
         });

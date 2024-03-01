@@ -8,7 +8,24 @@ Route::group([
     'as' => 'landing.',
 ], function () {
     Route::group([
+        'as' => 'school.',
+        'controller' => LandingSchoolController::class
+    ], function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('short-casual-courses', 'shortCasualCourses')->name('short-casual-courses');
+
+        Route::group([
+            'as' => 'class.',
+            'prefix' => 'classes'
+        ], function () {
+            Route::get('', 'classes')->name('index');
+            Route::get('{class}', 'classDetails')->name('details');
+        });
+    });
+
+    Route::group([
         'as' => 'academy.',
+        'prefix' => 'academy',
         'controller' => LandingAcademyController::class
     ], function () {
         Route::get('', 'index')->name('index');
@@ -21,23 +38,6 @@ Route::group([
         ], function () {
             Route::get('', 'courses')->name('index');
             Route::get('{course}', 'courseDetails')->name('details');
-        });
-    });
-
-    Route::group([
-        'as' => 'school.',
-        'prefix' => 'school',
-        'controller' => LandingSchoolController::class
-    ], function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('short-casual-courses', 'shortCasualCourses')->name('short-casual-courses');
-
-        Route::group([
-            'as' => 'class.',
-            'prefix' => 'classes'
-        ], function () {
-            Route::get('', 'classes')->name('index');
-            Route::get('{class}', 'classDetails')->name('details');
         });
     });
 });

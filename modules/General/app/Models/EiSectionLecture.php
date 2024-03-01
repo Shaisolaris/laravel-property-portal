@@ -8,8 +8,10 @@ use App\Traits\HasUuidTrait;
 use App\Traits\HasFileUploads;
 use Illuminate\Support\Carbon;
 use Spatie\MediaLibrary\HasMedia;
+use Modules\Quiz\app\Models\EiQuiz;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Modules\General\database\factories\EiSectionLectureFactory;
@@ -29,8 +31,12 @@ use Modules\General\app\Traits\Relationships\EiSectionLectureRelationshipsTrait;
  * @property int $section_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Collection<int, EiAssignment> $assignments
+ * @property-read int|null $assignments_count
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ * @property-read Collection<int, EiQuiz> $quizzes
+ * @property-read int|null $quizzes_count
  * @property-read EiSection|null $section
  * @method static EiSectionLectureFactory factory($count = null, $state = [])
  * @method static Builder|EiSectionLecture newModelQuery()

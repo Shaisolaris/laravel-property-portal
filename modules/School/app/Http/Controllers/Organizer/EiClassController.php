@@ -7,7 +7,6 @@ use Inertia\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Modules\School\app\Models\EiClass;
-use Modules\School\app\Models\EiClassSubject;
 use Modules\School\app\Services\EiClassService;
 use Modules\Schedule\app\Enums\ScheduleStatusEnum;
 use Modules\School\app\Http\Resources\EiClassResource;
@@ -41,7 +40,7 @@ class EiClassController extends Controller
         ]);
     }
 
-    public function createOrEdit(string $role, string $institutionType, ?EiClass $eiClass): Response
+    public function show(string $role, string $institutionType, ?EiClass $eiClass): Response
     {
         return Inertia::render('School::Organizer/Class/Tabs/BasicTab', [
             'eiClass' => EiClassResource::make($eiClass)

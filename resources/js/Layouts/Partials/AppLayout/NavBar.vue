@@ -141,8 +141,8 @@ onMounted(() => {
                 <slot name="bottom-header">
                     <div class="d-flex">
                         <slot name="bottom-left-nav-bar-block">
-                            <Text :t-key="`${$page.props.auth?.institution_type.toLowerCase()}-inoura`" />
-                            <span class="mx-4">
+                            <Text :t-key="`${$page.props.auth?.institution_type.toLowerCase()}-inoura`"  class="text-dim-gray"/>
+                            <span class="mx-4 fw-semibold">
                             {{ $page.props.auth?.institution_name }}
                             </span>
                         </slot>

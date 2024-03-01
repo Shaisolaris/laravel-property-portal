@@ -2,89 +2,28 @@
 
 namespace Modules\Quiz\app\Services;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\BindHomeworkToUserJob;
 use Modules\Quiz\app\Models\EiQuiz;
-use Modules\School\app\Models\EiClass;
 use Modules\Quiz\app\Models\EiQuizType;
-use App\Models\StudentHomeworkDiscipline;
 use Modules\Quiz\app\Enums\EiQuizTypeEnum;
 use Modules\Quiz\app\Models\EiQuizQuestion;
+use Modules\School\app\Models\EiClassSubject;
+use Modules\General\app\Models\EiSectionLecture;
 use Modules\Quiz\app\Models\EiQuizQuestionAnswer;
+use Modules\General\app\Models\StudentHomeworkDiscipline;
 
 class EiQuizService
 {
-    public function create(array $data): EiQuiz
-    {
-        return $this->action(null, $data);
-    }
-
-
-    public function update(EiQuiz $quiz, array $data): EiQuiz
-    {
-        return $this->action($quiz, $data);
-    }
-
-
-    private function action(?EiQuiz $quiz, array $originalData): EiQuiz
+    public function saveQuizWithQuestionsAnswers(?EiQuiz $quiz, EiClassSubject $eiClassSubject, EiSectionLecture $modelLecture, array $data): EiQuiz
     {
         DB::beginTransaction();
-        $data = $originalData;
 
-        $data = Arr::except($data, ['questions']);
-        $data = Arr::add($data, 'user_id', auth()->id());
-        $data = Arr::add($data, 'ei_id', auth()->user()->institution->institution->id);
-        $data = Arr::renameKey($data, 'time', 'duration_minutes');
-        $data = Arr::renameKey($data, 'title', 'name');
+        $quiz = $this->saveQuiz($quiz, $eiClassSubject, $modelLecture, $data);
 
-        if (!$quiz) {
-            /** @var EiQuiz $quiz */
-            $quiz = EiQuiz::create($data);
-
-            StudentHomeworkDiscipline::create([
-                'model_id' => $quiz->id,
-                'model_type' => $quiz->getMorphClass(),
-                'parent_model_id' => (new EiClass)->getMorphClass(),
-                'parent_model_type' => EiClass::inRandomOrder()->value('id')
-            ]);
-
-            //TODO bind HOMEWORK FOR STUDENT
-            BindHomeworkToUserJob::dispatch($quiz);
-
-//          BindHomeworkToUserJob::dispatch($quiz)->delay($quiz->start_work_datetime);
-        }
-
-        foreach ($originalData['questions'] as $index => $question) {
-            if (!empty($question)) {
-                foreach ($question as $questionItem) {
-                    if ($index === EiQuizTypeEnum::Single()->label || $index === EiQuizTypeEnum::Multiple()->label) {
-                        !isset($questionItem['uuid']) ? $this->quizQuestionCreate($quiz, $index, $questionItem) : $this->quizQuestionUpdate($questionItem);
-                    }
-
-                    if ($index === EiQuizTypeEnum::YesOrNo()->label) {
-                        /** @var EiQuizQuestion $quizQuestion */
-                        $quizQuestion = $quiz->questions()->create([
-                            'quiz_type_id' => EiQuizType::whereValue(EiQuizTypeEnum::YesOrNo()->label)->value('id'),
-                            'question' => $questionItem['title'],
-                            'point' => $questionItem['point']
-                        ]);
-
-                        $quizQuestion->answers()->create(['answer' => $questionItem['answer']['correct_answer'], 'is_correct' => true]);
-                        $quizQuestion->answers()->create(['answer' => $questionItem['answer']['incorrect_answer'], 'is_correct' => false]);
-                    }
-
-                    if ($index === EiQuizTypeEnum::Short()->label) {
-                        $quiz->questions()->create([
-                            'quiz_type_id' => EiQuizType::whereValue(EiQuizTypeEnum::Short()->label)->value('id'),
-                            'question' => $questionItem['title'],
-                            'point' => $questionItem['point']
-                        ]);
-                    }
-                }
-            }
-
-        }
+        collect($data['questions'])->each(function($questions, $index) use ($quiz){
+            collect($questions)->each(fn ($question) => $this->saveQuestion($quiz, $index, $question));
+        });
 
         DB::commit();
 
@@ -92,28 +31,61 @@ class EiQuizService
     }
 
 
-    private function quizQuestionCreate(EiQuiz $quiz, string $index, array $questionItem): void
+    private function saveQuiz(?EiQuiz $eiQuiz, EiClassSubject $eiClassSubject, EiSectionLecture $modelLecture, array $data): ?EiQuiz
     {
-        /** @var EiQuizQuestion $quizQuestion */
-        $quizQuestion = $quiz->questions()->create([
-            'quiz_type_id' => EiQuizType::whereValue($index)->value('id'),
-            'question' => $questionItem['title'],
-            'point' => $questionItem['point']
-        ]);
+        $eiId = auth()->user()->institution->institution->id;
 
-        $quizQuestion->answers()->createMany($questionItem['answers']);
+        $data['model_type'] = $eiClassSubject->getMorphClass();
+        $data['model_id'] = $eiClassSubject->id;
+
+        if (!$eiQuiz) {
+            /** @var EiQuiz $eiQuiz */
+            $eiQuiz = $modelLecture->quizzes()->create($data);
+
+            StudentHomeworkDiscipline::create([
+                'model_id' => $eiQuiz->id,
+                'model_type' => $eiQuiz->getMorphClass(),
+                'parent_model_type' => $eiClassSubject->eiClass->getMorphClass(),
+                'parent_model_id' => $eiClassSubject->eiClass->id
+            ]);
+
+            //TODO после всего нужно нижную строчку раскоментить а ту что над ней удалить
+            BindHomeworkToUserJob::dispatch($eiClassSubject->eiClass, $eiQuiz);
+            //BindHomeworkToUserJob::dispatch($eiClassSubject->eiClass, $quiz)->delay($quiz->start_work_datetime);
+        } else {
+            $eiQuiz->update($data);
+        }
+
+        return $eiQuiz;
     }
 
-
-    private function quizQuestionUpdate(array $questionItem): void
+    private function saveQuestion(EiQuiz $quiz, string $typeQuestion, array $questionItem): void
     {
-        EiQuizQuestion::whereUuid($questionItem['uuid'])->update([
+        $data = [
+            'quiz_type_id' => EiQuizType::whereValue($typeQuestion)->value('id'),
             'question' => $questionItem['title'],
             'point' => $questionItem['point']
-        ]);
+        ];
 
-        foreach ($questionItem['answers'] as $answer) {
+        if (isset($questionItem['uuid'])) {
+            $quizQuestion = EiQuizQuestion::whereUuid($questionItem['uuid'])->first();
+            $quizQuestion->update($data);
+        } else {
+            /** @var EiQuizQuestion $quizQuestion */
+            $quizQuestion = $quiz->questions()->create($data);
+        }
+
+        if ($typeQuestion !== EiQuizTypeEnum::Short()->value) {
+            collect($questionItem['answers'])->each(fn($answer) => $this->saveAnswer($quizQuestion, $answer));
+        }
+    }
+
+    private function saveAnswer(?EiQuizQuestion $quizQuestion, array $answer): void
+    {
+        if (isset($answer['uuid'])) {
             EiQuizQuestionAnswer::whereUuid($answer['uuid'])->update($answer);
+        } else {
+            $quizQuestion->answers()->create($answer);
         }
     }
 }

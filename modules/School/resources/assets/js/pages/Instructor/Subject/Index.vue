@@ -9,7 +9,7 @@ const { eiClass } = defineProps({
 
 
 const getSubjects = (page) => {
-    router.visit(route('school.my-class.subject', {
+    router.visit(route('school.my-class.subject.index', {
         'eiClass': eiClass,
         page,
     }), {
@@ -22,19 +22,18 @@ const getSubjects = (page) => {
 
 <template>
     <AppLayout title="my-subjects">
-        <BaseTable :meta="subjects.meta" :visit-page-function="getSubjects" t-key-header="instructor-subjects">
+        <BaseTable :meta="subjects.meta" :text-empty="subjects.data.length ? '' : 'subjects'" :visit-page-function="(page) => getSubjects(page)" t-key-header="instructor-subjects">
             <template #body>
                 <tr v-for="subject in subjects.data">
                     <td>{{ subject.name }}</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{ subject.sections_count }}</td>
+                    <td>{{ subject.section_lectures_count }}</td>
                     <TdActions>
                         <template #actions>
-                            <Link :href="route('school.my-class.edit', {'eiClass': eiClass, 'subject': subject})">
+                            <Link :href="route('school.my-class.subject.curriculum', {'subject': subject})">
                                 <BDropdownItem>
                                     <i class="ri-pencil-fill align-bottom me-2 text-royal-blue" />
-                                    <Text tag="span" t-key="action.edit" />
+                                    <Text tag="span" t-key="action.curriculum" />
                                 </BDropdownItem>
                             </Link>
                         </template>

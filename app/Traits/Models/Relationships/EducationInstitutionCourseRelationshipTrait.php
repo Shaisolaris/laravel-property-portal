@@ -2,10 +2,14 @@
 
 namespace App\Traits\Models\Relationships;
 
-use Modules\General\app\Models\EiAssignments;
+use App\Models\User;
+use Modules\General\app\Models\EiAssignment;
 use Modules\General\app\Models\EiSection;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\General\app\Models\EducationInstitutionCategory;
 use Modules\Academy\app\Models\EducationInstitutionCourseBenefit;
+use Modules\Academy\app\Models\EducationInstitutionCourseUserCourses;
 
 trait EducationInstitutionCourseRelationshipTrait
 {
@@ -19,13 +23,18 @@ trait EducationInstitutionCourseRelationshipTrait
         return $this->belongsTo(EducationInstitutionCategory::class, 'category_id');
     }
 
-    public function sections(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function sections(): MorphMany
     {
         return $this->morphMany(EiSection::class, 'model');
     }
 
-    public function assignments(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function assignments(): MorphMany
     {
-        return $this->morphMany(EiAssignments::class, 'model');
+        return $this->morphMany(EiAssignment::class, 'model');
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, EducationInstitutionCourseUserCourses::class, 'course_id', 'user_id', 'id');
     }
 }

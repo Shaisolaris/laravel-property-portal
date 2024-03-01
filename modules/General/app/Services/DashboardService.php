@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Modules\Schedule\app\Models\Schedule;
 use Modules\Schedule\app\Http\Resources\ScheduleResource;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DashboardService
 {
@@ -24,7 +23,7 @@ class DashboardService
         }
 
         if ($user->isStudent()) {
-            $events = $user->myClass->events();
+            $events = $user?->myClass?->events();
         }
 
         if ($user->isInstructor()) {
@@ -52,7 +51,9 @@ class DashboardService
             return $user->myClass->events()->get();
         }
 
-        return Schedule::whereIn('parent_model_id', $user->myClasses->pluck('id'))->get()->groupBy('parent_model_id')
+        return Schedule::whereIn('parent_model_id', $user->myClasses->pluck('id'))
+            ->get()
+            ->groupBy('parent_model_id')
             ->map(function ($eventGroup) {
                 return ScheduleResource::collection($eventGroup);
             });

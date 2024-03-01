@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use DateTimeZone;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\UserDetail;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use App\Enums\LanguageEnum;
 use Illuminate\Database\Seeder;
@@ -35,7 +38,7 @@ class UserSeeder extends Seeder
             'gender' => fake()->randomElement(UserGenderEnum::getLabelsValues())['value'],
             'languages' => fake()->randomElement(LanguageEnum::getLabelsValues())['value'],
             'teaching_level' => fake()->randomElement(UserTeachingLevelEnum::getLabelsValues())['value'],
-            'timezone' => 'default',
+            'timezone' => fake()->randomElement(DateTimeZone::listIdentifiers()),
             'password' => Hash::make('password'),
             'email_verified_at' => Carbon::now(),
             'status' => UserStatusEnum::Active()->value,
@@ -174,21 +177,25 @@ class UserSeeder extends Seeder
                 break;
         }
 
+        /** @var UserDetail $detail */
         $detail = $user->detail()->updateOrCreate(['user_id' => $user->id], ['extra_information' => 'TEST']);
 
         $rand = rand(1, 10);
-        $user->update(['profile_photo_path' => resource_path("assets/images/users/avatar-$rand.jpg")]);
+        $user->updateProfilePhoto(new UploadedFile(resource_path("assets/images/users/avatar-$rand.jpg"), "avatar-$rand.jpg"));
 
         if (!$user->hasRole(UserRoleEnum::adminRoles())) {
-            $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', [
-                'is_business_document' => true,
-                'user_id' => auth()->id()
-            ]);
+            $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_registration_scan' => true, 'user_id' => auth()->id()]);
 
-            $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', [
-                'is_registration_scan' => true,
-                'user_id' => auth()->id()
-            ]);
+            if($user->isStudent()) {
+                $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_transcript' => true, 'user_id' => auth()->id()]);
+            }
+
+            if($user->isInstructor()) {
+                $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_diploma_certificate' => true, 'user_id' => auth()->id()]);
+                $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_previous_employment_education' => true, 'user_id' => auth()->id()]);
+                $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_teaching_experience' => true, 'user_id' => auth()->id()]);
+                $detail->saveMediaFromUrls('https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg', 'detail', ['is_additional_licences_permits' => true, 'user_id' => auth()->id()]);
+            }
         }
     }
 }

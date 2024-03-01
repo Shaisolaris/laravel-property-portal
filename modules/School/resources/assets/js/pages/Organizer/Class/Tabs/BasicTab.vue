@@ -88,8 +88,6 @@ const submit = () => {
                             </b-row>
                         </b-col>
                         <b-col cols="12">
-                            <TagLabel label="gradation-age" :required="false" />
-
                             <b-row>
                                 <b-col cols="12" md="6">
                                     <BaseInput
@@ -114,6 +112,8 @@ const submit = () => {
                             </b-row>
                         </b-col>
                         <b-col cols="12">
+                            <TagLabel label="gradation-age" :required="false" />
+
                             <b-row>
                                 <b-col cols="12" md="6">
                                     <BaseInput
@@ -172,7 +172,6 @@ const submit = () => {
                 <div class="col-lg-12 mt-4">
                     <div class="hstack gap-2 justify-content-end">
                         <BaseButton
-                            :class="{'opacity-25': form.processing }"
                             :disabled="form.processing"
                             t-key="save"
                             size="lg"

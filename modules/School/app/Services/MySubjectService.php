@@ -19,8 +19,11 @@ class MySubjectService
         return collect();
     }
 
-    public function getLimitSubjects(User $user, int $limit = 4): \Illuminate\Database\Eloquent\Collection
+    public function getLimitSubjects(User $user, int $limit = 4): \Illuminate\Database\Eloquent\Collection|array
     {
-        return $user->subjects()->orderByDesc('created_at')->limit($limit)->get();
+        if($user->subjects()) {
+            return $user->subjects()->orderByDesc('created_at')->limit($limit)->get();
+        }
+        return [];
     }
 }

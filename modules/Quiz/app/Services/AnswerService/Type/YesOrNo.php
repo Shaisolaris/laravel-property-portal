@@ -2,17 +2,17 @@
 
 namespace Modules\Quiz\app\Services\AnswerService\Type;
 
-use Modules\Quiz\app\Services\AnswerService\General;
-use Modules\General\app\Models\StudentHomeworkAnswer;
+use Modules\Quiz\app\Services\AnswerService\Core;
+use Modules\Quiz\app\Models\StudentHomeworkQuizAnswer;
 use Modules\Quiz\app\Services\AnswerService\AnswerTypeInterface;
 
-class YesOrNo extends General implements AnswerTypeInterface
+class YesOrNo extends Core implements AnswerTypeInterface
 {
-    public function __construct(protected array $data){}
+    public function __construct(protected array $data, protected string $typeValue){}
 
     public function transformData(): static
     {
-        $this->data = $this->transform($this->data);
+        $this->data = $this->transform($this->data, $this->typeValue);
 
         return $this;
     }
@@ -25,9 +25,7 @@ class YesOrNo extends General implements AnswerTypeInterface
 
     public function save(): static
     {
-        foreach ($this->data as $item) {
-            StudentHomeworkAnswer::create($item);
-        }
+        $this->saveAnswer($this->data);
 
         return $this;
     }

@@ -1,7 +1,4 @@
 <script setup>
-import { useI18n } from "vue-i18n";
-import { usePage } from "@inertiajs/vue3";
-
 const store = useStore();
 const { locale } = useI18n();
 

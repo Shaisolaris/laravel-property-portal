@@ -31,7 +31,15 @@ Route::group([
         Route::group([
             'prefix' => '{quiz:uuid}'
         ], function () {
-            Route::put('edit', 'update')->name('update');
+            Route::get('students', 'quizStudentHomework')->name('student-homeworks');
+        });
+
+        Route::group([
+            'prefix' => '{homework:uuid}'
+        ], function () {
+            Route::get('answers', 'checkAnswers')->name('answers');
+
+            Route::put('{studentHomeworkQuizAnswer:uuid}/update-answer', 'updateAnswer')->name('update-answer');
         });
 
         Route::group([

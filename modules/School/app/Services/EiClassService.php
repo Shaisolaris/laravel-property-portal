@@ -6,10 +6,11 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use App\Enums\User\UserRoleEnum;
 use Illuminate\Http\UploadedFile;
-use Modules\School\app\Models\EiClassSubject;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Enums\User\UserStatusEnum;
 use Modules\School\app\Models\EiClass;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\School\app\Models\EiClassSubject;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EiClassService
 {
@@ -18,54 +19,39 @@ class EiClassService
         return EiClass::whereEiId($user->institution->institution->id)->paginate($perPage);
     }
 
-
     public function getInstructors(User $user): Collection
     {
-        return $user->institution?->institution?->peoples()->role(UserRoleEnum::Instructor()->value)->latest()->get();
+        return $user->institution?->institution?->activeUsers()->role(UserRoleEnum::Instructor()->value)->latest()->get();
     }
 
-
-    public function getUsers(User $user, int $perPage): LengthAwarePaginator
+    public function getUsers(User $user, UserRoleEnum $role, int $perPage): LengthAwarePaginator
     {
-        return $user->institution?->institution?->peoples()
-            ->role([UserRoleEnum::Student()->value, UserRoleEnum::Instructor()->value])
-            ->latest()
-            ->paginate($perPage);
+        return $user->institution?->institution?->users()->role($role->value)->status(UserStatusEnum::Review()->value)->latest()->paginate($perPage);
     }
-
-
-    public function getClassLectures(EiClass $eiClass): array
-    {
-        return $eiClass->lectures->all();
-    }
-
 
     public function getClassSubjects(?EiClass $eiClass): Collection|array
     {
         return $eiClass ? EiClassSubject::whereClassId($eiClass->id)->latest()->get() : [];
     }
 
-
     public function getClassSubjectsInstructors(EiClass $eiClass): Collection|array
     {
         return EiClassSubject::whereClassId($eiClass->id)->latest()->with('instructors')->get();
     }
-
 
     public function getClassEvents(EiClass $eiClass): Collection
     {
         return $eiClass->events()->get();
     }
 
-
     public function updateOrCreateClass(array $data): EiClass
     {
         return EiClass::updateOrCreate(Arr::only($data, ['uuid']), $data);
     }
 
-
     public function updateOrCreateSubjects(array $data, mixed $eiClass): void
     {
+        //TODO:: need refactoring
         $subjects = $data['subjects'];
 
         $teachers = Arr::pluck($subjects, 'teachers');

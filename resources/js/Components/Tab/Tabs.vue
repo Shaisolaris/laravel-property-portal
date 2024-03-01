@@ -3,7 +3,7 @@ defineProps({
     tKey: {
         type: String,
         required: true
-    }
+    },
 });
 
 
