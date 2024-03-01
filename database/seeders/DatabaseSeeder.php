@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             EducationsSeeder::class,
             AppSettingsSeeder::class,
             QuizTypeSeeder::class,
-            ReviewSeeder::class
+//            ReviewSeeder::class
         ]);
     }
 }

@@ -92,6 +92,12 @@ const avatarName = () => {
     }
 };
 
+
+watch(
+    () => image.src,
+    () => (uuid.value = uuidv4()),
+);
+
 onMounted(() => {
     if (props.media.hasOwnProperty('url')) {
         generateImagePreview(props.media).then(
@@ -101,12 +107,6 @@ onMounted(() => {
         [ image.src, image.placeholder ] = [ props.src, props.placeholder ];
     }
 });
-
-watch(
-    () => image.src,
-    () => (uuid.value = uuidv4()),
-);
-
 </script>
 
 <template>

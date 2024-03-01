@@ -5,6 +5,7 @@ namespace Modules\School\app\Http\Controllers\Organizer;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
+use App\Enums\User\UserRoleEnum;
 use App\Enums\User\UserStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -18,10 +19,19 @@ class ManageUserController extends Controller
     }
 
 
-    public function index(): Response
+    public function manageStudents(): Response
     {
-        return Inertia::render('School::Organizer/ManageUsersPage', [
-            'users' => UserResource::collection($this->service->getUsers($this->user, self::PER_PAGE)),
+        return Inertia::render('School::Organizer/ManageUsers/Index', [
+            'users' => UserResource::collection($this->service->getUsers($this->user, UserRoleEnum::Student(), self::PER_PAGE)),
+            'typeUsers' => 'student'
+        ]);
+    }
+
+    public function manageInstructors(): Response
+    {
+        return Inertia::render('School::Organizer/ManageUsers/Index', [
+            'users' => UserResource::collection($this->service->getUsers($this->user, UserRoleEnum::Instructor(),self::PER_PAGE)),
+            'typeUsers' => 'teacher'
         ]);
     }
 
@@ -29,6 +39,8 @@ class ManageUserController extends Controller
     {
         try {
             $status = UserStatusEnum::tryFrom($request->get('status'));
+            $routePart = $request->get('routePart');
+
             $params = ['status' => $status->value];
 
             if ($status->value === UserStatusEnum::Active()->value) {
@@ -37,7 +49,7 @@ class ManageUserController extends Controller
 
             $request->route('user')->update($params);
 
-            return redirect()->to(route('school.manage-user.index'))->success(__("success.user.$status"));
+            return redirect()->to(route("school.manage-user.$routePart"))->success(__("success.user-$status"));
         } catch (\Exception $e) {
             return back()->error($e->getMessage());
         }

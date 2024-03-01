@@ -3,11 +3,12 @@
 namespace Modules\General\app\Http\Requests;
 
 use App\Enums\EducationInstitutions\EducationInstitutionTypeEnum;
+use App\Processor\Actions\Forms\Validators\AdvanceInformationValidator;
+use App\Processor\Actions\Forms\Validators\AssignmentsValidator;
+use App\Processor\Actions\Forms\Validators\BasicInformationValidator;
+use App\Processor\Actions\Forms\Validators\ContentInformationValidator;
+use App\Processor\Actions\Forms\Validators\QuizzesValidator;
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\General\app\Processor\Actions\Forms\Validators\AdvanceInformationValidator;
-use Modules\General\app\Processor\Actions\Forms\Validators\AssignmentsValidator;
-use Modules\General\app\Processor\Actions\Forms\Validators\BasicInformationValidator;
-use Modules\General\app\Processor\Actions\Forms\Validators\ContentInformationValidator;
 
 class CreatingStepsRequest extends FormRequest
 {
@@ -56,10 +57,11 @@ class CreatingStepsRequest extends FormRequest
                     default => []
                 });
             }
+
             if($user->isInstructor()) {
                 $result = $rules->merge(match ($this->input('name_step')) {
                     'content' => app(ContentInformationValidator::class)->toArray(),
-                    'assignments' => app(AssignmentsValidator::class)->toArray(),
+                    'assignments' => [...app(AssignmentsValidator::class)->toArray(), ...app(QuizzesValidator::class)->toArray()],
                     default => []
                 });
             }

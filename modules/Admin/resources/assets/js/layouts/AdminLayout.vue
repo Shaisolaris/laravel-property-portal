@@ -1,12 +1,13 @@
 <script setup>
 import { isEmpty } from "lodash";
+import { useToast } from "~/scripts/helpers/useToast.js";
 import simplebar from "simplebar-vue";
 import Menu from "~/Layouts/Partials/AppLayout/Menu.vue";
 import NavBar from "$module@admin/partials/AdminLayout/NavBar.vue";
-import {adminToast} from "$module@admin/services/adminToast.js";
+
 
 const { t } = useI18n();
-
+const { baseToast } = useToast();
 const props = defineProps({
     title: {
         type: String,
@@ -21,50 +22,42 @@ const props = defineProps({
         default: false
     },
     breadcrumbs: {
-        type: [String, Array],
+        type: [ String, Array ],
         default: null
     },
 });
-
 const breadcrumbs = computed(() => {
-    if(Array.isArray(props.breadcrumbs)){
+    if (Array.isArray(props.breadcrumbs)) {
         return props.breadcrumbs;
     }
 
     let item = props.breadcrumbs;
 
-    if(!item && props.headerBreadcrumb && props.header){
+    if (!item && props.headerBreadcrumb && props.header) {
         item = props.header;
     }
 
-    if(!item){
+    if (!item) {
         return null;
     }
 
     return [
-        {
-            link: route('admin.dashboard'),
-            text: t(`admin.breadcrumb`),
-        },
-        {
-            link: null,
-            text: item,
-        },
-
+        { link: route('admin.dashboard'), text: t(`admin.breadcrumb`), },
+        { link: null, text: item, },
     ]
 });
-
 const title = computed(() => {
-    if(props.title){
+    if (props.title) {
         return props.title;
     }
 
-    if(props.header){
+    if (props.header) {
         return props.header;
     }
 
     return null;
 });
+
 
 const initActiveMenu = () => {
     if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
@@ -83,19 +76,16 @@ watch(
     () => usePage().props.flash,
     (flashMessage) => {
         if (!isEmpty(flashMessage) && flashMessage.type !== undefined) {
-            const { toast } = adminToast();
             let message = flashMessage.text;
 
-            if(message.startsWith('admin.')){
-                // locale string (not message itself)
+            if (message.startsWith('admin.')) {
                 message = t(message);
             }
 
-            toast(flashMessage.type, message);
+            baseToast('backend', flashMessage.type, message, flashMessage.options);
         }
     }
 );
-
 
 onBeforeMount(() => {
     document.body.removeAttribute("data-layouts", "horizontal");
@@ -117,13 +107,10 @@ onBeforeMount(() => {
 </script>
 
 <template>
-
     <div id="layout-wrapper" class="admin-layout-wrapper">
         <Head :title="title" />
 
-
         <NavBar />
-
 
         <div>
             <div class="app-menu navbar-menu">
@@ -165,7 +152,6 @@ onBeforeMount(() => {
         <div class="main-content">
             <div class="page-content">
                 <b-container fluid>
-
                     <div class="row" v-if="header || breadcrumbs">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -174,7 +160,11 @@ onBeforeMount(() => {
                                 </h4>
                                 <div class="page-title-right" v-if="breadcrumbs">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item" v-for="(breadcrumb, index) in breadcrumbs" :class="{'active': index === breadcrumbs.length - 1}">
+                                        <li
+                                            class="breadcrumb-item"
+                                            v-for="(breadcrumb, index) in breadcrumbs"
+                                            :class="{'active': index === breadcrumbs.length - 1}"
+                                        >
                                             <Link :href="breadcrumb.link" v-if="breadcrumb.link">
                                                 {{ breadcrumb.text }}
                                             </Link>
@@ -187,7 +177,6 @@ onBeforeMount(() => {
                             </div>
                         </div>
                     </div>
-
                     <slot />
                 </b-container>
             </div>
@@ -196,9 +185,8 @@ onBeforeMount(() => {
 </template>
 
 <style lang="scss">
-
-.admin-layout-wrapper{
-    .breadcrumb-item + .breadcrumb-item::before{
+.admin-layout-wrapper {
+    .breadcrumb-item + .breadcrumb-item::before {
         margin-top: -4px;
     }
 
@@ -216,5 +204,4 @@ onBeforeMount(() => {
         }
     }
 }
-
 </style>

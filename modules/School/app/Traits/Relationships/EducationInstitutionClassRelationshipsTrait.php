@@ -23,7 +23,7 @@ trait EducationInstitutionClassRelationshipsTrait
 
     public function subjects(): HasMany
     {
-        return $this->hasMany(EiClassSubject::class, 'class_id', 'id');
+        return $this->hasMany(EiClassSubject::class, 'class_id'); // TODO: если локальный ключ это id, лара сама его поставит
     }
 
 
@@ -41,12 +41,12 @@ trait EducationInstitutionClassRelationshipsTrait
 
     public function events(): HasMany
     {
-        return $this->hasMany(Schedule::class, 'parent_model_id', 'id');
+        return $this->hasMany(Schedule::class, 'parent_model_id');
     }
 
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(EntityReview::class, 'model_id', 'id');
+        return $this->hasMany(EntityReview::class, 'model_id');
     }
 }

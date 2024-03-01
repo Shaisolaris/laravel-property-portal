@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent;
 use App\Traits\HasFileUploads;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property Carbon|null $updated_at
  * @property-read MediaCollection<int, Media> $media
  * @property-read int|null $media_count
+ * @property-read int|null $user_documents_count
  * @method static Builder|UserDetail newModelQuery()
  * @method static Builder|UserDetail newQuery()
  * @method static Builder|UserDetail query()
@@ -47,4 +49,12 @@ class UserDetail extends Model implements HasMedia
     ];
 
     protected $with = ['media'];
+
+    /**
+     * @return MorphMany
+     */
+    public function userDocuments(): MorphMany
+    {
+        return $this->media()->where('collection_name', 'user_documents');
+    }
 }

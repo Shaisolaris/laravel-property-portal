@@ -20,7 +20,7 @@ class ClassScheduleUpdateRequest extends FormRequest
             $data = request()->event;
 
             if ($data['subject']) {
-                $data['model_type'] = $data['subject'] ? EiClassSubject::find($data['subject'])->getMorphClass() : null;
+                $data['model_type'] = EiClassSubject::find($data['subject'])->getMorphClass();
                 $data['model_id'] = $data['subject'];
             }
         }
@@ -33,7 +33,7 @@ class ClassScheduleUpdateRequest extends FormRequest
     {
         return [
             'lesson_link' => 'required|url',
-            'event_date' => 'required|date_format:Y-m-d|after_or_equal:today',
+            'event_date' => 'required|date_format:Y-m-d|' . request()->method === 'POST' ? 'after_or_equal:today' : '',
             'user_id' => 'required|integer|exists:users,id',
             'event_end_time' => 'required|date_format:H:i',
             'event_start_time' => 'required|date_format:H:i',

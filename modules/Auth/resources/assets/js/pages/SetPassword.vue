@@ -43,7 +43,7 @@ const disabledSubmit = computed(
 </script>
 
 <template>
-    <AuthLayout title="register" :withoutLEftContent="true">
+    <AuthLayout title="set-password" :withoutLEftContent="true">
         <template #right-content>
             <b-row :no-gutters="true" class="justify-content-center">
                 <b-col cols="10" lg="8">
@@ -85,7 +85,7 @@ const disabledSubmit = computed(
 
                             <div class="pyc-40">
                                 <BaseButton
-                                    t-key="sign-up"
+                                    t-key="save"
                                     type="submit"
                                     class="fs-20 fw-bold shadow-dark-blue border-2 border-black w-100"
                                     :disabled="disabledSubmit || form.processing"

@@ -4,7 +4,7 @@ namespace Modules\Schedule\app\Http\Resources;
 
 use Carbon\Carbon;
 use App\Models\User;
-use Modules\School\app\Models\EiClass;
+use App\Facades\Time;
 use Modules\Schedule\app\Models\Schedule;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Schedule\app\Enums\ScheduleStatusEnum;
@@ -38,20 +38,22 @@ class ScheduleResource extends JsonResource
             'allDay' => false,
             'time' => "$eventStartTime - $eventEndTime",
             'className' => $this->getClassName(),
-            'is_future' => $this->event_date->isFuture(),
+            'is_future' => Carbon::create($eventDate . ' ' . $eventEndTime)->isFuture(),
         ];
     }
 
-
     private function getClassName(): string
     {
+        $eventDate = Carbon::parse($this->event_date)->format('Y-m-d');
+        $eventEndTime = Carbon::parse($this->event_end_time)->format('H:i');
+
         if ($this->status->value === ScheduleStatusEnum::Canceled()->value) {
             return 'event-canceled';
         }
 
         $className = 'event-future';
 
-        if (!$this->event_date->isFuture() && !$this->event_date->equalTo(Carbon::now()->format('Y-m-d'))) {
+        if ((!$this->event_date->isFuture() && !$this->event_date->equalTo(Carbon::now()->format('Y-m-d'))) || Carbon::create("$eventDate $eventEndTime")->isPast()) {
             $className = 'event-not-future';
         }
 

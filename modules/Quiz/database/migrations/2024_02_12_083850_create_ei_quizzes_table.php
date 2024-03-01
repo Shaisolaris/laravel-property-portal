@@ -11,30 +11,22 @@ return new class () extends Migration {
             $table->id();
             $table->uuid()->unique()->index();
 
-            $table->foreignId('user_id')
-                ->constrained('users')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
-            $table->foreignId('ei_id')
-                ->constrained('education_institutions')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
             $table->foreignId('lecture_id')
                 ->constrained('ei_section_lectures')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
+            $table->morphs('model');
+
             $table->string('name');
             $table->string('language');
             $table->string('grade');
-            $table->string('grade_passing_score');
             $table->text('description');
 
-            $table->tinyInteger('pass_mark');
-            $table->tinyInteger('duration_minutes')->default(10);
-            $table->tinyInteger('number_attempts')->default(1);
+            $table->integer('total_score');
+            $table->integer('pass_mark');
+            $table->integer('duration_minutes')->default(10);
+            $table->tinyInteger('attempts')->default(1);
             $table->decimal('points_no_answer')->default(0);
             $table->decimal('points_wrong_answer')->default(0);
 

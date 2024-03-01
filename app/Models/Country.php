@@ -15,8 +15,10 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property string|null $local_name
  * @property bool $is_free
+ * @property bool $is_active
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @method static Builder|Country newModelQuery()
  * @method static Builder|Country newQuery()
  * @method static Builder|Country query()
@@ -38,9 +40,16 @@ class Country extends Model
         'name',
         'local_name',
         'is_free',
+        'is_active',
     ];
 
     protected $casts = [
         'is_free' => 'boolean',
+        'is_active' => 'boolean',
     ];
+
+    public function scopeAvailable(Builder $query): Builder
+    {
+        return $query->whereIsActive(true);
+    }
 }

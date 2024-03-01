@@ -11,8 +11,10 @@ class AppSettingsSeeder extends Seeder
     public function run(): void
     {
         $settingValues = [
-            Settings::USER_INVITE_LIFETIME  => 5 * 24,
-            Settings::PERCENTAGE_PAYMENT_ORGANIZATION  => 8,
+            Settings::USER_INVITE_LIFETIME => 5 * 24,
+            Settings::PERCENTAGE_PAYMENT_ORGANIZATION => 8,
+            Settings::FREE_COURSES => 1,
+            Settings::NUMBER_PAYMENT_CREDENTIAL => 5,
         ];
 
         foreach ($settingValues as $key => $value) {

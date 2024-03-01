@@ -19,6 +19,8 @@ Route::group([
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::post('/', [ProfileController::class, 'save'])->name('profile.save');
+        Route::get('/change-password', [ProfileController::class, 'showChangePassword'])->name('profile.change-password.show');
+        Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password.save');
 
     });
 
@@ -31,6 +33,7 @@ Route::group([
         Route::post('/{user}/ban', [UserController::class, 'ban'])->name('user.ban');
         Route::post('/{user}/unban', [UserController::class, 'unban'])->name('user.unban');
         Route::post('/{user}/resend-password-link', [UserController::class, 'resendSetPasswordLink'])->name('user.resend-password-link');
+        Route::get('/{user}/documents', [UserController::class, 'documents'])->name('user.documents');
 
     });
 
@@ -49,9 +52,10 @@ Route::group([
         Route::put('/{country}', [CountryController::class, 'update'])->name('country.update');
         Route::delete('/{country}', [CountryController::class, 'destroy'])->name('country.delete');
         Route::post('/{country}/set-free', [CountryController::class, 'setFree'])->name('country.set-free');
+        Route::post('/{country}/set-active', [CountryController::class, 'setActive'])->name('country.set-active');
     });
 
-    Route::prefix('settings')->group(function () {
+    Route::prefix('app_settings')->group(function () {
         Route::get('/', [AppSettingController::class, 'edit'])->name('settings.edit');
         Route::post('/', [AppSettingController::class, 'save'])->name('settings.save');
     });

@@ -34,13 +34,12 @@ const deleteSubject = (index, subject) => {
     }
 }
 
-const updateSubject = (subject_) => {
+const updateSubject = (subject_, index_) => {
     formSubject.transform((data) => {
         const filteredSubjects = data.subjects.filter(subject => subject.uuid === subject_.uuid);
-
         return {
             ...data,
-            subjects: filteredSubjects,
+            subjects: { [index_]: filteredSubjects[0] },
         };
     }).post(route('school.class.subject.update', { 'eiClass': eiClass }), {
         forceFormData: subject_.image instanceof File,
@@ -83,8 +82,8 @@ const submit = () => {
                                             <FileUploads
                                                 v-model="subject.image"
                                                 :error="formNewSubject.errors[`subjects.${index}.image`]"
-                                                :simple="false"
-                                                :image="subject.image"
+                                                :simple="true"
+                                                :file="subject.image"
                                                 label="image"
                                                 view-type="input-avatar"
                                             />
@@ -144,7 +143,7 @@ const submit = () => {
                                                 v-model="subject.image"
                                                 :error="formSubject.errors[`subjects.${index}.image`]"
                                                 :simple="false"
-                                                :image="subject.image"
+                                                :file="subject.image"
                                                 label="image"
                                                 view-type="input-avatar"
                                             />
@@ -190,7 +189,7 @@ const submit = () => {
                                             <BaseButton
                                                 t-key="update"
                                                 class="px-4 w-50"
-                                                @click="updateSubject(subject)"
+                                                @click="updateSubject(subject, index)"
                                             />
                                             <BaseButton
                                                 t-key="delete"
@@ -208,7 +207,6 @@ const submit = () => {
                 <div class="col-lg-12 mt-4">
                     <div class="hstack gap-2 justify-content-end">
                         <BaseButton
-                            :class="{'opacity-25': formNewSubject.processing }"
                             :disabled="formNewSubject.processing || !formNewSubject.subjects.length"
                             t-key="save"
                             size="lg"

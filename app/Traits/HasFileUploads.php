@@ -14,7 +14,6 @@ trait HasFileUploads
 {
     use InteractsWithMedia;
 
-
     public function batchFilesUpload(mixed $data, string $collection = 'files', array $customProperties = []): Collection
     {
         $files = collect();
@@ -26,7 +25,6 @@ trait HasFileUploads
         return $files;
     }
 
-
     public function singleFileUpload(UploadedFile $file, string $collection = 'files', array $customProperties = [])
     {
         try {
@@ -36,17 +34,14 @@ trait HasFileUploads
                 ->toMediaCollection($collection, app()->isProduction() ? 's3' : 'public');
         } catch (\Exception $e) {
             Logging::createDefaultLog("HasFileUploads(singleFileUpload) - " . $e->getMessage());
-
             return null;
         }
     }
-
 
     public function getFilesCollection(int $skip, int $limit, string $collection = 'files'): AnonymousResourceCollection
     {
         return MediaResource::collection($this->getMedia($collection)->slice($skip, $limit));
     }
-
 
     public function saveMediaFromUrls(array|string $urls, string $collection = 'files', array $customProperties = []): void
     {

@@ -23,7 +23,6 @@ class CountryController extends Controller
     public function index(CountryIndexRequest $request)
     {
 
-
         return Inertia::render('Admin::Countries/Index', [
             'countries' => CountryResource::collection($this->countryService->getList($request)),
             'filters' => $request->validated(),
@@ -61,7 +60,6 @@ class CountryController extends Controller
 
     public function destroy(Request $request, Country $country)
     {
-
         $country->delete();
 
         return Redirect::back()->success('admin.page.country.delete-success');
@@ -70,6 +68,13 @@ class CountryController extends Controller
     public function setFree(CountrySetFreeRequest $request, Country $country)
     {
         $this->countryService->setFree($country, $request->value);
+
+        return Redirect::back()->success('admin.page.country.save-success');
+    }
+
+    public function setActive(CountrySetFreeRequest $request, Country $country)
+    {
+        $this->countryService->setActive($country, $request->value);
 
         return Redirect::back()->success('admin.page.country.save-success');
     }

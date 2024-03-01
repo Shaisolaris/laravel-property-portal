@@ -4,6 +4,7 @@ namespace Modules\Quiz\database\seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Quiz\app\Models\EiQuizType;
+use Modules\Quiz\app\Enums\EiQuizTypeEnum;
 
 class QuizTypeSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class QuizTypeSeeder extends Seeder
     {
         EiQuizType::updateOrCreate(['name' => 'Single correct answer'], [
             'name' => 'Single correct answer',
-            'value' => 'single',
+            'value' => EiQuizTypeEnum::Single()->value,
             'html' => [
                 'tag' => 'input',
                 'attributes' => [
@@ -24,7 +25,7 @@ class QuizTypeSeeder extends Seeder
 
         EiQuizType::updateOrCreate(['name' => 'Multiple correct answers'], [
             'name' => 'Multiple correct answers',
-            'value' => 'multiple',
+            'value' => EiQuizTypeEnum::Multiple()->value,
             'html' => [
                 'tag' => 'input',
                 'attributes' => [
@@ -37,7 +38,7 @@ class QuizTypeSeeder extends Seeder
 
         EiQuizType::updateOrCreate(['name' => 'Yes OR No'], [
             'name' => 'Yes OR No',
-            'value' => 'yes_or_no',
+            'value' => EiQuizTypeEnum::YesOrNo()->value,
             'html' => [
                 'tag' => 'input',
                 'attributes' => [
@@ -50,8 +51,9 @@ class QuizTypeSeeder extends Seeder
 
         EiQuizType::updateOrCreate(['name' => 'Short Answer'], [
             'name' => 'Short Answer',
-            'value' => 'short',
+            'value' => EiQuizTypeEnum::Short()->value,
             'html' => [
+                'type' => '',
                 'tag' => 'div',
                 'attributes' => [
                     'class' => 'wp-21 hp-15 border border-2 border-royal-blue'

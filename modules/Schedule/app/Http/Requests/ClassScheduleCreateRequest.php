@@ -49,7 +49,7 @@ class ClassScheduleCreateRequest extends FormRequest
             $eventRules = ['required', 'integer', 'exists:ei_class_subjects,id'];
 
             if ($event['subject']) {
-                $eventRules[] = new UniqueArrayFieldRule(request()->events, 'subject');
+//                $eventRules[] = new UniqueArrayFieldRule(request()->events, 'subject');
 
                 if (Carbon::create($event['event_date'])->format('Y-m-d') === Carbon::now()->format('Y-m-d')) {
                     $eventRules[] = new UniqueFieldRule(Schedule::class, 'model_id', 'model_id', $event['subject'], [
@@ -59,7 +59,7 @@ class ClassScheduleCreateRequest extends FormRequest
                 }
             }
 
-            $rules["events.$index.subject"] = $eventRules;
+            $rules["events.*.subject"] = $eventRules;
         }
 
         return $rules;

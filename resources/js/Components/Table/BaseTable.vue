@@ -88,7 +88,7 @@ const visitPage = (page) => {
             </div>
         </template>
 
-        <Text v-else :t-key="`empty-text.${textEmpty}`" tag="p" class="text-muted mt-2 fs-14" />
+        <Text v-else :t-key="`table.empty-text.${textEmpty}`" tag="p" class="text-muted mt-2 fs-14" />
     </BCard>
 </template>
 

@@ -2,14 +2,16 @@
 
 namespace Modules\Quiz\app\Services\AnswerService\Type;
 
+use Modules\Quiz\app\Models\EiQuizType;
 use Modules\Quiz\app\Models\EiQuizQuestion;
 use Modules\General\app\Models\StudentHomework;
-use Modules\General\app\Models\StudentHomeworkAnswer;
+use Modules\Quiz\app\Services\AnswerService\Core;
+use Modules\Quiz\app\Models\StudentHomeworkQuizAnswer;
 use Modules\Quiz\app\Services\AnswerService\AnswerTypeInterface;
 
-class Short implements AnswerTypeInterface
+class Short extends Core implements AnswerTypeInterface
 {
-    public function __construct(protected array $data){}
+    public function __construct(protected array $data, protected string $typeValue){}
 
     public function calculatePoint(): static
     {
@@ -26,18 +28,20 @@ class Short implements AnswerTypeInterface
             $studentHomework = StudentHomework::where([
                 'model_type' => $quizQuestion->quiz->getMorphClass(),
                 'model_id' => $quizQuestion->quiz->id,
+                'user_id' => auth()->id()
             ])->first();
 
-            $item['answer'] = [
-                'question_id' => $item['question_id'],
-                'origin_answer' => $item['answer'],
-            ];
+            $item['correct_answers'] = null;
+            $item['current_answers'] = $item['answer'];
 
-            $item['model_type'] = $quizQuestion->quiz->getMorphClass();
-            $item['question_type'] = $quizQuestion->getMorphClass();
-            $item['model_id'] = $quizQuestion->quiz->id;
             $item['question_id'] = $quizQuestion->id;
             $item['homework_id'] = $studentHomework->id;
+            $item['quiz_id'] = $quizQuestion->quiz->id;
+            $item['quiz_type_id'] = EiQuizType::whereValue($this->typeValue)->value('id');
+            $item['uuid'] = StudentHomeworkQuizAnswer::whereHomeworkId($studentHomework->id)->get()->get($index)?->uuid;
+            $item['is_correct'] = null;
+
+            unset($item['answer']);
 
             $this->data[$index] = $item;
         }
@@ -47,9 +51,7 @@ class Short implements AnswerTypeInterface
 
     public function save(): static
     {
-        foreach ($this->data as $item) {
-            StudentHomeworkAnswer::create($item);
-        }
+        $this->saveAnswer($this->data);
 
         return $this;
     }

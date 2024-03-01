@@ -4,6 +4,7 @@ namespace Modules\Auth\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 use Inertia\Response;
@@ -43,7 +44,9 @@ class PasswordController extends Controller
     public function store(SetPasswordRequest $request, ?string $uuid, ?string $token)
     {
 
-        $this->passwordService->setPassword($uuid, $token, $request->password);
+        $user = $this->passwordService->setPassword($uuid, $token, $request->password);
+
+        Auth::login($user);
 
         return Redirect::route('login')->success('page.set-password.success');
 

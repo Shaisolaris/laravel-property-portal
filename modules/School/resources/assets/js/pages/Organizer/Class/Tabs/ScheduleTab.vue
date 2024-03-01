@@ -178,6 +178,7 @@ watch(
                 :is="baseSchedule"
                 :events="events"
                 :key="events"
+                :enable-move-events="true"
                 @create-event="(data) => createEvent(data)"
                 @edit-event="(data) => editEvent(data)"
                 @move-event="(data) => moveEvent(data)"
@@ -186,13 +187,13 @@ watch(
             <BOffcanvas
                 v-model="showModal"
                 :title="$t('modal.add-new-event')"
-                class="w-50"
+                class="wc-60"
                 placement="end"
                 header-class="border-bottom"
                 body-class="overflow-hidden"
                 backdrop
             >
-                <simplebar data-simplebar style="height: calc(100vh - 112px);">
+                <simplebar data-simplebar>
                     <div class="d-flex justify-content-between align-items-center text-royal-blue pb-3">
                         <div class="d-flex flex-column">
                             <div>

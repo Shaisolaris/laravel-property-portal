@@ -7,7 +7,6 @@ import "@simonwep/pickr/dist/themes/classic.min.css";
 import "@simonwep/pickr/dist/themes/monolith.min.css";
 import "@simonwep/pickr/dist/themes/nano.min.css";
 
-
 defineOptions({
     inheritAttrs: false,
 });
@@ -48,8 +47,13 @@ const props = defineProps({
     mode: {
         type: String,
         default: 'single'
+    },
+    minDate: {
+        type: String,
+        default: 'today'
     }
 });
+
 const emit = defineEmits([ 'update:modelValue' ]);
 const { setPlaceholder } = useStructure();
 const date = ref(props.modelValue ?? null);
@@ -57,11 +61,11 @@ const flatPickrRef = ref(null);
 const defaultDateConfig = ref({
     dateFormat: props.dateFormat,
     enableTime: props.enableTime,
-    altFormat: 'M j, Y',
+    altFormat: 'M j, Y H:mm',
     altInput: true,
     mode: props.mode,
+    minDate: props.minDate
 });
-
 
 watch(
     () => props.error,

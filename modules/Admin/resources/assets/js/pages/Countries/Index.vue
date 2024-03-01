@@ -1,12 +1,12 @@
 <script setup>
 import AdminLayout from "$module@admin/layouts/AdminLayout.vue";
 import swAlert from "$module@admin/services/swalert.js";
-import {useForm} from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 
-const {t} = useI18n();
+const { t } = useI18n();
 
 const props = defineProps({
-    countries:   {
+    countries: {
         type: Object
     },
     filters: {
@@ -18,10 +18,14 @@ function switchIsFree(country) {
     router.post(route('admin.country.set-free', { country, value: !country.is_free }));
 }
 
+function switchIsActive(country) {
+    router.post(route('admin.country.set-active', { country, value: !country.is_active }));
+}
+
 async function deleteCountry(country) {
 
     if (!(await swAlert.question(
-        t('admin.page.country.delete.text', {name: country.name}),
+        t('admin.page.country.delete.text', { name: country.name }),
         t('admin.page.country.delete.title')
     ))) {
         return;
@@ -56,7 +60,7 @@ function submitFilters(page = null) {
             <form @submit.prevent="submitFilters()">
                 <div class="row">
                     <div class="col-sm-7 col-md-5 col-lg-4 col-xl-3">
-                        <BaseInput placeholder="search" v-model="filtersForm.search"/>
+                        <BaseInput placeholder="search" v-model="filtersForm.search" />
                     </div>
                     <div class="col-auto">
                         <button class="btn btn-icon btn-secondary" type="submit">
@@ -64,28 +68,19 @@ function submitFilters(page = null) {
                         </button>
                     </div>
                     <div class="col-auto ms-auto">
-                        <BaseButton :route="route('admin.country.create')" icon="mdi mdi-plus" t-key="create"/>
+                        <BaseButton :route="route('admin.country.create')" icon="mdi mdi-plus" t-key="country" />
                     </div>
                 </div>
             </form>
         </div>
 
-        <BaseTable view-type="table-striped">
-            <template #pagination>
-                <Pagination
-                    :current-page="countries.meta.current_page"
-                    :per-page="countries.meta.per_page"
-                    :total-items="countries.meta.total"
-                    :last-page="countries.meta.last_page"
-                    @pagination-page-change="(page) => submitFilters(page)"
-                />
-            </template>
-
+        <BaseTable view-type="table-striped" :meta="countries.meta" :visit-page-function="(page) => submitFilters(page)" t-key-header="">
             <template #header>
                 <th scope="col">{{ $t('admin.page.country.table.code') }}</th>
                 <th scope="col">{{ $t('admin.page.country.table.name') }}</th>
-                <th scope="col">{{ $t('admin.page.country.table.local_name') }}</th>
+                <th scope="col">{{ $t('admin.page.country.table.local-name') }}</th>
                 <th scope="col">{{ $t('admin.page.country.table.free') }}</th>
+                <th scope="col">{{ $t('admin.page.country.table.active') }}</th>
                 <th scope="col"></th>
             </template>
 
@@ -95,23 +90,33 @@ function submitFilters(page = null) {
                     <td>{{ country.name }}</td>
                     <td>{{ country.local_name }}</td>
                     <td>
-                        <i class="mdi mdi-check-bold" v-if="country.is_free"/>
+                        <i class="mdi mdi-check-bold" v-if="country.is_free" />
+                    </td>
+                    <td>
+                        <i class="mdi mdi-check-bold" v-if="country.is_active" />
                     </td>
                     <TdActions>
                         <template #actions>
                             <Link :href="route('admin.country.edit', {country})">
                                 <BDropdownItem>
-                                    <i class="mdi mdi-pencil"/>
+                                    <i class="mdi mdi-pencil" />
                                     {{ $t('action.edit') }}
                                 </BDropdownItem>
                             </Link>
                             <BDropdownItem @click="switchIsFree(country)">
                                 <i class="mdi mdi-currency-usd" v-if="country.is_free" />
                                 <i class="mdi mdi-currency-usd-off" v-else />
-                                {{ country.is_free ? $t('admin.page.country.set-paid') : $t('admin.page.country.set-free') }}
+                                {{ country.is_free ? $t('admin.page.country.set-paid') : $t('admin.page.country.set-free')
+                                }}
                             </BDropdownItem>
-                            <BDropdownItem @click="deleteCountry(country)" >
-                                <i class="mdi mdi-delete"/>
+                            <BDropdownItem @click="switchIsActive(country)">
+                                <i class="mdi mdi-file-remove" v-if="country.is_active" />
+                                <i class="mdi mdi-file-check" v-else />
+                                {{ country.is_active ? $t('admin.page.country.set-inactive') : $t('admin.page.country.set-active')
+                                }}
+                            </BDropdownItem>
+                            <BDropdownItem @click="deleteCountry(country)">
+                                <i class="mdi mdi-delete" />
                                 {{ $t('action.delete') }}
                             </BDropdownItem>
                         </template>

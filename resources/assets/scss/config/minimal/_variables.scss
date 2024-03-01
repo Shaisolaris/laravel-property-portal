@@ -99,6 +99,7 @@ $border-base-color: #E3E3E3;
 $card-border-base-color: #F1F3F5;
 $border-focus-base-color: #c0c2c4;
 $border-color-1: #EEEFFF;
+$disabled-color: #dedede;
 // scss-docs-end color-variables
 
 // scss-docs-start colors-map
@@ -260,7 +261,7 @@ $light-blue-800: shade-color($light-blue, 60%);
 $light-blue-900: shade-color($light-blue, 80%);
 
 
-$light-yellow-100: tint-color($light-yellow, 80%);
+$light-yellow-100: tint-color($light-yellow, 95%);
 $light-yellow-200: tint-color($light-yellow, 60%);
 $light-yellow-300: tint-color($light-yellow, 40%);
 $light-yellow-400: tint-color($light-yellow, 20%);
@@ -330,7 +331,7 @@ $beige-blue-700: shade-color($beige-blue, 40%);
 $beige-blue-800: shade-color($beige-blue, 60%);
 $beige-blue-900: shade-color($beige-blue, 80%);
 
-$copper-100: tint-color($copper, 80%);
+$copper-100: tint-color($copper, 95%);
 $copper-200: tint-color($copper, 60%);
 $copper-300: tint-color($copper, 40%);
 $copper-400: tint-color($copper, 20%);
@@ -340,7 +341,7 @@ $copper-700: shade-color($copper, 40%);
 $copper-800: shade-color($copper, 60%);
 $copper-900: shade-color($copper, 80%);
 
-$cherry-red-100: tint-color($cherry-red, 80%);
+$cherry-red-100: tint-color($cherry-red, 95%);
 $cherry-red-200: tint-color($cherry-red, 60%);
 $cherry-red-300: tint-color($cherry-red, 40%);
 $cherry-red-400: tint-color($cherry-red, 20%);
@@ -432,7 +433,7 @@ $cosmic-sapphire-700: shade-color($cosmic-sapphire, 40%);
 $cosmic-sapphire-800: shade-color($cosmic-sapphire, 60%);
 $cosmic-sapphire-900: shade-color($cosmic-sapphire, 80%);
 
-$emerald-green-100: tint-color($emerald-green, 80%);
+$emerald-green-100: tint-color($emerald-green, 95%);
 $emerald-green-200: tint-color($emerald-green, 60%);
 $emerald-green-300: tint-color($emerald-green, 40%);
 $emerald-green-400: tint-color($emerald-green, 20%);
@@ -859,6 +860,20 @@ $theme-colors: (
     "lavender": $lavender,
     "cosmic-sapphire": $cosmic-sapphire,
     "emerald-green": $emerald-green,
+
+    //FOR STATUS
+    "copper-100": $copper-100,
+    "copper-400": $copper-300,
+
+    "light-yellow-100": $light-yellow-100,
+    "light-yellow-400": $light-yellow-300,
+
+    "cherry-red-100": $cherry-red-100,
+    "cherry-red-400": $cherry-red-300,
+
+    "emerald-green-100": $emerald-green-100,
+    "emerald-green-400": $emerald-green-300,
+    //END
 );
 // scss-docs-end theme-colors-map
 
@@ -1558,7 +1573,7 @@ $input-font-size-lg: $input-btn-font-size-lg;
 
 $input-bg: var(--#{$prefix}input-bg-custom);
 $input-disabled-color: null;
-$input-disabled-bg: var(--#{$prefix}tertiary-bg);
+$input-disabled-bg: rgba($disabled-color, .5);
 $input-disabled-border-color: null;
 
 $input-color: var(--#{$prefix}body-color);

@@ -205,6 +205,8 @@ $value in $theme-colors {
     &.input-group-text-right {
         border-radius: 0 30px 30px 0 !important;
         border-left: none;
+        margin-right:calc(var(--in-border-width) * -1);
+        margin-left: 0 !important;
     }
 
     &.input-group-text-sm {

@@ -2,59 +2,66 @@
 
 namespace Modules\Assignment\app\Http\Controllers;
 
+use App\Enums\User\UserRoleEnum;
+use App\Http\Controllers\Controller;
+use App\Processor\Processor;
+use Exception;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use Modules\Assignment\app\Http\Requests\StudentHomeworkRequest;
+use Modules\Assignment\app\Http\Resources\EiAssignmentResource;
+use Modules\Assignment\app\Services\AssignmentsService;
+use Modules\General\app\Enums\StudentHomeworkStatusEnum;
+use Modules\General\app\Models\EiAssignment;
 
 class AssignmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return Inertia::render('Assignment::Index');
+        return Processor::build($request)->render('assignment');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(Request $request): Response
     {
-        return Inertia::render('Assignment::Edit');
+        $assignment = EiAssignment::whereUuid($request->route('assignment'))->first();
+
+        abort_if(!$assignment, 404);
+
+        $accepted = $request->user()->assignments()->whereNotIn('uuid', [$assignment->uuid])->get(); // TODO:
+
+        return Inertia::render('Assignment::Show', [
+            'assignment' => EiAssignmentResource::make($assignment),
+            'statuses' => [
+                StudentHomeworkStatusEnum::Accepted()->value => StudentHomeworkStatusEnum::Accepted()->label, // TODO:
+                StudentHomeworkStatusEnum::NotAccepted()->value => StudentHomeworkStatusEnum::NotAccepted()->label // TODO:
+            ],
+            'accepted' => EiAssignmentResource::collection($accepted) // TODO::
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function handler(StudentHomeworkRequest $request)
     {
-        //
-    }
+        // TODO:
+        // abort_if(!$request->user()->hasRole(UserRoleEnum::Student()->value), 403);
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('assignment::show');
-    }
+        try {
+            $service = new AssignmentsService($request);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return Inertia::render('Assignment::Edit');
-    }
+            if(!$service->status) {
+                throw new Exception($service->message);
+            }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
+            $route = to_route('institution.assignment.show', ['assignment' => $request->assignment_uuid]);
+
+            if($service->status) {
+                return $route->success(__('success.data_is_updated'));
+            } else {
+                return $route->success(__('success.error_system'));
+            }
+
+        } catch (\Exception $exception) {
+            return to_route('general.dashboard')->error($exception->getMessage());
+        }
     }
 }

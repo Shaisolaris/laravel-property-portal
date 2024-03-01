@@ -8,7 +8,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Modules\Quiz\app\Traits\Models\Relationships\QuizQuestionRelationshipsTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Quiz\database\factories\EiQuizQuestionFactory;
+use Modules\Quiz\app\Traits\Models\Relationships\EiQuizQuestionRelationshipsTrait;
 
 /**
  * Modules\Quiz\app\Models\EiQuizQuestion
@@ -40,8 +42,9 @@ use Modules\Quiz\app\Traits\Models\Relationships\QuizQuestionRelationshipsTrait;
  */
 class EiQuizQuestion extends Model
 {
+    use HasFactory;
     use HasUuidTrait;
-    use QuizQuestionRelationshipsTrait;
+    use EiQuizQuestionRelationshipsTrait;
 
 
     protected $table = 'ei_quiz_questions';
@@ -60,4 +63,10 @@ class EiQuizQuestion extends Model
     ];
 
     protected $with = ['answers'];
+
+
+    protected static function newFactory(): EiQuizQuestionFactory
+    {
+        return EiQuizQuestionFactory::new();
+    }
 }

@@ -6,14 +6,10 @@ use App\Traits\EnumTrait;
 use Spatie\Enum\Laravel\Enum;
 
 /**
- * @method static self Pending()
- * @method static self InProgress()
- * @method static self OnReview()
+ * @method static self Expected()
+ * @method static self OnCheck()
  * @method static self Accepted()
- * @method static self Rejected()
- * @method static self BeingAssessed()
- * @method static self Expired()
- * @method static self Unfinished()
+ * @method static self NotAccepted()
 */
 final class StudentHomeworkStatusEnum extends Enum
 {

@@ -41,7 +41,9 @@ class AppSetting extends Model
 
     protected array $valueCasts = [
         Settings::USER_INVITE_LIFETIME => 'integer',
-        Settings::PERCENTAGE_PAYMENT_ORGANIZATION => 'integer',
+        Settings::PERCENTAGE_PAYMENT_ORGANIZATION => 'float',
+        Settings::FREE_COURSES => 'integer',
+        Settings::NUMBER_PAYMENT_CREDENTIAL => 'integer',
     ];
 
 

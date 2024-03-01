@@ -6,6 +6,8 @@ use Eloquent;
 use App\Traits\HasUuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Quiz\database\factories\EiQuizQuestionAnswerFactory;
 
 /**
  * Modules\Quiz\app\Models\QuizQuestionAnswer
@@ -29,6 +31,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EiQuizQuestionAnswer extends Model
 {
+    use HasFactory;
     use HasUuidTrait;
 
 
@@ -47,4 +50,9 @@ class EiQuizQuestionAnswer extends Model
     ];
 
     public $timestamps = false;
+
+    protected static function newFactory(): EiQuizQuestionAnswerFactory
+    {
+        return EiQuizQuestionAnswerFactory::new();
+    }
 }

@@ -1,11 +1,11 @@
 <script setup>
 import { useI18n } from "vue-i18n";
-import { computed } from "vue";
 
 
 const { t, locale } = useI18n();
 const store = useStore();
 const languages = ref(store.getters['general/getLanguageCodes']);
+const language = ref(store.getters['general/getLanguages']);
 const lang = computed(() => t(`lang.${locale.value}`));
 
 

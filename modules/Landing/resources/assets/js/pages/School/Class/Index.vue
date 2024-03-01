@@ -16,7 +16,7 @@ const value = ref(["Watches", "Headset"]);
                 Home > School of Inoura > Categories > Classes
 
                 <div class="d-flex align-items-center pt-3 gap-3">
-                    <Icon name="page-landing-school-classes-page-img-1" width="62" height="53" />
+                    <img src="@/images/page/landing/school/classes-page/img-1.svg" width="62" height="53" alt>
                     <div class="fs-3 fw-medium fontf-HelveticaNeue">Classes</div>
                 </div>
             </b-container>

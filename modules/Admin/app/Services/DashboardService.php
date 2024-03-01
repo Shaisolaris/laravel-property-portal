@@ -9,7 +9,6 @@ class DashboardService
 {
     public function widgetStatistics()
     {
-
         $usersNow = User::query()
             ->where('created_at', '>=', Carbon::now()->startOfMonth())
             ->count();
@@ -30,14 +29,12 @@ class DashboardService
         ];
     }
 
-    protected function caclulateDiff($now, $prev)
+    protected function caclulateDiff($now, $prev): float|int
     {
         if(!$prev) {
             return 100;
         }
 
         return round((($now - $prev) / $prev) * 100, 2);
-
     }
-
 }

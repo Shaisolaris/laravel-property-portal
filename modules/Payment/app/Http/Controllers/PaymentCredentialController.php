@@ -19,7 +19,7 @@ class PaymentCredentialController extends Controller
 
     public function index()
     {
-        return Inertia::render('Payment::Tabs/PaymentCredentialsTab', [
+        return Inertia::render('Payment::QuizTab/PaymentCredentialsTab', [
             'paymentCredentials' => PaymentCredentialResource::collection($this->service->getPaymentCredentials($this->user))
         ]);
     }

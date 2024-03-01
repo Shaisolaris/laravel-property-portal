@@ -16,9 +16,7 @@ class ValidateOtpCodeController extends Controller
             return to_route('registration.occupations.index');
         }
 
-        return inertia('Auth::VerifyOtpCode', [
-            'otp_code' => $request->user()->getOtpCode(),
-        ]);
+        return inertia('Auth::VerifyOtpCode');
     }
 
     /**
