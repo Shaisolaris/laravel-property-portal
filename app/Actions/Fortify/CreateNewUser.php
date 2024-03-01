@@ -31,7 +31,7 @@ class CreateNewUser implements CreatesNewUsers
 
             $user->assignRole($this->initialUserRole($input));
 
-            $institution->peoples()->attach($user->id);
+            $institution->users()->attach($user->id);
 
             if ($user->hasRole(UserRoleEnum::Student()->value)) {
                 $user->createOrGetStripeCustomer();
@@ -53,6 +53,7 @@ class CreateNewUser implements CreatesNewUsers
     public function continue($user, $data): void
     {
         $data['password'] = $this->hashedPassword($data);
+
         $user->update($data);
     }
 

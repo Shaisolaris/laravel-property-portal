@@ -1,14 +1,14 @@
 <script setup>
 import AdminLayout from "$module@admin/layouts/AdminLayout.vue";
-import {useForm} from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import SaveButton from "$module@admin/components/SaveButton.vue";
 
 
-const {t} = useI18n();
+const { t } = useI18n();
 
 const props = defineProps({
     country: {
-        type:     Object,
+        type: Object,
         required: false,
     },
 });
@@ -16,7 +16,7 @@ const props = defineProps({
 const title = computed(function () {
 
     if (props.country) {
-        return t('admin.page.country.title-edit', {name: props.country.name});
+        return t('admin.page.country.title-edit', { name: props.country.name });
     }
 
     return t('admin.page.country.title-create');
@@ -24,16 +24,17 @@ const title = computed(function () {
 
 
 const form = useForm({
-    code:       props.country?.code ?? null,
-    name:       props.country?.name ?? null,
+    code: props.country?.code ?? null,
+    name: props.country?.name ?? null,
     local_name: props.country?.local_name ?? null,
-    is_free:    props.country?.is_free ?? false,
+    is_free: props.country?.is_free ?? false,
+    is_active: props.country?.is_active ?? false,
 });
 
 function submit() {
 
     if (props.country) {
-        form.put(route('admin.country.update', {country: props.country}));
+        form.put(route('admin.country.update', { country: props.country }));
     } else {
         form.post(route('admin.country.store'));
     }
@@ -57,12 +58,6 @@ function submit() {
                                 label="code"
                             />
                         </b-col>
-                        <b-col cols="6">
-                            <label class="form-label fw-medium"> &nbsp;</label>
-                            <div class="w-100 mt-2">
-                                <CheckboxRadio v-model="form.is_free" label="is-free" />
-                            </div>
-                        </b-col>
                         <b-col cols="12">
                             <BaseInput
                                 v-model="form.name"
@@ -77,21 +72,31 @@ function submit() {
                                 :error="form.errors.local_name"
                                 placeholder="local_name"
                                 label="local_name"
+                                :required="false"
                             />
                         </b-col>
-
-
+                        <b-col cols="12">
+                            <b-row>
+                                <b-col cols="3">
+                                    <div class="w-100">
+                                        <CheckboxRadio v-model="form.is_free" label="is-free" />
+                                    </div>
+                                </b-col>
+                                <b-col cols="3">
+                                    <div class="w-100">
+                                        <CheckboxRadio v-model="form.is_active" label="is-active" />
+                                    </div>
+                                </b-col>
+                            </b-row>
+                        </b-col>
                     </b-row>
 
-                    <div class="mx-auto mt-4 text-center">
-                        <SaveButton :disabled="form.processing"/>
+                    <div class="mt-4 text-end">
+                        <SaveButton :disabled="form.processing" />
                     </div>
-
                 </form>
             </div>
         </div>
-
-
     </AdminLayout>
 </template>
 

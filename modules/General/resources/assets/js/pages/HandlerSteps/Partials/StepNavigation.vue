@@ -17,10 +17,12 @@ defineProps({
         <ul class="nav custom-nav-step" role="tablist">
             <li class="nav-item" role="presentation" v-for="tab in tabsMenu">
                 <div class="nav-item-inner pb-2" :class="{active: activeTabArrow === tab.number}" >
-                    <div class="rounded-step-icon rounded-circle bg-beige border border-gainsboro d-flex align-items-center justify-content-center">
-                        <i class="ri-file-line fs-13" v-if="activeTabArrow < tab.number || activeTabArrow === tab.number"></i>
-                        <i class="ri-check-line" v-if="activeTabArrow > tab.number"></i>
-                    </div>
+                    <IconRounded size="sm">
+                        <template #body>
+                            <i class="ri-file-line fs-13" v-if="activeTabArrow < tab.number || activeTabArrow === tab.number"></i>
+                            <i class="ri-check-line fs-13" v-if="activeTabArrow > tab.number"></i>
+                        </template>
+                    </IconRounded>
                     <div class="text-start ms-2" type="button" v-if="activeTabArrow === tab.number">
                         <div class="text-dim-gray fs-12 lh-1">Step {{tab.number}}</div>
                         <div class="text fs-14 title-step">{{tab.name}}</div>
@@ -52,10 +54,6 @@ defineProps({
                 }
             }
         }
-    }
-    & .rounded-step-icon {
-        height: 27px;
-        width: 27px;
     }
 }
 </style>

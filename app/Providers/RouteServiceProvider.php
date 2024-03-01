@@ -12,7 +12,9 @@ use Modules\Schedule\app\Models\Schedule;
 use Modules\Quiz\app\Models\EiQuizQuestion;
 use Modules\School\app\Models\EiClassSubject;
 use Illuminate\Support\Facades\RateLimiter;
+use Modules\General\app\Models\StudentHomework;
 use Modules\Payment\app\Models\PaymentCredential;
+use Modules\Quiz\app\Models\StudentHomeworkQuizAnswer;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -70,5 +72,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('quiz', EiQuiz::class);
         Route::model('quizQuestion', EiQuizQuestion::class);
         Route::model('paymentCredential', PaymentCredential::class);
+        Route::model('subject', EiClassSubject::class);
+        Route::model('homework', StudentHomework::class);
+        Route::model('studentHomeworkQuizAnswer', StudentHomeworkQuizAnswer::class);
     }
 }

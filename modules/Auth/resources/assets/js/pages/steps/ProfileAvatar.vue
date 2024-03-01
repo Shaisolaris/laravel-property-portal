@@ -11,19 +11,18 @@ const form = useForm({
     bio: "",
 });
 
-const disabledSubmit = computed(() => form.avatar != null && form.bio.length > 0);
-
-const send = () => {
-    sendForm({form, url: route("registration.profile-avatar.store")},
-        () => window.location.reload()
-    )
-}
+const send = () => sendForm({form, url: route("registration.profile-avatar.store")},
+    (response, errors) => {
+        if (!errors && response.data) {
+            window.location.reload()
+        }
+    })
 </script>
 
 <template>
-    <AuthLayout :withoutRightContent="true">
+    <AuthLayout title="user-information-avatar" :withoutRightContent="true">
         <template #right-content>
-            <div class="container-fluid custom-container justify-content-between align-items-center mt-5">
+            <div class="container-fluid custom-container justify-content-between align-items-center mt-5 pb-5">
                 <b-row :no-gutters="true">
                     <b-col cols="12">
                         <div class="mb-5">
@@ -37,16 +36,16 @@ const send = () => {
                             </b-col>
                         </div>
                         <div>
-                            <FileUploads :simple="false" v-model="form.avatar"/>
+                            <FileUploads v-model="form.avatar" :error="form.errors.avatar" :simple="false" />
                             <div class="mt-5">
                                 <TagLabel label="add-your-bio" />
-                                <Editor v-model="form.bio" title="Add Your Bio"/>
+                                <Editor v-model="form.bio" :error="form.errors.bio"  title="Add Your Bio"/>
                             </div>
                         </div>
                     </b-col>
                 </b-row>
             </div>
-            <FooterSteps :disabledSubmit="disabledSubmit || form.processing" @send="send"/>
+            <FooterSteps :disabledSubmit="!form.processing" @send="send"/>
         </template>
     </AuthLayout>
 </template>

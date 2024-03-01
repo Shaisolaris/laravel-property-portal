@@ -20,6 +20,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        // TODO:: А для чего это тут? Не достаточно просто auth()->user() там где это необходимо
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
             return $next($request);

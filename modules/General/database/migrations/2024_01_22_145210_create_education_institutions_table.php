@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Modules\General\app\Models\EducationInstitutionType;
-use App\Enums\EducationInstitutions\EducationInstitutionStatusEnum;
+use App\Enums\EducationInstitutions\EiStatusEnum;
 
 return new class () extends Migration {
     public function up(): void
@@ -15,7 +15,7 @@ return new class () extends Migration {
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('slug')->nullable();
-            $table->string('status')->default(EducationInstitutionStatusEnum::Active()->value);
+            $table->string('status')->default(EiStatusEnum::Active()->value);
             $table->foreignIdFor(EducationInstitutionType::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

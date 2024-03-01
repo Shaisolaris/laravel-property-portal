@@ -1,4 +1,6 @@
 <script setup>
+import moment from "moment";
+
 const props = defineProps({
     timeLimit: {
         type: Number,
@@ -44,32 +46,24 @@ const startProgressTimer = () => {
         const now = new Date();
         const timeLeftS = (endDate.value - now) / 1000;
 
-        if (timeLeftS <= 0) {
+        if (timeLeftS < 0) {
+            emit('timeOver');
+        }
+
+        if (timeLeftS <= 0 && moment(endDate.value).isAfter(moment())) {
             clearInterval(intervalId);
             timeAwaiting.value = "00:00";
             emit('timeOver');
         } else {
             timeAwaiting.value = updateTimerText(Math.floor(timeLeftS));
         }
-    }, 150);
+    }, 1000);
 };
 
-
-watch(
-    () => timeAwaiting.value,
-    (time) => {
-        console.log(time);
-        if(time === '00:00') {
-            console.log('timeOver');
-            emit('timeOver');
-        }
-    }
-);
 
 onMounted(() => {
     nextTick(() => {
         let newEnd = new Date(props.datatimeValue);
-        console.log(newEnd)
         newEnd.setSeconds(newEnd.getSeconds() + props.timeLimit);
         endDate.value = newEnd;
 

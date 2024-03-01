@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Number;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
@@ -61,6 +62,20 @@ class AppServiceProvider extends ServiceProvider
             $randomKey = array_rand($keys);
 
             return $keys[$randomKey];
+        });
+
+        Arr::macro('groupBy', function (array $array, $key) {
+            $grouped = [];
+
+            foreach ($array as $item) {
+                if (array_key_exists($key, $item)) {
+                    $grouped[$item[$key]][] = $item;
+                } else {
+                    $grouped[""][] = $item;
+                }
+            }
+
+            return $grouped;
         });
         /**/
 

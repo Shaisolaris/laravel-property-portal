@@ -15,7 +15,7 @@ const { events, enableMoveEvents } = defineProps({
     events: { type: [ Array, Object ], default: [] },
     enableMoveEvents: {
         type: Boolean,
-        default: true
+        default: false
     }
 });
 const emit = defineEmits([ 'createEvent', 'editEvent', 'moveEvent', 'handleEvents' ]);
@@ -34,7 +34,7 @@ const handleEditEvent = (info) => {
 }
 
 const handleEventDrop = (info) => {
-    if (moment(info.event.start).isSameOrAfter(moment(), 'day')) {
+    if (moment(info.event.start).isSameOrAfter(moment(), 'day') && enableMoveEvents) {
         emit('moveEvent', info);
     } else {
         info.revert();
@@ -73,7 +73,7 @@ const calendarOptions = reactive({
     headerToolbar: {
         left: "prev,next today",
         center: "title",
-        right: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
+        right: "multiMonthYear,dayGridMonth,list",
     },
     buttonText: {
         today: t('calendar.today'),

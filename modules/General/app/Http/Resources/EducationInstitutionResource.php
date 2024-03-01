@@ -21,6 +21,7 @@ class EducationInstitutionResource extends JsonResource
             'slug' => $this->slug,
             'status' => $this->status,
             'type' => $this->institutionType->name,
+            'image_url' => $this->getMedia('image')[0]?->original_url ?? null,
         ];
     }
 }

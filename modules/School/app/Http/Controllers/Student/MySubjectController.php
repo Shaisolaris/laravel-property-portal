@@ -7,7 +7,7 @@ use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\School\app\Services\MySubjectService;
-use Modules\School\app\Http\Resources\EiClassSubjectResource;
+use Modules\School\app\Http\Resources\EiClassSubjectHomeworkResource;
 
 class MySubjectController extends Controller
 {
@@ -20,7 +20,7 @@ class MySubjectController extends Controller
     public function index(Request $request): Response
     {
         return Inertia::render('School::Student/Subject/Index', [
-            'subjects' => EiClassSubjectResource::collection($this->service->getSubjects($this->user, self::PER_PAGE))
+            'subjects' => EiClassSubjectHomeworkResource::collection($this->service->getSubjects($this->user, self::PER_PAGE))
         ]);
     }
 }

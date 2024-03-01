@@ -89,19 +89,19 @@ const avatar = computed(function (){
                     <div class="navbar-brand-box horizontal-logo">
                         <Link :href="route('landing.academy.index')" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
+                                <img src="@/images/logo/logo-mini.svg" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                                <img src="@/images/logo/logo.svg" alt="" height="35">
                             </span>
                         </Link>
 
                         <Link :href="route('landing.academy.index')" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="@/images/logo/logo-mini.svg" alt="" height="22" />
+                                <img src="@/images/logo/logo-mini.svg" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="@/images/logo/logo.svg" alt="" height="35" />
+                                <img src="@/images/logo/logo.svg" alt="" height="35">
                             </span>
                         </Link>
                     </div>
@@ -239,7 +239,7 @@ const avatar = computed(function (){
                                                     src="@/images/users/avatar-3.jpg"
                                                     class="me-3 rounded-circle avatar-xs"
                                                     alt="user-pic"
-                                                />
+                                                >
                                                 <div class="flex-grow-1">
                                                     <BLink href="#!" class="stretched-link">
                                                         <h6 class="mt-0 mb-1 fs-13 fw-semibold">
@@ -277,7 +277,7 @@ const avatar = computed(function (){
                                                 src="@/images/svg/bell.svg"
                                                 class="img-fluid"
                                                 alt="user-pic"
-                                            />
+                                            >
                                         </div>
                                         <div class="text-center pb-5 mt-2">
                                             <h6 class="fs-18 fw-semibold lh-base">
@@ -298,7 +298,6 @@ const avatar = computed(function (){
                         >
                             <template #button-content>
                                 <span class="d-flex align-items-center">
-<!--                                    <img v-if="$page.props.auth.avatar" :src="$page.props.auth.avatar" alt>-->
                                     <img v-if="avatar" :src="avatar" class="avatar" alt>
                                     <span v-else class="text-start ms-xl-2">
                                         <span class="d-none d-sm-inline-block ms-1 fw-medium user-name-text">
@@ -315,6 +314,10 @@ const avatar = computed(function (){
                             <Link :href="route('admin.profile.edit')" variant="none" type="button" class="dropdown-item">
                                 <i class="mdi mdi-account text-muted fs-16 align-middle me-1"></i>
                                 {{ $t('admin.user-menu.profile') }}
+                            </Link>
+                            <Link :href="route('admin.profile.change-password.show')" variant="none" type="button" class="dropdown-item">
+                                <i class="mdi mdi-key text-muted fs-16 align-middle me-1"></i>
+                                {{ $t('admin.user-menu.change-password') }}
                             </Link>
                             <Link :href="route('auth.logout')" variant="none" type="button" class="dropdown-item">
                                 <BButton variant="none" type="submit" class="btn p-0">

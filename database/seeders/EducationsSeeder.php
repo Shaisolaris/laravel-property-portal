@@ -18,7 +18,7 @@ use Modules\General\app\Models\EducationInstitutionType;
 use Modules\Academy\app\Models\EducationInstitutionCourse;
 use Modules\General\app\Models\EducationInstitutionCategory;
 use App\Enums\EducationInstitutions\EducationInstitutionTypeEnum;
-use App\Enums\EducationInstitutions\EducationInstitutionStatusEnum;
+use App\Enums\EducationInstitutions\EiStatusEnum;
 use Modules\Academy\app\Models\EducationInstitutionCourseRefersInstitution;
 
 class EducationsSeeder extends Seeder
@@ -32,7 +32,6 @@ class EducationsSeeder extends Seeder
         EducationInstitution::factory()->count(User::count())->create();
         EducationInstitutionCourse::factory()->count(50)->create();
         EducationInstitutionCourseRefersInstitution::factory()->count(1000)->create();
-        EducationInstitutionCourse::factory()->count(40)->create();
 
         Tag::factory()->count(500)->create();
 
@@ -47,8 +46,8 @@ class EducationsSeeder extends Seeder
 
     protected function createClassesAndSubjects(): void
     {
-        EiClass::factory()->count(User::count())->create();
-        EiClassSubject::factory()->count(EiClass::count() * 2)->create();
+        EiClass::factory()->count(100)->create();
+        EiClassSubject::factory()->count(50)->create();
     }
 
     private function createModelSectionAndLecture(): void
@@ -85,7 +84,9 @@ class EducationsSeeder extends Seeder
         collect(EducationInstitutionTypeEnum::toValues())->each(function ($institute) {
             EducationInstitutionType::create([
                 'name' => $institute,
-                'status' => EducationInstitutionStatusEnum::Active()->value,
+                'status' => $institute !== 'school'
+                    ? EiStatusEnum::Disabled()->value
+                    : EiStatusEnum::Active()->value,
             ]);
         });
     }
@@ -117,7 +118,7 @@ class EducationsSeeder extends Seeder
 
         User::role(UserRoleEnum::Organizer()->value)->each(function ($user) {
             EducationInstitutionUser::factory()->createOne([
-                'education_institution_id' =>$this->getInstitutionTypeId($user),
+                'education_institution_id' => $this->getInstitutionTypeId($user),
                 'user_id' => $user->id,
             ]);
         });

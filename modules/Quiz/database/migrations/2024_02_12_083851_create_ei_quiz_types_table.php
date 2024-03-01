@@ -13,7 +13,6 @@ return new class () extends Migration {
 
             $table->string('name');
             $table->string('value');
-            $table->string('type');
             $table->json('html');
         });
     }

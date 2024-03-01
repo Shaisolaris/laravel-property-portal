@@ -2,6 +2,8 @@
 
 namespace Modules\Auth\app\Http\Controllers;
 
+use App\Enums\TimezonesEnum;
+use App\Enums\User\UserGenderEnum;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\UserDetail;
@@ -26,12 +28,17 @@ class UserDetailController extends Controller
         if (!$user->isDetailData()) {
 
             $curriculum = collect();
+            $genders = UserGenderEnum::toArray();
+            $timezones = TimezonesEnum::list();
 
             if($user->institution_type === EducationInstitutionTypeEnum::School()->value) {
                 $curriculum = EiClassResource::collection(EiClass::whereEiId($user->institution_id)->get());
             }
 
-            return Inertia::render('Auth::steps/UserDetail', compact('curriculum'));
+            return Inertia::render(
+                'Auth::steps/UserDetail',
+                compact('curriculum', 'genders', 'timezones')
+            );
         } else {
             return to_route('general.dashboard');
         }
@@ -49,9 +56,11 @@ class UserDetailController extends Controller
 
             /** @var UserDetail $user_detail */
             if ($user_detail = $user->detail()->create($request->input())) {
-                $request->uploadBusinessDocument($user_detail);
-                $request->uploadRegisterScanDocument($user_detail);
+
+                $request->uploadDocuments($user_detail);
                 $request->attachToClass();
+                $request->updateLocalizeData();
+
                 $user->submitToInspection();
             }
 

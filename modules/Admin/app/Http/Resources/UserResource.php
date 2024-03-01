@@ -2,12 +2,12 @@
 
 namespace Modules\Admin\app\Http\Resources;
 
+use App\Http\Resources\MediaResource;
+use App\Http\Resources\UserDetailResource;
+use App\Http\Resources\UserRoleResource;
+use App\Http\Resources\UserSettingResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Resources\MediaResource;
-use App\Http\Resources\UserRoleResource;
-use App\Http\Resources\UserDetailResource;
-use App\Http\Resources\UserSettingResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin User
@@ -30,26 +30,33 @@ class UserResource extends JsonResource
             'bio'          => $this->bio,
             'status'       => $this->status,
             'status_label' => $this->status->label,
-//            'balance'      => Number::format($this->balance),
+            //            'balance'      => Number::format($this->balance),
 
-            'address'  => $this->address,
-            'country'  => $this->country->name,
-            'state'    => $this->state,
-            'city'     => $this->city,
-            'timezone' => $this->timezone,
-            'phone'    => $this->phone,
+            'address'      => $this->address,
+            'country_id'   => $this->country_id,
+            'country_name' => $this->country->name,
+            'state'        => $this->state,
+            'city'         => $this->city,
+            'timezone'     => $this->timezone,
+            'phone'        => $this->phone,
             //            'teaching_level' => $this->teaching_level,
 
             'institution_type' => $this->institution_type,
             'institution_name' => $this->institution_name,
 
             'can_resend_password_link' => !$this->password && $this->password_set_token,
+            'user_documents_count' => $this->whenLoaded('detail', function (){
+                return $this->detail->user_documents_count;
+            }),
+            'user_documents' => $this->whenLoaded('detail', function (){
+                return $this->detail->getMedia('user_documents');
+            }),
 
             //            'notifications' => NotificationResource::collection($this->whenLoaded('unreadNotifications')),
-            'media'            => MediaResource::collection($this->whenLoaded('media')),
-            'settings'         => UserSettingResource::make($this->whenLoaded('settings')),
-            'detail'           => UserDetailResource::make($this->whenLoaded('detail')),
-            'role'             => $this->whenLoaded('roles', function () {
+            'media'                    => MediaResource::collection($this->whenLoaded('media')),
+            'settings'                 => UserSettingResource::make($this->whenLoaded('settings')),
+//            'detail'                   => UserDetailResource::make($this->whenLoaded('detail')),
+            'role'                     => $this->whenLoaded('roles', function () {
                 return UserRoleResource::make($this->roles()->with('permissions')->first());
             }),
         ];

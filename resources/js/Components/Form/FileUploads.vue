@@ -38,7 +38,7 @@ const props = defineProps({
         type: String,
         default: '',
     },
-    image: {
+    file: {
         type: Object,
         default: null
     },
@@ -61,6 +61,8 @@ const acceptableFormats = computed(() => props.types.map((type) => `${props.mime
 
 const iosTypes = reactive([ 'heic', 'heif' ]);
 const dragging = ref(false);
+const sliceTextCount = ref(30);
+
 
 const onFileInputChange = (event) => {
     uploadFiles(event.target.files);
@@ -77,34 +79,37 @@ const uploadFiles = (files) => {
             .forEach((file) => {
                 const reader = new FileReader();
 
-                reader.readAsDataURL(file);
+                // const newFile = file instanceof Blob ? file : new Blob([JSON.stringify(file)], { type: file.type });
 
-                reader.onload = () => {
-                    if (iosTypes.indexOf(file.name.split('.').pop().toLowerCase()) >= 0) {
-                        iosTypeToImage(file)
-                            .then(({ convertedFile, src }) => {
-                                const data = { name: convertedFile.name, src };
+                if (file instanceof Blob) {
+                    reader.readAsDataURL(file);
 
-                                emit('uploaded', { file: convertedFile, data });
-                                emit('update:modelValue', convertedFile)
+                    reader.onload = () => {
+                        if (iosTypes.indexOf(file.name.split('.').pop().toLowerCase()) >= 0) {
+                            iosTypeToImage(file)
+                                .then(({ convertedFile, src }) => {
+                                    const data = { name: convertedFile.name, src };
 
-                                select = data
-                            })
-                    } else {
-                        const data = { name: file.name, src: reader.result };
+                                    emit('uploaded', { file: convertedFile, data });
+                                    emit('update:modelValue', convertedFile)
 
-                        emit('uploaded', { file, data });
-                        emit('update:modelValue', file)
+                                    select = data
+                                })
+                        } else {
+                            const data = { name: file.name, src: reader.result };
 
-                        select = data
+                            emit('uploaded', { file, data });
+                            emit('update:modelValue', file)
 
-                    }
+                            select = data
 
-                    select.name = select.name.slice(0, inputUpload.value.clientWidth, '...');
+                        }
 
-                    renderKey.value = renderKey.value + 1;
-                };
+                        select.name = select.name.slice(0, inputUpload.value.clientWidth, '...');
 
+                        renderKey.value = renderKey.value + 1;
+                    };
+                }
             });
     }
 };
@@ -139,19 +144,17 @@ const forceSave = () => {
 }
 
 onMounted(() => forceSave())
-onMounted(() => forceSave())
-
 </script>
 
 <template>
     <label
         :class="['d-flex gap-4', {'align-items-center': viewType.length}]"
         :for="$attrs.trigger"
+        :key="renderKey"
         @dragover.prevent
         @dragenter="dragging = true"
         @dragleave="dragging = false"
         @drop.prevent="onDrop"
-        :key="renderKey"
     >
         <template v-if="!simple">
             <template v-if="viewType === 'input-avatar'">
@@ -163,12 +166,12 @@ onMounted(() => forceSave())
                         class="avatar-md rounded"
                     />
                 </div>
-                <div v-else-if="image" class="flex-shrink-0">
+                <div v-else-if="file" class="flex-shrink-0">
                     <img
-                        :alt="image?.name"
-                        :src="image?.url"
-                        :title="image?.name"
+                        :src="file?.url"
+                        :title="file?.name"
                         class="avatar-md rounded"
+                        alt
                     />
                 </div>
 
@@ -177,18 +180,18 @@ onMounted(() => forceSave())
 
                     <div class="input-group cursor-pointer">
                         <div :class="`input-group-text ${groupTextClass}`">
-                            <i class="ri-upload-2-line"></i>
+                            <i class="ri-upload-2-line" />
                         </div>
                         <div :class="['form-control form-control-group-icon', $attrs?.class]" ref="inputUpload">
-                            <span v-if="image && !select?.name">{{ image?.name }}</span>
-                            <span v-else>{{ select?.name }}</span>
+                            <div v-if="file && !select?.name">{{ file?.name }}</div>
+                            <div v-else>{{ select?.name }}</div>
                         </div>
                     </div>
                 </div>
             </template>
             <template v-else>
-                <div class="rounded-circle avatar-preview">
-                    <Icon v-if="!select" name="svg-person" class="stock-image" width="46" height="46" />
+                <div class="rounded-circle avatar-preview" :class="{'error':error}">
+                    <img v-if="!select" src="@/images/svg/person.svg" class="stock-image" width="46" height="46" alt>
                     <img
                         v-else
                         :alt="select.name"
@@ -224,8 +227,9 @@ onMounted(() => forceSave())
                     <div :class="`input-group-text ${groupTextClass}`">
                         <i class="ri-upload-2-line"></i>
                     </div>
-                    <div :class="['form-control overflow-hidden', boxClass, $attrs?.class]" ref="inputUpload">
-                        {{ select?.name }}
+                    <div :class="['form-control form-control-group-icon', $attrs?.class]" ref="inputUpload">
+                        <span v-if="file && !select?.name">{{ file?.name }}</span>
+                        <span v-else>{{ select?.name }}</span>
                     </div>
                 </div>
             </div>
@@ -265,6 +269,10 @@ onMounted(() => forceSave())
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.error {
+        border: 1px solid red;
+    }
 
     & img {
         width: 200px;

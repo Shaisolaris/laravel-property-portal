@@ -59,5 +59,11 @@ class CountryService
         $country->save();
     }
 
+    public function setActive(Country $country, bool $value): void
+    {
+        $country->is_active = $value;
+        $country->save();
+    }
+
 
 }

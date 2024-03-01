@@ -691,9 +691,17 @@ $pointerEventsValues: (
     }
 }
 
-//.row > * {
-//    padding-right: 0 !important;
-//}
+.bOffCanvasWidth {
+    width: 100% !important;
+
+    @media (min-width: 768px) {
+        width: 75% !important;
+    }
+
+    @media (min-width: 1400px) {
+        width: 50% !important;
+    }
+}
 
 .action-all-none {
     &:focus, &:active, &:hover {
@@ -708,4 +716,29 @@ $pointerEventsValues: (
 
 .table-td-actions-min-height {
     min-height: 45px !important;
+}
+
+.vti__input {
+    &:active, &:focus, &:focus-visible, &:focus-within {
+        box-shadow: none !important;
+
+    }
+
+    &:focus-within {
+        border-color: $border-focus-base-color !important;
+    }
+}
+
+.vue-tel-input {
+    &:active, &:focus, &:focus-visible, &:focus-within {
+        box-shadow: none !important;
+    }
+
+    &:focus-visible {
+        border-color: transparent !important;
+    }
+}
+
+.bg-disabled {
+    background-color: $disabled-color;
 }

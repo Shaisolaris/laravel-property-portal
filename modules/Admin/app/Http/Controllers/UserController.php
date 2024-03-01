@@ -6,7 +6,9 @@ use App\Enums\User\UserGenderEnum;
 use App\Enums\User\UserRoleEnum;
 use App\Enums\User\UserStatusEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CountryResource;
 use App\Http\Resources\UserRoleResource;
+use App\Models\Country;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +20,16 @@ use Modules\Admin\app\Http\Requests\User\UserSaveRequest;
 use Modules\Admin\app\Http\Resources\EducationInstitutionResource;
 use Modules\Admin\app\Http\Resources\UserResource;
 use Modules\Admin\app\Services\EducationInstitutionService;
+use Modules\Admin\app\Services\RoleService;
 use Modules\Admin\app\Services\UserService;
 
 class UserController extends Controller
 {
-    public function __construct(protected UserService $userService, protected EducationInstitutionService $institutionService)
+    public function __construct(
+        protected UserService $userService,
+        protected EducationInstitutionService $institutionService,
+        protected RoleService $roleService
+    )
     {
         parent::__construct();
     }
@@ -33,6 +40,7 @@ class UserController extends Controller
 
         return Inertia::render('Admin::Users/Index', [
             'users'   => UserResource::collection($this->userService->getList($request)),
+            'roles'   => UserRoleResource::collection($this->roleService->forFilters()),
             'filters' => $request->validated(),
         ]);
     }
@@ -84,6 +92,16 @@ class UserController extends Controller
             ->success('admin.page.user.save-success');
     }
 
+
+    public function documents(Request $request, User $user)
+    {
+        $user->load(['roles', 'detail.userDocuments']);
+
+        return Inertia::render('Admin::Users/Documents', [
+            'user' => UserResource::make($user),
+        ]);
+    }
+
     public function ban(User $user)
     {
         $this->userService->ban($user);
@@ -112,17 +130,14 @@ class UserController extends Controller
      */
     protected function userEditFormResponse(?User $user = null): \Inertia\Response
     {
-        $user?->load(['roles']);
+        $user?->load(['roles', 'detail.userDocuments']);
 
         return Inertia::render('Admin::Users/Edit', [
             'user'         => $user ? UserResource::make($user) : null,
             'genders'      => UserGenderEnum::getLabelsValues(),
             'statuses'     => UserStatusEnum::getLabelsValues(),
-            'roles'        => UserRoleResource::collection(
-                Role::query()
-                    ->whereNotIn('name', [UserRoleEnum::SuperAdmin()->value])
-                    ->get()
-            ),
+            'roles'        => UserRoleResource::collection($this->roleService->forFilters()),
+            'countries'    => CountryResource::collection(Country::available()->oldest('code')->get()),
             'institutions' => EducationInstitutionResource::collection($this->institutionService->getSelectList()),
         ]);
     }

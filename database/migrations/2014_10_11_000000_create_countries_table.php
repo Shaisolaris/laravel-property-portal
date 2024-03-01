@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('local_name')->nullable();
             $table->boolean('is_free')->default(true);
+            $table->boolean('is_active')->default(false);
 
             $table->timestamps();
         });

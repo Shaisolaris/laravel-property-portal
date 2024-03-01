@@ -18,6 +18,7 @@ class CountryResource extends JsonResource
             'name'       => $this->name,
             'local_name' => $this->local_name,
             'is_free'    => $this->is_free,
+            'is_active'  => $this->is_active,
         ];
     }
 }

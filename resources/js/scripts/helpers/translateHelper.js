@@ -1,5 +1,3 @@
-import { isEmpty } from "lodash";
-
 const containsUppercase = (str) => {
     return /[A-Z]/.test(str);
 }

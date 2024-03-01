@@ -1,6 +1,4 @@
 <script setup>
-
-
 defineProps({
     type: {
         type: String,
@@ -41,7 +39,12 @@ defineProps({
 </script>
 
 <template>
-    <BLink v-if="isTagA" :href="route" :data-key="tKey" :class="`btn btn-${variant} ${size.length > 0 ? `btn-${size}` : ''} w-100 text-black ${$attrs.class ?? ''}`">
+    <BLink
+        v-if="isTagA"
+        :href="route"
+        :data-key="tKey"
+        :class="`btn btn-${variant} ${size.length > 0 ? `btn-${size}` : ''} w-100 text-black ${$attrs.class ?? ''}`"
+    >
         <slot name="icon">
             <i v-if="icon" :class="[icon, 'me-1 fs-14']"></i>
         </slot>
@@ -79,7 +82,7 @@ defineProps({
     <button
         v-else
         :type="type"
-        :class="`btn ${size.length > 0 ? `btn-${size}` : ''} btn-${variant}  text-black ${$attrs.class ?? ''}`"
+        :class="`btn ${size.length > 0 ? `btn-${size}` : ''} btn-${variant} text-black ${$attrs.class ?? ''}`"
         :data-key="tKey"
     >
         <slot name="icon">

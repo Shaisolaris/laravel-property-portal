@@ -4,6 +4,8 @@ namespace Modules\Auth\app\Http\Requests;
 
 use App\Models\User;
 use App\Enums\User\UserRoleEnum;
+use App\Models\UserDetail;
+use Illuminate\Support\Arr;
 use Modules\School\app\Models\EiClass;
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\General\app\Models\EducationInstitution;
@@ -19,12 +21,17 @@ class UserDetailRequest extends FormRequest
     {
         $rules = [
             'extra_information' => 'required|string|min:10|max:1000',
-//            'business_document_path' => 'required|file',
-//            'registration_scan_path' => 'required|file',
+
+//            'registration_scan' => 'required|file',
+//            'transcript' => 'required|file',
+//            'diploma_certificate' => 'required|file',
+//            'previous_employment_education' => 'required|file',
+//            'teaching_experience' => 'required|file',
+//            'additional_licences_permits' => 'required|file',
         ];
 
         if($this->user()->hasRole(UserRoleEnum::Student()->value)) {
-//            $rules['class_id'] = 'required|integer|exists:ei_classes,id';
+            //            $rules['class_id'] = 'required|integer|exists:ei_classes,id';
         }
 
         return $rules;
@@ -35,32 +42,14 @@ class UserDetailRequest extends FormRequest
         return boolval($this->user());
     }
 
-    public function uploadBusinessDocument($user_detail): void
+    public function uploadDocuments(UserDetail $model): void
     {
-        if($this->hasFile('business_document_path')) {
-            $user_detail->singleFileUpload(
-                $this->file('business_document_path'),
-                'detail',
-                [
-                    'is_business_document' => true,
-                    'user_id' => auth()->id()
-                ]
-            );
-        }
-    }
-
-    public function uploadRegisterScanDocument($user_detail): void
-    {
-        if($this->hasFile('registration_scan_path')) {
-            $user_detail->singleFileUpload(
-                $this->file('registration_scan_path'),
-                'detail',
-                [
-                    'is_registration_scan' => true,
-                    'user_id' => auth()->id()
-                ]
-            );
-        }
+        $this->saveDocument($model, 'registration_scan');
+        $this->saveDocument($model, 'transcript');
+        $this->saveDocument($model, 'diploma_certificate');
+        $this->saveDocument($model, 'previous_employment_education');
+        $this->saveDocument($model, 'teaching_experience');
+        $this->saveDocument($model, 'additional_licences_permits');
     }
 
     public function attachToClass(): void
@@ -78,6 +67,21 @@ class UserDetailRequest extends FormRequest
                     $class->users()->attach($user);
                 }
             }
+        }
+    }
+
+    public function updateLocalizeData(): void
+    {
+        $this->user()->update(Arr::only($this->input(), ['gender','languages','timezone']));
+    }
+
+    protected function saveDocument(UserDetail $model, $name, $collection = 'user_documents'): void
+    {
+        if($this->hasFile($name)) {
+            $model->singleFileUpload($this->file($name), $collection, [
+                'user_id' => auth()->id(),
+                'is_' . $name => true,
+            ]);
         }
     }
 }

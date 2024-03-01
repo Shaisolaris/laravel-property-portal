@@ -56,7 +56,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property mixed|null $sub_status
  * @property string $first_name
  * @property string $last_name
- * @property Enum|null $gender
+ * @property-read Enum|null $gender
  * @property array|null $languages
  * @property string|null $profile_photo_path
  * @property string $address
@@ -74,15 +74,17 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property string|null $pm_type
  * @property string|null $pm_last_four
  * @property string|null $remember_token
+ * @property string|null $password_set_token
+ * @property Carbon|null $password_set_until
  * @property Carbon|null $birth_at
  * @property string|null $trial_ends_at
  * @property Carbon|null $email_verified_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null $password_set_token
- * @property Carbon|null $password_set_until
+ * @property-read mixed $balance_organization
  * @property-read Country|null $country
  * @property-read UserDetail|null $detail
+ * @property-read mixed $full_name
  * @property-read mixed $institution_id
  * @property-read mixed $institution_name
  * @property-read string $institution_type
@@ -104,6 +106,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection<int, Permission> $permissions
  * @property-read int|null $permissions_count
  * @property-read string $profile_photo_url
+ * @property-read mixed $role_name
  * @property-read Collection<int, \Spatie\Permission\Models\Role> $roles
  * @property-read int|null $roles_count
  * @property-read Collection<int, Schedule> $schedule
@@ -112,10 +115,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @property-read Collection<int, Subscription> $subscriptions
  * @property-read int|null $subscriptions_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
+ * @property-read UserPasswordToken|null $passwordToken
  * @property-read int|null $tokens_count
  * @property-read Collection<int, Notification> $unreadNotifications
  * @property-read int|null $unread_notifications_count
- * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
+ * @method static UserFactory factory($count = null, $state = [])
  * @method static Builder|User hasExpiredGenericTrial()
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -124,6 +128,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
  * @method static Builder|User permission($permissions, $without = false)
  * @method static Builder|User query()
  * @method static Builder|User role($roles, $guard = null, $without = false)
+ * @method static Builder|User status($status)
  * @method static Builder|User whereAddress($value)
  * @method static Builder|User whereBio($value)
  * @method static Builder|User whereBirthAt($value)
@@ -180,7 +185,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     use UserRelationshipsTrait;
     use TwoFactorAuthenticatable;
 
-
     protected $hidden = [
         'password',
         'remember_token',
@@ -226,7 +230,6 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'gender' => UserGenderEnum::class,
         'status' => UserStatusEnum::class,
         'teaching_level' => UserTeachingLevelEnum::class,
-        'password_set_until' => 'datetime',
     ];
 
     protected $appends = [
@@ -236,18 +239,15 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     protected $with = ['detail', 'settings'];
 
-
     public function notifications(): HasMany
     {
         return $this->hasMany(Notification::class)->latest();
     }
 
-
     public function unreadNotifications(): HasMany
     {
         return $this->notifications()->whereNull('read_at');
     }
-
 
     protected function defaultProfilePhotoUrl(): string
     {

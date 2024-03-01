@@ -197,7 +197,7 @@
     }
 
     &.event-canceled {
-        background-color: $danger;
+        background-color: rgba(#ff0018, .8);
     }
 
     &.event-today {
@@ -223,7 +223,9 @@
 
 .fc-daygrid-dot-event.fc-event-mirror,
 .fc-daygrid-dot-event:hover {
-    background-color: $white;
+    &:not(.event-canceled) {
+        opacity: .8;
+    }
 }
 
 .fc-event-title,

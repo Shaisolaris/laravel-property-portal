@@ -4,7 +4,6 @@ namespace App\Traits\Models\Functions;
 
 use App\Enums\User\UserRoleEnum;
 use App\Enums\User\UserStatusEnum;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 
 trait UserFunctionsTrait
@@ -58,8 +57,22 @@ trait UserFunctionsTrait
     public function thereAreDocument(): bool
     {
         if ($this->detail) {
-            return $this->detail->media()->whereJsonContains('custom_properties->is_business_document', true)->exists()
-                && $this->detail->media()->whereJsonContains('custom_properties->is_registration_scan', true)->exists();
+
+            $status = false;
+
+            if($this->isStudent()) {
+                $status = $this->detail->media()->whereJsonContains('custom_properties->is_transcript', true)->exists();
+            }
+
+            if($this->isInstructor()) {
+                $status = $this->detail->media()->whereJsonContains('custom_properties->is_diploma_certificate', true)->exists()
+                    && $this->detail->media()->whereJsonContains('custom_properties->is_diploma_certificate', true)->exists()
+                    && $this->detail->media()->whereJsonContains('custom_properties->is_previous_employment_education', true)->exists()
+                    && $this->detail->media()->whereJsonContains('custom_properties->is_teaching_experience', true)->exists()
+                    && $this->detail->media()->whereJsonContains('custom_properties->is_additional_licences_permits', true)->exists();
+            }
+
+            return $this->detail->media()->whereJsonContains('custom_properties->is_registration_scan', true)->exists() && $status;
         }
 
         return false;

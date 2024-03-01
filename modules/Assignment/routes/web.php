@@ -5,8 +5,9 @@ use Modules\Assignment\app\Http\Controllers\AssignmentController;
 
 Route::group([
     'middleware' => 'student_instructor',
-    'prefix' => 'assignments',
-    'as' => 'assignment.',
+    'as' => 'institution.',
+    'prefix' => 'institution',
 ], function () {
     Route::resource('assignment', AssignmentController::class)->names('assignment');
+    Route::post('handler', [AssignmentController::class,'handler'])->name('assignment.handler');
 });

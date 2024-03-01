@@ -100,10 +100,16 @@ class HandleInertiaRequestService
                 'tKey' => 'dashboard'
             ],
             [
-                'route' => route('school.manage-user.index'),
-                'active' => request()->routeIs('school.manage-user.index'),
+                'route' => route('school.manage-user.teacher'),
+                'active' => request()->routeIs('school.manage-user.teacher'),
                 'icon' => 'ri-group-fill',
-                'tKey' => 'manage-users'
+                'tKey' => 'manage-teachers'
+            ],
+            [
+                'route' => route('school.manage-user.student'),
+                'active' => request()->routeIs('school.manage-user.student'),
+                'icon' => 'ri-group-fill',
+                'tKey' => 'manage-students'
             ],
             [
                 'route' => route('school.class.list'),
@@ -175,13 +181,13 @@ class HandleInertiaRequestService
             ],
             [
                 'route' => route('school.my-class.index'),
-                'active' => request()->routeIs('school.my-class.index') || request()->routeIs('school.my-class.subject'),
+                'active' => request()->routeIs('school.my-class.index') || request()->routeIs('school.my-class.subject.index') || request()->routeIs('school.my-class.subject.curriculum'),
                 'icon' => 'ri-book-2-fill',
                 'tKey' => 'my-classes'
             ],
             [
-                'route' => route('assignment.assignment.index'),
-                'active' => request()->routeIs('assignment.assignment.index'),
+                'route' => route('institution.assignment.index'),
+                'active' => request()->routeIs('institution.assignment.index'),
                 'icon' => 'ri-file-text-line',
                 'tKey' => 'assignments'
             ],
@@ -191,12 +197,12 @@ class HandleInertiaRequestService
                 'icon' => 'ri-question-line',
                 'tKey' => 'quizzes'
             ],
-            [
-                'route' => route('general.grade'),
-                'active' => request()->routeIs('general.grade'),
-                'icon' => 'ri-calendar-check-line',
-                'tKey' => 'grades'
-            ],
+//            [
+//                'route' => route('general.grade'),
+//                'active' => request()->routeIs('general.grade'),
+//                'icon' => 'ri-calendar-check-line',
+//                'tKey' => 'grades'
+//            ],
 //            [
 //                'route' => route('payment.payment-credential.index'),
 //                'active' => request()->routeIs('payment.payment-credential.index') || request()->routeIs('payment.history')|| request()->routeIs('payment.withdrawal-request.index'),
@@ -241,17 +247,17 @@ class HandleInertiaRequestService
                 'tKey' => 'my-courses'
             ],
             [
-                'route' => route('assignment.assignment.index'),
-                'active' => request()->routeIs('assignment.assignment.index'),
+                'route' => route('institution.assignment.index'),
+                'active' => request()->routeIs('institution.assignment.index'),
                 'icon' => 'ri-file-text-line',
                 'tKey' => 'assignments'
             ],
-            [
-                'route' => route('general.grade'),
-                'active' => request()->routeIs('general.grade'),
-                'icon' => 'ri-calendar-check-line',
-                'tKey' => 'grades'
-            ],
+//            [
+//                'route' => route('general.grade'),
+//                'active' => request()->routeIs('general.grade'),
+//                'icon' => 'ri-calendar-check-line',
+//                'tKey' => 'grades'
+//            ],
 //            [
 //                'route' => route('payment.history'),
 //                'active' => request()->routeIs('payment.history'),
@@ -288,6 +294,12 @@ class HandleInertiaRequestService
                 'active' => request()->routeIs('school.student-subject.index'),
                 'icon' => 'ri-book-2-fill',
                 'tKey' => 'my-subjects'
+            ],
+            [
+                'route' => route('institution.assignment.index'),
+                'active' => request()->routeIs('institution.assignment.index'),
+                'icon' => 'ri-file-text-line',
+                'tKey' => 'assignments'
             ],
             [
                 'route' => route('quiz.index'),

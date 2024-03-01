@@ -23,6 +23,11 @@ const props = defineProps({
 
 <template>
     <AppLayout title="settings">
+<!--        //TODO: как будут нотификации, вернуть в json file-->
+<!--        //{-->
+<!--        //    "name": "Notification",-->
+<!--        //    "icon": "ri-notification-4-line"-->
+<!--        //},-->
         <Tabs t-key="settings">
             <template #tab-profile-body>
                 <b-col cols="12" xl="8">

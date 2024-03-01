@@ -23,7 +23,20 @@ class Time extends Facade
         return $time;
     }
 
+    public static function getTimezoneDate(string|null $date, string $format = 'Y-m-d H:i'): string|null
+    {
+        if (!$date) {
+            return $date;
+        }
 
+        $timezone = auth()->user()->timezone;
+
+        if(!$timezone || $timezone == 'default') {
+            $timezone = date_default_timezone_get();
+        }
+
+        return Carbon::parse($date)->timezone($timezone)->format($format);
+    }
 
     protected static function getFacadeAccessor(): string
     {

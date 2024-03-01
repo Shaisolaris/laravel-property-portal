@@ -29,8 +29,8 @@ class RegisteredController extends Controller
 
     public function create(): \Inertia\Response|\Inertia\ResponseFactory
     {
-        $institutions = EducationInstitutionResource::collection(EducationInstitution::available()->limit(100)->get());
-        $countries = CountryResource::collection(Country::orderBy('name')->get());
+        $institutions = EducationInstitutionResource::collection(EducationInstitution::availableInstitutionType()->limit(100)->get());
+        $countries = CountryResource::collection(Country::available()->oldest('code')->get());
 
         return inertia('Auth::Register', [
             'institutions' => $institutions,

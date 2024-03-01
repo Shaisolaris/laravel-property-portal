@@ -61,11 +61,11 @@ const input = () => emit("update:modelValue", JSON.stringify(fields))
                     </td>
                     <td>
                         <BaseButton
+                            :disabled="fields.length <= 1"
                             class="w-100"
                             t-key="delete"
-                            :disabled="fields.length <= 1"
-                            @click="remove(index)"
                             variant="danger"
+                            @click="remove(index)"
                         />
                     </td>
                 </tr>

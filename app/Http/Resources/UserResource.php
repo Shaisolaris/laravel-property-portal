@@ -55,7 +55,7 @@ class UserResource extends JsonResource
         ];
 
         if ($this->hasRole(UserRoleEnum::Student()->value) && $this->myClass) {
-            $data['class'] = [
+            $data['myClass'] = [
                 'name' => $this->myClass->name,
                 'uuid' => $this->myClass->uuid
             ];

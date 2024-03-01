@@ -4,16 +4,18 @@ namespace Modules\Auth\app\Services;
 
 use App\Enums\User\UserStatusEnum;
 use App\Models\User;
+use App\Models\UserPasswordToken;
+use App\Processor\Actions\Forms\Handler\Course;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Modules\Admin\app\Services\UserService;
 use Modules\General\app\Processor\Actions\Forms\Handler\Classes;
-use Modules\General\app\Processor\Actions\Forms\Handler\Course;
 
 class PasswordService
 {
-    protected Course|Classes $model;
 
-    public function __construct()
+    public function __construct(protected UserService $adminUserService)
     {
 
     }
@@ -26,8 +28,11 @@ class PasswordService
 
         $user = User::query()
             ->where('uuid', $uuid)
-            ->where('password_set_token', $token)
-            ->where('password_set_until', '>', Carbon::now())
+			->whereHas('passwordToken', function ($query) use ($token) {
+				/** @var UserPasswordToken|Builder $query */
+				$query->where('token', $token);
+				$query->where('valid_until', '>', Carbon::now());
+			})
             ->first();
 
         if(!$user || $user->password) {
@@ -48,8 +53,10 @@ class PasswordService
 
         $user->password = Hash::make($password);
         $user->status = UserStatusEnum::Active()->value;
-        $user->password_set_token = null;
+        $user->email_verified_at = Carbon::now();
         $user->save();
+
+		$this->adminUserService->removePasswordToken($user);
 
         return $user;
     }

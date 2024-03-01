@@ -18,6 +18,7 @@ class CountrySeeder extends Seeder
                 'name' => $country['name'],
                 'local_name' => $country['local_name'],
                 'is_free' => $country['code'] == 'AF',
+                'is_active' => in_array($country['code'], ['AF', 'US']),
             ]);
         }
     }

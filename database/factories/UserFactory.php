@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use DateTimeZone;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Country;
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'country_id' => Country::inRandomOrder()->value('id'),
             'state' => fake()->word(),
             'city' => fake()->city(),
-            'timezone' => fake()->word(),
+            'timezone' => fake()->randomElement(DateTimeZone::listIdentifiers()),
             'phone' => fake()->phoneNumber(),
             'ip' => fake()->ipv4(),
             'zip_code' => fake()->ipv4(),

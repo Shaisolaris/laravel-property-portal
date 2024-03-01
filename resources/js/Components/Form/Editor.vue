@@ -1,6 +1,7 @@
 <!--https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html-->
 <!--https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/configuration.html-->
 <script setup>
+import { useI18n } from "vue-i18n";
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ErrorMessage from "~/Components/Partials/ErrorMessage.vue";
@@ -10,6 +11,7 @@ defineOptions({
     inheritAttrs: false,
 });
 
+const { t } = useI18n();
 const props = defineProps({
     modelValue: {
         type: String,
@@ -24,6 +26,10 @@ const props = defineProps({
         default: '',
     },
     label: {
+        type: String,
+        default: '',
+    },
+    placeholder: {
         type: String,
         default: '',
     },
@@ -53,6 +59,8 @@ watch(
         emit('update:modelValue', value)
     }
 );
+
+const placeholder_ = computed(() => props.placeholder && props.placeholder.length > 0 ? t(`placeholder.${props.placeholder}`) : '');
 </script>
 
 <template>
@@ -65,6 +73,7 @@ watch(
             :tag-name="tag"
             :disabled="$attrs?.disabled ?? false"
             :config="editorConfig"
+            :placeholder="placeholder_"
         />
     </div>
 

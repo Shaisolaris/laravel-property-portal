@@ -22,7 +22,7 @@ defineProps({
                                 <div class="fs-20 fw-medium">{{ itemClass.name }}</div>
                                 <TdActions tag="div">
                                     <template #actions>
-                                        <Link :href="route('school.my-class.subject', { 'eiClass': itemClass })">
+                                        <Link :href="route('school.my-class.subject.index', { 'eiClass': itemClass })">
                                             <BDropdownItem>
                                                 <Text tag="span" icon="ri-eye-fill" icon-class="text-dim-gray" t-key="subjects" />
                                             </BDropdownItem>

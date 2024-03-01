@@ -11,6 +11,10 @@ const props = defineProps({
         type:     Object,
         required: false,
     },
+    countries:       {
+        type:     Array,
+        required: true,
+    },
 });
 
 const avatarImage = computed(() => {
@@ -32,7 +36,7 @@ const form = useForm({
     last_name:  props.profile?.last_name ?? null,
     avatar:     null,
     address:    props.profile?.address ?? null,
-    country:    props.profile?.country ?? null,
+    country_id: props.profile?.country_id ?? null,
     state:      props.profile?.state ?? null,
     city:       props.profile?.city ?? null,
     phone:      props.profile?.phone ?? null,
@@ -47,7 +51,7 @@ watch(
         form.last_name = profile.last_name ?? null;
         form.avatar = null;
         form.address = profile.address ?? null;
-        form.country = profile.country ?? null;
+        form.country_id = profile.country_id ?? null;
         form.state = profile.state ?? null;
         form.city = profile.city ?? null;
         form.phone = profile.phone ?? null;
@@ -75,12 +79,12 @@ function submit() {
 
                     <div class="mb-4">
                         <FileUploads
-                            :simple="false"
                             v-model="form.avatar"
-                            :image="avatarImage"
+                            :simple="false"
+                            :file="avatarImage"
+                            :required="false"
                             label="profile-photo"
                             view-type="input-avatar"
-                            :required="false"
                         />
                     </div>
                     <b-row class="g-3">
@@ -126,12 +130,14 @@ function submit() {
                             />
                         </b-col>
                         <b-col cols="4">
-                            <BaseInput
-                                v-model="form.country"
-                                :error="form.errors.country"
-                                placeholder="select"
+                            <BaseMultiselect
+                                v-model="form.country_id"
+                                :error="form.errors.country_id"
+                                :options="countries"
                                 label="country"
+                                placeholder="country"
                             />
+
                         </b-col>
                         <b-col cols="4">
                             <BaseInput
@@ -158,7 +164,7 @@ function submit() {
                         </b-col>
 
                     </b-row>
-                    <div class="mx-auto mt-4 text-center">
+                    <div class="mt-4 text-end">
                         <SaveButton :disabled="form.processing"/>
                     </div>
 
