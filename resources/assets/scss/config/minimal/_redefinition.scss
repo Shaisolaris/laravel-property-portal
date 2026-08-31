@@ -1,0 +1,220 @@
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-button {
+}
+
+::-webkit-scrollbar-thumb {
+    opacity: 1;
+    border-radius: 7px;
+    background: #9BB8ED;
+}
+
+
+@for $i from 1 through 300 {
+    .radius-#{$i} {
+        border-radius: #{$i}px !important;
+    }
+
+    .scale-#{$i} {
+        scale: #{1 + ($i * 0.1)} !important;
+    }
+}
+
+.fontf-McLaren {
+    font-family: "McLaren";
+}
+
+.fontf-HelveticaNeue {
+    font-family: "Helvetica Neue";
+}
+
+.hover-element {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.box-shadow-none {
+    box-shadow: none !important;
+}
+
+.border-none {
+    border: none !important;
+}
+
+i {
+    &:not(.fs-) {
+        font-size: 16px;
+    }
+}
+
+$shadows: (
+    light-black: 0 2px 8px 0 rgba(0, 0, 0, 0.08),
+    dark-blue: 0 4px 0 0 #001427,
+    white: 0 4px 40px 0 rgba(0, 0, 0, 0.08),
+    light-blue: 4px 4px 0 0 #9BB8ED,
+    light-white: 0 4px 12px 0 rgba(0, 0, 0, 0.04),
+    light-pink: 4px 4px 0 0 #DEB3E0,
+    black: 2px 2px 0 0 #000000,
+);
+
+
+@each $shadowName, $shadow in $shadows {
+    .shadow-#{"" + $shadowName} {
+        box-shadow: $shadow !important;
+    }
+}
+
+
+@each $breakpoint, $dimension in $grid-breakpoints {
+    @for $i from 1 through 1500 {
+        .hp-#{$i} {
+            height: #{$i}px;
+        }
+
+        .wp-#{$i} {
+            width: #{$i}px;
+        }
+
+        .hc-#{$i} {
+            height: #{$i}#{'%'};
+        }
+
+        .wc-#{$i} {
+            width: #{$i}#{'%'};
+        }
+
+        .mhp-#{$i} {
+            max-height: #{$i}px;
+        }
+
+        .mwp-#{$i} {
+            max-width: #{$i}px;
+        }
+
+        .pxc-#{$i} {
+            padding-left: #{$i}px !important;
+            padding-right: #{$i}px !important;
+        }
+
+        .pyc-#{$i} {
+            padding-top: #{$i}px !important;
+            padding-bottom: #{$i}px !important;
+        }
+
+        .pc-#{$i} {
+            padding: #{$i}px !important;
+        }
+
+        .ptc-#{$i} {
+            padding-top: #{$i}px !important;
+        }
+
+        .pbc-#{$i} {
+            padding-bottom: #{$i}px !important;
+        }
+
+        .psc-#{$i} {
+            padding-left: #{$i}px !important;
+        }
+
+        .pec-#{$i} {
+            padding-right: #{$i}px !important;
+        }
+
+        .fsc-#{$i} {
+            font-size: #{$i}px !important;
+        }
+
+        @media (min-width: $dimension) {
+            .hp-#{$breakpoint}-#{$i} {
+                height: #{$i}px;
+            }
+
+            .wp-#{$breakpoint}-#{$i} {
+                width: #{$i}px;
+            }
+
+            .hc-#{$breakpoint}-#{$i} {
+                height: #{$i}#{'%'} !important;
+            }
+
+            .wc-#{$breakpoint}-#{$i} {
+                width: #{$i}#{'%'} !important;
+            }
+
+            .pxc-#{$breakpoint}-#{$i} {
+                padding-left: #{$i}px;
+                padding-right: #{$i}px;
+            }
+
+            .pyc-#{$breakpoint}-#{$i} {
+                padding-top: #{$i}px;
+                padding-bottom: #{$i}px;
+            }
+
+            .pc-#{$breakpoint}-#{$i} {
+                padding: #{$i}px;
+            }
+
+            .ptc-#{$breakpoint}-#{$i} {
+                padding-top: #{$i}px;
+            }
+
+            .pbc-#{$breakpoint}-#{$i} {
+                padding-bottom: #{$i}px;
+            }
+
+            .psc-#{$breakpoint}-#{$i} {
+                padding-left: #{$i}px;
+            }
+
+            .pec-#{$breakpoint}-#{$i} {
+                padding-right: #{$i}px;
+            }
+
+            .fsc-#{$breakpoint}-#{$i} {
+                font-size: #{$i}px;
+            }
+        }
+    }
+}
+
+.text-decoration-wavy {
+    text-underline-offset: auto;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: #9BB8ED;;
+}
+
+[data-sidebar-size="sm"] {
+    .avatar-block {
+        display: none !important;
+    }
+}
+
+.button-without-all {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.default-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.default-bg-card {
+    background-color: $beige;
+}
+
+.default-text-color {
+    color: $dim-gray !important;
+}
+
+.text-underline-hover:hover {
+    text-decoration: underline;
+}
