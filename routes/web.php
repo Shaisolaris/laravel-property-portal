@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\MediaController;
-use Modules\Auth\app\Http\Controllers\AuthenticatedSessionController;
+use Illuminate\Http\Request;
+
+Route::get('/', fn () => response('OK', 200))->name('home');
 
 Route::group([
     'as' => 'upload.',
@@ -25,4 +27,12 @@ Route::group([
     Route::get('fail', 'fail')->name('fail');
 });
 
-Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('auth.logout');
+Route::get('logout', function (Request $request) {
+    auth()->logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+})->name('auth.logout');

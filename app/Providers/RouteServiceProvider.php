@@ -50,7 +50,6 @@ class RouteServiceProvider extends ServiceProvider
             foreach ($modules as $module) {
                 if (in_array($module, $available)) {
                     Route::middleware(['web', 'default-middlewares'])
-                        ->namespace("Modules\\$module\app\Http\Controllers")
                         ->prefix('{role?}/{institution?}')
                         ->group(module_path($module, '/routes/web.php'));
                 }
