@@ -6,16 +6,14 @@ const require = createRequire(import.meta.url);
 
 export default defineConfig({
     build: {
-        outDir: '../../public/build-grade',
+        outDir: '../../public/build-admin',
         emptyOutDir: true,
         manifest: true,
     },
     plugins: [
         laravel({
             publicDirectory: '../../public',
-            buildDirectory: 'build-grade',
-            // NOTE: 'resources/assets/sass/app.scss' does not exist in this module,
-            // so only the JS entry is built.
+            buildDirectory: 'build-admin',
             input: [
                 __dirname + '/resources/assets/js/app.js'
             ],

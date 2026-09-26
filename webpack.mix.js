@@ -15,7 +15,11 @@ mix
 // .js('resources/js/app.js', 'public/assets/default/js')
 //
 // scss
-.sass('resources/sass/app.scss', 'public/assets/default/css')
+// NOTE: the original Laravel scaffold entry 'resources/sass/app.scss' no longer exists
+// after the asset restructure (sources now live under resources/assets/). The stale
+// entry is disabled so the build does not fail on a missing file. Re-enable with a
+// valid entry point if root Mix builds are needed again.
+// .sass('resources/sass/app.scss', 'public/assets/default/css')
 // .sass('resources/sass/panel.scss', 'public/assets/default/css')
 // .sass('resources/sass/rtl-app.scss', 'public/assets/default/css')
 

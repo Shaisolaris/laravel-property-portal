@@ -1,7 +1,5 @@
 <?php
 
-use Laravel\Cashier\Console\WebhookCommand;
-use Laravel\Cashier\Invoices\DompdfInvoiceRenderer;
 
 return [
 
@@ -47,7 +45,7 @@ return [
     'webhook' => [
         'secret' => env('STRIPE_WEBHOOK_SECRET'),
         'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
-        'events' => WebhookCommand::DEFAULT_EVENTS,
+        'events' => [],
     ],
 
     /*
@@ -101,7 +99,7 @@ return [
     */
 
     'invoices' => [
-        'renderer' => env('CASHIER_INVOICE_RENDERER', DompdfInvoiceRenderer::class),
+        'renderer' => env('CASHIER_INVOICE_RENDERER', null),
 
         'options' => [
             // Supported: 'letter', 'legal', 'A4'
