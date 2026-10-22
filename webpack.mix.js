@@ -1,5 +1,10 @@
 const mix = require('laravel-mix');
 
+// Headless builds must not invoke a desktop notification application.
+if (process.env.CI) {
+    mix.disableNotifications();
+}
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

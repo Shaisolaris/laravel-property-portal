@@ -1,11 +1,48 @@
 name: CI
-on: { push: { branches: [main] }, pull_request: { branches: [main] } }
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with: { php-version: '8.2' }
-      - name: PHP Lint
-        run: find . -name "*.php" -not -path "./vendor/*" -not -path "./node_modules/*" -exec php -l {} \;
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.2'
+      - name: PHP syntax
+        run: find . -name "*.php" -not -path "./vendor/*" -not -path "./node_modules/*" -print0 | xargs -0 -n 1 php -l
+  dependency-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Install locked dependencies without lifecycle scripts
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm ci --prefix modules/Admin --ignore-scripts --no-audit --no-fund
+          npm ci --prefix modules/Grade --ignore-scripts --no-audit --no-fund
+      - name: Real redirect credential behavior in all three dependency scopes
+        run: npm run test:dependency-security
+      - name: CSS parser compatibility against the pre-upgrade project corpus
+        run: npm run test:asset-compatibility
+      - name: Headless build smoke checks
+        run: |
+          npm run production
+          npm run build --prefix modules/Admin
+          npm run build --prefix modules/Grade
+      - name: No new advisories; explicitly report unresolved development findings
+        env:
+          DEPENDENCY_AUDIT_OUTPUT: ${{ runner.temp }}/dependency-audit
+        run: npm run test:dependency-audit
