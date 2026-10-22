@@ -46,3 +46,5 @@ jobs:
         env:
           DEPENDENCY_AUDIT_OUTPUT: ${{ runner.temp }}/dependency-audit
         run: npm run test:dependency-audit
+      - name: Audit endpoint failures remain diagnostic and fail closed
+        run: npm run test:audit-unavailable

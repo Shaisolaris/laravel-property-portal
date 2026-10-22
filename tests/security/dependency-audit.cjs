@@ -10,7 +10,8 @@ const root = path.resolve(__dirname, '../..');
 const baseline = require('../../security/unresolved-dev-advisories.json').findings;
 
 function evaluate(scope, report, lock, findings = baseline) {
-  assert.ok(report.metadata && report.vulnerabilities, 'missing audit result');
+  assert.ok(report?.metadata && report?.vulnerabilities,
+    `${scope}: npm audit unavailable or malformed response (${report?.error?.code || 'missing audit data'})`);
   assert.ok(report.auditReportVersion >= 2 && report.metadata.dependencies?.total > 0,
     'missing audit coverage metadata');
   assert.equal(report.metadata.vulnerabilities?.total, Object.keys(report.vulnerabilities).length,
@@ -79,8 +80,8 @@ function main() {
     const report = JSON.parse(run.stdout);
     fs.writeFileSync(path.join(output, scope === '.' ? 'root.json' : path.basename(scope) + '.json'), JSON.stringify(report, null, 2) + '\n');
     const lock = JSON.parse(fs.readFileSync(path.join(directory, 'package-lock.json')));
-    results.push({ scope, aggregate_counts: report.metadata.vulnerabilities,
-      unresolved: evaluate(scope, report, lock) });
+    const unresolved = evaluate(scope, report, lock);
+    results.push({ scope, aggregate_counts: report.metadata.vulnerabilities, unresolved });
   }
   const result = { regression_passed: true, production_security_approval: 'NOT_ASSESSED',
     unresolved_findings_are_not_fixed: true, results };
