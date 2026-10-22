@@ -10,7 +10,8 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js",
         "test:dependency-security": "node tests/security/redirect-headers.cjs",
         "test:asset-compatibility": "node tests/security/css-compat.cjs",
-        "test:dependency-audit": "node tests/security/dependency-audit.cjs --self-test"
+        "test:dependency-audit": "node tests/security/dependency-audit.cjs --self-test",
+        "test:audit-unavailable": "node tests/security/audit-unavailable.cjs"
     },
     "devDependencies": {
         "axios": "^1.18.0",
