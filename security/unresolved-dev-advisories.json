@@ -1,0 +1,28 @@
+{
+  "recorded_date": "2026-10-21",
+  "purpose": "Unresolved upstream findings, not fixes or production security approval. Regression CI reports these explicitly and rejects new advisories or movement into production dependencies.",
+  "findings": [
+    {
+      "id": "GHSA-vfj7-8cjw-p6xm",
+      "package": "braces",
+      "version": "3.0.3",
+      "scope": ".",
+      "severity": "high",
+      "upstream_patched_version": null,
+      "source": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+      "context": "Development-only Laravel Mix glob/watch graph via chokidar and micromatch. No production Node service or application request path to this parser is defined in this repository. Deployment reachability is unverified.",
+      "next": "Keep open for an upstream patch or a separately validated build-tool replacement."
+    },
+    {
+      "id": "GHSA-848j-6mx2-7j84",
+      "package": "elliptic",
+      "version": "6.6.1",
+      "scope": ".",
+      "severity": "low",
+      "upstream_patched_version": null,
+      "source": "https://github.com/advisories/GHSA-848j-6mx2-7j84",
+      "context": "Development-only crypto-browserify/node-libs-browser graph of Laravel Mix. No active root Mix asset entrypoints are configured; deployed bundle use is unverified.",
+      "next": "Keep open for an upstream patch or removal through a validated polyfill/build migration."
+    }
+  ]
+}

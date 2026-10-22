@@ -1,0 +1,30 @@
+[
+  {
+    "name": "actual-project-icons",
+    "input_sha256": "b0ac2a7bd1cd92c65144caf327c1f6d63db25b9a8dcd2252815ad23fcfa56222",
+    "input_bytes": 409034,
+    "output_sha256": "af96bb9b10fc41e5a03536c895e81b0b47fd323325df91e99ef9901d1a1be0b7",
+    "output_bytes": 331871
+  },
+  {
+    "name": "selector-and-calculation",
+    "input_sha256": "1e579dc4696abc26623abbb190c63e11c27ea2b806fb62336bb896b2c4ce7894",
+    "input_bytes": 74,
+    "output_sha256": "ddee64571f07c1e3a3e26a3b6ccb24ac2730e6c77e7538858f18f4fbc0fb0ea9",
+    "output_bytes": 44
+  },
+  {
+    "name": "namespaces-and-pseudos",
+    "input_sha256": "2b7359ae90db989525bce429a05a11e5ce19c18d28d9c8697546de4ebeccd067",
+    "input_bytes": 100,
+    "output_sha256": "892c9427163c711644c632d83db426c06e32af0587ef00926eeaa63b27e880eb",
+    "output_bytes": 83
+  },
+  {
+    "name": "stylehacks-and-merges",
+    "input_sha256": "636d36c266ef6e2c6f30f6cc63eaf1095662aa60fadce29152c053fc6e5af8c3",
+    "input_bytes": 93,
+    "output_sha256": "45eb1a003510cdeecbff8303e718343188001925e1b1d270c7bfabe8a1a99322",
+    "output_bytes": 64
+  }
+]
